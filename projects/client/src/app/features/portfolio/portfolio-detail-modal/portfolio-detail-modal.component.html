@@ -1,0 +1,226 @@
+<div class="card overflow-auto border-radius-15">
+  <div
+    class="card-header bg-success text-right text-white py-4 position-sticky d-flex align-items-center justify-content-between"
+    style="border-radius: 15px 15px 0 0 !important;top: 0;z-index: 1;">
+    <h5 class="">
+      جزئیات صندوق {{mutualFundDetail?.symbol}}
+    </h5>
+    <!-- <svg viewBox="0 0 24 24" width="40px" height="40px" class="p-3 fw-bolder cursor-pointer border-radius-10"
+      (click)="activeModal.dismiss()" style="border: 1px solid #fff">
+      <use xlink:href="#ico_close"></use>
+    </svg> -->
+    <button type="button" class="bg-opacity-25 bg-white border-0 border-radius-7 d-flex mb-2 me-2 p-2 text-white"
+      aria-label="Close" (click)="activeModal.dismiss()">
+      <svg viewBox='0 0 16 16' fill='#ffffff' width='16' height='16'>
+        <path
+          d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z' />
+      </svg>
+    </button>
+  </div>
+  <div class="card-body p-0">
+    <div class="overflow-auto h-detail">
+    <div class="fund-name-img d-flex align-items-center justify-content-center flex-column p-0">
+      <!-- <img *ngIf="mutualFundDetail?.attachments?.length > 0; else logoPlaceholder"         
+        [src]="apiUrl + '/' + getLogo()?.downloadLink"
+        alt="Fund Logo"
+        style="width: 40px;" /> -->
+      <app-svg-viewer *ngIf="mutualFundDetail?.attachments?.length > 0; else logoPlaceholder" 
+                 [svgUrl]="apiUrl + '/' + getLogo()?.downloadLink" style="width: 40px;"></app-svg-viewer>
+
+      <ng-template #logoPlaceholder>
+        <div class="logo-loading-placeholder"></div>
+      </ng-template>
+      <h4 class="mt-5 mb-2 font-weight-semi" style="color: #19232D;">
+        {{mutualFundDetail?.symbol}}
+      </h4>
+      <h6 class="text-secondary px-5" style="color: #737D87;">
+        {{mutualFundDetail?.fundTypeTitle}}
+      </h6>
+    </div>
+    <div class="d-flex align-items-center flex-column px-5 pt-0 w-100">
+      <div class="d-flex align-items-center justify-content-between w-100 my-4" style="color: #919BA5;">
+        <div class="d-flex align-items-center">
+          <h4 class="mb-0 font-weight-semi">
+            دارایی شما در صندوق
+          </h4>
+        </div>
+        <div class="d-flex align-items-center">
+          <h6 class="mb-0">
+            تاریخ آخرین بروز رسانی
+          </h6>
+          <h6 class="mb-0">
+            {{mutualFundDetail?.performance?.lastUpdateDateJalali}}
+          </h6>
+        </div>
+      </div>
+
+      <div class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2">
+        <h5 class="text-secondary mb-0" style="color: #737D87;">تعداد واحد صندوق</h5>
+        <h5 class="mb-0  d-flex align-items-center">
+          <!-- {{mutualFundDetail?.customerRequestCompositions?.remainVolume | number}} -->
+          {{ mutualFundDetail?.customerRequestCompositions?.remainVolume != null ? (mutualFundDetail?.customerRequestCompositions?.remainVolume | number) : '-' }}
+          <h6 class="mb-0 me-1">واحد</h6>
+        </h5>
+      </div>
+      <div class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-5">
+        <h5 class="text-secondary mb-0" style="color: #737D87;">ارزش دارایی این صندوق</h5>
+        <h5 class="mb-0 d-flex align-items-center">
+          {{mutualFundDetail?.customerRequestCompositions?.netValue | number}}
+          <h6 class="mb-0 me-1">ریال</h6>
+        </h5>
+      </div>
+      <div class="w-100 d-flex align-items-center justify-content-between mb-3">
+        <h5 class="mb-0 font-weight-semi" style="color: #919BA5;">
+          نمودار تغییرات دارایی
+        </h5>
+        <button type="button" class="btn btn-outline-primary px-4 py-2 border-radius-7" (click)="toggleGuide()">
+          راهنمای نمودار
+        </button>
+      </div>
+      <div class="d-flex w-100 align-items-center flex-column justify-content-center w-100" class="guide-section"
+        [class.open]="isGuideSectionOpen">
+        @if( isGuideSectionOpen()){
+        <div class="text-black mb-2 p-3 w-100" style="border-radius: 10px;background-color: #ebf5ff;">
+          <div class="d-flex align-items-center justify-content-between  ">
+            <div class="ms-2">
+              واریز
+            </div>
+            <div class="d-flex aling-items-center">
+              <span [style.backgroundColor]="'#12b549'" class="dot"></span>
+            </div>
+          </div>
+        </div>
+        <div class="text-black mb-2 p-3 w-100" style="border-radius: 10px;background-color: #ebf5ff;">
+          <div class="d-flex align-items-center justify-content-between  ">
+            <div class="ms-2">
+              برداشت
+            </div>
+            <div class="d-flex aling-items-center">
+              <span [style.backgroundColor]="'#ef5350'" class="dot"></span>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="text-black mb-2 p-3 w-100" style="border-radius: 10px;background-color: #ebf5ff;">
+          <div class="d-flex align-items-center justify-content-between  ">
+            <div class="ms-2">
+              تقسیم سود
+            </div>
+            <div class="d-flex aling-items-center">
+              <span [style.backgroundColor]="'#ffc107'" class="dot"></span>
+            </div>
+
+
+          </div>
+        </div>
+        }
+      </div>
+
+      <div class="mb-5 w-100">
+        <div class="card w-100 p-3" style="background-color: var(--dtx-body-bg);">
+          <app-asset-portfolio-chart [mutualFundId]="mutualFundDetail?.mutualFundId"
+            [mutualFundCode]="mutualFundDetail?.seoRegisterNumber"
+            [mutualFundType]="mutualFundDetail?.fundType"></app-asset-portfolio-chart>
+        </div>
+      </div>
+      <div class="card shadow-sm my-3 border-radius-15 w-100">
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center cursor-pointer" routerLink="/reporting/requests">
+
+            <svg viewBox="0 0 24 24" width="20px" height="20px" class="text-green">
+              <use xlink:href="#ico_hourglass"></use>
+            </svg>
+            <div class=" me-5 font-weight-semi" style="color: #737D87;">سرمایه‌گذاری‌ در جریان</div>
+          </div>
+          <div class="d-flex flex-nowrap align-items-center ">
+            <span class="h5 fw-bold m-0 px-3 cursor-pointer"
+              [maskNumber]="mutualFundDetail?.customerEvidences?.watingSubscriptionAmount">
+            </span>
+            <span class="fs-6 mx-2"> ریال </span>
+            <svg viewBox="0 0 24 24" width="14px" height="14px" class="cursor-pointer" style="color: #737D87;"
+              routerLink="/reporting/requests">
+              <use xlink:href="#ico_drop_left"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card shadow-sm mb-5 border-radius-15 w-100">
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center cursor-pointer" routerLink="/reporting/requests">
+            <svg viewBox="0 0 24 24" width="20px" height="20px" class="text-danger mx-1" style="rotate: 180deg;">
+              <use xlink:href="#ico_hourglass"></use>
+            </svg>
+            <div class="me-5 font-weight-semi" style="color: #737D87;">برداشت‌ در جریان</div>
+          </div>
+
+          <div class="d-flex flex-nowrap align-items-center ">
+            <span class="h5 fw-bold m-0  px-3 cursor-pointer"
+              [maskNumber]="mutualFundDetail?.customerEvidences?.watingRedemptiomVolume">
+            </span>
+            <span class="fs-6 mx-2"> واحد </span>
+            <svg class="cursor-pointer" viewBox="0 0 24 24" width="14px" height="14px" style="color: #737D87;"
+              routerLink="/reporting/requests">
+              <use xlink:href="#ico_drop_left"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="card mt-2 shadow-sm cursor-pointer w-100 border-radius-15">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                    <fa-icon size="md" class="text-green" icon="hourglass-start"></fa-icon>
+                    <div class=" me-5 font-weight-semi" style="color: #737D87;">سرمایه‌گذاری‌های در جریان(صدور)</div>
+                  </div>
+                  <div class="d-flex flex-nowrap align-items-center">
+                    <span class="h5 fw-bold m-0 px-3">
+                        {{mutualFundDetail?.customerEvidences?.watingSubscriptionAmount | number}}
+                    </span>
+                    <span class="fs-6 mx-1"> ریال </span>
+                    <fa-icon size="md" icon="caret-left" style="color: #737D87;"></fa-icon>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2 shadow-sm cursor-pointer w-100 border-radius-15">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                    <fa-icon size="md" class="text-danger mx-1" icon="hourglass-end"></fa-icon>
+                    <div class="me-5 font-weight-semi" style="color: #737D87;">برداشت‌های در جریان(ابطال)</div>
+                  </div>
+
+                  <div class="d-flex flex-nowrap align-items-center">
+                    <span class="h5 fw-bold m-0  px-3">
+                        {{mutualFundDetail?.customerEvidences?.watingRedemptiomVolume |number}}
+                    </span>
+                    <span class="fs-6 mx-1"> واحد </span>
+                    <fa-icon size="md" icon="caret-left" style="color: #737D87;"></fa-icon>
+                  </div>
+                </div>
+              </div> -->
+
+    </div>
+    </div>
+    <hr />
+    <div class="w-100 bg-white border-1">
+      <div class="d-flex text-center">
+        <button type="button"
+          class="d-flex align-items-center justify-content-center btn bg-success text-white  border-2 m-2 p-4 fw-semibold  border-radius-10"
+          (click)="openSubscriptionModal()" style="flex: 1;">
+          <svg viewBox="0 0 24 24" width="30px" height="30px" class="text-white p-1">
+            <use xlink:href="#ico_box_plus_fill"></use>
+          </svg>
+          <h5 class="mx-2 text-white mb-0 font-weight-semi">سرمایه‌گذاری</h5>
+        </button>
+        <button type="button"
+          class="d-flex align-items-center justify-content-center btn  bg-danger text-white  border-2 m-2 p-4 fw-semibold border-radius-10"
+          (click)="openRedemptionModal()" style="flex: 1;">
+          <svg viewBox="0 0 24 24" width="30px" height="30px" class="text-white p-1">
+            <use xlink:href="#ico_box_minuse_fill"></use>
+          </svg>
+          <span class="mx-2 text-white  mb-0 font-weight-semi">برداشت وجه</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

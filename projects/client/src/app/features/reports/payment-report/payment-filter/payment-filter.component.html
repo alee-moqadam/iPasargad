@@ -1,0 +1,86 @@
+<form [formGroup]="formGroup" class="form-group row align-items-center col-24 m-0" (submit)="search()">
+  <div class="my-2">
+    <label>صندوق:</label>
+    
+    <ng-select [searchable]="false" bindValue="mutualFundId" [clearOnBackspace]="true" placeholder="انتخاب صندوق"
+      formControlName="mutualFundId">
+      <ng-option [value]="fund.mutualFundId" *ngFor="let fund of mutualFundList ; let i= index">
+        <div class="d-flex align-items-center justify-content-start">
+          <!-- <img *ngIf="fund?.attachments?.length > 0; else logoPlaceholder" 
+            [src]="apiUrl + '/' + getLogo(fund)?.downloadLink"
+            alt="Fund Logo"            
+            style="width: 20px;" /> -->
+          <app-svg-viewer *ngIf="fund?.attachments?.length > 0; else logoPlaceholder"
+                 [svgUrl]="apiUrl + '/' + getLogo(fund)?.downloadLink" style="width: 20px;"></app-svg-viewer>
+
+          <ng-template #logoPlaceholder>
+            <div class="logo-loading-placeholder"></div>
+          </ng-template>
+          <span class="mx-1">{{fund.symbol}}</span>
+        </div>
+      </ng-option>
+
+    </ng-select>
+  </div>
+  <div class="my-2">
+    <label>شروع گزارش از:</label>
+    <div class="input-group">
+      <span class="input-group-text text-center cursor-pointer" (click)="d1.toggle()">
+        <svg class="text-primary" viewBox="0 0 24 24" width="18px" height="18px">
+          <use xlink:href="#ico_calendar"></use>
+        </svg>
+      </span>
+
+      <input class="form-control" placeholder="تاریخ شروع" name="dp2" formControlName="startDate" ngbDatepicker
+        (click)="d1.toggle()" #d1="ngbDatepicker" />
+    </div>
+  </div>
+
+  <div class="my-2">
+    <label>پایان گزارش تا:</label>
+    <div class="input-group">
+      <span class="input-group-text text-center cursor-pointer" (click)="d2.toggle()">
+        <svg class="text-primary" viewBox="0 0 24 24" width="18px" height="18px">
+          <use xlink:href="#ico_calendar"></use>
+        </svg>
+      </span>
+      <input class="form-control" placeholder="تاریخ پایان" name="dp2" formControlName="endDate" ngbDatepicker
+        (click)="d2.toggle()" #d2="ngbDatepicker" />
+    </div>
+  </div>
+
+  <!-- <div class=" my-2">
+    <label>مبلغ واریزی:</label>
+    <input type="text" class="form-control" placeholder="مبلغ واریز (ریال)" formControlName="amount">
+  </div> -->
+  <div class=" my-2">
+    <label>وضعیت واریز وجه:</label>
+    <ng-select [clearable]='false' [searchable]="false" formControlName="state">
+      <ng-option  value="-1">همه</ng-option>
+      <ng-option  value="1">موفق</ng-option>
+      <ng-option value="2">ناموفق</ng-option>
+    </ng-select>
+  </div>
+  <div class=" my-2">
+    <button class="btn btn-primary d-flex align-items-center justify-content-center w-100 " type="submit"
+      [disabled]="formGroup.invalid">
+      <fa-icon icon="search" class="mx-2"></fa-icon>
+      <span>جستجو</span>
+    </button>
+  </div>
+</form>
+<!-- <div class="text-primary my-4 pb-3 border-bottom-1 border-dashed border-gray-275 border-top-0 border-start-0 border-end-0 text-center fw-bold">جستجوی پیشرفته</div> -->
+<div class="d-flex align-items-center justify-content-between">
+  <span>مرتب‌سازی</span>
+  <ng-select class="w-50" [clearable]='false' [dropdownPosition]="'top'" [searchable]="false" [(ngModel)]="sortType" (change)="search()">
+    <ng-option  value="desc">صعودی‌</ng-option>
+    <ng-option value="asc">نزولی</ng-option>
+  </ng-select>
+</div>
+<div class="d-flex align-items-center justify-content-between mt-2">
+  <span>براساس</span>
+  <ng-select class="w-50" [clearable]='false' [dropdownPosition]="'top'" [searchable]="false" [(ngModel)]="sortFiled" (change)="search()">
+    <ng-option value="date">تاریخ ثبت</ng-option>
+    <ng-option value="amount">مبلغ</ng-option>
+  </ng-select>
+</div>

@@ -1,0 +1,47 @@
+.asset {
+  background: transparent linear-gradient(290deg, #0080ff 0%, #555f69 100%) 0% 0% no-repeat padding-box;
+}
+.cards {
+  background: transparent linear-gradient(290deg, #12b549 0%, #555f69 100%) 0% 0% no-repeat padding-box;
+}
+
+.funds {
+  background: transparent linear-gradient(290deg, #ffc107 0%, #555f69 100%) 0% 0% no-repeat padding-box;
+}
+.card-body {
+  background: url("../../../../../public/svg/card-dashboard-bg.svg");
+  background-size: cover;
+}
+
+.prev {
+  position: absolute;
+  right: 0;
+}
+
+.next {
+  position: absolute;
+  left: 0;
+}
+
+:host {
+  ::part(button-prev),
+  ::part(button-next) {
+    background-color: white !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transform: scale(0.5) translateY(-30px);
+    opacity: 0.7;
+  }
+
+  .btn-swiper-card{
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 5px;
+  }
+  swiper-slide:not(.swiper-slide-fully-visible){
+    -webkit-filter: grayscale(100%); 
+    filter: grayscale(100%);
+  }
+}

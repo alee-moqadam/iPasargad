@@ -1,0 +1,268 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "changeDetection": "OnPush"
+      }
+    }
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "client": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/client",
+      "sourceRoot": "projects/client/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/client",
+            "index": "projects/client/src/index.html",
+            "browser": "projects/client/src/main.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing",
+              "@angular/localize/init"
+            ],
+            "tsConfig": "projects/client/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/client/src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "projects/client/public"
+              }
+            ],
+            "styles": [
+              "projects/client/src/styles/styles.scss",
+              {
+                "input": "projects/client/public/fonts/IranSansX/fontiran.css",
+                "inject": false,
+                "bundleName": "font"
+              }
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "serviceWorker": "projects/client/ngsw-config.json",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "3MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "projects/client/src/environments/environment.ts",
+                  "with": "projects/client/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            },
+            "testing": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "3MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "projects/client/src/environments/environment.ts",
+                  "with": "projects/client/src/environments/environment.testing.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "client:build:production"
+            },
+            "development": {
+              "buildTarget": "client:build:development"
+            },
+            "testing": {
+              "buildTarget": "client:build:testing"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/client/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/client/public"
+              }
+            ],
+            "styles": [
+              "projects/client/src/styles/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "landing": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/landing",
+      "sourceRoot": "projects/landing/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/landing",
+            "index": "projects/landing/src/index.html",
+            "browser": "projects/landing/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/landing/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/landing/src/start-landing.bat",
+              "projects/landing/src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "projects/landing/public"
+              }
+            ],
+            "styles": [
+              "projects/landing/src/styles/styles.scss",
+              {
+                "input": "projects/landing/public/fonts/IranSansX/fontiran.css",
+                "inject": false,
+                "bundleName": "font"
+              },
+              {
+                "input": "projects/landing/public/fonts/peyda/fontiran.css",
+                "inject": false,
+                "bundleName": "font"
+              }
+            ],
+            "scripts": [],
+            "server": "projects/landing/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/landing/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "10kB",
+                  "maximumError": "15kB"
+                }
+              ],
+              "outputHashing": "all",
+              "serviceWorker": "projects/landing/ngsw-config.json",
+              "optimization": true,
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": false
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "landing:build:production"
+            },
+            "development": {
+              "buildTarget": "landing:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/landing/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/landing/public"
+              }
+            ],
+            "styles": [
+              "projects/landing/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

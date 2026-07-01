@@ -1,0 +1,315 @@
+
+
+.funds-section {
+    background: #03007b;
+    padding: 50px 0;
+    overflow: hidden;
+}
+
+.funds-slider {
+    width: 100%;
+    overflow: hidden;
+}
+
+.funds-track {
+    display: flex;
+    /* فاصله بین کارت‌ها همان 15px قبلی است */
+    gap: 15px; 
+    width: max-content;
+    
+    /* اضافه کردن فضای خالی به انتهای track برای ایجاد فاصله 50px */
+    padding-right: 50px; 
+
+    animation: marquee 25s linear infinite;
+}
+
+
+.funds-track:hover {
+    animation-play-state: paused;
+}
+
+.fund-card {
+    direction: ltr;
+    width: 280px;
+    min-width: 280px;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, .15);
+
+    transition: .3s;
+}
+
+.fund-card:hover {
+    transform: translateX(5px);
+}
+
+.fund-header {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    // height: 165px;
+}
+
+.funds-slider {
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  touch-action: pan-x;
+}
+
+.funds-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.funds-slider:active {
+  cursor: grabbing;
+}
+
+.funds-track {
+  display: flex;
+  gap: 15px;
+  width: max-content;
+}
+
+.gold {
+    background:
+        radial-gradient(circle at 20% 20%, #ffd84d, transparent 50%),
+        radial-gradient(circle at 80% 50%, #ff0000, transparent 40%),
+        #fff;
+}
+
+.blue {
+    background:
+        radial-gradient(circle at 20% 20%, #00ffc8, transparent 40%),
+        radial-gradient(circle at 80% 40%, #0047ff, transparent 50%),
+        #fff;
+}
+
+.green {
+    background:
+        radial-gradient(circle at 30% 30%, #00d45e, transparent 40%),
+        radial-gradient(circle at 80% 50%, #d8ffd8, transparent 50%),
+        #fff;
+}
+
+.purple {
+    background:
+        radial-gradient(circle at 30% 30%, #6a11cb, transparent 40%),
+        radial-gradient(circle at 80% 50%, #2575fc, transparent 50%),
+        #fff;
+}
+
+.fund-body {
+    padding: 30px;
+    text-align: right;
+}
+
+.fund-body small {
+    display: block;
+    color: #888;
+    margin-bottom: 12px;
+}
+
+// .fund-body h3 {
+//     margin: 0 0 25px;
+//     font-size: 24px;
+//     font-weight: bold;
+// }
+
+.profit {
+    font-size: 25px;
+    font-weight: 700;
+    color: #444;
+    text-align: left;
+}
+
+.profit-label {
+    display: block;
+    color: #999;
+    margin-top: 10px;
+}
+
+.fund-body a {
+    display: inline-block;
+    margin-top: 25px;
+    color: #673de6;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+@keyframes marquee {
+    /* از جایگاه صفر شروع کن */
+    from { transform: translateX(-7%); }
+    
+    /* به اندازه نصف طول محتوا (بدون احتساب فاصله نهایی) برگرد */
+    to { transform: translateX(33.333%); }
+}
+// @keyframes marquee {
+//     from {
+//         transform: translateX(0);
+//     }
+
+//     to {
+//         transform: translateX(calc(-50% - 10px));
+//     }
+// }
+
+.fund-header-section {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 60px;
+
+}
+
+.sub-title {
+    display: block;
+    color: rgba(255,255,255,.7);
+    margin-bottom: 15px;
+}
+
+.title {
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: PeydaWeb;
+
+  }
+
+.description {
+    max-width: 900px;
+    margin: 0 auto 50px;
+    color: rgba(255,255,255,.8);
+    line-height: 2;
+    font-family: PeydaWeb;
+    direction: rtl;
+    // font-size: 15px;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    font-family: PeydaWeb;
+}
+
+.stat-box {
+    border-radius: 50px;
+    min-height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 35px;
+}
+
+.stat-purple {
+    background: rgba(98, 92, 201, .55);
+    min-width: 270px;
+    gap: 15px;
+}
+
+.stat-green {
+    background: #28a745;
+    min-width: 270px;
+    gap: 15px;
+}
+
+.number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #28a745;
+    line-height: 1;
+}
+
+.stat-green .number {
+    color: #fff;
+}
+
+.text {
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #aeb8c3;
+}
+
+.text-white-50{
+    color: #e0e0e0 !important;
+}
+
+.icon-box {
+    // width: 120px;
+    border: 1px solid rgba(255,255,255,.15);
+    gap: 12px;
+    background: rgba(255,255,255,.02);
+}
+
+.icon-box span {
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.icon-box span::before,
+.icon-box span::after {
+    content: "";
+    position: absolute;
+    background: #00f7ff;
+    border-radius: 2px;
+}
+
+.icon-box span::before {
+    width: 2px;
+    height: 20px;
+    left: 9px;
+}
+
+.icon-box span::after {
+    width: 20px;
+    height: 2px;
+    top: 9px;
+}
+
+.icon-box span {
+    transform: rotate(45deg);
+}
+
+.plus-box {
+    width: 120px;
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    color: #00f7ff;
+
+    font-size: 48px;
+    font-weight: 300;
+
+    background: rgba(255,255,255,.02);
+}
+
+@media (max-width: 768px) {
+
+    .title{
+        font-size: 28px;
+    }
+
+    .stat-purple,
+    .stat-green{
+        width: 100%;
+        min-width: unset;
+    }
+
+    .icon-box,
+    .plus-box{
+        width: 100%;
+    }
+}

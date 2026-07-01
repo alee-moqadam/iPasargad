@@ -1,0 +1,209 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("./custom-bootstrap.scss");
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
+@import url("../../public/fonts/IranSansX/fontiran.css");
+@import url("../../public/fonts/peyda/fontiran.css");
+@import url("../../public/fonts/IranSansX/style.css");
+
+:root {
+  --bs-border-radius: 1rem;
+  --bs-border-radius-sm: 2rem;
+  --bs-border-radius-lg: 3rem;
+  --bs-border-radius-xl: 4rem;
+  --bs-border-radius-xxl: 5rem;
+  --bs-border-radius-2xl: var(--bs-border-radius-xxl);
+  --bs-border-radius-pill: 50rem;
+  --bs-body-font-family: "iransans";
+  --bs-body-font-size: calc(0.5rem + 0.3vw);
+
+  @media (max-width: 1200px) {
+    --bs-body-font-size: calc(0.8rem + 0.3vw);
+  }
+
+  --bs-border-width: 0;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.cursor-default {
+  cursor: default !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.border-dashed {
+  border: 1px dashed gray;
+}
+
+.form-control {
+  background-color: var(--bs-gray-150);
+
+  &:focus {
+    border-color: var(--bs-gray-500);
+    box-shadow: 0 0 0 0.25rem rgba(95, 95, 95, 0.25);
+  }
+}
+
+.custom-radius {
+  border-radius: calc(var(--bs-card-border-radius) / 2) !important;
+}
+
+ngb-datepicker-navigation {
+  direction: ltr;
+}
+
+.mirror {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.card {
+  box-shadow: 0px 2px 4px #00000029;
+}
+
+@media (min-width: 1200px) {
+  .modal-dialog-centered {
+    min-height: unset;
+  }
+
+  .modal-holder {
+    position: fixed;
+    bottom: -100%;
+    opacity: 0;
+    margin: 0;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    width: 100%;
+    animation: bottom-up 1s ease forwards;
+    right: 50%;
+    transform: translateX(50%) !important;
+  }
+}
+
+@keyframes bottom-up {
+  to {
+    bottom: 20px;
+    opacity: 1;
+  }
+}
+
+.carousel-indicators {
+  > [data-bs-target] {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    transition: all 0.3s ease-in-out;
+
+    &.active {
+      width: 1rem;
+    }
+  }
+}
+
+.main-carousel {
+  .carousel-indicators {
+    top: 1.5rem;
+    bottom: auto;
+
+    @include media-breakpoint-down(md) {
+      top: 4.5rem;
+    }
+  }
+}
+
+.features-carousel .carousel-indicators {
+  @include media-breakpoint-down(md) {
+    bottom: 3px;
+    margin: 0 30px;
+    width: 50px;
+  }
+}
+
+.mw-50-x {
+  max-width: 50%;
+
+  @include media-breakpoint-down(sm) {
+    max-width: 60%;
+  }
+}
+
+.gradient-border {
+  $border-with: 4px;
+  padding: 0;
+  position: relative;
+  border-radius: calc(2 * $border-with);
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: calc(-1 * $border-with);
+    left: calc(-1 * $border-with);
+    height: calc(100% + $border-with * 2);
+    width: calc(100% + $border-with * 2);
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    border-radius: calc(3 * $border-with);
+    z-index: 0;
+    animation: animated-gradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+  }
+
+  > input {
+    border-radius: calc(2 * $border-with);
+    border: none;
+    outline: none;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@keyframes animated-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 35px; */
+  /* padding: 0px 18px; */
+  border-radius: 30px;
+  background: linear-gradient(90deg, #ff4b4b, #faabab);
+  color: #fff;
+  cursor: pointer;
+  width: 310px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+
+ .cls-1 {
+  stroke-linejoin: round;
+ }
+ 
+ .cls-1, .cls-2 {
+   fill: none;
+   stroke: #ffffff;
+   stroke-linecap: round;
+   stroke-width: 1.5px;
+ }
+ 
+ .cls-2 {
+   stroke-miterlimit: 10;
+ }
+}
+
+.download-btn span {
+  font-size: 17px;
+}

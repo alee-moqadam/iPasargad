@@ -1,0 +1,55 @@
+
+<div class="fund-page-container">
+  <router-outlet></router-outlet>
+</div>
+<div class=" bg-gray-850 text-white fixed-top  d-sm-block d-lg-none" style="top: 70px;">
+  <div class="container d-flex">
+
+      <div class="row flex-fill">
+          <div class="w-100 d-flex my-2 button-container">
+            <button class="btn btn-gray-600 flex-fill mx-2 mx-1 text-white"
+              [routerLink]="['/mobile/more-tools']"
+                 routerLinkActive="active-menu-btn" >
+                 <div class="d-flex flex-nowrap">
+                   <fa-icon class="text-white mx-1" size="lg" icon="caret-right"></fa-icon>بازگشت
+                 </div>
+                </button>
+              <button class="btn btn-gray-600 flex-fill mx-2 mx-1 text-white"
+              [routerLink]="['/fund', fundCode, 'fund-detail', fundCode]"
+                 routerLinkActive="active-menu-btn" >معرفی</button>
+              <button class="btn btn-gray-600 flex-fill mx-2 mx-1 text-white"
+              [routerLink]="['/fund', fundCode, 'user-fund', fundCode]"
+               routerLinkActive="active-menu-btn">دارایی  در صندوق</button>
+
+          </div>
+      </div>
+  </div>
+</div>
+<div class="button-action-container ">
+  <div class="container h-100 w-100">
+    <div class="row mx-0 h-100">
+      <div class="col-md-5"></div>
+      <div class="col-md-13 mx-0 h-100 d-flex">
+        <div class="d-flex align-items-center justify-content-center w-100">
+          <button class="btn btn-success w-50 py-4 text-white d-flex align-items-center justify-content-center" (click)="openSubscriptionModal()">
+            <!-- <fa-icon class="text-white mx-1" icon="square-plus"></fa-icon> -->
+            <svg viewBox="0 0 24 24" width="20px" height="20px" class="text-white ms-1">
+              <use xlink:href="#ico_box_plus_fill"></use>
+            </svg>
+            سرمایه گذاری
+          </button>
+          <button class="btn btn-danger w-50 mx-2 py-4 text-white d-flex align-items-center justify-content-center" (click)="openRedemptionModal()">
+            <!-- <fa-icon class="text-white mx-1" icon="square-minus"></fa-icon> -->
+            <svg viewBox="0 0 24 24" width="20px" height="20px" class="text-white ms-1">
+              <use xlink:href="#ico_box_minuse_fill"></use>
+            </svg>
+            برداشت وجه
+          </button>
+
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+
+    </div>
+  </div>
+</div>

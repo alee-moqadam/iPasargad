@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-lg-16 px-4">
+    <div class="notification-container card-body pb-3 pt-2">
+
+      <ng-container *ngIf="loading()">
+        <div class="card h-100 mb-2 loading-animation" *ngFor="let item of [0,0,0,0,0]">
+          <div class="card-body">
+            <div class="col-24 mb-2">
+              <div class="bg-light py-3"></div>
+            </div>
+            <div class="col-24 mb-2">
+              <div class="bg-light py-3"></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!loading() && (notifications().length > 0)">
+        <div class="card w-100 rounded-sm mt-2 text-right px-0" *ngFor="let notification of notifications()">
+          <div class="card-body p-3 w-100 position-relative ">
+            <h4 class="mb-2 d-flex align-items-center">
+              <fa-icon icon="{{notification.notificationType == 1 ? 'info-circle':'warning'}}" class="text-warning mx-2"></fa-icon>
+              {{notification.subject}}
+            </h4>
+            <div class="my-2" style="border-top: var(--dtx-gray-250) solid 1px;"></div>
+            <div class="text-neutral text-justify mb-1" [innerHtml]="notification.text"></div>
+            <h6 class="w-100 d-flex m-0 justify-content-end text-muted font-weight-light ">
+              <!-- {{notification.createDate | persianDatetime : 'YYYY/MM/DD - HH:mm:ss' }} -->
+               {{(notification.createDate | persianDatetime : 'YYYY/MM/DD - HH:mm:ss').split('-')[1]}}
+                <span class="mx-1">-</span>
+               {{(notification.createDate | persianDatetime : 'YYYY/MM/DD - HH:mm:ss').split('-')[0]}}    
+            </h6>
+          </div>
+        </div>
+      </ng-container>
+
+      <div *ngIf="notifications().length === 0"
+        class="empty-container d-flex justify-content-center text-neutral align-items-center flex-column mt-3">
+        <img width="40%" src="/svg/empty-activity.svg" class="mb-3">
+        <div class="text-center">پیامی ندارید</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <!-- <app-fund-adv></app-fund-adv> -->
+  </div>
+</div>

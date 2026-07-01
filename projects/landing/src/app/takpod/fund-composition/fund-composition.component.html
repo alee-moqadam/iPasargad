@@ -1,0 +1,47 @@
+<section class="section composition container-padding" id="composition">
+  <div class="">
+    <div class="card mx-auto main-bg rounded pt-4">
+      <div class="card-body">
+        <h2 class="ff-peyda text-body-tertiary text-center mb-4 mt-2 mt-sm-4">ترکیب دارایی‌های صندوق سرمایه گذاری در سهام تکپاد</h2>
+        <h4 class="text-justify mx-3 mx-sm-5">
+          عمده سرمایه تجمیع شده در صندوق تکپاد صرف خرید سهام پذیرفته شده در بورس تهران و فرابورس ایران می‌شود تا امکان کسب سود از رشد بازار سهام برای سرمایه‌گذاران فراهم شود. بخش کمی از دارایی‌های صندوق تکپاد نیز در دارایی‌هایی مثل صندوق‌های کالایی و ابزارهای درآمد ثابت سرمایه‌گذاری می‌شود تا امکان بهره‌مندی از مزیت آن‌ها نیز وجود داشته باشد.
+        </h4>
+        <div class="row my-5 my-lg-0">
+          <div class="align-items-center col-lg-12 d-flex justify-content-center justify-content-lg-end py-lg-5">
+            <div style="width: 200px; height: 200px;" *ngIf="isBrowser" echarts [options]="chartOptions"
+              class="chart-container"></div>
+          </div>
+          <div class="col-lg-12 p-lg-5 d-flex flex-column gap-4 justify-content-center">
+            <div class="asset-item w-auto mx-auto mx-lg-0">
+              <h4 class="mb-0 mt-2" style="background-color: #f76d6a"></h4>
+              <h4 class="text-body-tertiary mb-0">سپرده بانکی:</h4>
+              <h4 class="mb-0">3.91%</h4>
+            </div>
+            <div class="asset-item w-auto mx-auto mx-lg-0">
+              <h4 class="mb-0 mt-2" style="background-color: #5da7c0"></h4>
+              <h4 class="text-body-tertiary mb-0">پنج سهم با بیشترین وزن:</h4>
+              <h4 class="mb-0">22.16%</h4>
+            </div>
+            <div class="asset-item w-auto mx-auto mx-lg-0">
+              <h4 class="mb-0 mt-2" style="background-color: #9b59b6"></h4>
+              <h4 class="text-body-tertiary mb-0">سایر سهام:</h4>
+              <h4 class="mb-0">69.33%</h4>
+            </div>
+            <div class="asset-item w-auto mx-auto mx-lg-0">
+              <h4 class="mb-0 mt-2" style="background-color: #6886fc"></h4>
+              <h4 class="text-body-tertiary mb-0"> گواهی سپرده طلا:</h4>
+              <h4 class="mb-0">4.03%</h4>
+            </div>
+            <div class="asset-item w-auto mx-auto mx-lg-0">
+              <h4 class="mb-0 mt-2" style="background-color: #ffd54f"></h4>
+              <h4 class="text-body-tertiary mb-0">سایر دارایی:</h4>
+              <h4 class="mb-0">0.57%</h4>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,74 @@
+:host {
+  overflow: auto;
+
+  .modal-content {
+    border-radius: 0 !important;
+  }
+
+  .fund-name-img {
+    height: 173px;
+    background-image: url('../../../../../public/images/fund/Group\ 19622.svg');
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 20px;
+  }
+
+  .fund-profile-info {
+    background: #ebf5ff;
+    border-radius: 10px;
+  }
+
+  .guide-section {
+    max-height: 0;
+    transition: max-height 4s ease-in-out !important;
+  }
+
+  .guide-section.open {
+    max-height: 200px;
+    width: 100%;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 7px;
+  }
+}
+
+// ::ng-deep {
+//   .modal-content {
+//     border-radius: 1.5rem 1.5rem 0rem 0rem !important;
+//     overflow: hidden;
+//   }
+
+//   .modal-holder {
+//     padding: 0 !important;
+//   }
+
+//   .h-detail{
+//     height: 75vh;
+//   }
+
+//   @media (max-width: 576px) {
+//     .h-detail{
+//      height: 65vh;
+//     }
+//   }
+// }
+
+  .logo-loading-placeholder {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    border-radius: 40%;
+    background: linear-gradient(90deg, #f3f3f3 25%, #e0e0e0 50%, #f3f3f3 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite linear;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }

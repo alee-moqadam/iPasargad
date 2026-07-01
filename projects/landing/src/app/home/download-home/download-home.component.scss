@@ -1,0 +1,49 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
+
+:host {
+  max-width: 1064px;
+  // width: 1064px;
+  display: block;
+  margin: auto;
+
+    @include media-breakpoint-down(lg) {
+      width: unset !important;
+  }
+  
+}
+
+.download-section {
+  background-image: url('/images/home/Download_iPasargad/Back.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  height: 330px;
+  border-radius: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.download-iPasargad {
+    background-image: url(/images/home/Download_iPasargad/iPasargad.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 175px;
+    width: calc(80% - -20px);
+    max-width: 1118px;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .download-iPasargad {
+    height: 115px;
+  }
+}
+
+
+.w-200{
+  width: 200px;
+}

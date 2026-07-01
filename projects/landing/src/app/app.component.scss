@@ -1,0 +1,107 @@
+:host {
+    background-color: var(--bs-gray-200);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .fixed-top {
+      right: unset;
+    }
+
+    .navbar-container {
+        width: 100%;
+        top: 25%;
+        position: fixed;
+        left: 47%;
+        transform: translateX(-50%);
+        z-index: 2;
+        height: 10px;
+    }
+
+    .navbar-container .navbar {
+        background-color: rgba(0, 0, 0, 0.2);
+        display: flex;
+        width: max-content;
+        height: auto;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 28px !important;
+
+        &:hover {
+            box-shadow: var(--bs-box-shadow) !important;
+        }
+    }
+
+    .nav-item-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 65px;
+    }
+
+    .nav-item a:hover {
+        color: var(--bs-gray-900) !important;
+    }
+
+    .menu-mobile-toggle {
+        width: 40px;
+        height: 40px;
+        background-color: #12B549;
+        border: solid 1px white;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #goftino-toggle-mobile {
+        display: none; /* Initially hidden until Goftino API is loaded */
+    }
+
+    #goftino-toggle-mobile.goftino-ready {
+        display: flex !important; /* Show when Goftino is ready */
+    }
+    .menu-link {
+        width: 40px;
+        height: 40px;
+        background-color: var(--bs-gray-300);
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--bs-body-bg);
+        z-index: 9999;
+        padding: 1.5rem;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+
+
+    // .menu-item.active {
+    //     background-color: #FAAF16 !important;
+    // }
+
+    .navbar-container .row {
+        width: fit-content;
+    }
+
+    .mobile-header {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .header-bg {
+        //background-color: #12B549;
+        //backdrop-filter: blur(10px);
+    }
+}
+

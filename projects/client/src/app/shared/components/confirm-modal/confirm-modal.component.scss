@@ -1,0 +1,16 @@
+::ng-deep{
+    .confirm-modal-dialog {
+        position:fixed;
+        top:auto;
+        right:auto;
+        left:auto;
+        bottom:0;
+    }    
+  
+    .modal-content {
+        // background-color: var(--dtx-modal-bg) !important;
+        background-color: #ffffff !important;
+        background-clip: padding-box !important;
+    }
+
+}

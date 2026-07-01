@@ -1,0 +1,225 @@
+<div class="d-flex flex-column align-item-center mb-60">
+  <div class="d-flex align-items-center justify-content-end mb-4">
+    <fa-icon icon="file-excel" class="text-success ms-2 cursor-pointer border border-1 p-2 border-success" size="lg"
+      style="border-radius: 5px;" (click)="exportToExcel()"></fa-icon>
+  </div>
+
+  @if (requestList().length > 0 && !isLoading()) {
+  @for (request of requestList(); track $index) {
+  @let requestUiDetails = getRequestUiDetails(request);
+  @let index = $index;
+  <div class="card mx-0 mb-4 overflow-hidden">
+    <div class="card-body p-0">
+      <div class="row mx-0">
+        <div class="col-24 col-md-4 p-0 {{requestUiDetails.reqStatusBgClass}}">
+          <div class="d-flex flex-md-column align-items-center justify-content-between justify-content-md-center h-100 ps-4 ps-md-0 pe-2 pe-md-0">
+           <div class="d-flex flex-md-column align-items-center justify-content-md-center p-1 p-md-4 h-100">
+             <!-- <fa-icon size="lg" class="d-flex align-items-center mb-0 mb-md-3 {{requestUiDetails.reqStatusTextClass}}"
+               [icon]="requestUiDetails.reqStatusIcon"></fa-icon> -->
+             <svg class="{{requestUiDetails.reqStatusTextClass}}" viewBox="0 0 24 24" width="18px" height="18px" class="mx-1">
+               <use [attr.xlink:href]="
+                requestUiDetails.reqStatusIcon === 'circle-check' ? '#ico_s_box_accept':
+                requestUiDetails.reqStatusIcon === 'stopwatch' ? '#ico_s_box_more':
+                requestUiDetails.reqStatusIcon === 'circle-xmark' ? '#ico_s_box_multiplication': '' "></use>
+             </svg>
+             <h5 class=" {{requestUiDetails.reqStatusTextClass}} text-nowrap my-3 my-md-2 me-1 me-md-0">{{ request.stateTitle }}</h5>
+           </div>
+           <div class="d-md-none d-flex align-items-center justify-content-between">
+              <!-- <fa-icon class="ms-1 pb-0 pb-md-3" icon="{{requestUiDetails.reqTypeIcon}}"></fa-icon> -->
+              <svg viewBox="0 0 24 24" width="18px" height="18px" class="mx-1">
+                <use [attr.xlink:href]="requestUiDetails.reqTypeIcon === 'money-bill-wave' ? '#ico_s_bank_card':  '#ico_s_display_add' "></use>
+              </svg>
+              <h6 class="my-3 my-md-2">{{request?.gatewayTitle || request?.type}}</h6>
+              <!-- <h6 class="my-3 my-md-2">{{request?.type}}</h6> -->
+
+              @if(request?.type === commonPaymentTypeEnum.Receipt){
+              <div class="d-md-none d-flex align-items-center justify-content-between">
+                <span (click)="showMore(index)" class="bg-primary px-2 py-1 me-2 cursor-pointer" style="border-radius: 5px;">
+                  <fa-icon class="text-white" [icon]="showMoreStates[index] ? 'angle-up' : 'angle-down'"></fa-icon>
+                </span>
+              </div>
+              }
+
+           </div>
+
+          </div>
+        </div>
+        <div class="col-24 col-md-20 p-4">
+          <div class="w-100 d-flex align-items-center flex-column">
+            <div class="d-md-flex w-100 align-items-center justify-content-between">
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start">
+                <h5 class="text-secondary">
+                  صندوق
+                </h5>
+                <h5 class="font-weight-bold">
+                  {{ request.mutualFundSymbol || '--' }}
+                </h5>
+              </div>
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start align-items-end mt-4 mt-md-0">
+                <h5 class="text-secondary text-left">
+                  مبلغ
+                </h5>
+                <h5 class="text-left {{requestUiDetails.reqStatusTextClass}}">
+                  {{ request.amount | number }}
+                  <span class="text-secondary small me-1 font-weight-bold">
+                    ریال
+                  </span>
+                </h5>
+              </div>
+            </div>
+            <div class="d-md-flex w-100 align-items-center justify-content-between mt-4 mt-md-3">
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start">
+                <h5 class="text-secondary">
+                  تاریخ
+                </h5>
+                <div class="d-flex">
+                  <h5 class="text-center">
+                    {{ request.dateJalali?.split(' ')[1] || request.transferDateJalali?.split(' ')[1] }}
+                    <span class="mx-1">/</span>
+                    {{ request.dateJalali?.split(' ')[0] ||  request.transferDateJalali?.split(' ')[0] }}
+                  </h5>
+                </div>
+              </div>
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start align-items-end mt-4 mt-md-0">
+                <h5 class="text-secondary text-left">
+                  کد پیگیری
+                </h5>
+                <div class="d-flex">
+                  <!-- <fa-icon class="d-md-block d-none ms-1" icon="{{requestUiDetails.reqTypeIcon}}"></fa-icon> -->
+                   <!-- {{requestUiDetails.reqTypeIcon}} -->
+                  <svg viewBox="0 0 24 24" width="18px" height="18px" class="mx-1 d-md-block d-none pb-1">
+                    <use [attr.xlink:href]="requestUiDetails.reqTypeIcon === 'money-bill-wave' ? '#ico_s_bank_card':  '#ico_s_display_add' "></use>
+                  </svg>
+                  <h5 class="text-center">
+                    {{ request?.traceNo || '--' }}
+                  </h5>
+                </div>
+              </div>
+              <!-- <div class="d-flex align-items-center justify-content-center flex-column">
+                <h6 class="text-secondary text-center mb-3">
+                  نوع واریز
+                </h6>
+                <h5 class="text-center d-flex">
+                  <fa-icon class="ms-1" icon="{{requestUiDetails.reqTypeIcon}}"></fa-icon>
+                  {{ requestUiDetails.reqTypeTitle || '--' }}
+                </h5>
+                <h6>{{request?.gatewayTitle}}</h6>
+              </div> -->
+            </div>
+
+             @if(request?.type === commonPaymentTypeEnum.Receipt){
+              <div class="d-md-flex w-100 align-items-center justify-content-end mt-4 mt-md-3">
+               <div class="d-none d-md-flex align-items-center justify-content-between">
+                 <span class="">
+                   {{request?.gatewayTitle || request?.type}}
+                 </span>
+                 <span (click)="showMore(index)" class="bg-primary px-2 py-1 me-2 cursor-pointer" style="border-radius: 5px;">
+                  <fa-icon class="text-white" [icon]="showMoreStates[index] ? 'angle-up' : 'angle-down'"></fa-icon>
+                </span>
+               </div>
+              </div>
+             }
+
+            <div class="col-24 mt-2" [class.d-none]="!showMoreStates[index]" #more>
+                @if(request?.type === commonPaymentTypeEnum.Receipt){
+                  <div class="d-md-flex w-100 align-items-center justify-content-between mt-4 mt-md-3">
+                    <div class="d-flex flex-md-column justify-content-between justify-content-md-start">
+                      <h5 class="text-secondary">
+                        شماره حساب مقصد فیش واریز:
+                      </h5>
+                      <h5 class="text-left">
+                        {{ request?.accountNumber || '--' }}
+                      </h5>
+                    </div>
+                    <div class="d-flex flex-md-column justify-content-between justify-content-md-start align-items-end mt-4 mt-md-0">
+                      <h5 class="text-secondary">
+                        نام بانک
+                      </h5>
+                      <h5 class="text-left">
+                        {{ request?.bankName }}
+                      </h5>
+                    </div>
+                    <!-- <div class="d-md-flex flex-md-column justify-content-between align-items-end mt-4 mt-md-0">
+                      @if (!request?.attachmentId) {
+                      <span class="disabled" ngbTooltip="تصویری آپلود نشده است"
+                        class="d-flex align-items-center text-center justify-content-center flex-column">
+                        <span class="mb-3">لینک دانلود فیش</span>
+                        <fa-icon class="" icon="download"></fa-icon>
+                      </span>
+                      }@else{
+                      <a href="https://clientapi.ipasargad.ir/api/profilemanagement/download/{{request?.attachmentId}}"
+                        target="_blank" download class="d-flex align-items-center text-center justify-content-center">
+                        <span class="ms-2">لینک دانلود فیش</span>
+                        <fa-icon class="" icon="download"></fa-icon>
+                      </a>
+                      }
+                    </div> -->
+                  </div>
+                  <div class="d-md-flex w-100 align-items-center justify-content-between mt-4 mt-md-3">
+                    <div class="d-md-flex flex-md-column justify-content-between align-items-end mt-4 mt-md-0">
+                      @if (!request?.attachmentId) {
+                      <span class="disabled" ngbTooltip="تصویری آپلود نشده است"
+                        class="d-flex align-items-center text-center justify-content-center flex-column">
+                        <span class="mb-3">لینک دانلود فیش</span>
+                        <fa-icon class="" icon="download"></fa-icon>
+                      </span>
+                      }@else{
+                      <a href="https://clientapi.ipasargad.ir/api/profilemanagement/download/{{request?.attachmentId}}"
+                        target="_blank" download class="d-flex align-items-center text-center justify-content-center">
+                        <span class="ms-2">لینک دانلود فیش</span>
+                        <fa-icon class="" icon="download"></fa-icon>
+                      </a>
+                      }
+                    </div>
+                  </div>
+                }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+
+  <div class="d-none d-lg-block button-action-container ">
+    <div class="container h-100 w-100">
+      <div class="row mx-0 h-100">
+        <div class="col-md-5"></div>
+        <div class="col-md-13 h-100 d-flex total-row">
+          <div class="w-100 d-flex flex-column align-items-center justify-content-center w-100 bg-white">
+            <div class="w-100 px-4 d-flex align-items-center justify-content-between">
+              <span>مجموع کل مبالغ</span>
+              <span>{{aggregationValues().totalAggrigatedValue1 |number}} ریال </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6"></div>
+
+      </div>
+    </div>
+  </div>
+  }
+
+
+</div>
+
+@if (requestList().length === 0 && !isLoading()) {
+
+<div class="w-100 d-flex align-items-center justify-content-center flex-column mt-5 pt-5">
+  <img src="/svg/badge-empty-asset.svg" class="img-fluid my-3" width="96" />
+  <h5 class="my-2">
+    نتیجه ای یافت نشد!
+  </h5>
+  <h6 style="color: #919BA5;">
+    هنوز هیچ اطلاعاتی ثبت نشده است.
+  </h6>
+</div>
+
+}
+
+
+@if(isLoading()){
+@for (item of arrayLength(); track $index) {
+<app-css-skeleton></app-css-skeleton>
+}
+}

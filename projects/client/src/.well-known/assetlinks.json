@@ -1,0 +1,37 @@
+[
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls",
+        "delegate_permission/common.get_login_creds"
+      ],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "ir.ipasargad.app",
+        "sha256_cert_fingerprints": [
+          "28:3D:45:3F:21:A5:94:B0:18:7C:CC:14:3A:8D:0B:2A:A5:E5:69:57:71:BB:AB:16:45:1C:70:20:21:38:E2:95"
+        ]
+      }
+    },
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls"
+      ],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "ir.ipasargad.app",
+        "sha256_cert_fingerprints": [
+          "28:3D:45:3F:21:A5:94:B0:18:7C:CC:14:3A:8D:0B:2A:A5:E5:69:57:71:BB:AB:16:45:1C:70:20:21:38:E2:95"
+        ]
+      }
+    },
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls",
+        "delegate_permission/common.get_login_creds"
+      ],
+      "target": {
+        "site": "https://app.ipasargad.ir/",
+        "namespace": "web"
+      }
+    }
+]

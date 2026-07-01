@@ -1,0 +1,63 @@
+<div class="h-100" style="min-height: calc(100vh - 130px)">
+  <!-- <app-permission-for-web-push></app-permission-for-web-push>dfgdfgdsfg -->
+  <app-header></app-header>
+  <div class="container margin-container">
+
+    <div class="position-relative main-wrapper justify-content-center">
+      <div class="position-relative d-flex h-100 w-100">
+        <div class="rightbar pt-4 d-none d-lg-block" [style.zIndex]="1036" [style.marginTop.px]="-60">
+          <div class="d-flex flex-column">
+            <app-sidebar [pinnedMenu]="pinnedMenu()"></app-sidebar>
+            <!-- <small class="expand text-center my-1">نسخه {{appVersion}}</small> -->
+
+          </div>
+
+        </div>
+
+        <main class="h-100 pt-4">
+          <router-outlet></router-outlet>
+          <div class="communicate-holder ff-peyda px-3">
+            <div class="d-flex align-items-center w-100 h-100 justify-content-between">
+              <!-- <span style="background-color:#F5FAFF;border-radius: 9px; "> -->
+              <img src="/svg/ico_phone_call.svg" class="p-2" loading="lazy" alt="شماره تماس" style="width: 15%;" />
+              <!-- </span> -->
+              <div class="d-flex flex-column align-items-center cursor-pointer">
+                <a href="tel:+982158241000" class="d-flex align-items-center flex-column"
+                  style="text-decoration: none;">
+                  <bdi class="d-flex align-items-center">
+                    <h5 class="text-light mb-0 me-1">(021)</h5>
+                    <h4 class="text-white mb-0">58241</h4>
+                  </bdi>
+                  <span class="d-flex align-items-center" style="direction: ltr;">
+                    <h6 class="text-light mb-0 me-1">(021)</h6>
+                    <h6 class="text-white mb-0">58241000</h6>
+                    <h6 class="text-white mb-0 ms-1">
+                      (داخلی 1)
+                    </h6>
+                  </span>
+                </a>
+              </div>
+              <button class="btn chat-btn text-white" id="goftino-web">
+                چت آنلاین
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <div class="d-lg-none">
+        <app-bottom-bar class="fixed-bottom border-top shadow"></app-bottom-bar>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<ng-template #completeRegistration>
+  <div class="d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">شروع سرمایه گذاری نیازمند تایید اطلاعات سجام می باشد.</h5>
+    <a class="btn btn-danger d-flex" (click)="openUpdateSejamModal()">تایید سجام
+      <fa-icon icon="angle-left"></fa-icon>
+    </a>
+  </div>
+</ng-template>

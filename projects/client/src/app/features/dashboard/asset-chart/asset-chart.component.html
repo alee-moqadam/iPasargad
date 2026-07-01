@@ -1,0 +1,40 @@
+<div class="align-items-center asset-chart-tab mb-2" ngbNav #nav="ngbNav" [destroyOnHide]="false" (activeIdChange)="onTabChange($event)">
+  <div [ngbNavItem]="1">
+    <button ngbNavLink class="py-2">
+      خالص ارزش دارایی‌ها
+    </button>
+    <ng-template ngbNavContent>
+      <div *ngIf="chatList()?.length > 0; else emptyChart1">
+        <h5 class="my-5 text-center fw-semibold">{{thefundDetail().title}} </h5>
+        <div id="netAssetValuesChart"></div>
+      </div>
+      <ng-template #emptyChart1>
+        <h5 class="my-5 text-center fw-semibold">{{thefundDetail().title}} </h5>
+        <div class="d-flex justify-content-center mx-auto">
+          <img src="/svg/badge-empty-chart.svg" class="img-fluid w-100" />
+        </div>
+      </ng-template>
+    </ng-template>
+
+  </div>
+  <div [ngbNavItem]="2" class="mr-4">
+    <button ngbNavLink class="py-2">
+      ارزش واحدها
+    </button>
+    <ng-template ngbNavContent>
+      <div *ngIf="chatList()?.length > 0; else emptyChart2">
+        <h5 class="my-5 text-center fw-semibold">{{thefundDetail().title}} </h5>
+        <div id="historical-nav-container">
+          <div id="fundUnitValuesChart"></div>
+        </div>
+      </div>
+      <ng-template #emptyChart2>
+        <h5 class="my-5 text-center fw-semibold">{{thefundDetail().title}} </h5>
+        <div class="d-flex justify-content-center mx-auto">
+          <img src="/svg/badge-empty-chart.svg" class="img-fluid w-100" />
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>
+<div [ngbNavOutlet]="nav" class="mt-2 w-100"></div>

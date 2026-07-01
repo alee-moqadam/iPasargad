@@ -1,0 +1,62 @@
+:host {
+  align-content: center;
+  background-color: #eee;
+  position: fixed;
+  height: 200px;
+  width: 100%;
+  left: 0;
+  bottom: -240px;
+  padding: 20px 0;
+  transition: all 250ms ease-in-out;
+  z-index: 10;
+  text-align: center;
+}
+
+:host(.shown) {
+  bottom: 0;
+}
+
+.key-button {
+  display: block;
+  align-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin: 3px 3px;
+  font-size: 16px;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+}
+
+.key-button:active {
+  background-color: #ccc;
+}
+
+.key-button.special {
+  width: 60px;
+  background-color: #ccc;
+}
+
+.key-button.special {
+  font-size: 13px;
+}
+
+.key-button.special:active {
+  background-color: #999;
+}
+
+.key-button.toggled {
+  background-color: #555;
+  color: #fff;
+}
+
+.key-button.wide {
+  width: 80px;
+}
+
+.key-button.spacebar {
+  width: 300px;
+}

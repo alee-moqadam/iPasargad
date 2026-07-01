@@ -1,0 +1,6 @@
+<div class="animated-background">
+  <div *ngFor="let square of squares; let i = index" 
+       [style.backgroundColor]="colorStyles[i]" 
+       [style.opacity]="opacityStyles[i]" 
+       class="square"></div>
+</div>

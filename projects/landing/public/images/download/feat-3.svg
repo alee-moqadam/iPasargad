@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 82 82">
+  <!-- Generator: Adobe Illustrator 29.6.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 9)  -->
+  <g id="Group_23949">
+    <g id="Group_23935">
+      <rect id="Rectangle_18518" x="13.92" y="33.081" width="6.4" height="28.727" rx="3" ry="3" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+      <rect id="Rectangle_18974" x="36.462" y="33.081" width="6.4" height="28.727" rx="3" ry="3" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+      <rect id="Rectangle_18975" x="59.003" y="32.999" width="6.4" height="26.319" rx="3" ry="3" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+      <path id="Union_599" d="M33.119,27.421H14.119c-1.12-.007-2.226-.241-3.252-.688-2.904-1.267-4.771-4.144-4.748-7.312h67.4c.021,3.166-1.845,6.041-4.746,7.309-1.027.447-2.134.682-3.255.688l-32.399.003Z" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+      <path id="Subtraction_1526" d="M30.281,19.2H3.971c-1.249.075-2.363-.78-2.614-2.006-.206-1.149.482-2.271,1.6-2.608L30.311,4.314l8.337-3.131c.654-.244,1.374-.244,2.028,0l35.691,13.4c1.118.337,1.806,1.458,1.6,2.607-.25,1.228-1.364,2.084-2.615,2.01h-26.309c1.333-5.181-1.787-10.462-6.968-11.795s-10.462,1.787-11.795,6.968c-.407,1.583-.407,3.244,0,4.827h.001Z" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_31849" d="M4.2,67h43.2v6.4H4.2c-1.767,0-3.2-1.433-3.199-3.201,0-1.767,1.433-3.199,3.199-3.199Z" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+      <g id="Group_23932">
+        <path id="Subtraction_1520" d="M70.2,73c-5.955,0-10.8-2.421-10.8-5.4v-15.4h.482c.962,1.294,2.311,2.249,3.851,2.726,2.076.736,4.265,1.1,6.467,1.074,2.202.026,4.392-.338,6.467-1.075,1.54-.477,2.889-1.431,3.851-2.725h.482v15.4c0,2.979-4.845,5.4-10.8,5.4Z" fill="#a9e2c8" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30545" d="M81,62.025c0,2.982-4.835,5.4-10.8,5.4s-10.8-2.418-10.8-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30546" d="M81,56.626c0,2.982-4.835,5.4-10.8,5.4s-10.8-2.418-10.8-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+        <ellipse id="Ellipse_2402" cx="70.2" cy="51.4" rx="10.8" ry="5.6" fill="#a9e2c8" stroke="#062e28" stroke-width="2"/>
+      </g>
+      <g id="Group_23933">
+        <path id="Subtraction_1521" d="M55.398,81c-5.955,0-10.8-2.392-10.8-5.332v-10.668c0,1.422,1.125,2.762,3.167,3.77,2.396,1.084,5.004,1.619,7.633,1.565,5.955,0,10.8-2.393,10.8-5.335v10.668c0,2.94-4.845,5.332-10.8,5.332Z" fill="#a9e2c8" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30547" d="M66.198,70.281c0,2.982-4.835,5.4-10.8,5.4s-10.8-2.418-10.8-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+        <ellipse id="Ellipse_2399" cx="55.398" cy="65" rx="10.8" ry="5.6" fill="#a9e2c8" stroke="#062e28" stroke-width="2"/>
+      </g>
+    </g>
+    <g id="Group_23942">
+      <path id="Path_30606" d="M13.365,19.459l-5.025,5.022" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30605" d="M19.762,19.459l-7.762,7.762" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30603" d="M26.163,19.459l-8.146,8.146" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30604" d="M32.275,19.746l-7.547,7.547" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_31855" d="M38.89,19.459l-8.146,8.146" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_31856" d="M45.003,19.746l-7.547,7.547" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_31858" d="M51.618,19.459l-8.146,8.146" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_31859" d="M57.731,19.746l-7.547,7.547" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_31860" d="M64.346,19.459l-8.146,8.146" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_31861" d="M70.459,19.746l-7.547,7.547" fill="none" stroke="#062e28" stroke-width="2"/>
+    </g>
+    <g id="Group_23940">
+      <path id="Path_30613" d="M38.79,67.004l5.534,5.534" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30609" d="M13.19,67.004l6.325,6.325" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30612" d="M32.3,66.914l6.415,6.415" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30608" d="M7.077,67.291l6.038,6.037" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30611" d="M25.99,67.004l6.325,6.325" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30607" d="M2.115,68.729l4.78,4.78" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30610" d="M19.5,66.914l6.415,6.415" fill="none" stroke="#062e28" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

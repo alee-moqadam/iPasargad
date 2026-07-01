@@ -1,0 +1,47 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
+
+:host {
+  // height: 100%;
+  // display: block;
+  // overflow: auto;
+  // max-height: calc(100vh - 10rem);
+
+  [data-label]::before {
+    content: attr(data-label);
+    display: inline-block;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+  }
+
+  .icon-cell {
+    padding: 0;
+  }
+
+  .card {
+    border-radius: 1rem !important;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    [data-label]:not([data-label-visible="true"])::before {
+      content: unset;
+    }
+
+    .icon-cell {
+      width: 42px;
+      max-width: 42px;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    // max-height: calc(100vh - 21rem);
+  }
+
+  @media (max-width: 767.98px) {
+  .mobile-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+}

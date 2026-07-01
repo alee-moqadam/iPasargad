@@ -1,0 +1,60 @@
+
+.chat-btn {
+    width: 85px;
+    height: 40px;
+    white-space: nowrap;
+    background: #6633cc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .phone-container {
+    display: block;
+    position: fixed;
+    left: 30px;
+    bottom: 80px;
+  
+    @media (min-width: 1200px) {
+      display: none;
+    }
+  }
+  
+  .communicate-holder {
+    display: none;
+  
+    @media (min-width: 1200px) {
+      display: block;
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      width: 300px;
+      height: 70px;
+      background-color: #28323c;
+      box-shadow: -3px 3px 6px #00000029;
+      border-radius: 13px;
+      z-index: 9;
+    }
+  }
+  
+  .chat-container {
+    display: block;
+    position: fixed;
+    right: 30px;
+    bottom: 80px;
+  
+    @media (min-width: 1200px) {
+      display: none;
+    }
+  }
+
+.account-number-container {
+  width: 303px;
+  position: fixed;
+  left: 2rem;
+  bottom: 8rem;
+  background-color: #FFDEAC;
+  border: 2px dashed #FF9900;
+  border-radius: 15px;
+  z-index: 9;
+}

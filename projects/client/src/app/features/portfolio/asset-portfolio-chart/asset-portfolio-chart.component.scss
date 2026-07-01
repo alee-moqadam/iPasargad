@@ -1,0 +1,34 @@
+.bg-asset {
+    background: transparent linear-gradient(91deg, #37414b 0%, #0080ff 100%) 0% 0% no-repeat padding-box;
+}
+.asset-svg {
+    // background: url("../../../../public/svg/card-dashboard-bg.svg");
+    background-size: cover;
+}
+.percentage-box {
+  width: 45px;
+  height: 45px;
+  border-radius: .5rem;
+}
+
+.fund-profile-info {
+  background: #EBF5FF;
+  border-radius: 10px;
+}
+
+.custom-dashed-border {
+  border: 1px dashed #cdd7e1;
+  border-radius: 10px;
+}
+
+.dot{
+  height: 48px;
+  width: 48px;
+  border-radius: 15px;
+}
+
+.clicked{
+  color: #ffffff;
+background-color: #3333cc;
+border-color: #3333cc;
+}

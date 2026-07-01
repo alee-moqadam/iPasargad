@@ -1,0 +1,86 @@
+<section class="section bg-calculator calculator container-padding" id="calculator">
+  <div class="px-4">
+    <div class="col-lg-24 mx-auto main-bg rounded pt-3 my-5">
+      <div class="card bg-purple" style="opacity: 0.9;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12 text-white px-2 px-sm-4">
+              <h4 class="ff-peyda text-center text-lg-end opacity-75">ماشین‌حساب سود</h4>
+              <h2 class="ff-peyda text-center text-lg-end my-3">حساب کن تا الان، <br class="d-sm-none" /> چقدر سود می‌کردی!</h2>
+              <h5 class="ff-peyda text-center text-lg-end ">صندوق هزاره سوم پاد</h5>
+              <h6 class="fs-6 lh-base mb-0 opacity-75 text-justify px-2 px-sm-0">
+                با وارد کردن مبلغ سرمایه‌گذاری اولیه، نرخ سود پیش‌بینی‌شده و دارایی پس از سرمایه‌گذاری را
+                محاسبه
+                کنید.
+              </h6>
+
+
+              <div class="px-2 px-sm-0">
+                <h6 style="color: #EBF5FF;" class="ff-peyda mt-2">مبلغ سرمایه‌گذاری اولیه</h6>
+                <div class="gradient-border">
+                  <div
+                    style="width: 40px; height: 40px; background-color: #CDD7E1; border-radius: 7px; z-index: 2;  font-size: 80%; top: 50%; transform: translateY(-50%); right: 6px; color: #5C6670;"
+                    class="align-items-center d-flex justify-content-center position-absolute m-0">
+                    تومان
+                  </div>
+                  <input type="text" placeholder="مثال 100,000,000" class="w-100 h5 m-0 text-secondary"
+                    [(ngModel)]="formattedValue" (ngModelChange)="formatNumber($event)"
+                    (keydown)="restrictToNumbers($event)" (paste)="restrictPaste($event)" (input)="onInput($event)"
+                    style="height: 48px;  background-color: #EBF5FF; padding-right: 52px;" />
+                </div>
+                <div
+                  class="col-lg-8 align-items-center cursor-pointer d-flex h5 justify-content-center mt-4 ms-auto me-auto ms-lg-0 text-white"
+                  style="height: 48px; background-color: #FF9900; border-radius: 35px;"
+                  (click)="openModal(modalContent)">
+                  محاسبه سود
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 px-3 px-sm-4">
+
+              <div
+                class="align-items-center bg-light bg-opacity-10 border border-1 border-light d-flex flex-column mt-3 mb-2 mb-sm-3 p-3 rounded">
+                <h5 class="opacity-75 text-white text-center">میزان سود شما در گذر زمان</h5>
+                <img src="./images/hezareh3-pod/chart.svg" class="my-2 mw-100" />
+                <div class="align-items-start d-flex mt-2">
+                  <img src="./images/ico_s_warning.svg" class="ms-2 mt-2" style="width: 15px;" />
+                  <h6 class="text-white m-0" style="letter-spacing: -0.3px;">
+سود صندوق ماهانه به حساب شما واریز می‌شود. با سرمایه‌گذاری مجدد آن می‌توانید سود موثر خود را افزایش دهید.
+                  </h6>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="downloads flex-column flex-lg-row">
+        <div class="align-items-start d-flex mt-2 ms-auto">
+          <img src="./images/circle-exclamation.png" class="ms-2 mt-1" style="width: 15px;" />
+          <div class="d-flex align-item-center flex-wrap text-nowrap">
+            برای دریافت اطلاعات بیشتر
+            می‌توانید از لینک‌های <span class="d-none d-lg-block mx-1">روبرو</span><span
+              class="d-lg-none mx-1">زیر</span> استفاده نمایید.
+          </div>
+        </div>
+        <div class="d-flex mt-3 mt-lg-0">
+          <a href="http://pasargadetffund.ir/Home/Statute" class="download-link">
+            <img src="./images/globe.png" style="width: 18px;" />
+            اساسنامه صندوق</a>
+          <a href="http://pasargadetffund.ir/Home/Prospectus" class="download-link me-2">
+            <img src="./images/globe.png" style="width: 18px;" />
+            امید‌نامه صندوق</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #modalContent let-modal>
+  <button type="button" class="btn-close ms-auto" aria-label="Close" (click)="modal.close()"></button>
+  <ng-container *ngIf="isShowChart$ | async">
+    <div id="myChart" class="w-100" style="height:450px; overflow: hidden;"></div>
+  </ng-container>
+</ng-template>

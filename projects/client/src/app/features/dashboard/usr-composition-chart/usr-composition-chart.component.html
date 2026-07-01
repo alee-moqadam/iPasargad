@@ -1,0 +1,6 @@
+<div class=" d-flex m-2 flex-column justify-content-center border border-1 border-gray-500 custom-radius">
+    <span class="text-center custom-radius mt-4" style="color: #afb9c3;">ترکیب صندوق‌ها</span>
+    @if (CustomerComposition().length > 0) {
+    <div echarts [options]="chartOptions" style="height: 150px;"></div>
+    }
+</div>

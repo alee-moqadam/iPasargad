@@ -1,0 +1,53 @@
+<form [formGroup]="formGroup" (ngSubmit)="submit()" dir="rtl">
+  <div class="card overflow-hidden">
+    <div class="card-body px-5">
+      <div [style.display]="step=='step1' ? 'block' : 'none'">
+        <label for="" class="form-text text-muted small">
+          برای دریافت اطلاعات شما از سامانه سجام لطفا مقدار زیر را وارد نمایید
+        </label>
+        <div class="input-group mb-3">
+          <input pattern="[0-9]*" inputmode="decimal" type="text" maxlength="4" minlength="4" class="form-control "
+            formControlName="captcha" placeholder="کد کپچا" />
+          @if(generatedCaptchaValue()) {
+          <span class="input-group-text p-0 captcha" [style.width]="'95px'" (click)="generateNewCaptcha()">
+
+            <img [src]="generatedCaptchaValue().captchaByteData" class="img-fluid" [style.height]="'36px'" />
+
+          </span>
+          }
+        </div>
+      </div>
+
+      <div [style.display]="step=='step2' ? 'block' : 'none'" class="form-group">
+        <label for="" class="form-text text-muted small">
+          کد تایید به شماره ثبت شده در سجام ارسال می‌شود
+        </label>
+        <!-- <input class="form-control" id="otp" type="text" formControlName="otp" /> -->
+        <input class="form-control" id="otp" type="text" formControlName="otp" pattern="[0-9]*" mask="9*" inputmode="decimal" maxlength="5" minlength="5"/>
+      </div>
+
+
+      @if(errMsg()){
+      <div class="my-4">
+        <p class="text-danger text-center mb-0">* {{ errMsg() }}</p>
+      </div>
+      }
+      <div class="d-flex flex mb-4">
+        <button type="button" (click)="openPanel()" class="w-50 btn btn-gray-150 m-2 text-black">ورود به
+          پنل
+          کاربری</button>
+        <app-loading-button class="w-50 my-2" [isLoading]="submitting()" [disabled]="submitting()" [type]="'submit'"
+          cssClass="btn btn-primary">
+          دریافت اطلاعات سجام
+        </app-loading-button>
+      </div>
+
+      @if(step=='step2'){
+        <div>
+          <button type="button" (click)="returnToStep1()" class="w-100 btn btn-gray-250 m-2 text-black">بازگشت</button>
+        </div>
+      }
+
+    </div>
+  </div>
+</form>

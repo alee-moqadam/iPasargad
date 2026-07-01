@@ -1,0 +1,37 @@
+<div class="card bg-gray-300">
+    <div class="card-body">
+        <button type="button" class="btn-close me-2 mb-2" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')"></button>
+
+        <div class="text-center mb-3">
+            <img src="/svg/badge-sejam.svg" class="img-fluid" width="150" alt="">
+        </div>
+        <div class="bg-gray-275 text-center py-2 mb-3">وضعیت شما در سجام</div>
+
+        
+      
+        @if (!submitting()) {
+            <p class="fs-5 text-justify mb-4">
+                {{sejamData?.message}}
+            </p>
+           
+            <div class="text-center mb-4">
+                <a target="_blank" *ngIf="sejamData?.link" class="text-info fw-bold"  [href]="sejamData?.link">{{ sejamData?.buttonTitle }}</a>
+          
+          
+                <button *ngIf="userSejamStatus === -2" (click)="getSejamStatus()" [counter]="{seconds: 0, minutes: 1}"
+                                [start]="sejamApiCalled$ | async" [disabled]="(sejamApiCalled$ | async)"
+                                (value)="onCounterValueChange($event)" text="تلاش مجدد"
+                                altText="تلاش مجدد" class="btn btn-outline-secondary"
+                                type="button">تلاش مجدد</button>
+            </div>
+    
+        } @else {
+            <div class="py-3 text-center">
+                <span class="spinner-border spinner-border-sm mx-1"></span>
+            </div>
+        }
+
+
+    </div>
+</div>

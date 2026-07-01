@@ -1,0 +1,43 @@
+<ngb-carousel class="d-none d-lg-block" class="mb-3" [showNavigationArrows]="false">
+  @for (item of allMutualFundDetail(); track $index) {
+  <ng-template ngbSlide class="h-100" style="height: 213px;">
+    <div class="card shadow-sm mb-3 cursor-pointer"
+      [routerLink]="'/fund/'+item.seoRegisterNumber+'/fund-detail/'+item.seoRegisterNumber">
+      <!-- <img *ngIf="item?.attachments?.length > 0; else bannerPlaceholder"
+        [src]="'data:' + getImage(item)?.contentType + ';base64,' + getImage(item)?.base64File"
+        alt="" class="w-100 img-fluid border-radius-15 vertical-banner" /> -->
+      <img *ngIf="item?.attachments?.length > 0; else bannerPlaceholder"
+                 [src]="apiUrl + '/' + getImage(item)?.downloadLink"
+                 class="w-100 img-fluid border-radius-15 horizontal-banner"/>
+      <ng-template #bannerPlaceholder>
+        <!-- <div class="banner-loading-placeholder w-100 border-radius-15"></div> -->
+          <div class="card-skeleton">       
+            <div class="card-skeleton__image skeleton"></div>       
+            <div class="card-skeleton__content"></div>       
+          </div>
+      </ng-template>
+
+      @if(item?.attachments){
+        <!-- @if(![3,4].includes(item.mutualFundId)){
+        <h4 clsas=" text-center text-white w-100"
+          style="position: absolute; left: 50%;transform: translate(-50%, 0); top: 20%;font-weight: bolder;white-space: nowrap;">
+          {{item?.symbol}}
+        </h4>
+        } -->
+        @if(item.mutualFundId==2){
+        <div class="text-white"
+          style="position: absolute; left: 50%;transform: translate(-50%, 0); top: 35%;font-weight: bolder;font-size: 450%;">
+          {{item?.performance?.effectiveYearlyPercent}}%</div>
+        <div class="given-benefit border-radius-10 px-2">پیش‌بینی بازده موثر</div>
+        }@else if(item.mutualFundId==1){
+        <div class="text-white"
+          style="position: absolute; left: 50%;transform: translate(-50%, 0); top: 35%;font-weight: bolder;font-size: 450%;">
+          {{item?.performance?.yearlyPercent}}%</div>
+        <div class="given-benefit border-radius-10 px-2">بازده اسمی سالانه</div>
+        }
+      }
+
+    </div>
+  </ng-template>
+  }
+</ngb-carousel>

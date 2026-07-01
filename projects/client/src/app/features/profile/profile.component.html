@@ -1,0 +1,592 @@
+<div class="row">
+  <div class="col-xxl-16 px-4">
+    <div class="card shadow-sm mb-3">
+      <div class="card-body pb-3">
+        <div class="mb-5 d-flex align-items-center justify-content-center">
+          <img src="./images/logo-vertical.svg" alt="" width="150px" />
+        </div>
+
+        <div class="row text-secondary">
+           @if(customerInfo()?.holders?.length > 0){
+             <div class=" col-xxl-12 col-lg-12 mb-3">
+               <div
+                 class="align-items-center border-1 border-dashed border-gray-400 custom-radius d-flex py-2 px-4 rounded-1 text-center" (click)="openHoldersSignatureModal()">
+                 وضعیت نهایی ثبت نام:
+                 <div class="d-flex flex-fill justify-content-between align-items-center cursor-pointer">
+                   <span class="fw-bold mx-1"> {{hasRequiredHolders() ? 'تکمیل شده':'تکمیل نشده'}}</span>
+                   @if (hasRequiredHolders()) {
+                     <!-- <fa-icon class="text-green" icon="check-square"></fa-icon> -->
+                    <svg class="" viewBox="0 0 24 24" width="16px" height="16px" style="color: rgba(18, 181, 73, 0.7)">
+                      <use xlink:href="#ico_new"></use>
+                    </svg>
+                   } @else {
+                     <!-- <fa-icon class="text-danger" icon="question"></fa-icon> -->
+                    <svg class="" viewBox="0 0 24 24" width="16px" height="16px" style="color: rgba(239,83,80, 0.7)">
+                      <use xlink:href="#ico_circle_help"></use>
+                    </svg>
+                   }
+                 </div>
+               </div>
+             </div>
+            }@else{
+              @if(customerInfo()?.personalInfo?.partyType == 2 && customerInfo()?.holders?.length == 0){
+                <div class=" col-xxl-12 col-lg-12 mb-3">
+                  <div
+                    class="align-items-center border-1 border-dashed border-gray-400 custom-radius d-flex py-2 px-4 rounded-1 text-center" (click)="openStatesOfSejamModal()">
+                    وضعیت کاربر:
+                    <div class="d-flex flex-fill justify-content-between align-items-center cursor-pointer">
+                      <span class="fw-bold mx-1"> تکمیل نشده</span>                
+                      <!-- <fa-icon class="text-danger" icon="question"></fa-icon>                       -->
+                      <svg class="" viewBox="0 0 24 24" width="16px" height="16px" style="color: rgba(239,83,80, 0.7)">
+                        <use xlink:href="#ico_circle_help"></use>
+                      </svg>
+                    </div>
+                  </div>
+               </div>
+              }@else {
+                <div class="col-xxl-12 col-lg-12 mb-3">
+                  <div
+                    class="align-items-center border-1 border-dashed border-gray-400 custom-radius d-flex py-2 px-4 rounded-1 text-center">
+                    وضعیت کاربر:
+                    <div class="d-flex flex-fill justify-content-between align-items-center">
+                      <!-- <span class="fw-bold mx-1">{{ customerInfo()?.registerInfo?.finalStatusTitle }} </span>
+                      @if (customerInfo()?.registerInfo?.finalStatus ==100) {
+                      <fa-icon class="text-green" icon="check-square"></fa-icon>
+                      }@else {
+                      <fa-icon class="text-danger" icon="question"></fa-icon>
+                      } -->
+                      <span class="fw-bold mx-1">تکمیل شده</span>
+                      <!-- <fa-icon class="text-green" icon="check-square"></fa-icon> -->
+                       <svg class="" viewBox="0 0 24 24" width="16px" height="16px" style="color: rgba(18, 181, 73, 0.7)">
+                         <use xlink:href="#ico_new"></use>
+                       </svg>
+                    </div>
+                  </div>
+                </div>
+              }
+            }          
+          <div class=" col-xxl-12 col-lg-12 mb-3">
+            <div
+              class="align-items-center border-1 border-dashed border-gray-400 custom-radius d-flex py-2 px-4 rounded-1 text-center">
+              وضعیت سجام:
+              <div class="d-flex flex-fill justify-content-between align-items-center">
+                <span class="fw-bold mx-1">{{ customerInfo()?.registerInfo?.sejamStatusTitle }} </span>
+                @if (customerInfo()?.registerInfo?.sejamStatus ==6) {
+                  <!-- <fa-icon class="text-green" icon="check-square"></fa-icon> -->
+                  <svg class="" viewBox="0 0 24 24" width="16px" height="16px" style="color: rgba(18, 181, 73, 0.7)">
+                    <use xlink:href="#ico_new"></use>
+                  </svg>
+                }@else {
+                 <!-- <fa-icon class="text-danger" icon="question"></fa-icon> -->
+                  <svg class="" viewBox="0 0 24 24" width="16px" height="16px" style="color: rgba(239,83,80, 0.7)">
+                    <use xlink:href="#ico_circle_help"></use>
+                  </svg>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xxl-24 col-lg-24 mb-3">
+            <div class="align-items-center border-1 border-dashed border-gray-400 custom-radius d-flex py-2 px-4 rounded-1 text-center fs-mobile-sm cursor-pointer"
+                #popoverRef="ngbPopover"
+                [ngbPopover]="popoverContent"
+                popoverClass="custom-popover"
+                container="body"
+                triggers="manual"
+                placement="top"
+                (click)="isMobile && togglePopover(popoverRef)"
+                (mouseenter)="!isMobile && onMouseEnter(popoverRef)"
+                (mouseleave)="!isMobile && onMouseLeave(popoverRef)">
+
+              معاملات صندوق های ETF (پاسارگاد ، ریتون و تکپاد):
+              <div class="d-flex flex-fill justify-content-between align-items-center">
+                <span class="fw-bold mx-1">
+                {{ brokerFinalizeInfo()?.brokerFinalize != false ? ((brokerFinalizeInfo()?.brokerFinalize && brokerFinalizeInfo()?.finalizeStatus == 2) ? 'تایید شده' :'در حال بررسی') :'در حال بررسی'}}
+                </span>
+
+                @if(brokerFinalizeInfo()?.finalizeStatus == 2){
+                  <svg class="" viewBox="0 0 24 24" width="16px" height="16px" style="color: rgba(18, 181, 73, 0.7)">
+                    <use xlink:href="#ico_new"></use>
+                  </svg>
+                }@else if(brokerFinalizeInfo()?.finalizeStatus == 1){
+                  <svg class="" viewBox="0 0 24 24" width="16px" height="16px" style="color: rgba(255, 153, 0, 0.7)">
+                    <use xlink:href="#ico_clock"></use>
+                  </svg>
+                }@else {                  
+                  <svg class="" viewBox="0 0 24 24" width="16px" height="16px" style="color: rgba(239,83,80, 0.7)">
+                    <use xlink:href="#ico_circle_help"></use>
+                  </svg>
+                }                 
+                      
+                <ng-template #popoverContent>
+                   <div (mouseenter)="!isMobile && (isInPopover = true)" 
+                        (mouseleave)="!isMobile && onMouseLeave(popoverRef)" 
+                        class="text-justify">
+                     برای فعال‌سازی معامله صندوق‌های قابل‌معامله (ETF)، لازم است مشخصات شما در 
+                     سامانه‌های سازمان بورس ثبت و تأیید شود؛ این فرآیند معمولاً یک تا دو روز معاملاتی  
+                     زمان می‌برد. در صورت خرید برای اولین بار در آی‌پاسارگاد، سفارش شما ثبت و پردازش 
+                     آن پس از فعال‌سازی انجام می‌شود. برای اطلاع از جزئیات، لطفاً
+                     <a href="https://academy.ipasargad.ir/rq/" class="text-primary" target="_blank">لینک راهنما</a>
+                     را مطالعه کنید.
+                   </div>
+                </ng-template>
+                
+              </div>
+            </div>
+          </div>         
+          <!-- <div class="col-xxl-6 col-lg-8 mb-3 cursor-pointer" (click)="updateDirectDebit()">
+            <div class="align-items-center bg-gray-150 custom-radius d-flex flex-column justify-content-center py-2 rounded-1 text-center">
+              فعالسازی پرداخت مستقیم
+              @if (customerInfo()?.podSsoInfo === null) {
+                <fa-icon class="mx-1 text-danger" icon="times-square"></fa-icon>
+              } @else if(customerInfo()?.podSsoInfo.expired === true) {
+                <fa-icon class="mx-1" icon="refresh"></fa-icon>
+              } @else {
+                <fa-icon class="mx-1 text-green" icon="check-square"></fa-icon>
+              }
+            </div>
+          </div> -->
+          <div class="col-xxl-6 col-lg-8 mb-3 cursor-pointer d-lg-none" routerLink="/gift-card">
+            <div
+              class="align-items-center border-1 border-dashed border-gray-400 custom-radius d-flex justify-content-between py-2 px-4 rounded-1 text-center">
+              کارت هدیه
+              <fa-icon class="mx-1" icon="credit-card"></fa-icon>
+            </div>
+          </div>
+          <div class="col-xxl-6 col-lg-8 mb-3 cursor-pointer d-lg-none" routerLink="/settings">
+            <div
+              class="align-items-center border-1 border-dashed border-gray-400 custom-radius d-flex justify-content-between py-2 px-4 rounded-1 text-center">
+              تنظیمات
+              <fa-icon class="mx-1" icon="gear"></fa-icon>
+            </div>
+          </div>
+          <div class="col-xxl-6 col-lg-8 mb-3 cursor-pointer d-lg-none" routerLink="/tickets">
+            <div
+              class="align-items-center border-1 border-dashed border-gray-400 custom-radius d-flex justify-content-between py-2 px-4 rounded-1 text-center">
+              پشتیبانی
+              <svg viewBox="0 0 24 24" width="20px" height="20px" class="me-1">
+                <use xlink:href="#ico_box_help"></use>
+              </svg>
+            </div>
+          </div>
+          <div class=" d-lg-none mb-3 cursor-pointer" (click)="logout()">
+            <div
+              class="align-items-center border-1 border-dashed border-gray-400 custom-radius d-flex justify-content-between py-2 px-4 rounded-1 text-center">
+              خروج
+              <fa-icon class="mx-1 text-danger" icon="power-off"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="d-flex align-items-center p-4 my-4 border-primary w-100 rounded border-1 border-dashed border-primary"
+      style="background-color: #6633CC1A;">
+      <img src="/images/sejam-logo-line.svg" width="24px" height="24px" alt="" class="ms-2" />
+      <div class="text-secondary d-flex flex-column align-items-start rounded-1 text-center fs-5">
+        <span class="fw-bold">بروزرسانی از سجام</span>
+        <span class="opacity-75">جمع‌آوری‌ و راستی‌آزمایی اطلاعات پایه فعالان بازار سرمایه</span>
+      </div>
+      <button class="btn btn-primary btn-sm me-auto py-2 px-5" (click)="openStatesOfSejamModal()">
+        <img src="/images/sejam-logo-w.svg" width="16px" height="16px" alt="">
+        بروزرسانی اطلاعات</button>
+    </div>
+
+    @if (customerInfo()?.personalInfo !== null) {
+    <div ngbAccordion>
+      <div ngbAccordionItem class="mb-3" [collapsed]="isCollapsed1" (shown)="isCollapsed1 = false"
+        (hidden)="isCollapsed1 = true">
+        <span ngbAccordionHeader style="border-radius: 20px !important;">
+          <button class=" d-flex justify-content-between py-3 px-4" ngbAccordionButton>
+            <div class="d-flex align-items-center justify-content-between w-100">
+              <h5 class="text-secondary mb-0">
+                اطلاعات اصلی
+              </h5>
+
+            </div>
+            <div class="d-flex align-items-center">
+              <h5 class="text-primary text-nowrap mb-0">
+                نمایش اطلاعات
+              </h5>
+
+              <svg class="text-primary me-2" viewBox="0 0 24 24" width="14px" height="14px">
+                <use [attr.xlink:href]="isCollapsed1 ? '#ico_drop_down' : '#ico_drop_up'"></use>
+              </svg>
+            </div>
+          </button>
+        </span>
+        <div ngbAccordionCollapse>
+          <div ngbAccordionBody style="background-color: #fff;">
+            <ng-template>
+              <div class="row">
+                @if(customerInfo().personalInfo?.partyType==2){
+                <div class="col-lg-24 mb-3">
+                  <label class="mb-2">نام شرکت</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo().personalInfo?.fullName }}
+                  </div>
+                </div>
+                }@else{
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">نام</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo().personalInfo?.firstName }}
+                  </div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">نام خانوادگی</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo().personalInfo?.lastName }}
+                  </div>
+                </div>
+                }
+                @if(customerInfo().personalInfo?.partyType==2){
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">شناسه ملی شرکت</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo().personalInfo?.nationalId }}
+                  </div>
+                </div>
+                }@else {
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">کد ملی</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo().personalInfo?.nationalId }}
+                  </div>
+                </div>
+                }
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">تلفن همراه</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo()?.contactInfo?.mobile }}
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    @if(customerInfo().personalInfo?.partyType!=2){
+    <div ngbAccordion>
+      <div ngbAccordionItem class=" mb-3" [collapsed]="isCollapsed2" (shown)="isCollapsed2 = false"
+        (hidden)="isCollapsed2 = true">
+        <span ngbAccordionHeader style="border-radius: 20px !important;">
+          <button class=" d-flex justify-content-between py-3 px-4" ngbAccordionButton>
+            <div class="d-flex align-items-center justify-content-between w-100">
+              <h5 class="text-secondary mb-0">
+                اطلاعات هویتی
+              </h5>
+
+            </div>
+            <div class="d-flex align-items-center">
+              <h5 class="text-primary text-nowrap mb-0">
+                نمایش اطلاعات
+              </h5>
+
+              <svg class="text-primary me-2" viewBox="0 0 24 24" width="14px" height="14px">
+                <use [attr.xlink:href]="isCollapsed2 ? '#ico_drop_down' : '#ico_drop_up'"></use>
+              </svg>
+            </div>
+          </button>
+        </span>
+        <div ngbAccordionCollapse>
+          <div ngbAccordionBody style="background-color: #fff;">
+            <ng-template>
+              <div class="row">
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">نام پدر</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo().personalInfo?.fatherName }}
+                  </div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">جنسیت</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo().personalInfo?.genderTitle }}
+                  </div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">کد ملی</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo().personalInfo?.nationalId }}
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="row align-items-end">
+                    <div class="col-lg-12 mb-3">
+                      <label class="mb-2">سری شناسنامه</label>
+                      <div class="py-3 px-2 bg-gray-150 custom-radius">
+                        {{ customerInfo().personalInfo?.identitySerialLongNumber }}
+                      </div>
+                    </div>
+                    <div class="col-lg-12 mb-3">
+                      <div class="py-3 px-2 bg-gray-150 custom-radius">
+                        {{ customerInfo().personalInfo?.identitySerialShortNumber }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">تاریخ تولد</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo().personalInfo?.birthDateJalali }}
+                  </div>
+                </div>
+
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">محل تولد/ محل صدور</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo().personalInfo?.birthPlace }}/{{
+                    customerInfo().personalInfo?.issuePlace
+                    }}
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+    <div ngbAccordion>
+      <div ngbAccordionItem class=" mb-3" [collapsed]="isCollapsed3" (shown)="isCollapsed3 = false"
+        (hidden)="isCollapsed3 = true">
+        <span ngbAccordionHeader style="border-radius: 20px !important;">
+          <button class=" d-flex justify-content-between py-3 px-4" ngbAccordionButton>
+            <div class="d-flex align-items-center justify-content-between w-100">
+              <h5 class="text-secondary mb-0">
+                اطلاعات تماس
+              </h5>
+
+            </div>
+            <div class="d-flex align-items-center">
+              <h5 class="text-primary text-nowrap mb-0">
+                نمایش اطلاعات
+              </h5>
+
+              <svg class="text-primary me-2" viewBox="0 0 24 24" width="14px" height="14px">
+                <use [attr.xlink:href]="isCollapsed3 ? '#ico_drop_down' : '#ico_drop_up'"></use>
+              </svg>
+            </div>
+          </button>
+        </span>
+        <div ngbAccordionCollapse>
+          <div ngbAccordionBody style="background-color: #fff;">
+            <div class="row">
+              <div class="col-lg-12 mb-3">
+                <label class="mb-2">تلفن همراه</label>
+                <div class="py-3 px-2 bg-gray-150 custom-radius">
+                  {{ customerInfo()?.contactInfo?.mobile }}
+                </div>
+              </div>
+              <div class="col-lg-12 mb-3">
+                <label class="mb-2">تلفن ثابت</label>
+                <div class="py-3 px-2 bg-gray-150 custom-radius">
+                  {{ customerInfo()?.contactInfo?.phone }}
+                </div>
+              </div>
+              <div class="col-lg-12 mb-3">
+                <label class="mb-2">کدپستی</label>
+                <div class="py-3 px-2 bg-gray-150 custom-radius">
+                  {{ customerInfo()?.contactInfo?.postalCode }}
+                </div>
+              </div>
+              <div class="col-lg-12 mb-3">
+                <label class="mb-2">ایمیل</label>
+                <div class="py-3 px-2 bg-gray-150 custom-radius">
+                  {{ customerInfo()?.contactInfo?.email }}
+                </div>
+              </div>
+
+              <div class="col-lg-24 mb-3">
+                <label class="mb-2">آدرس</label>
+                <div class="py-3 px-2 bg-gray-150 custom-radius">
+                  {{ customerInfo()?.contactInfo?.address }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div ngbAccordion>
+      <div ngbAccordionItem class=" mb-3" [collapsed]="isCollapsed4" (shown)="isCollapsed4 = false"
+        (hidden)="isCollapsed4 = true">
+        <span ngbAccordionHeader style="border-radius: 20px !important;">
+          <button class=" d-flex justify-content-between py-3 px-4" ngbAccordionButton>
+            <div class="d-flex align-items-center justify-content-between w-100">
+              <h5 class="text-secondary mb-0">
+                حساب بانکی
+              </h5>
+
+            </div>
+            <div class="d-flex align-items-center">
+              <h5 class="text-primary text-nowrap mb-0">
+                نمایش اطلاعات
+              </h5>
+
+              <svg class="text-primary me-2" viewBox="0 0 24 24" width="14px" height="14px">
+                <use [attr.xlink:href]="isCollapsed4 ? '#ico_drop_down' : '#ico_drop_up'"></use>
+              </svg>
+            </div>
+          </button>
+        </span>
+        <div ngbAccordionCollapse>
+          <div ngbAccordionBody style="background-color: #fff;">
+            <ng-template>
+              @for (item of customerInfo()?.bankAccounts; track $index) {
+              <div class="row">
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">بانک</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ item?.bankTitle }}
+                  </div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">شعبه</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ item?.branchName }}
+                  </div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">کد شعبه</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ item?.branchCode }}
+                  </div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">شماره حساب</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ item?.accountNumber }}
+                  </div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">شماره شبا</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ item?.iban }}
+                  </div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">حساب پیش فرض</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ item?.isDefault ? 'می باشد' : 'نمی باشد' }}
+                  </div>
+                </div>
+              </div>
+              }
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    @if(customerInfo()?.holders.length>0){
+    <div ngbAccordion>
+      <div ngbAccordionItem class=" mb-3" [collapsed]="isCollapsed5" (shown)="isCollapsed5 = false"
+        (hidden)="isCollapsed5 = true">
+        <span ngbAccordionHeader style="border-radius: 20px !important;">
+          <button class=" d-flex justify-content-between py-3 px-4" ngbAccordionButton>
+            <div class="d-flex align-items-center justify-content-between w-100">
+              <h5 class="text-secondary mb-0">
+                اطلاعات ذی‌نفعان شرکت
+              </h5>
+
+            </div>
+            <div class="d-flex align-items-center">
+              <h5 class="text-primary text-nowrap mb-0">
+                نمایش اطلاعات
+              </h5>
+
+              <svg class="text-primary me-2" viewBox="0 0 24 24" width="14px" height="14px">
+                <use [attr.xlink:href]="isCollapsed5 ? '#ico_drop_down' : '#ico_drop_up'"></use>
+              </svg>
+            </div>
+          </button>
+        </span>
+        <div ngbAccordionCollapse>
+          <div ngbAccordionBody class="bg-white">
+            <ng-template>
+             @for (item of displayHolders(); track item.uniqueId) {
+              <div class="row">
+                <div class="col-lg-8 mb-3">
+                  <label class="mb-2">سمت</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ getPosition(item?.displayPosition) }}
+                  </div>
+                </div>
+                <div class="col-lg-8 mb-3">
+                  <label class="mb-2">نام و نام‌خانوادگی</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ item?.fullName }}
+                  </div>
+                </div>
+                <div class="col-lg-8 mb-3">
+                  <label class="mb-2">کد ملی</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ item?.personNationalId }}
+                  </div>
+                </div>
+              </div>
+              }
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    }
+
+    } @else {
+    <div class="card shadow-sm mb-3 bg-white overflow-hidden">
+      <div class="card-body flex-column d-flex align-items-center">
+        <img src="/svg/badge-sejam-state.svg" class="img-fluid my-4" width="150" alt="" />
+
+        <button (click)="openStatesOfSejamModal()" class="btn btn-outline-primary">تکمیل ثبت نام</button>
+      </div>
+    </div>
+    }
+    <app-consulting-guide class="mb-4 d-block"></app-consulting-guide>
+
+  </div>
+
+  <div class="col-xxl-8 mb-3">
+    <div class="card  shadow-sm ">
+      <div class="card-body d-flex flex-column mb-4">
+        <img class="me-xxl-0 mx-auto" src="/images/sejam-logo.svg" alt="سجام" width="45px">
+        <h4 class="text-center my-3">سامانه جامع اطلاعات مشتریان (سجام)</h4>
+        <p class="text-justify p-2">
+          سامانه جامع اطلاعات مشتریان در بازار سرمایه که استفاده از خدمات بازار سرمایه را آسان کرده و ثبت‌نام یا
+          بروزرسانی اطلاعات شما را تنها با چند کلیک ساده ممکن می‌سازد. با استفاده از این سامانه، خرید و فروش سهام و
+          صدور و ابطال واحدهای صندوق‌های سرمایه‌گذاری سریع‌تر و در دسترس‌تر از همیشه خواهد بود.
+        </p>
+        <a href="https://profilesejam.csdiran.ir/session"
+          class="px-6 mb-6 align-self-center btn border-1 border-primary rounded-pill text-primary background-transparent">
+          وب‌سایت سجام
+        </a>
+        <a class="mx-auto" style="max-width: 400px;" target="_blank"
+          href="https://academy.ipasargad.ir/updating-sejam-data-in-ipasargad/">
+          <img class="rounded w-100" src="/images/sejam-banner.webp" alt="آموزش بروزرسانی اطلاعات سجام">
+        </a>
+        <!-- 
+        <div>
+          <h3 class="text-center mb-3 pt-3">ویپاد</h3>
+        <p class="text-justify p-2">
+          ویپاد یک بانک دیجیتال است که با تکنولوژی‌های نوین، تمامی خدمات بانکی ضروری را از طریق اپلیکیشن خود به‌صورت تجربه‌ای جدید برای شما فراهم می‌کند. ویپاد با حمایت بانک پاسارگاد و پشتیبانی بانک مرکزی ایران، از اواخر سال ۱۳۹۸ فعالیت خود را آغاز کرده و تمام سپرده‌های کاربران آن نزد بانک پاسارگاد نگهداری می‌شود.
+        </p>
+        <div class="text-center cursor-pointer">
+          <img width="90px" src="svg/podLogoMark.svg" alt="" ngbTooltip="wepod.ir" (click)="openWepod()">
+        </div>
+        </div> -->
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

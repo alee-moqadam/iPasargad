@@ -1,0 +1,44 @@
+:host {
+  .nav {
+    border-radius: 0 !important;
+  }
+
+  input[type="radio"] {
+    visibility: hidden;
+    width: 0;
+  }
+
+  .nav-link {
+    background-color: var(--dtx-secondary);
+    color: white;
+
+    &.active {
+      color: inherit;
+      background-color: var(--dtx-warning);
+      box-shadow: var(--dtx-box-shadow-sm) !important;
+    }
+  }
+
+  .btn-radius {
+    border-radius: var(--dtx-btn-border-radius) 0 0 var(--dtx-btn-border-radius);
+  }
+
+  ul {
+    display: flex;
+
+    li {
+      flex: 1;
+    }
+  }
+
+  // /* حالت پیش‌فرض بوت‌استرپ (چند درگاه) */
+  // .btn-group.multi-button > .btn {
+  //   flex: 1 1 auto !important;
+  // }
+  
+  // /* وقتی فقط یک دکمه داریم */
+  // .btn-group.single-button > .btn {
+  //   flex: 0 0 176px !important;
+  //   max-width: 176px !important;
+  // }
+}

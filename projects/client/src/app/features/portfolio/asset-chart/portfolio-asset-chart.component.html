@@ -1,0 +1,26 @@
+@if(assetPositionList().length > 0){
+
+<div class="d-flex flex-column w-100 h-100">
+    <div class="text-left">
+        <button (click)="setDate('week')" [ngClass]="{'clicked':dateType=='week'}"
+            class="btn mr-1 btn-sm btn-outline-primary ng-star-inserted" style="border-radius: 4px;"> هفته </button>
+        <button (click)="setDate('month')" [ngClass]="{'clicked':dateType=='month'}"
+            class="btn mr-1 btn-sm btn-outline-primary ng-star-inserted" style="border-radius: 4px;"> ماه </button>
+        <button (click)="setDate('3month')" [ngClass]="{'clicked':dateType=='3month'}"
+            class=" btn mr-1 btn-sm btn-outline-primary ng-star-inserted" style="border-radius: 4px;"> سه ماهه </button>
+        <button (click)="setDate('1year')" [ngClass]="{'clicked':dateType=='1year'}"
+            class="btn mr-1 btn-sm btn-outline-primary ng-star-inserted" style="border-radius: 4px;"> یک سال </button>
+        <button (click)="setDate('all')" [ngClass]="{'clicked':dateType=='all'}"
+            class="btn mr-1 btn-sm btn-outline-primary ng-star-inserted" style="border-radius: 4px;"> از ابتدا </button>
+    </div>
+    <div class="d-flex w-100 h-100">
+        @if(chartOptions()){
+        <highcharts-chart class="w-100 h-100" [Highcharts]="Highcharts" [options]="chartOptions()">
+        </highcharts-chart>
+        }
+    </div>
+</div>
+}@else {
+<img src="/images/empty-scenario/Group 19810.svg" class="img-fluid " alt=""
+    style="height: 168px;width: 100%;object-fit: cover;" />
+}

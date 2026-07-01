@@ -1,0 +1,97 @@
+$color: #ffffff;
+$color1: #ffffff88;
+$color2: #ffffff55;
+$color3: #ffffff22;
+$color4: #ffffff11;
+
+@for $i from 1 through 16 {
+  .pixels:nth-child(#{$i}) {
+    animation: magic 4s ease infinite;
+    animation-delay: $i * 0.02s;
+  }
+}
+@for $i from 1 through 15 {
+  .pixels:nth-child(#{$i + 16}) {
+    animation: magic 4s ease infinite;
+    animation-delay: $i * 0.02s;
+  }
+}
+@keyframes magic {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.2;
+    background: $color;
+    box-shadow: 0 -1px 0px $color1;
+  }
+  20% {
+    opacity: 0.8;
+    background: $color;
+    box-shadow: 0 -1px 0px $color2;
+  }
+  25% {
+    opacity: 0.2;
+    background: $color;
+    box-shadow: 0 -1px 0px $color3;
+  }
+  50% {
+    opacity: 0;
+    background: $color;
+    box-shadow: 0 -1px 0px $color4;
+  }
+  75% {
+    opacity: 0.2;
+    background: $color;
+    box-shadow: 0 -1px 0px $color3;
+  }
+  80% {
+    opacity: 0.8;
+    background: $color;
+    box-shadow: 0 -1px 0px $color2;
+  }
+  85% {
+    opacity: 0.2;
+    background: $color;
+    box-shadow: 0 -1px 0px $color1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+button {
+  height: 42px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  &.is-loading:disabled {
+    opacity: 100%;
+  }
+
+  &.rounded-pill .loaderPixel{
+    border-radius: 100px !important;
+  }
+
+  .loaderPixel {
+    margin: auto;
+    position: absolute;
+    inset: 1px;
+    height: calc(100% - 2px);
+    width: calc(100% - 2px);
+    overflow: hidden;
+    border-radius: 8px;
+    .pixels-container {
+      width: 465px;
+      .pixels {
+        float: left;
+        box-shadow: 0 -1px 0px $color1;
+        margin-top: 0;
+        margin-bottom: 0;
+        opacity: 0;
+        height: 20px;
+        width: 31px;
+      }
+    }
+  }
+}

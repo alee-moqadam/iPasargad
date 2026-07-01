@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 106 106">
+  <!-- Generator: Adobe Illustrator 30.4.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 226)  -->
+  <defs>
+    <style>
+      .st0, .st1, .st2 {
+        stroke-width: 2.5px;
+      }
+
+      .st0, .st1, .st2, .st3 {
+        stroke: #4e6276;
+      }
+
+      .st0, .st2, .st3 {
+        fill: none;
+      }
+
+      .st1, .st4 {
+        fill: #dfd0ff;
+      }
+
+      .st2, .st3 {
+        stroke-linecap: round;
+      }
+
+      .st3 {
+        stroke-miterlimit: 4;
+        stroke-width: 2.5px;
+      }
+    </style>
+  </defs>
+  <g id="Group_25468">
+    <g id="Group_23929">
+      <path id="Subtraction_1618" class="st4" d="M79,45H3v-7c0-5.52,4.48-9.99,10-10h9.56v4c0,1.66,1.34,3,3,3s3-1.34,3-3v-4h22v4c0,1.66,1.34,3,3,3s3-1.34,3-3v-4h12.44c5.52,0,10,4.48,10,10v7Z"/>
+      <path id="Path_30559" class="st2" d="M102.72,48V16c.08-7.1-5.62-12.92-12.72-13H31.31c-7.1.08-12.79,5.9-12.72,13v5"/>
+      <path id="Path_33051" class="st0" d="M56.9,28h12.1c5.52,0,10,4.48,10,10v24"/>
+      <g id="Group_23917">
+        <line id="Line_5420" class="st2" x1="31.89" y1="60.83" x2="13.11" y2="60.83"/>
+        <line id="Line_5421" class="st3" x1="27.2" y1="68.97" x2="17.81" y2="52.7"/>
+        <line id="Line_5719" class="st3" x1="17.81" y1="68.97" x2="27.2" y2="52.7"/>
+      </g>
+      <path id="Path_30560" class="st2" d="M51.65,96h-18c-3.55-.02-6.94-1.48-9.39-4.05"/>
+      <path id="Union_561" class="st0" d="M50.56,32v-8c0-1.66,1.34-3,3-3s3,1.34,3,3v8c0,1.66-1.34,3-3,3s-3-1.34-3-3ZM22.56,32v-8c0-1.66,1.34-3,3-3s3,1.34,3,3v8c0,1.66-1.34,3-3,3s-3-1.34-3-3Z"/>
+      <g id="Group_25488">
+        <path id="Subtraction_1608" class="st1" d="M89.5,93c-1.68,0-3.35-.16-5-.48v-9.52c-.11-1.63-1-3.1-2.38-3.97-1.83-1.27-3.92-2.14-6.12-2.53v-9.5h.6c1.2,1.62,2.89,2.81,4.81,3.41,5.24,1.79,10.93,1.79,16.17,0,1.93-.6,3.61-1.79,4.81-3.41h.6v19.25c0,3.72-6.05,6.75-13.5,6.75Z"/>
+        <path id="Path_30545" class="st1" d="M103,79.28c0,3.73-6.04,6.75-13.5,6.75-1.59,0-3.18-.15-4.75-.43"/>
+        <path id="Path_30546" class="st1" d="M103,72.53c0,3.73-6.04,6.75-13.5,6.75s-13.5-3.02-13.5-6.75"/>
+        <ellipse id="Ellipse_2402" class="st1" cx="89.5" cy="65.5" rx="13.5" ry="6.5"/>
+      </g>
+      <g id="Group_25489">
+        <path id="Subtraction_1521" class="st0" d="M71,103c-7.44,0-13.5-2.99-13.5-6.67v-13.33c0,1.78,1.41,3.45,3.96,4.71,2.99,1.35,6.25,2.02,9.54,1.96,7.44,0,13.5-2.99,13.5-6.67v13.33c0,3.68-6.06,6.67-13.5,6.67Z"/>
+        <path id="Path_30547" class="st0" d="M84.5,89.6c0,3.73-6.04,6.75-13.5,6.75s-13.5-3.02-13.5-6.75"/>
+        <ellipse id="Ellipse_2399" class="st0" cx="71" cy="83" rx="13.5" ry="7"/>
+      </g>
+      <line id="Line_5708" class="st0" x1="3.5" y1="44.5" x2="78.5" y2="44.5"/>
+      <path id="Path_33052" class="st0" d="M28.62,28h21.81"/>
+      <path id="Path_33053" class="st0" d="M57,84H13c-5.52,0-10-4.48-10-10v-36c0-5.52,4.48-10,10-10h9"/>
+    </g>
+    <g id="Group_23941">
+      <path id="Path_30638" class="st0" d="M15.24,28.23l-11.9,11.9"/>
+      <path id="Path_30634" class="st0" d="M50.1,28.37l-16.29,16.29"/>
+      <path id="Path_30637" class="st0" d="M22.39,30.08l-14.65,14.66"/>
+      <path id="Path_30633" class="st0" d="M52.39,34.09l-10.27,10.27"/>
+      <path id="Path_30636" class="st0" d="M25.96,34.52l-9.73,9.73"/>
+      <path id="Path_30630" class="st0" d="M67.29,28.18l-16.34,16.34"/>
+      <path id="Path_30635" class="st0" d="M41.29,28.18l-16.4,16.4"/>
+      <path id="Path_30631" class="st0" d="M74.06,29.42l-15.11,15.11"/>
+      <path id="Path_30632" class="st0" d="M78.52,33.95l-10.58,10.58"/>
+    </g>
+  </g>
+</svg>

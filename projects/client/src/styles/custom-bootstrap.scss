@@ -1,0 +1,438 @@
+// Gray Color Variables
+$gray-150: #f6f8fa;
+$gray-175: #f0f6fc;
+$gray-200: #eff2f5;
+$gray-225: #e6eaef;
+$gray-250: #e5e5e5;
+$gray-275: #e0e6eb;
+$gray-300: #dae0e7;
+$gray-325: #d1d9e0;
+$gray-350: #d1d7e0;
+$gray-375: #d0d7de;
+$gray-400: #c8d1da;
+$gray-425: #b7bdc8;
+$gray-450: #b2b2b2;
+$gray-475: #838b95;
+$gray-500: #818d98;
+$gray-525: #656c76;
+$gray-550: #5c6670;
+$gray-575: #4c4c4c;
+$gray-600: #454d54;
+$gray-625: #3d444d;
+$gray-650: #394046;
+$gray-675: #2f3742;
+$gray-700: #2a313c;
+$gray-725: #262c36;
+$gray-750: #252a2e;
+$gray-775: #24292f;
+$gray-800: #212830;
+$gray-825: #1f2328;
+$gray-850: #151b23;
+$gray-875: #0d1117;
+$gray-900: #010409;
+
+// Color Variables
+$primary: #6633cc;
+$secondary: #4e6276;
+$tertiary: #cdd7e1;
+$complementary: #1661fa;
+$lightBlue: #ebf5ff;
+
+$white: #ffffff;
+$green: #12b549;
+$success: $green;
+$danger: #ef5350;
+$warning: #ffc107;
+$info: #17a2b8;
+$light: #f8f9fa;
+$dark: #343a40;
+$cancel: $gray-250;
+$transparent: #ffffff; // Corrected to proper format
+
+// Prefix for :root CSS variables
+$variable-prefix: dtx- !default;
+$prefix: $variable-prefix !default;
+
+$spacer: 1rem !default;
+$line-height-base: 1.5 !default;
+$line-height-sm: 1.25 !default;
+$line-height-lg: 2 !default;
+$focus-ring-width: 1px !default;
+$focus-ring-opacity: 1 !default;
+$focus-ring-color: rgba($primary, $focus-ring-opacity) !default;
+$focus-ring-blur: 0 !default;
+$focus-ring-box-shadow: 0 0 $focus-ring-blur $focus-ring-width $focus-ring-color !default;
+
+// body
+$body-bg: $lightBlue !default;
+
+// Font Sizes
+$font-size-base: 0.85rem;
+$font-size-sm: $font-size-base * 0.875 !default;
+$font-size-lg: $font-size-base * 1.25 !default;
+
+// Headings
+$h1-font-size: $font-size-base * 2 !default;
+$h2-font-size: $font-size-base * 1.6 !default;
+$h3-font-size: $font-size-base * 1.4 !default;
+$h4-font-size: $font-size-base * 1.2 !default;
+$h5-font-size: $font-size-base * 1 !default;
+$h6-font-size: $font-size-base * 0.8 !default;
+
+// Buttons + Forms
+$input-btn-padding-y: 0.687rem;
+$input-btn-padding-x: 1rem;
+$input-btn-border-width: var(--#{$prefix}border-width) !default;
+$btn-border-radius: 0.6rem;
+$btn-border-radius-sm: 0.6rem;
+$btn-border-radius-lg: 0.6rem;
+$input-btn-padding-y-sm: 0.25rem !default;
+$input-btn-padding-x-sm: 0.5rem !default;
+$input-btn-font-size-sm: $font-size-sm !default;
+$input-btn-padding-y-lg: 0.875rem !default;
+$input-btn-padding-x-lg: 1.625rem;
+$input-btn-font-size-lg: 1.2rem;
+$btn-padding-y-sm: $input-btn-padding-y-sm !default;
+$btn-padding-x-sm: $input-btn-padding-x-sm !default;
+$btn-font-size-sm: $input-btn-font-size-sm !default;
+$btn-padding-y-lg: $input-btn-padding-y-lg !default;
+$btn-padding-x-lg: $input-btn-padding-x-lg !default;
+$btn-font-size-lg: $input-btn-font-size-lg !default;
+$btn-link-disabled-color: $gray-250;
+$btn-disabled-opacity: 0.5 !default;
+
+// inputs
+$input-border-width: $input-btn-border-width !default;
+$input-height-border: calc(#{$input-border-width} * 2) !default;
+$input-padding-y: $input-btn-padding-y !default;
+$input-padding-x: $input-btn-padding-x !default;
+$input-padding-y-sm: $input-btn-padding-y-sm !default;
+$input-padding-x-sm: $input-btn-padding-x-sm !default;
+$input-padding-y-lg: $input-btn-padding-y-lg !default;
+$input-padding-x-lg: $input-btn-padding-x-lg !default;
+$line-height-base: 1.5 !default;
+$input-btn-line-height: $line-height-base !default;
+$input-line-height: $input-btn-line-height !default;
+$input-height: add($input-line-height * 1em, add($input-padding-y * 2, $input-height-border, false)) !default;
+$input-height-sm: add($input-line-height * 1em, add($input-padding-y-sm * 2, $input-height-border, false)) !default;
+$input-height-lg: add($input-line-height * 1em, add($input-padding-y-lg * 2, $input-height-border, false)) !default;
+
+$input-border-radius: 0.6rem !default;
+$input-border-radius-sm: 0.6rem !default;
+$input-border-radius-lg: 0.6rem !default;
+$input-btn-font-family: null !default;
+$input-btn-line-height: $line-height-base !default;
+$input-btn-focus-width: $focus-ring-width !default;
+$input-btn-focus-color-opacity: $focus-ring-opacity !default;
+$input-btn-focus-color: $focus-ring-color !default;
+$input-btn-focus-blur: $focus-ring-blur !default;
+$input-btn-focus-box-shadow: $focus-ring-box-shadow !default;
+$input-btn-border-width: var(--#{$prefix}border-width) !default;
+
+// Grids Column
+$grid-columns: 24 !default;
+$grid-gutter-width: 1rem !default;
+
+// Tabs
+$nav-tabs-link-active-border-color: $gray-775;
+$nav-link-color: $gray-775;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 767px,
+  lg: 1024px,
+  xl: 1280,
+  xxl: 1440px
+);
+
+// Cards
+$card-spacer-y: $spacer !default;
+$card-spacer-x: $spacer !default;
+$card-title-spacer-y: $spacer * 0.5 !default;
+$card-title-color: null !default;
+$card-subtitle-color: null !default;
+$card-border-width: var(--#{$prefix}border-width) !default;
+$card-border-color: var(--#{$prefix}border-color-translucent) !default;
+$card-border-radius: calc(var(--#{$prefix}border-radius) * 1.5) !default;
+$card-box-shadow: null !default;
+$card-inner-border-radius: subtract($card-border-radius, $card-border-width) !default;
+$card-cap-padding-y: $card-spacer-y * 0.5 !default;
+$card-cap-padding-x: $card-spacer-x !default;
+$card-cap-bg: $tertiary !default;
+$card-bg: $white !default;
+$card-img-overlay-padding: $spacer !default;
+$card-group-margin: $grid-gutter-width * 0.5 !default;
+.card {
+  box-shadow: 0px 2px 4px #00000029;
+}
+
+// Accordion
+ $accordion-border-radius:  $card-border-radius !default;
+
+$enable-negative-margins: true;
+
+
+// Modal
+$modal-sm: 300px !default;
+$modal-md: 465px !default;
+$modal-lg: 800px !default;
+$modal-xl: 1140px !default;
+
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+
+$spacers: map-merge(
+  $spacers,
+  (
+    0: 0,
+    1: $spacer * 0.25,
+    2: $spacer * 0.5,
+    3: $spacer * 0.75,
+    4: $spacer,
+    5: $spacer * 1.5,
+    6: $spacer * 2,
+    7: $spacer * 2.5,
+    8: $spacer * 3,
+    9: $spacer * 3.5,
+    10: $spacer * 4,
+    11: $spacer * 4.5,
+    12: $spacer * 5
+  )
+);
+
+$new-theme-colors: (
+  complementary: $complementary,
+  tertiary: $tertiary,
+  green: $green,
+  white: $white,
+  cancel: $cancel,
+  gray-150: $gray-150,
+  gray-175: $gray-175,
+  gray-200: $gray-200,
+  gray-250: $gray-250,
+  gray-275: $gray-275,
+  gray-300: $gray-300,
+  gray-400: $gray-400,
+  gray-500: $gray-500,
+  gray-600: $gray-600,
+  gray-850: $gray-850,
+  light-blue: $lightBlue,
+  transparent: $transparent
+);
+
+$theme-colors: map-merge($theme-colors, $new-theme-colors);
+
+// Button styles
+@each $color, $value in $theme-colors {
+  .btn-#{"" + $color} {
+    @if $color != "light" {
+      --#{$prefix}btn-color: #{$white};
+    }
+
+    --#{$prefix}btn-disabled-color: #{$gray-150};
+    --#{$prefix}btn-disabled-bg: #{$gray-250};
+    --#{$prefix}btn-disabled-border-color: #{$gray-150};
+
+    @if $color == "cancel" {
+      --#{$prefix}btn-border-color: #{$gray-650};
+      --#{$prefix}btn-color: #{$gray-650};
+      --#{$prefix}btn-hover-border-color: #{$gray-650};
+    }
+
+    &:disabled {
+      --#{$prefix}btn-bg: #{$gray-250};
+      --#{$prefix}btn-border-color: #{$gray-150};
+      --#{$prefix}btn-color: #{$gray-150};
+    }
+  }
+}
+
+// Button outline styles
+@each $color, $value in $theme-colors {
+  .btn-outline-#{"" + $color} {
+    --#{$prefix}btn-hover-color: #{$white};
+    --#{$prefix}btn-border-width: 1px;
+
+    --#{$prefix}btn-disabled-color: #{$gray-150};
+    --#{$prefix}btn-disabled-bg: #{$gray-250};
+    --#{$prefix}btn-disabled-border-color: #{$gray-150};
+
+    @if $color == "cancel" {
+      --#{$prefix}btn-border-color: #{$gray-650};
+      --#{$prefix}btn-color: #{$gray-650};
+      --#{$prefix}btn-hover-border-color: #{$gray-650};
+      --#{$prefix}btn-hover-color: #{$gray-650};
+    }
+
+    &:disabled {
+      --#{$prefix}btn-bg: #{$gray-250};
+      --#{$prefix}btn-border-color: #{$gray-150};
+      --#{$prefix}btn-color: #{$gray-150};
+    }
+  }
+}
+
+// Navigation styles
+$nav-link-padding-x: 0.5rem;
+.nav {
+  background-color: $gray-150;
+  --#{$prefix}nav-border-width: var(--#{$prefix}border-width);
+  --#{$prefix}nav-border-color: #{$gray-275};
+  --#{$prefix}nav-link-hover-border-color: var(--#{$prefix}secondary-bg) var(--#{$prefix}secondary-bg)
+    var(--#{$prefix}border-color);
+  --#{$prefix}nav-link-active-color: #{$gray-775};
+  --#{$prefix}nav-link-active-bg: #{$white};
+  --#{$prefix}nav-link-active-border-color: #{$gray-275};
+  border-bottom: none;
+  padding-right: 0;
+  padding: 4px;
+  border-radius: calc(var(--#{$prefix}border-radius) / 2) !important;
+}
+
+.nav .nav-link.active,
+.nav .nav-item.show .nav-link {
+  background-color: var(--#{$prefix}nav-link-active-bg);
+  box-shadow: var(--#{$prefix}box-shadow-sm) !important;
+  border-color: $gray-775;
+  font-weight: bold;
+  color: $gray-775;
+}
+
+.nav .nav-link {
+  border: var(--#{$prefix}nav-border-width) solid $gray-275;
+  margin-left: 0.25rem;
+  border-radius: calc(var(--#{$prefix}border-radius) / 2) !important;
+}
+
+// Pagination styles
+.pagination {
+  --#{$prefix}pagination-color: #{$gray-500};
+  --#{$prefix}pagination-bg: #{$gray-150};
+  --#{$prefix}pagination-border-color: #{$gray-275};
+  --#{$prefix}pagination-padding-x: 1rem;
+  --#{$prefix}pagination-padding-y: 1rem;
+  --#{$prefix}pagination-font-size: 1rem;
+  --#{$prefix}pagination-active-color: #{$primary};
+  --#{$prefix}pagination-active-bg: #{$gray-150};
+  --#{$prefix}pagination-active-border-color: #{$primary};
+  padding-right: 0;
+}
+
+.page-item:not(:first-child),
+.page-item:not(:last-child) {
+  &.active {
+    .page-link {
+      width: 5rem;
+    }
+  }
+
+  .page-link {
+    font-weight: bold;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3rem;
+    margin-left: 1rem;
+  }
+}
+
+.form-control.is-invalid {
+  box-shadow: 0 0 0 1px var(--#{$prefix}form-invalid-border-color);
+}
+
+.input-group {
+  position: relative;
+
+  > .form-control {
+    border-radius: $input-border-radius !important;
+    padding-left: 1rem;
+
+    &:has(+ .input-group-text) {
+      padding-left: 3rem;
+    }
+
+    &:has(+ .input-group-text.captcha) {
+      padding-left: 8rem;
+    }
+
+    &:has(+ .input-group-text + .input-group-text) {
+      padding-left: 5rem;
+    }
+  }
+
+  .input-group-text + .form-control {
+    padding-right: 3rem;
+
+    &.is-invalid {
+      padding-right: 5rem;
+      background-position: right 3rem center;
+    }
+  }
+
+  .input-group-text {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    bottom: 5px;
+    border-radius: calc(var(--#{$prefix}border-radius) / 3) !important;
+    padding: 0 0.35rem;
+    min-width: 32px;
+    background-color: $tertiary;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:nth-last-of-type(2) {
+      left: 40px;
+    }
+    &:first-child {
+      left: auto;
+      right: 5px;
+    }
+  }
+}
+
+.ng-select {
+  .ng-select-container {
+    background-color: $lightBlue !important;
+    border-radius: $input-border-radius !important;
+    border: none !important;
+    min-height: 44px !important;
+  }
+  &.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
+    box-shadow: 0 0 0 1px $primary !important;
+    font-size: 13px;
+  }
+  .ng-arrow-wrapper {
+    margin-left: 7px !important;
+    margin-right: 4px !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    border: solid 1px $gray-500 !important;
+    border-radius: .5rem !important;
+    height: 32px !important;
+    width: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    .ng-arrow { border-color: $primary transparent transparent !important}
+  }
+  &.ng-select-opened > .ng-select-container .ng-arrow {
+    border-color: transparent transparent $primary !important
+  }
+}
+
+@import "node_modules/bootstrap/scss/_mixins.scss";
+.container {
+  @include media-breakpoint-up(lg) {
+    max-width: 1064px !important;
+  }
+}
+
+@import "node_modules/bootstrap/scss/bootstrap.scss";

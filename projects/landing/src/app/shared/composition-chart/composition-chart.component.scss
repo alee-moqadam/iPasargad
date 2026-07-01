@@ -1,0 +1,10 @@
+:host::ng-deep {
+    div {
+        width: 100%;
+
+        canvas {
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+        }
+    }
+}

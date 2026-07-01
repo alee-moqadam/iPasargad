@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 319 873">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-518.73" y1="834.73" x2="-518.73" y2="834.12" gradientTransform="translate(149036 461724) scale(287 -552.5)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Layer_1">
+      <rect id="Rectangle_12622" width="319" height="873" fill="#fff" fill-opacity="0"/>
+      <rect id="Mobile_Dashboard-2" x="18" y="319.5" width="287" height="552.5" rx="20" ry="20" fill="url(#linear-gradient)" isolation="isolate" opacity=".6"/>
+    </g>
+  </g>
+</svg>

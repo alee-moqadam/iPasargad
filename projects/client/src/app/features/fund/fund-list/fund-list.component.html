@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-lg-16 px-4">
+        @if (fundType()=='fixed-income'|| fundType()==null) {
+        @for (fund of mutualFundList$ | async; track $index) {
+        <app-fund-item [fundDetail]="fund" [composition]="compositionsByCode()[fund.seoRegisterNumber]" />
+        }
+        }
+
+    </div>
+    <div class="col-lg-8 h-100 d-none d-lg-block">
+        <mutual-fund-carousel></mutual-fund-carousel>
+    </div>
+</div>

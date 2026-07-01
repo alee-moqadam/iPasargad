@@ -1,0 +1,83 @@
+:host {
+  .icon {
+    width: 32px;
+    height: 32px;
+    background-color: var(--dtx-gray-275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .accordion-button {
+    &.collapsed {
+      background-color: white;
+      fa-icon {transform: rotate(0deg);}
+    }
+    &:focus {
+      box-shadow: none;
+    }
+    &::after {
+      content: none;
+    }
+    > fa-icon {
+      transition: transform 200ms ease-in-out;
+      transform: rotate(180deg);
+    }
+  }
+  .accordion-button {
+    background: var(--dtx-body-bg);
+    border-radius: 20px !important;
+  }
+  .accordion-button:focus {
+    box-shadow: none;
+  }
+  .accordion-button.collapsed {
+    background: #fff;
+    border-radius: 20px !important;
+  }
+  .accordion-body {
+    border-radius: 20px;
+    padding: 1rem;
+  }
+}
+
+::ng-deep {
+  .custom-popover.popover {
+    background-color: #333;
+    border: 1px solid #000;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.875rem;
+    padding: 10px;
+    max-width: 240px;
+    direction: rtl;
+    .popover-body {
+      padding: 8px;
+      color: #fff;
+      text-align: center;
+
+      a {
+        color: #9b5eff !important;
+        text-decoration: none;
+      }
+    }
+
+    .popover-arrow{
+      bottom: -8px;
+      &::after {
+        border-top-color: #333;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+   .fs-mobile-sm {
+     font-size: 0.675rem  !important;
+   }
+  }
+
+  .fs-icon-sm {
+    font-size: 0.85rem !important;
+  }
+}
+

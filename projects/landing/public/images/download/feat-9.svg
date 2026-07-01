@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 81.5 81.5">
+  <!-- Generator: Adobe Illustrator 29.6.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 9)  -->
+  <g id="Group_24804">
+    <path id="Intersection_116" d="M41,1.5c21.953.138,39.639,18.046,39.501,39.999-.138,21.953-18.046,39.639-39.999,39.501-21.856-.137-39.502-17.893-39.502-39.749C1.068,19.229,18.976,1.432,40.999,1.5c0,0,0,0,.001,0Z" fill="#d8d4fe"/>
+    <g id="Group_24807">
+      <line id="Line_5585" x1="41" y1="7.5" x2="41" y2="8.5" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+      <line id="Line_5586" x1="41" y1="73" x2="41" y2="74" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+      <line id="Line_5587" x1="74.5" y1="40.75" x2="73.5" y2="40.75" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+      <line id="Line_5588" x1="8.5" y1="40.75" x2="7.5" y2="40.75" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+      <line id="Line_5589" x1="57.75" y1="11.988" x2="57.25" y2="12.854" fill="none" stroke="#062e28" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+      <line id="Line_5590" x1="24.75" y1="68.646" x2="24.25" y2="69.512" fill="none" stroke="#062e28" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+      <line id="Line_5594" x1="12.854" y1="56.877" x2="11.988" y2="57.377" fill="none" stroke="#062e28" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+      <line id="Line_5596" x1="24.75" y1="12.854" x2="24.25" y2="11.988" fill="none" stroke="#062e28" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+    </g>
+    <circle id="Ellipse_2390" cx="40.75" cy="40.75" r="39.75" fill="none" stroke="#062e28" stroke-width="2"/>
+    <g id="Group_23924">
+      <path id="Subtraction_1520" d="M69.7,72c-5.955,0-10.8-2.421-10.8-5.4v-15.4h.482c.962,1.294,2.311,2.249,3.851,2.726,2.076.736,4.265,1.1,6.467,1.074,2.202.026,4.392-.338,6.467-1.075,1.54-.477,2.889-1.431,3.851-2.725h.482v15.4c0,2.979-4.845,5.4-10.8,5.4Z" fill="#efe3cc" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30545" d="M80.5,61.025c0,2.982-4.835,5.4-10.8,5.4s-10.8-2.418-10.8-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30546" d="M80.5,55.626c0,2.982-4.835,5.4-10.8,5.4s-10.8-2.418-10.8-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+      <ellipse id="Ellipse_2402" cx="69.7" cy="50.4" rx="10.8" ry="5.6" fill="#efe3cc" stroke="#062e28" stroke-width="2"/>
+    </g>
+    <g id="Group_23923">
+      <path id="Subtraction_1521" d="M56.472,80c-5.955,0-10.8-2.392-10.8-5.332v-10.668c0,1.422,1.125,2.762,3.167,3.77,2.396,1.084,5.004,1.619,7.633,1.565,5.955,0,10.8-2.393,10.8-5.335v10.668c0,2.94-4.845,5.332-10.8,5.332Z" fill="#efe3cc" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30547" d="M67.272,69.281c0,2.982-4.835,5.4-10.8,5.4s-10.8-2.418-10.8-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+      <ellipse id="Ellipse_2399" cx="56.472" cy="64" rx="10.8" ry="5.6" fill="#efe3cc" stroke="#062e28" stroke-width="2"/>
+    </g>
+    <path id="Path_31869" d="M41,41L60.65,6.892" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+    <line id="Line_5597" x1="41" y1="41" x2="41" y2="1" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+    <circle id="Ellipse_2457" cx="41" cy="40.751" r="2.5" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_31870" d="M41,33.036l2.6,2.588" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_31871" d="M40.999,19.266l8.134,8.094" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_31872" d="M41,12.483l10.516,10.463" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_31873" d="M41,26.095l5.708,5.679" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_31874" d="M41,5.656l13.24,13.174" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_31875" d="M43.266,1l13.458,13.39" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_31876" d="M51.801,2.517l7.4,7.36" fill="none" stroke="#062e28" stroke-width="2"/>
+    <g id="Group_24806">
+      <path id="Path_31867" d="M56.271,38.015h6.014" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+      <path id="Path_31868" d="M56.642,42.695l10.012-17.39h-8.353" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+    </g>
+    <g id="Group_24805">
+      <path id="Path_31866" d="M29.974,25.305l-7.334,12.746h10.36" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+      <line id="Line_5582" x1="30.432" y1="31.162" x2="30.432" y2="42.738" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+    </g>
+    <path id="Path_31877" d="M11.452,28.055c.682-1.684,2.329-2.776,4.146-2.748,2.485,0,4.5,2.015,4.5,4.5-.01.684-.17,1.357-.47,1.972-.353.811-6.015,10.436-6.015,10.436h7.272" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1800" height="688" viewBox="0 0 1800 688">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_19465" data-name="Rectangle 19465" width="1800" height="688" transform="translate(493.128 2388)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_61" data-name="Mask Group 61" transform="translate(-493.128 -2388)" clip-path="url(#clip-path)">
+    <g id="Group_25453" data-name="Group 25453" transform="translate(2286.195 3253.878) rotate(180)">
+      <path id="Path_32984" data-name="Path 32984" d="M433.28,0H27.822C7.374,0-2.911,13.25.719,35.643l129.466,806.8c3.025,20.405,14.4,29.68,32.548,29.68H298.248c18.149,0,29.523-9.275,32.548-29.68l129.466-806.8C463.892,13.118,453.607,0,433.159,0h.121Z" transform="translate(1166.548 0)" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="5" fill-rule="evenodd" opacity="0.05"/>
+      <path id="Path_32985" data-name="Path 32985" d="M433.28,0H27.822C7.374,0-2.911,13.25.719,35.643l129.466,806.8c3.025,20.405,14.4,29.68,32.548,29.68H298.248c18.149,0,29.523-9.275,32.548-29.68l129.466-806.8C463.892,13.118,453.607,0,433.159,0h.121Z" transform="translate(214.178 53.363)" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="5" fill-rule="evenodd" opacity="0.05"/>
+      <path id="Path_32986" data-name="Path 32986" d="M433.279,872.126H27.822c-20.448,0-30.733-13.25-27.1-35.643L130.184,29.68C133.209,9.275,144.583,0,162.732,0H298.248C316.4,0,327.771,9.275,330.8,29.68l129.466,806.8c3.63,22.525-6.655,35.643-27.1,35.643h.121Z" transform="translate(730.487 147.871)" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="5" fill-rule="evenodd" opacity="0.05"/>
+      <path id="Path_32987" data-name="Path 32987" d="M433.279,872.126H27.822c-20.448,0-30.733-13.25-27.1-35.643L130.184,29.68C133.209,9.275,144.583,0,162.732,0H298.248C316.4,0,327.771,9.275,330.8,29.68l129.466,806.8c3.63,22.525-6.655,35.643-27.1,35.643h.121Z" transform="translate(0)" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="5" fill-rule="evenodd" opacity="0.05"/>
+      <path id="Path_32988" data-name="Path 32988" d="M147.248,219.093H9.455c-6.949,0-10.444-3.329-9.211-8.954l44-202.683C45.271,2.33,49.136,0,55.3,0h46.054c6.168,0,10.033,2.33,11.061,7.456l44,202.683c1.234,5.659-2.262,8.954-9.211,8.954h0Z" transform="translate(949.799 397.425) rotate(180)" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="5" fill-rule="evenodd" opacity="0.05"/>
+      <path id="Path_32989" data-name="Path 32989" d="M147.248,296.388H9.455c-6.949,0-10.444-4.5-9.211-12.113l44-274.189C45.271,3.152,49.136,0,55.3,0h46.054c6.168,0,10.033,3.152,11.061,10.087l44,274.189c1.234,7.655-2.262,12.113-9.211,12.113h0Z" transform="translate(1526.671 81.975)" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="5" fill-rule="evenodd" opacity="0.05"/>
+      <path id="Path_32990" data-name="Path 32990" d="M227.97,458.869H14.639c-10.759,0-16.17-6.972-14.26-18.754L68.5,15.616C70.088,4.88,76.072,0,85.622,0h71.3c9.549,0,15.533,4.88,17.125,15.616l68.118,424.5c1.91,11.852-3.5,18.754-14.26,18.754h0Z" transform="translate(92.907 518.191)" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="5" fill-rule="evenodd" opacity="0.05"/>
+      <path id="Path_32991" data-name="Path 32991" d="M227.97,458.869H14.639c-10.759,0-16.17-6.972-14.26-18.754L68.5,15.616C70.088,4.88,76.072,0,85.622,0h71.3c9.549,0,15.533,4.88,17.125,15.616l68.118,424.5c1.91,11.852-3.5,18.754-14.26,18.754h0Z" transform="translate(1639.583 1010.241) rotate(180)" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="5" fill-rule="evenodd" opacity="0.05"/>
+      <path id="Path_32992" data-name="Path 32992" d="M227.97,458.869H14.639c-10.759,0-16.17-6.972-14.26-18.754L68.5,15.616C70.088,4.88,76.072,0,85.622,0h71.3c9.549,0,15.533,4.88,17.125,15.616l68.118,424.5c1.91,11.852-3.5,18.754-14.26,18.754h0Z" transform="translate(715.104 977.061) rotate(180)" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="5" fill-rule="evenodd" opacity="0.05"/>
+    </g>
+  </g>
+</svg>

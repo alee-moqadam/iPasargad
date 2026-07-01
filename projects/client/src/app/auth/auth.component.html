@@ -1,0 +1,54 @@
+<div class="row g-0 align-items-center justify-content-center vh-100 position-relative z-1 auth-bg">
+  <div class="mb-5 mt-4 text-center">
+    <img height="100px" src="/images/Pcm_Logo_Rgb_V_Fa_W.svg" alt="IPasargad" />
+    <div class="text-center mt-4 cursor-pointer"  (click)="reloadApp()" ngbTooltip="به روزرسانی نرم‌افزار">
+      نسخه {{appVersion}}   
+      
+      @if(appVersionCode){
+        ({{appVersionCode}})
+      }
+    
+    </div>
+  </div>
+  <div class="auth-container col-lg-12 col-xl-12 mb-auto">
+    <router-outlet />
+    <app-communication-box></app-communication-box>
+    @if (showInfoSection() !== false) {
+
+    <div class="col-lg-24 mt-4 text-justify">
+      <div class="content border-dashed rounded p-4 small">
+        <p class="opacity-75 mb-0">
+          سامانه آی‌پاسارگاد به منظور افزایش امنیت کاربران، از پروتکل SSL و آدرس رسمی https://ipasargad.ir استفاده می‌کند.
+        </p>
+        <p class="opacity-75 mb-0"  *ngIf="!isExpanded()">
+          لطفاً پیش از وارد کردن هرگونه اطلاعات، آدرس نمایش داده‌شده در نوار مرورگر خود را با آدرس رسمی سامانه مطابقت دهید. در صورت مشاهده هرگونه مغایرت، از ادامه فرآیند خودداری نموده و موضوع را به پشتیبانی اطلاع دهید.
+        </p>
+        <p class="opacity-75" *ngIf="isExpanded()">
+          برای حفظ امنیت حساب کاربری خود، از اشتراک‌گذاری نام کاربری و رمز عبور با دیگران اکیداً خودداری کنید. همچنین، پس از پایان استفاده، حتماً بر روی گزینه «خروج از سامانه» کلیک نمایید.
+        </p>
+        <p class="opacity-75" *ngIf="isExpanded()">
+          لطفاً برای افزایش امنیت اطلاعات خود، از صفحه کلید مجازی استفاده کنید.
+        </p>
+        <button class="align-items-center btn btn-link d-flex fw-bold me-auto outline-none p-0 text-decoration-none" (click)="toggleText()">
+          {{ isExpanded() ? 'بستن' : 'بیشتر' }}
+          <span class="border border-2 border-primary mx-1 d-flex align-items-center justify-content-center rounded" style="width: 20px; height: 20px; scale: .8;">
+            <fa-icon class="mx-2" icon="{{!isExpanded() ? 'angle-down' : 'angle-up'}}"></fa-icon>
+          </span>
+        </button>
+      </div>
+
+      <div class="footer border-top border-2 mt-4 p-4 d-flex align-items-center justify-content-around small opacity-75">
+        <span class="">© داتکس 1403</span>
+        <span class="divider rounded bg-gray-500"></span>
+        <span class="cursor-pointer">قوانین و مقررات</span>
+        <span class="divider rounded bg-gray-500"></span>
+        <span class="cursor-pointer">حریم خصوصی</span>
+        <span class="divider rounded bg-gray-500"></span>
+        <span class="cursor-pointer">راهنما</span>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+
+

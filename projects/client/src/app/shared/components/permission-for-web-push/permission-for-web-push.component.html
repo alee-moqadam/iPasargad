@@ -1,0 +1,15 @@
+@if(showDialog()){
+<div class="card">
+    <div class="card-body">
+        <h4>آیا می‌خواهید از اطلاعیه‌های صندوق‌های سرمایه‌گذاری مطلع شوید؟</h4>
+        <div class="d-flex">
+            <button class="w-50 m-3 btn btn-primary" (click)="subscribeToWebPush()">بله</button>
+            <button class="w-50 m-3 btn btn-secondary" (click)="notShowPermission()">خیر</button>
+        </div>
+        @if(showHelp()){
+        <p>لطفا مجوز لازم برای دریافت اطلاعیه‌ها را به مرورگر بدهید</p>
+        <img src="/images/allow_btn.png" alt="">
+        }
+    </div>
+</div>
+}

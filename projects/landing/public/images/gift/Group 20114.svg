@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="124" height="82" viewBox="0 0 124 82">
+  <g id="Group_20114" data-name="Group 20114" transform="translate(-778 -2851)">
+    <g id="Group_20112" data-name="Group 20112" transform="translate(-238)">
+      <rect id="Rectangle_14892" data-name="Rectangle 14892" width="124" height="82" rx="15" transform="translate(1016 2851)" fill="#555e69"/>
+      <g id="Group_20113" data-name="Group 20113" transform="translate(13.5 -7.5)">
+        <line id="Line_5389" data-name="Line 5389" x1="40" y2="40" transform="translate(1061.5 2879.5)" fill="none" stroke="#12b549" stroke-linecap="round" stroke-width="2"/>
+        <g id="Ellipse_2221" data-name="Ellipse 2221" transform="translate(1091 2909)" fill="#12b549" stroke="#12b549" stroke-linecap="round" stroke-width="2">
+          <circle cx="5.5" cy="5.5" r="5.5" stroke="none"/>
+          <circle cx="5.5" cy="5.5" r="4.5" fill="none"/>
+        </g>
+        <g id="Ellipse_2222" data-name="Ellipse 2222" transform="translate(1062 2880)" fill="#12b549" stroke="#12b549" stroke-linecap="round" stroke-width="2">
+          <circle cx="5.5" cy="5.5" r="5.5" stroke="none"/>
+          <circle cx="5.5" cy="5.5" r="4.5" fill="none"/>
+        </g>
+      </g>
+      <line id="Line_5390" data-name="Line 5390" y2="68.172" transform="translate(1037.5 2858.414)" fill="none" stroke="#afb9c3" stroke-width="2" stroke-dasharray="5 4"/>
+      <line id="Line_5391" data-name="Line 5391" y2="68.172" transform="translate(1050.5 2858.414)" fill="none" stroke="#afb9c3" stroke-width="2" stroke-dasharray="5 4"/>
+    </g>
+  </g>
+</svg>

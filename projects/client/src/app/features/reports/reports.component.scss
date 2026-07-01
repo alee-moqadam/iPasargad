@@ -1,0 +1,34 @@
+:host::ng-deep {
+    .ng-select-container , .ng-dropdown-panel{
+        border-radius: calc(var(--dtx-card-border-radius)/2) !important;
+        background-color: var(--dtx-gray-150);
+        font-weight: bold;
+        overflow: hidden;
+    }
+
+    .ng-placeholder {
+      font-size: .8rem;
+    }
+
+    // .input-group>.form-control {
+    //     border-radius: var(--dtx-border-radius) !important;
+    //     border-top-left-radius: 0 !important;
+    //     border-bottom-left-radius: 0 !important;
+    // }
+    
+    // .input-group> :not(:first-child):not(ngb-datepicker) {
+    //     border-radius: var(--dtx-border-radius) !important;
+    //     border-top-right-radius: 0 !important;
+    //     border-bottom-right-radius: 0 !important;
+    // }
+
+    .more-button {
+        width: 42px;
+        height: 42px;
+        cursor: pointer;
+        display: inline-block;
+        align-content: center;
+        text-align: center;
+
+    }
+}

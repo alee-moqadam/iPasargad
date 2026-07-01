@@ -1,0 +1,83 @@
+<form [formGroup]="formGroup" class="form-group row align-items-center col-24 m-0" (submit)="search()">
+  <div class="my-2">
+    <label>صندوق:</label>
+    <ng-select [searchable]="false" bindValue="seoRegisterNumber" [clearOnBackspace]="true" placeholder="انتخاب صندوق"
+      formControlName="mutualFundCode" bindLabel="seoRegisterNumber">
+      <ng-option [value]="fund.seoRegisterNumber" *ngFor="let fund of mutualFundList ; let i= index">
+        <div class="d-flex align-items-center justify-content-start">
+          <!-- <img *ngIf="fund?.attachments?.length > 0; else logoPlaceholder"
+            [src]="apiUrl + '/' + getLogo(fund)?.downloadLink"
+            alt="Fund Logo"
+            style="width: 20px;" /> -->
+          <app-svg-viewer *ngIf="fund?.attachments?.length > 0; else logoPlaceholder"
+                 [svgUrl]="apiUrl + '/' + getLogo(fund)?.downloadLink" style="width: 20px;"></app-svg-viewer>
+                 
+          <ng-template #logoPlaceholder>
+            <div class="logo-loading-placeholder"></div>
+          </ng-template>
+          <span class="mx-1">{{fund.symbol}}</span>
+        </div>
+      </ng-option>
+
+    </ng-select>
+  </div>
+  <div class="my-2">
+    <label>شروع گزارش از:</label>
+    <div class="input-group">
+      <span class="input-group-text text-center cursor-pointer" (click)="d1.toggle()">
+        <svg class="text-primary" viewBox="0 0 24 24" width="18px" height="18px">
+          <use xlink:href="#ico_calendar"></use>
+        </svg>
+      </span>
+
+      <input class="form-control" placeholder="تاریخ شروع" name="dp2" formControlName="startDate" ngbDatepicker
+        (click)="d1.toggle()" #d1="ngbDatepicker" />
+    </div>
+  </div>
+
+  <div class="my-2">
+    <label>پایان گزارش تا:</label>
+    <div class="input-group">
+      <span class="input-group-text text-center cursor-pointer" (click)="d2.toggle()">
+        <svg class="text-primary" viewBox="0 0 24 24" width="18px" height="18px">
+          <use xlink:href="#ico_calendar"></use>
+        </svg>
+      </span>
+      <input class="form-control" placeholder="تاریخ پایان" name="dp2" formControlName="endDate" ngbDatepicker
+        (click)="d2.toggle()" #d2="ngbDatepicker" />
+    </div>
+  </div>
+
+  <!-- <div class=" my-2">
+                <label>کد ملی:</label>
+                <input type="text" class="form-control" placeholder="" formControlName="nationalId">
+            </div> -->
+
+  <!-- <div class=" my-2">
+              <label> عبارت:</label>
+              <input type="text" class="form-control" placeholder="" formControlName="phrase">
+            </div>
+
+            <div class=" my-2">
+              <label> mutualFundId:</label>
+              <input type="text" class="form-control" placeholder="" formControlName="mutualFundId">
+            </div>
+
+            <div class=" my-2">
+              <label> partyId:</label>
+              <input type="text" class="form-control" placeholder="" formControlName="partyId">
+            </div>
+
+            <div class=" my-2">
+              <label> reinvest:</label>
+              <input type="text" class="form-control" placeholder="" formControlName="reinvest">
+            </div> -->
+
+  <div class=" my-2">
+    <button class="btn btn-primary d-flex align-items-center justify-content-center w-100 " type="submit"
+      [disabled]="formGroup.invalid">
+      <fa-icon icon="search" class="mx-2"></fa-icon>
+      <span>جستجو</span>
+    </button>
+  </div>
+</form>

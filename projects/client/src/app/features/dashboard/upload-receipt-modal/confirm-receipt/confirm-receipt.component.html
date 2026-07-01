@@ -1,0 +1,65 @@
+<div class="card shadow p-0 m-0 bg-gray-150">
+  <div class="card-body  text-center">
+    <img [src]="'svg/success.svg'" alt="subscription success" height="100px" width="100px" />
+    <h4 class="text-center text-green mb-4">ثبت فیش با موفقیت انجام شد</h4>
+
+    <div class="p-1 border-dashed  p-2 my-2 custom-radius d-flex justify-content-between">
+      <span>کد رهگیری</span>
+      <span>{{ticketNumber}}</span>
+    </div>
+    <div class="p-1 border-dashed p-2 my-2 custom-radius d-flex justify-content-between align-items-center">
+      <span>نام صندوق</span>
+      <span>
+        <div class="d-flex align-items-center">
+          <div class="d-flex justify-content-start align-items-center">
+            <!-- <img 
+             [src]="apiUrl + '/' + getAttachment(fundDetail, attachmentTypes?.Logo)?.downloadLink"
+             alt="fund logo" class="mx-1" height="100%" width="30px" /> -->
+             <app-svg-viewer  [svgUrl]="apiUrl + '/' + getAttachment(fundDetail, attachmentTypes?.Logo)?.downloadLink" class="d-flex mx-1 h-100" style="width: 30px;"></app-svg-viewer>
+            <span class="my-2">{{ fundDetail?.symbol }}</span>
+          </div>
+        </div>
+      </span>
+    </div>
+    <!-- <div class="p-1 border-dashed p-2 my-2 custom-radius d-flex justify-content-between">
+      <span>قیمت صدور تخمینی</span>
+      <span>{{fundDetail?.performance?.lastSubscriptionNav | number }} ریال</span>
+    </div> -->
+    <div class="p-1 border-dashed p-2 my-2 custom-radius d-flex justify-content-between">
+      <span>مبلغ صدور</span>
+      <span>{{amount | number }} ریال</span>
+    </div>
+
+    <!-- <div class="d-flex align-items-center flex-column">
+      <p class="text-justify mt-3 w-100 mb-0">
+        سرمایه گذار محترم
+      </p>
+      <p class="text-justify mt-3 mb-0">
+        درخواست شما با موفقیت ثبت شد. پس از تایید فیش واریزی توسط پشتیبانی صندوق، صدور واحدهای سرمایه‌گذاری برای شما بر
+        اساس قیمت صدور (NAV) اولین روز کاری، در دو روز کاری بعد انجام خواهد پذیرفت. همچنین باقیمانده مبلغ (تتمه مبلغ) به
+        حساب شما بازگردانده خواهد شد.
+      </p>
+      <p class="text-justify mt-3 w-100 mb-0">
+        از اعتماد شما سپاسگزاریم.
+      </p>
+    </div> -->
+
+    <div class="d-flex justify-content-between align-items-center mt-3">
+     <textarea rows="10" readonly class="w-100 border-dashed custom-radius p-3 text-justify" [value]="message" #msgBox>{{ message }}</textarea>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+    </div>
+    <div class="d-flex">
+      <span class="btn btn-gray-275 ms-2 text-black my-3 w-50" [routerLink]="['/dashboard']"
+        (click)="onDashboardClick()">
+        پیشخوان</span>
+      <span class="btn btn-primary me-2 my-3 w-50" routerLink="/reporting/payments"
+        (click)="onReportsClick()">گزارش
+        واریزی</span>
+    </div>
+
+  </div>
+
+  <!-- <a class="btn rounded-pill btn-lg btn-primary btn-block mt-4" [routerLink]="['/dashboard']">ادامه</a> -->
+</div>

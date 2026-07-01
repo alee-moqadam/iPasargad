@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 106 106">
+  <!-- Generator: Adobe Illustrator 30.4.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 226)  -->
+  <defs>
+    <style>
+      .st0 {
+        stroke-miterlimit: 4;
+        stroke-width: 2.5px;
+      }
+
+      .st0, .st1, .st2, .st3 {
+        fill: none;
+      }
+
+      .st0, .st1, .st2, .st3, .st4 {
+        stroke: #4e6276;
+      }
+
+      .st0, .st2, .st3 {
+        stroke-linecap: round;
+      }
+
+      .st1, .st3, .st4 {
+        stroke-width: 2.5px;
+      }
+
+      .st2 {
+        stroke-miterlimit: 4;
+        stroke-width: 2.5px;
+      }
+
+      .st4 {
+        fill: #dfd0ff;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <g id="Group_25464">
+    <path id="Path_30671" class="st3" d="M64.26,11.21c14.15,3.55,25.65,13.84,30.73,27.52"/>
+    <g id="Group_23930">
+      <path id="Path_30670" class="st3" d="M9.62,60.68c-.32-2.15-.48-4.32-.47-6.49.03-21.12,14.94-39.3,35.65-43.46"/>
+      <path id="Path_30554" class="st2" d="M36.32,5.36l9.38,4.57-4.57,9.38"/>
+      <path id="Path_30549" class="st0" d="M72.24,86.49l-3.91,9.68,9.68,3.91"/>
+      <path id="Path_33048" class="st1" d="M92.63,38.32c-1.78-3.08-5.07-4.97-8.63-4.94H31c-3.92.03-7.48,2.32-9.12,5.89"/>
+      <path id="Path_33050" class="st1" d="M59.91,80.64h33.09c5.52,0,10-4.48,10-10v-22c0-5.52-4.48-10-10-10H25.91c-5.52,0-10,4.48-10,10v22c.02,2.54.99,4.97,2.73,6.82"/>
+    </g>
+    <path id="Subtraction_1527" class="st1" d="M32.11,44.85h56c0,2.12.84,4.16,2.35,5.65,1.5,1.51,3.53,2.35,5.65,2.35v12c-4.42,0-7.99,3.58-8,8h-38.91l-4.05-12.73c-.26-1.02-.73-1.97-1.38-2.8-.63-.8-1.42-1.46-2.33-1.92-1.23-.6-2.59-.9-3.96-.87h-6.22c-1.67-.09-3.31.5-4.55,1.62-.78.95-1.33,2.06-1.61,3.25v-6.61c4-.51,7-3.91,7-7.94Z"/>
+    <g id="Group_23944">
+      <path id="Path_30634" class="st1" d="M65.44,45.31l-3.54,3.54"/>
+      <path id="Path_30637" class="st1" d="M39.44,45.3l-9.39,9.39"/>
+      <path id="Path_30633" class="st1" d="M73.44,45.31l-6.56,6.56"/>
+      <path id="Path_30636" class="st1" d="M48.07,44.67l-10.08,10.08"/>
+      <path id="Path_30630" class="st1" d="M82.44,45.31l-12.23,12.23"/>
+      <path id="Path_30635" class="st1" d="M57.07,44.67l-12.69,12.69"/>
+      <path id="Path_30631" class="st1" d="M88.64,47.1l-25.31,25.31"/>
+      <path id="Path_30655" class="st1" d="M92.95,51.38l-21.03,21.03"/>
+      <path id="Path_30654" class="st1" d="M96.36,56.97l-15.44,15.44"/>
+      <path id="Path_33046" class="st1" d="M50.1,60.64l-3.78,3.78"/>
+      <path id="Path_33047" class="st1" d="M52.75,66l-4.14,4.14"/>
+      <path id="Path_33166" class="st1" d="M57.75,69l-4.14,4.14"/>
+    </g>
+    <circle id="Ellipse_2423" class="st1" cx="60.25" cy="58.9" r="10"/>
+    <path id="Subtraction_1543" class="st4" d="M35,102.68H3l6.51-20.51c.62-2.06,2.51-3.47,4.66-3.49h9.67c2.15.02,4.04,1.44,4.66,3.49l6.51,20.51Z"/>
+    <path id="Subtraction_1544" class="st4" d="M51,78.68H19l6.51-20.51c.62-2.06,2.51-3.47,4.66-3.49h9.67c2.15.02,4.04,1.44,4.66,3.49l6.51,20.51Z"/>
+    <path id="Subtraction_1545" class="st4" d="M67,102.68h-32l6.51-20.51c.62-2.06,2.51-3.47,4.66-3.49h9.67c2.15.02,4.04,1.44,4.66,3.49l6.51,20.51Z"/>
+    <path id="Path_33045" class="st3" d="M88.63,81.08c-5.02,6.54-11.74,11.56-19.43,14.53"/>
+  </g>
+</svg>

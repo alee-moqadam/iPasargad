@@ -1,0 +1,550 @@
+<ul ngbNav #nav="ngbNav" [activeId]="fundSelectedTab()" [destroyOnHide]="true"
+  class="d-flex w-100 flex-nowrap justify-content-around align-items-center py-3 bg-dark"
+  (navChange)="onNavChange($event)">
+  <li [ngbNavItem]="1" class="text-center pe-1" (shown)="focusTxtValue()">
+    <button ngbNavLink class="text-center w-100">درگاه بانکی</button>
+    <ng-template ngbNavContent>
+      <label for="amount">مبلغ سرمایه‌گذاری</label>
+      @if(loadingData()){
+      <h3 class="d-flex align-items-center pt-3 justify-content-end mb-0 badge-skeleton"
+        style="width: 100%;border-radius: 0.6rem;">
+        &nbsp;</h3>
+      } @else {
+      <div class="input-group"
+        [ngClass]="{'is-invalid' : submitted() && (!amount || amount < fundDetail()?.performance?.minPrice || (selectedgateWayMaxPayableAmount() ? +amount > selectedgateWayMaxPayableAmount() : false))}">
+        <span class="input-group-text small">ریال</span>
+
+        <input #txtValue pattern="[0-9]*" inputmode="decimal" type="text" class="form-control" [(ngModel)]="amount"
+          placeholder="حداقل مبلغ سرمایه‌گذاری {{ fundDetail()?.performance?.minPrice | number }} ریال"
+          mask="separator_." thousandSeparator=","
+          [ngClass]="{'is-invalid' : submitted() && (!amount || amount < fundDetail()?.performance?.minPrice)}"
+          (ngModelChange)="onValueChange()" />
+      </div>
+      }
+      <div class="small text-danger me-2 mt-1 invalid-feedback">
+        <div *ngIf="!amount">
+          لطفا مبلغ سرمایه‌گذاری را وارد کنید
+        </div>
+        <div *ngIf="amount < fundDetail()?.performance?.minPrice">
+          حداقل مبلغ سرمایه‌گذاری {{ fundDetail()?.performance?.minPrice | number }} ریال می‌باشد
+        </div>
+
+      </div>
+
+      @if((selectedgateWayMaxPayableAmount() ? +amount > selectedgateWayMaxPayableAmount() : false) && fundDetail()?.investType!=2){
+      <div class="mt-1 text-danger mb-2">
+        <strong>
+          مبلغ وارد‌شده از سقف مجاز بیشتر است. حداکثر مبلغ قابل پذیرش {{selectedgateWayMaxPayableAmount() | number}} ریال می‌باشد.
+          برای مبالغ بیشتر لطفا از روش‌ پرداخت دیگری استفاده نمایید.
+        </strong>
+      </div>
+      }@else if ((selectedgateWayMaxPayableAmount() ? +amount > selectedgateWayMaxPayableAmount() : false) && fundDetail()?.investType==2) {
+      <div class="mt-1 text-danger mb-2">
+        <strong>
+          مبلغ وارد‌شده از سقف مجاز بیشتر است. حداکثر مبلغ قابل پذیرش {{selectedgateWayMaxPayableAmount() | number}} ریال می‌باشد.
+        </strong>
+      </div>
+      }@else if (amount > 9999999999999999) {
+      <div class="mt-1 text-danger mb-2">
+        <strong>
+          مبلغ وارد‌شده از سقف مجاز بیشتر است.
+        </strong>
+      </div>
+      }
+
+      <!-- @if(amount > 9999999999999999){
+       <div class="mt-1 text-danger mb-2">
+         <strong>
+           مبلغ وارد‌شده از سقف مجاز بیشتر است.
+         </strong>
+       </div>
+      } -->
+
+      @if (amount>10 && amountInToman()) {
+      <small class="p-1">{{ amountInToman() }} تومان</small>
+      }
+
+      <div class="d-flex flex-column w-100 flex-nowrap justify-content-between align-items-center mt-3 mb-4">
+        <div class="d-flex justify-content-between w-100  flex-fill p-0 m-1 text-center custom-dashed-border">
+          <span class="p-2">تعداد تقریبی</span>
+          @if(loadingData()){
+          <h3 class="d-flex align-items-center pt-3 justify-content-end mb-0 badge-skeleton" style="width: 80px;">
+            &nbsp;</h3>
+          } @else {
+          <span class="p-2">
+            <span class="fw-bold ms-1">{{ estimatedVolume() }}</span>
+            <span class="small">واحد</span>
+          </span>
+          }
+        </div>
+        <div class="d-flex justify-content-between w-100  flex-fill p-0 m-1 text-center custom-dashed-border">
+          <span class="p-2">قیمت تقریبی صدور هر واحد</span>
+          @if(loadingData()){
+          <h3 class="d-flex align-items-center pt-3 justify-content-end mb-0 badge-skeleton" style="width: 80px;">
+            &nbsp;</h3>
+          } @else {
+          <span class="p-2">
+            <span class="fw-bold ms-1">
+              {{ fundId != 1 
+                 ? (bestLimit()?.buyPrice != null ? (bestLimit()?.buyPrice | number) : '-') 
+                 : (fundDetail()?.performance?.lastSubscriptionNav != null ? (fundDetail()?.performance?.lastSubscriptionNav | number) : '-') }}
+            </span>
+            <span class="small">ریال</span>
+          </span>
+          }
+        </div>
+        <!-- <div
+          class="d-flex justify-content-between w-100  flex-fill p-0 m-1 text-center custom-dashed-border">
+          <span class="p-2">قیمت تقریبی ابطال هر واحد</span>
+          <span class="p-2">
+            <span class="fw-bold ms-1">
+              {{
+              (fundId == 2 ? bestLimit()?.sellPrice :
+              fundDetail()?.performance?.lastRedemptionNav) | number
+              }}
+
+            </span>
+            <span class="small">ریال</span>
+          </span>
+        </div> -->
+
+      </div>
+      <label class="form-label align-self-start" for="amount">انتخاب درگاه پرداخت </label>
+      <div class="btn-group d-flex w-100 flex-nowrap justify-content-between align-items-center w-100"
+        data-toggle="buttons">
+        <ng-container class="w-100" *ngFor="let item of paymentWaysList()">
+          <button [ngClass]="{
+                        'btn-primary': item.code == selectedGateway(),
+                        'btn-gray-275': item.code != selectedGateway()
+                      }" class="btn m-1 rounded-sm border d-flex flex-fill custom-radius shadow-sm p-1 cursor-pointer"
+            (click)="setPaymentGateway(item)">
+            <input type="radio" name="paymentType" autocomplete="off" [value]="'true'" />
+            <div class="d-flex align-items-center flex-fill p-1">
+              @if(item.code == paymentTypeEnum.Saman){
+              <img class="m-1" [src]="item.code == selectedGateway() ? 'svg/saman.svg': 'svg/saman.svg'" alt="sep logo"
+                height="30px" width="30px" />
+              <h5 class="mb-0">{{ item.title }}</h5>
+              } @else if(item.code == paymentTypeEnum.Pasargad) {
+              <img class="m-1"
+                [src]="item.code == selectedGateway() ? 'images/pasargad-logo-sm-white.png':'images/pasargad-logo-sm.png'"
+                alt="iran kish logo" height="30px" width="30px" />
+              <h5 class="mb-0">{{ item.title }}</h5>
+              } @else if(item.code == paymentTypeEnum.Parsian) {
+              <img class="m-1" [src]="item.code == selectedGateway() ? 'svg/Parsian.svg':'svg/Parsian.svg'"
+                alt="iran kish logo" height="30px" width="30px" />
+              <h5 class="mb-0">{{ item.title }}</h5>
+              } @else if(item.code == paymentTypeEnum.Saderat) {
+              <img class="m-1" [src]="item.code == selectedGateway() ? 'svg/SaderatWhite.svg':'svg/Saderat.svg'" 
+                alt="Saderat" height="30px" width="30px" />
+              <h5 class="mb-0">{{ item.title }}</h5>
+              }     
+
+            </div>
+          </button>
+        </ng-container>
+      </div>
+
+      <!-- <div class="btn-group d-flex w-100 flex-nowrap justify-content-between align-items-center"
+           data-toggle="buttons"
+           [class.single-button]="visiblePaymentWaysCount == 1"
+           [class.multi-button]="visiblePaymentWaysCount > 1">
+      
+        <ng-container *ngFor="let item of paymentWaysList()">
+          <ng-container *ngIf="!(item.code != paymentTypeEnum.Pasargad && +amount > 2000000000 && fundDetail()?.investType != 2)">            
+            <button
+              [ngClass]="{
+                'btn-primary': item.code == selectedGateway(),
+                'btn-gray-275': item.code != selectedGateway()
+              }"
+              class="btn m-1 rounded-sm border d-flex custom-radius shadow-sm p-1 cursor-pointer justify-content-center align-items-center"
+              (click)="setPaymentGateway(item.code)"
+              [disabled]="(item.code != paymentTypeEnum.Pasargad) && +amount > 2000000000 && fundDetail()?.investType != 2">
+      
+              <input type="radio" name="paymentType" autocomplete="off" [value]="'true'" />
+      
+              <div class="d-flex align-items-center justify-content-center flex-fill p-1">
+                
+                @if(item.code == paymentTypeEnum.Saman){
+                  <img class="m-1"
+                       [src]="item.code == selectedGateway() ? 'svg/saman.svg' : 'svg/saman.svg'"
+                       alt="Saman Bank"
+                       height="30" width="30" />
+                  <h5 class="mb-0">{{ item.title }}</h5>
+                }
+      
+                @else if(item.code == paymentTypeEnum.Pasargad){
+                  <img class="m-1"
+                       [src]="item.code == selectedGateway() ? 'images/pasargad-logo-sm-white.png' : 'images/pasargad-logo-sm.png'"
+                       alt="Pasargad Bank"
+                       height="30" width="30" />
+                  <h5 class="mb-0">{{ item.title }}</h5>
+                }
+      
+                @else if(item.code == paymentTypeEnum.Parsian){
+                  <img class="m-1"
+                       [src]="item.code == selectedGateway() ? 'svg/Parsian.svg' : 'svg/Parsian.svg'"
+                       alt="Parsian Bank"
+                       height="30" width="30" />
+                  <h5 class="mb-0">{{ item.title }}</h5>
+                }
+      
+                @else if(item.code == paymentTypeEnum.Saderat){
+                  <img class="m-1"
+                       [src]="item.code == selectedGateway() ? 'svg/SaderatWhite.svg' : 'svg/Saderat.svg'"
+                       alt="Saderat Bank"
+                       height="30" width="30" />
+                  <h5 class="mb-0">{{ item.title }}</h5>
+                }
+      
+              </div>
+            </button>
+          </ng-container>
+        </ng-container>      
+      </div> -->
+
+      <div class="form-group mt-3 px-2" style="border: 1px dashed; border-radius: 15px; background-color: #6633CC1A;">
+        <div class="input-group d-flex flex-column p-2 flex-nowrap">
+          <div class="d-flex align-items-center">
+            <input id="agreement" type="checkbox" class="checkbox ml-1 cursor-pointer" [(ngModel)]="agreement" />
+            <label for="agreement" class="h6 mt-3 d-block mt-3">
+              <!-- {{(fundId === 2 ? 'قرارداد' : 'قوانین')}} -->
+              قوانین
+              @if((this.fundId === 2 || this.fundId === 4 || fundDetail()?.fundType == 5)){
+              <a class="btn btn-link p-0 mb-1 mx-1" target="_blank"
+                href="./docs/iPasargad_ETF_Online_Offline_Trading_Agreements.pdf">
+                صندوق‌ ETF
+              </a> 
+              @if(fundDetail()?.fundType == 5){
+               و
+              <a class="btn btn-link p-0 mb-1 mx-1" target="_blank"
+                 href="./docs/iPasargad_Gold_Fund_Terms.pdf">
+                 صندوق طلا
+              </a> 
+              }
+              .
+              } @else {
+              <a class="btn btn-link p-0 mb-1 mx-1" target="_blank" href="./docs/Hezareh3-Pod_Statute.pdf"> صندوق‌
+                سرمایه‌گذاری</a> و <a class="btn btn-link p-0 mb-1 mx-1" target="_blank"
+                href="./docs/iPasargad_Online_Contract.pdf"> خدمات اینترنتی </a>.
+              }
+            </label>
+          </div>
+          <div class="mt-1 text-danger" *ngIf="submitted() && !agreement">
+            <!-- {{(fundId === 2 ? 'قرارداد' : 'قوانین')}} -->
+            قوانین
+            تایید نشده است.
+          </div>
+        </div>
+      </div>
+
+      @if((this.fundId !== 1)){
+      <div class="d-flex align-items-center justify-content-between p-1 mt-4 border-primary w-100 border-radius-10"
+        style="border: 1px dashed;background-color: #e21d5f1a;">
+        <div class="d-flex align-items-center">
+          <div class="mx-1">
+            <h6 class="mt-2 text-gray-600 text-justify">
+              {{fundDetail()?.targetDescription2}}        
+            </h6>
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- @if(fundDetail()?.fundType != 5){
+        <div class="pt-6 border-0 w-100 d-flex">
+          <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">انصراف</button>
+          <app-loading-button class="w-50" [isLoading]="submittingForm()"
+            [disabled]="submittingForm() || !fundDetail()?.isAllowSubscription || !requestComposition()?.subscriptionPermit || paymentWaysList().length === 0 || !this.estimatedVolume() || !(this.amount >= fundDetail()?.performance?.minPrice)"
+            [type]="'button'" cssClass="btn btn-success rounded-pill text-white" (click)="subscriptionRequest($event)">
+            سرمایه‌گذاری
+          </app-loading-button>
+        </div>
+      }@else{
+        @if(isConfirmedSubscriptionRequest()){
+          <div class="alert alert-warning mt-4 mb-0 text-justify">
+            <div class="d-flex">
+              <fa-icon class="ms-1" icon="info-circle"></fa-icon>
+              <b>سرمایه‌گذار گرامی</b>
+            </div>
+            با توجه به آغاز مجدد معاملات صندوق‌های طلا از تاریخ
+            24 اسفند و نیمه تعطیل بودن بازار فیزیکی طلا، احتمال عدم قیمت گذاری منصفانه در دارایی پایه 
+            و همچنین کم عمق بودن معاملات طلا، احتمال اجرای سفارشات با قیمت غیر منصفانه و یا عدم امکان اجرای سفارشات وجود دارد.
+            لطفا پیش از ثبت سفارش به موارد ذکر شده توجه فرمایید.
+          </div>
+        }
+    
+        <div class="pt-6 border-0 w-100 d-flex">
+          <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">انصراف</button>
+          @if(!isConfirmedSubscriptionRequest()){
+            <app-loading-button class="w-50" [isLoading]="submittingForm()"
+            [disabled]="submittingForm() || !fundDetail()?.isAllowSubscription || !requestComposition()?.subscriptionPermit || paymentWaysList().length === 0 || !this.estimatedVolume() || !(this.amount >= fundDetail()?.performance?.minPrice)"
+            [type]="'button'" cssClass="btn btn-success rounded-pill text-white" (click)="confirmSubscriptionRequest($event)">
+            سرمایه‌گذاری
+          </app-loading-button>
+          }@else{
+            <app-loading-button class="w-50" [isLoading]="submittingForm()" [disabled]="submittingForm()" [type]="'button'"
+              cssClass="btn btn-success rounded-pill text-white" (click)="subscriptionRequest($event)">
+              تایید
+            </app-loading-button>
+          }
+        </div>
+      } -->
+
+      <div class="pt-6 border-0 w-100 d-flex">
+        <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">انصراف</button>
+        <app-loading-button class="w-50" [isLoading]="submittingForm()"
+          [disabled]="submittingForm() || !fundDetail()?.isAllowSubscription || !requestComposition()?.subscriptionPermit || paymentWaysList().length === 0 || !(this.amount >= fundDetail()?.performance?.minPrice)"
+          [type]="'button'" cssClass="btn btn-success rounded-pill text-white" (click)="subscriptionRequest($event)">
+          سرمایه‌گذاری
+        </app-loading-button>
+      </div>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2" class="text-center px-2" [disabled]="!isDirectPaymentEnabled() || customerInfo()?.personalInfo?.partyType == 2">
+    <button ngbNavLink class="text-center w-100 text-nowrap d-flex">
+      <svg class="ms-1" viewBox="0 0 24 24" width="18px" height="18px">
+        <use xlink:href="#ico_lightning_power"></use>
+      </svg>
+      پرداخت مستقیم
+    </button>
+    <ng-template ngbNavContent>
+    @if(!isErrorDebit()){
+      <div class="bg-info text-justify text-white py-2 px-4 mb-2 rounded">
+        سرمایه‌گذار گرامی، برای استفاده از این قابلیت باید حساب دیجیتال بانک پاسارگاد داشته باشید.
+      </div>
+
+
+      <label for="amount">مبلغ سرمایه‌گذاری</label>
+      @if(loadingData()){
+      <h3 class="d-flex align-items-center pt-3 justify-content-end mb-0 badge-skeleton" style="width: 80px;">
+        &nbsp;</h3>
+      } @else {
+      <div class="input-group"
+        [ngClass]="{'is-invalid' : submitted() && (!amount || amount < fundDetail()?.performance?.minPrice)}">
+        <span class="input-group-text small">ریال</span>
+
+        <input #txtValue pattern="[0-9]*" inputmode="decimal" type="text" class="form-control" [(ngModel)]="amount"
+          placeholder="حداقل مبلغ سرمایه‌گذاری {{ fundDetail()?.performance?.minPrice | number }} ریال"
+          mask="separator_." thousandSeparator=","
+          [ngClass]="{'is-invalid' : submitted() && (!amount || amount < fundDetail()?.performance?.minPrice)}"
+          (ngModelChange)="onValueChange()" />
+      </div>
+      }
+
+      <div class="small text-danger me-2 mt-1 invalid-feedback">
+        <div *ngIf="!amount">
+          لطفا مبلغ سرمایه‌گذاری را وارد کنید
+        </div>
+        <div *ngIf="amount < fundDetail()?.performance?.minPrice">
+          حداقل مبلغ سرمایه‌گذاری {{ fundDetail()?.performance?.minPrice | number }} ریال می‌باشد
+        </div>
+      </div>
+      @if(amount > selectedgateWayMaxPayableAmountDirectDebit()){
+      <div class="mt-1 text-danger mb-2">
+        <strong>
+          مبلغ وارد‌شده از سقف مجاز بیشتر است.
+        </strong>
+      </div>
+      }
+
+      @if (amount>10 && amountInToman()) {
+      <small class="p-1">{{ amountInToman() }} تومان</small>
+      }
+      <div class="d-flex flex-column w-100 flex-nowrap justify-content-between align-items-center mt-3 mb-4">
+        <div class="d-flex justify-content-between w-100  flex-fill p-0 m-1 text-center custom-dashed-border">
+          <span class="p-2">تعداد تقریبی</span>
+          @if(loadingData()){
+          <h3 class="d-flex align-items-center pt-3 justify-content-end mb-0 badge-skeleton" style="width: 80px;">
+            &nbsp;</h3>
+          } @else {
+          <span class="p-2">
+            <span class="fw-bold ms-1">{{ estimatedVolume() }}</span>
+            <span class="small">واحد</span>
+          </span>
+          }
+        </div>
+        <div class="d-flex justify-content-between w-100  flex-fill p-0 m-1 text-center custom-dashed-border">
+          <span class="p-2">قیمت تقریبی صدور هر واحد</span>
+          @if(loadingData()){
+          <h3 class="d-flex align-items-center pt-3 justify-content-end mb-0 badge-skeleton" style="width: 80px;">
+            &nbsp;</h3>
+          } @else {
+          <span class="p-2">
+            <span class="fw-bold ms-1">
+              {{(fundId != 1 ? bestLimit()?.buyPrice :
+              fundDetail()?.performance?.lastSubscriptionNav) | number }}
+            </span>
+            <span class="small">ریال</span>
+          </span>
+          }
+
+        </div>
+        <!-- <div
+          class="d-flex justify-content-between w-100  flex-fill p-0 m-1 text-center custom-dashed-border">
+          <span class="p-2">قیمت تقریبی ابطال هر واحد</span>
+          <span class="p-2">
+            <span class="fw-bold ms-1">{{
+              fundDetail()?.performance?.lastRedemptionNav | number
+              }}</span>
+            <span class="small">ریال</span>
+          </span>
+        </div> -->
+
+      </div>
+
+      <div class="form-group mt-3 px-2" style="border: 1px dashed; border-radius: 15px; background-color: #6633CC1A;">
+        <div class="input-group d-flex flex-column p-2 flex-nowrap">
+          <div class="d-flex align-items-center">
+            <input id="agreement" type="checkbox" class="checkbox ml-1 cursor-pointer" [(ngModel)]="agreement" />
+            <label for="agreement" class="h6 mt-3 d-block">
+              <!-- {{(fundId === 2 ? 'قرارداد' : 'قوانین')}} -->
+              قوانین
+              @if((this.fundId === 2 || fundDetail()?.fundType == 5)){
+              <a class="btn btn-link p-0 mb-1 mx-1" target="_blank"
+                href="./docs/iPasargad_ETF_Online_Offline_Trading_Agreements.pdf">
+                صندوق‌ ETF
+              </a> 
+              @if(fundDetail()?.fundType == 5){
+               و
+              <a class="btn btn-link p-0 mb-1 mx-1" target="_blank"
+                 href="./docs/iPasargad_Gold_Fund_Terms.pdf">
+                 صندوق طلا
+              </a> 
+              }
+              .
+              } @else {
+              <a class="btn btn-link p-0 mb-1 mx-1" target="_blank" href="./docs/Hezareh3-Pod_Statute.pdf"> صندوق‌
+                سرمایه‌گذاری</a> و <a class="btn btn-link p-0 mb-1 mx-1" target="_blank"
+                href="./docs/iPasargad_Online_Contract.pdf"> خدمات اینترنتی </a>.
+              }
+            </label>
+          </div>
+
+          <div class="mt-1 text-danger" *ngIf="submitted() && !agreement">
+            <!-- {{(fundId === 2 ? 'قرارداد' : 'قوانین')}} -->
+            قوانین
+            تایید نشده است.
+          </div>
+        </div>
+      </div>
+
+      @if(isConfirmedDebit()){
+      <div class="alert alert-warning mt-3 ">
+        آیا از پرداخت <b>{{amount | number}}</b> ریال برای صدور واحد سرمایه گذاری صندوق
+        <b>{{fundDetail()?.symbol}}</b> مطمئن هستید؟
+      </div>
+      <div class="form-group mt-3 px-2" style="border: 1px dashed; border-radius: 15px; background-color: #6633CC1A;">
+        <div class="input-group d-flex flex-column p-2 flex-nowrap">
+          <div class="d-flex align-items-center">
+            <input id="agreement" type="checkbox" class="checkbox ml-1 cursor-pointer"
+              [(ngModel)]="directDebitAgreement" />
+            <label for="agreement" class="h6 mt-3 d-block">قوانین و مقررات
+              <a class="btn btn-link p-0 mb-1 mx-1" target="_blank" href="./docs/iPasargad_Direct_Debit_Contract.pdf">
+                پرداخت مستقیم </a>.
+            </label>
+          </div>
+
+          <div class="mt-1 text-danger" *ngIf="directDebitSubmitted() && !directDebitAgreement">
+            قوانین پرداخت مستقیم تایید نشده است.
+          </div>
+        </div>
+      </div>
+
+      }
+      <div class="pt-6 border-0 w-100 d-flex">
+        <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">انصراف</button>
+        @if(!isConfirmedDebit()){
+        <app-loading-button class="w-50" [isLoading]="submittingForm()"
+          [disabled]="submittingForm() || !fundDetail()?.isAllowSubscription || !requestComposition()?.subscriptionPermit || !(this.amount >= fundDetail()?.performance?.minPrice)"
+          [type]="'button'" cssClass="btn btn-success rounded-pill text-white" (click)="confirmDebit($event)">
+          سرمایه‌گذاری
+        </app-loading-button>
+        }@else{
+        <app-loading-button class="w-50" [isLoading]="submittingForm()" [disabled]="submittingForm()" [type]="'button'"
+          cssClass="btn btn-success rounded-pill text-white" (click)="directDebitSubscriptionRequest($event)">
+          تایید
+        </app-loading-button>
+        }
+      </div>
+    }@else {
+      <div class="px-3 py-3" style="border: 1px dashed; border-radius: 15px; background-color: #6633CC1A;">
+        مشتری گرامی، دسترسی شما به پرداخت مستقیم منقضی شده است. یک کد تأیید برای شما پیامک شده، لطفاً آن را وارد کنید تا دسترسی دوباره فعال شود.
+      </div>
+      
+      <div class="form-group px-0 py-4">
+        <label class="form-text text-muted small mb-2">کد تایید</label>
+      
+        <div class="input-group">
+          <input
+            pattern="[0-9]*"
+            inputmode="decimal"
+            name="otpDebit"
+            type="text"
+            id="otpDebit"
+            mask="9*"
+            maxlength="6"
+            class="form-control ltr text-end"
+            placeholder="کد تایید"
+            [(ngModel)]="otpDebit"
+            [ngClass]="{'is-invalid': submitted() && !otpDebit}"
+            required
+          />
+      
+          <div class="input-group-text text-center">
+            @if (sendingOtpPod()) {
+              <div class="d-flex align-items-center h-100">
+                ارسال کد تایید
+                <span class="spinner-border spinner-border-sm mx-1"></span>
+              </div>
+            } @else {
+              <button
+                type="button"
+                class="btn text-nowrap btn-radius text-center cursor-pointer"
+                [style.width]="'120px'"
+                (click)="sendOtpDebit()"
+                [counter]="{ seconds: 0, minutes: 2 }"
+                [start]="hasOtpPodSent$ | async"
+                [disabled]="disableOtpDebitButton$ | async"
+                (value)="onCounterValueChangeDebit($event)"
+                text="ارسال کد تایید"
+                [showCounter]="showCounterDebit$ | async"
+                altText="ارسال کد"
+              >ارسال کد</button>
+            }
+          </div>
+        </div>
+      
+        @if (submittingDebit() && !otpDebit) {
+          <div class="small text-danger me-2 mt-1">
+            لطفا کد تایید را وارد نمایید
+          </div>
+        }
+      </div>
+      
+      <div class="pt-6 border-0 w-100 d-flex">
+        <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">انصراف</button>
+        <app-loading-button
+          class="w-50"
+          [isLoading]="submittingDebit()"
+          [disabled]="submittingDebit()"
+          [type]="'button'"
+          cssClass="btn btn-success rounded-pill text-white"
+          (click)="verifyOtpDebit($event)"
+        >
+          تایید
+        </app-loading-button>
+      </div>
+
+    }    
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3" class="text-center ps-1" [disabled]="!isDirectReceiptEnabled()">
+    <button ngbNavLink class="text-center w-100">ثبت فیش</button>
+    <ng-template ngbNavContent>
+      <upload-receipt-modal [fundDetail]="fundDetail()" [fundId]="fundId"
+        [bestLimit]="bestLimit()"></upload-receipt-modal>
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="w-100 p-5"></div>

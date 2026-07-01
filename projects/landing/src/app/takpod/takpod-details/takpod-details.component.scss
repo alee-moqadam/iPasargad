@@ -1,0 +1,143 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
+
+:host {
+  max-width: 1064px;
+  display: block;
+  margin: auto;
+}
+
+.line-container {
+  position: relative;
+  width: 161px;
+  white-space: nowrap;
+
+  .line {
+    position: absolute;
+    right: -12px;
+    top: -6px;
+    width: 109%;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+
+    &.animated {
+      animation: draw-line 10s linear alternate 1 forwards 500ms;
+    }
+  }
+}
+
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 2000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.main-bg {
+  background: url("../../../../public/images/takpod/Artboard _15454.webp") no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  @include media-breakpoint-down(md) {
+    background: url("../../../../public/images/takpod/Artboard _15454.webp") no-repeat;
+    background-size: 100%;
+    background-position: center center;
+  }
+}
+
+.downloads {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: dashed 2px #6d3ad2;
+  background-color: #dbdaff;
+  border-radius: 20px;
+  margin: 2rem 0;
+
+  @include media-breakpoint-down(md) {
+    padding: 1rem .5rem;
+  }
+
+  .download-link {
+    background-color: #f3f3f3;
+    border-radius: 6px;
+    padding: 0.5rem .75rem;
+    text-decoration: none;
+    color: #4c19b1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
+.investment-type-container {
+  padding: 10px;
+  background: url("../../../../public/images/rhyton/right.svg") no-repeat center bottom;
+  background-size: 100% !important;
+  border-radius: 20px;
+  display: inline-block;
+  width: 100%;
+  max-width: 320px;
+  @include media-breakpoint-down(lg) {
+    background: url("../../../../public/images/rhyton/right-m.svg") no-repeat center bottom;
+  }
+
+  &.second {
+    position: relative;
+    background: url("../../../../public/images/rhyton/mid.svg") no-repeat center bottom;
+    @include media-breakpoint-down(lg) {
+      background: url("../../../../public/images/rhyton/mid-m.svg") no-repeat center bottom;
+    }
+
+    .investment-type {
+      margin-bottom: -53px;
+
+      @include media-breakpoint-down(lg) {
+        margin-bottom: 0;
+        .investment-title {
+          background-color: #ff990033;
+        }
+      }
+    }
+  }
+
+  &.last {
+    background: url("../../../../public/images/rhyton/left.svg") no-repeat center bottom;
+    @include media-breakpoint-down(lg) {
+      background: url("../../../../public/images/rhyton/left-m.svg") no-repeat center bottom;
+    }
+  }
+
+  .investment-type {
+    font-size: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 18px;
+    border: solid 1px #cdd7e1;
+    background-color: #ebf5ff;
+    padding: 1.5rem 1rem;
+    z-index: 2;
+
+    .investment-title {
+      border: solid 1px #737d878f;
+      padding: 0.5rem 0;
+      text-align: center;
+      width: 100%;
+      white-space: nowrap;
+    }
+
+    .investment-feature {
+      width: 100%;
+
+      &:not(:nth-child(2)) {
+        border-top: dashed 1px #737d875e;
+      }
+    }
+  }
+}

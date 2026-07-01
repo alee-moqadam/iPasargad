@@ -1,0 +1,54 @@
+
+    <div class="card shadow p-0 m-0 bg-gray-150">
+      <div class="card-body  text-center">
+        <img [src]="'svg/success.svg'" alt="subscription success" height="100px" width="100px" />
+        <h4 class="text-center text-green mb-4">ابطال صندوق با موفقیت انجام شد</h4>
+
+        <div class="p-1 border-dashed  p-2 my-2 custom-radius d-flex justify-content-between">
+          <span>کد رهگیری</span>
+          <span>{{requestId}}</span>
+        </div>
+        <div class="p-1 border-dashed p-2 my-2 custom-radius d-flex justify-content-between align-items-center">
+          <span>نام صندوق</span>
+          <span>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start align-items-center">
+                <!-- <img *ngIf="fundDetail?.attachments?.length > 0; else logoPlaceholder"                 
+                  [src]="apiUrl + '/' + getLogo()?.downloadLink"
+                  alt="Fund Logo" style="width: 30px;" class="ms-2" /> -->
+
+                <app-svg-viewer *ngIf="fundDetail?.attachments?.length > 0; else logoPlaceholder"
+                 [svgUrl]="apiUrl + '/' + getLogo()?.downloadLink" class="d-flex ms-2" style="width: 30px;"></app-svg-viewer>
+
+                <ng-template #logoPlaceholder>
+                  <div class="logo-loading-placeholder ms-2"></div>
+                </ng-template>
+                <span class="my-2">{{ fundDetail?.symbol }}</span>
+              </div>
+            </div>
+          </span>
+        </div>
+        <div class="p-1 border-dashed p-2 my-2 custom-radius d-flex justify-content-between">
+          <span>قیمت تقریبی ابطال (NAV)</span>
+          <span>{{fundDetail?.investType != 1 ? (fundDetail?.sellPrice | number) : (fundDetail?.performance?.lastRedemptionNav | number)}} ریال</span>
+        </div>
+        <div class="p-1 border-dashed p-2 my-2 custom-radius d-flex justify-content-between">
+          <span>تعداد ابطال</span>
+          <span>{{volume | number }} واحد</span>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center my-2">
+          <textarea rows="10" readonly class="w-100 border-dashed custom-radius p-3 text-justify" [value]="message" #msgBox>{{ message }}</textarea>
+        </div>
+
+        <div class="d-flex">
+          <span class="btn btn-gray-275 ms-2 text-black my-3 w-50" [routerLink]="['/dashboard']" (click)="onDashboardClick()">
+             پیشخوان</span>
+          <span class="btn btn-primary me-2 my-3 w-50" routerLink="/reporting/requests" (click)="onReportsClick()">گزارش
+            درخواست‌ها</span>
+        </div>
+
+      </div>
+
+      <!-- <a class="btn rounded-pill btn-lg btn-primary btn-block mt-4" [routerLink]="['/dashboard']">ادامه</a> -->
+    </div>

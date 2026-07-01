@@ -1,0 +1,73 @@
+<div class="bg-green text-white fixed-top shadow">
+  <div class="container">
+    <div class=" d-flex justify-content-between align-items-center">
+      <img class="me-3" [style.Height.px]="headerHeight" [style.Width.px]="150" src="/svg/logo-fa-white.svg"
+        alt="IPasargad" routerLink="/" />
+
+      <div class="d-none d-lg-block">
+        <div class="d-flex align-items-center">
+          <fa-icon icon="gear" size="lg" class="p-2 rounded rounded-pill border border-1 cursor-pointer"
+            routerLink="settings" placement="right" ngbTooltip="تنظیمات"></fa-icon>
+          <div [ngbTooltip]="customerInfo()?.personalInfo?.fullName" container="body"
+            class="menu-item cursor-pointer d-flex mx-2 rounded-pill border border-1 py-2 cursor-pointer"
+            routerLink="profile">
+            <div class="d-flex flex-fill">
+              <fa-icon class="me-3" icon="caret-down"></fa-icon>
+              <span [style.width.px]="100" class=" white-space-nowrap d text-center flex-fill mx-4 truncate">
+                {{ customerInfo()?.personalInfo?.fullName }}</span>
+              <svg class="ms-3" viewBox="0 0 24 24" width="24px" height="24px">
+                <use xlink:href="#ico_person_circle"></use>
+              </svg>
+              <!-- <fa-icon class="ms-3" size="lg" icon="circle-user"></fa-icon> -->
+            </div>
+          </div>
+          <svg class="p-1 rounded rounded-pill border border-1 cursor-pointer" viewBox="0 0 24 24" width="36px"
+            height="36px" placement="left" ngbTooltip="خروج" (click)="logout()">
+            <use xlink:href="#ico_circle_turn_on"></use>
+          </svg>
+          <!-- <fa-icon placement="left" ngbTooltip="خروج" size="lg"
+            class="p-2 rounded rounded-pill border border-1 cursor-pointer" icon="power-off"
+            (click)="logout()"></fa-icon> -->
+        </div>
+      </div>
+      <div class="d-lg-none d-flex p-2 justify-content-center align-items-center">
+        <svg viewBox="0 0 24 24" width="36px" height="36px" class="rounded rounded-pill border border-1 p-2" routerLink="/notifications">
+          <use xlink:href="#ico_bell"></use>
+        </svg>
+        <svg viewBox="0 0 24 24" width="36px" height="36px" class="rounded rounded-pill border border-1 p-1 me-3" routerLink="/customer-support">
+          <use xlink:href="#ico_support"></use>
+        </svg>
+        <!-- <a href="tel:+982158241000" class="text-white me-3">
+          <fa-icon size="lg" icon="phone" class="rounded rounded-pill border border-1 p-2">
+          </fa-icon>
+        </a> -->
+        <!-- <fa-icon (click)="logoutModal()" size="lg" icon="power-off"></fa-icon> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-none d-lg-block bg-gray-850 text-white fixed-top" [style.top.px]="headerHeight" style="height: 58px;">
+  <div class="container">
+    <div class="d-flex">
+      <div style="width:209px;">
+      </div>
+      <div class="flex-fill px-4 py-2">
+        <div class="row">
+          <div class="col-lg-16 order-2 px-3">
+            <div class="d-flex">
+              @if(childRouteItem()?.reportMenu) {
+              @for(item of reportingListMenu(); track item.name){
+              <button class="btn btn-gray-600 mx-1" style="flex: 1;" routerLinkActive="active-menu-btn"
+                routerLink="{{item.link.replaceAll(':fundCode',childRouteItem()?.fundCode)}}">{{item.name}}</button>
+              }
+              }
+
+            </div>
+
+          </div>
+          <div class="col-lg-8 order-lg-2 mb-4 px-0"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

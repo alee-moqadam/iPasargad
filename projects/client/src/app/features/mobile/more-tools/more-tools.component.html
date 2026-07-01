@@ -1,0 +1,97 @@
+<div class="h-100 w-100">
+  <div class="row mb-3">
+    <div class="col-12 d-flex" routerLink="/wepod">
+      <div class="card w-100 h-100">
+        <img src="/svg/Group 20034.svg" class="card-img-top p-2 border-radius-15">
+        <div class="card-body text-right">
+          <div class="mb-3 d-flex align-items-center justify-content-between">
+            <h5 class="mb-0 ">
+              پرداخت مستقیم
+            </h5>
+            <span class="badge bg-success py-1 px-2">
+              جدید
+            </span>
+          </div>
+          <h6 class="text-secondary ">
+            ثبت کارت بانکی و یا کارت مجازی ویپاد
+          </h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 d-flex" routerLink="/gift-card">
+      <div class="card w-100 h-100">
+        <img src="/svg/Group 19892.svg" class="card-img-top p-2 border-radius-15">
+        <div class="card-body text-right">
+          <div class="mb-3 d-flex align-items-center justify-content-between">
+            <h5 class="mb-0">
+              کارت هدیه
+            </h5>
+            <span class="badge bg-success py-1 px-2">
+              جدید
+            </span>
+          </div>
+          <h6 class="text-secondary ">
+            ثبت کارت هدیه
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-100">
+    @for (item of allMutualFundDetail(); track $index) {
+    <div ngbSlide class="h-100">
+      <div class="card shadow-sm mb-3 cursor-pointer"
+        [routerLink]="'/fund/'+item.seoRegisterNumber+'/fund-detail/'+item.seoRegisterNumber">
+        <img *ngIf="item?.attachments?.length > 0; else bannerPlaceholder"          
+          [src]="apiUrl + '/' + getImage(item)?.downloadLink"
+          class="w-100 img-fluid border-radius-15 horizontal-banner" />
+        <ng-template #bannerPlaceholder>
+          <div class="banner-loading-placeholder w-100 border-radius-15"></div>
+        </ng-template>
+        @if(![1, 5].includes(item?.fundType)){
+          @if(item.mutualFundId !=1){
+          <div class="text-white" class="text-white"
+            style="position: absolute; left: 5%; top: 10%;font-weight: bolder;font-size: 500%;">
+            {{item?.performance?.effectiveYearlyPercent}}%</div>
+          <div class="banner-minitext border-radius-10">پیش‌بینی بازده موثر</div>
+          }@else if(item.mutualFundId==1) {
+          <div class="text-white" class="text-white"
+            style="position: absolute; left: 5%; top: 10%;font-weight: bolder;font-size: 500%;">
+            {{item?.performance?.yearlyPercent}}%</div>
+          <div class="banner-minitext border-radius-10">بازده اسمی سالانه</div>
+          }
+        }
+      </div>
+    </div>
+    }
+  </div>
+  <!-- <div class="h-100 w-100 d-flex flex-column align-items-center" >
+        <div class="card w-100 mb-3 border-radius-15"  routerLink="/wepod">
+            <div class="d-flex align-items-center flex-row justify-content-between p-4">
+                <div class="d-flex align-items-center flex-row">
+                    <fa-icon class="mx-2 text-primary" icon="mug-hot"></fa-icon>
+                    <h5 class="mb-0" style="color: #394046;">
+                        پرداخت خودکار
+                    </h5>
+                </div>
+                <svg viewBox="0 0 24 24" width="14px" height="14px" class="me-2" style="color: #828C96;">
+                    <use xlink:href="#ico_drop_left"></use>
+                </svg>
+            </div>
+        </div>
+        <div class="card w-100 mb-3 border-radius-15" routerLink="/wepod">
+            <div class="d-flex align-items-center flex-row justify-content-between p-4">
+                <div class="d-flex align-items-center flex-row">
+                    <fa-icon class="mx-2 text-primary" icon="mug-hot"></fa-icon>
+                    <h5 class="mb-0" style="color: #394046;">
+                        سرمایه‌گذاری خودکار
+                    </h5>
+                </div>
+                <svg viewBox="0 0 24 24" width="14px" height="14px" class="me-2" style="color: #828C96;">
+                    <use xlink:href="#ico_drop_left"></use>
+                </svg>
+            </div>
+        </div>
+    </div> -->
+</div>

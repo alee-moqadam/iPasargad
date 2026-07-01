@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-lg-16 order-2 px-4">
+    <!-- <div class="card shadow-sm mt-2">
+      <div class="card-body p-0">
+        <div
+          class="d-flex flex-column justify-content-center align-items-center p-2"
+        >
+          <div
+            class="d-flex w-100 flex-nowrap align-items-center p-1 m-3 custom-radius bg-gray-150"
+          >
+            <span
+              class="custom-radius p-2 text-center cursor-pointer"
+              routerLink="requests"
+              routerLinkActive=" bg-white shadow-sm"
+              >درخواست‌ها</span>
+            <span
+              class="custom-radius p-2 text-center cursor-pointer"
+              routerLink="payments"
+              routerLinkActive=" bg-white shadow-sm"
+              >واریز وجه</span
+            >
+            <span
+              class="custom-radius p-2 text-center cursor-pointer"
+              routerLink="accounting"
+              routerLinkActive=" bg-white shadow-sm"
+              >حسابداری</span
+            >
+            <span
+              class="custom-radius p-2 text-center cursor-pointer"
+              routerLink="dividend"
+              routerLinkActive=" bg-white shadow-sm"
+              >تقسیم سود</span
+            >
+            <span
+              class="custom-radius p-2 text-center"
+              routerLink="receipts"
+              routerLinkActive=" bg-white shadow-sm"
+              >فیش‌ها</span
+            >
+            <span
+              class="custom-radius p-2 text-center"
+              routerLink="activities"
+              routerLinkActive=" bg-white shadow-sm"
+              >فعالیت‌ها</span
+            >
+          </div>
+        </div>
+
+      </div>
+    </div> -->
+    <div class="w-100">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  @if(!hasFilter()){
+    <div class="col-lg-8 order-lg-2 mb-4"> 
+      <h5 class="d-none d-lg-block text-right text-secondary mb-4" style="color:#919BA5; position:sticky; top:147px;">
+        فیلتر‌ها
+      </h5>
+      <div class="card"  style="position:sticky; top:178px;">
+        <div class="card-body">
+          <div
+          (click)="showFilter(filter)"
+            class="d-lg-none d-flex justify-content-between align-items-center"
+          >
+            <span> فیلتر </span>
+  
+            <fa-icon
+              class="bg-gray-200 rounded-circle more-button"
+              icon="caret-down"
+  
+            ></fa-icon>
+          </div>
+  
+          <div #filter class="d-none d-lg-block">
+            <router-outlet
+              name="filter"
+              (activate)="onOutletLoaded($event)"
+            ></router-outlet>
+          </div>
+  
+  
+        </div>
+      </div>
+  
+    </div>
+  }
+</div>

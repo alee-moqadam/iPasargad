@@ -1,0 +1,35 @@
+.link-btn {
+  width: 85px;
+  height: 40px;
+  white-space: nowrap;
+  background: #6633cc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-holder {
+  display: none;
+
+  @media (min-width: 1200px) {
+    display: block;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 190px;
+    // height: 240px;
+    background: linear-gradient(180deg, #de364b, #ffa0a0);
+    box-shadow: -2px 3px 6px #00000029;
+    border-radius: 15px;
+    z-index: 99;
+  }
+}
+
+.span-close {
+  background: #545e68;
+  border-radius: 50%;
+  padding: 4px 5px 0;
+  position: absolute;
+  left: -10px;
+  top: -7px;
+}

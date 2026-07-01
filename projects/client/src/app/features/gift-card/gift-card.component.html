@@ -1,0 +1,225 @@
+<div class="row">
+  <div class="col-lg-16 px-4">
+    <div class="card border-radius-15 gift-card-banner p-5 mb-4">
+      <div class="w-100 d-flex align-item-center flex-column justify-content-between h-100">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <img src="/images/logo-horizontal-left.svg" class="mb-4" style="width: 50%;" />
+          </div>
+          @if( requestList().length > 0){
+          <div>
+            <div class="d-flex align-items-center">
+              <svg viewBox="0 0 30 30" width="40px" height="40px" class="ms-2 text-white">
+                <use xlink:href="#ico_gift"></use>
+              </svg>
+            </div>
+          </div>
+          }
+        </div>
+        <div class="d-flex align-item-center justify-content-end">
+          <h5 class="mb-0 text-warning fw-bold">
+            کارت هدیه سرمایه گذاری
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-4 border-radius-15 bg-gift-card">
+
+      <div class="card-body d-flex flex-column align-items-center">
+        <div class="input-group mb-3">
+          <span class="input-group-text small ms-5 " style="cursor: default;">
+            <ng-container *ngIf="giftCardCode().length < 19; else checkLoading">
+              <svg viewBox="0 0 24 24" class="text-white" width="18px" height="18px">
+                <use xlink:href="#ico_circle_add"></use>
+              </svg>
+            </ng-container>
+
+            <ng-template #checkLoading>
+              <ng-container *ngIf="isLoading(); else checkError">
+                <svg viewBox="0 0 24 24" width="18px" height="18px">
+                  <use xlink:href="#ico_clock"></use>
+                </svg>
+              </ng-container>
+            </ng-template>
+
+            <ng-template #checkError>
+              <ng-container *ngIf="hasErrorInCode(); else checkSuccess">
+                <svg viewBox="0 0 24 24" class="text-danger" width="18px" height="18px">
+                  <use xlink:href="#ico_circle_close"></use>
+                </svg>
+              </ng-container>
+            </ng-template>
+
+            <ng-template #checkSuccess>
+              <svg viewBox="0 0 24 24" class="text-success" width="18px" height="18px">
+                <use xlink:href="#ico_circle_accept"></use>
+              </svg>
+            </ng-template>
+          </span>
+          <input class="form-control" placeholder="ثبت کد" maxlength="19" [(ngModel)]="giftCardCode"
+            (input)="onInput($event)" dir="ltr" style="text-align: end;" type="text" mask="9999-9999-9999-9999"
+            inputmode="numeric" />
+
+          <button class="input-group-text small text-white" style="display: flex;" (click)="checkSubscriptionStatus()"
+            [ngStyle]="{'background-color': (!hasErrorInCode() && giftCardCode().length === 19) ? '#6633CC' : '#CCCCCC' }">
+            @if(isApplyBtnLoading()){
+            <div class="spinner-grow text-light d-flex align-items-center justify-content-center"
+              style="width: 15px;height: 15px;"></div>
+            }@else {
+            ثبت کد
+            }
+          </button>
+        </div>
+        @if (giftCardValue())
+        {
+          <h5 class="text-success">کارت هدیه به مبلغ {{giftCardValue()?.remain | number}} ریال برای {{giftCardValue()?.mutualFundTitle }} قابل ثبت است. لطفا "ثبت کد" را انتخاب کنید.</h5>
+        }
+        <div class="text-right w-100 mb-3" style="color: #737D87;">
+          <h6 class="fw-bold">
+            نحوه استفاده از کارت هدیه:
+          </h6>
+          <h6>
+            1- پوشش روی کد هدیه را خراش دهید.
+          </h6>
+          <h6>
+            2- کد ۱۶ رقمی چاپ شده روی کارت هدیه را در کادر مربوطه وارد کنید
+          </h6>
+          <h6>
+            3- با انتخاب گزینه "ثبت کد" درخواست کارت هدیه شما نهایی شده و می‌توانید گزارش آن را مشاهده
+            نمایید
+          </h6>
+        </div>
+        <div class="alert d-felx align-items-center w-100" style="background-color: #EBF5FF;">
+          <svg viewBox="0 0 24 24" width="18px" height="18px" style="color: #737D87;">
+            <use xlink:href="#ico_warning"></use>
+          </svg>
+          <span class="me-2" style="color: #737D87;">
+            این کد یکبار و برای یک نفر قابل استفاده است و پس از استفاده باطل می‌گردد.
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card mb-4 w-100 border-radius-15">
+      <div class="card-body w-100 ">
+        <div class="d-flex flex-column  align-items-center justify-content-between w-100">
+          <div class="w-100 d-flex align-items-start mb-3">
+            <svg viewBox="0 0 24 24" width="18px" height="18px" class="ms-2" style="color: #828C96;">
+              <use xlink:href="#ico_chart_bar_box"></use>
+            </svg>
+            <h5 class=" fw-bold" style="color: #46503C;">
+              گزارش کارت هدیه
+            </h5>
+          </div>
+          <div class="w-100 d-felx align-items-center flex-column">
+
+            @for (request of requestList(); track $index) {
+            @if($index<2){ <div class="card shadow-sm mb-2 border-radius-15 ">
+              <div class="card border-radius-15 gift-card-banner px-4 py-3">
+                <div class="w-100 d-flex align-item-center flex-column justify-content-between h-100">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <img src="/svg/logo-fa-dis.svg" style="width: 40%;" />
+                    </div>
+                    <div class="d-flex align-items-center justify-content-end">
+                      <img src="/svg/Group79771.svg" class="border-radius-15" style="width: 80px;" />
+                    </div>
+                  </div>
+                  <div class="d-flex align-item-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <svg viewBox="0 0 30 30" width="28px" height="28px" class="ms-2" style="color: #FF9900;">
+                        <use xlink:href="#ico_gift_stroke"></use>
+                      </svg>
+                      <h5 class="mb-0 text-white fw-bold">
+                        <!-- صندوق هزاره سوم پاد -->
+                          صندوق {{request?.mutualFundSymbol}}
+                      </h5>
+                    </div>
+                    <div class="d-flex align-item-center">
+                      <span class="badge d-flex align-item-center justify-content-center badge-confirm"
+                        [ngClass]="{'badge-pish': request.state === 1 ||  request.state === 5 || request.state === 99,  'badge-waiting': request.state === 2 , 'badge-confirm': request.state === 8 || request.state === 3 }">
+                        {{request?.stateTitle}}
+                      </span>
+                      <div class="d-flex flex-nowrap align-items-center text-white me-2">
+                        <span class="h5 fw-bold m-0 px-1">{{request.amount |number}}
+                        </span>
+                        <span class="fs-6 me-1"> ریال </span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+          </div>
+          }
+          }
+          <div class="d-flex mt-4 align-items-center cursor-pointer" routerLink="/reporting/requests">
+            <h6 class="my-0 fw-bold" style="color: #46503C;">
+              مشاهده گزارش درخواست‌ها
+            </h6>
+            <svg viewBox="0 0 24 24" width="14px" height="14px" class="me-2" style="color: #828C96;">
+              <use xlink:href="#ico_drop_left"></use>
+            </svg>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4 w-100 border-radius-15 d-flex align-items-center justify-content-center"
+    style="height: 164px;background: transparent linear-gradient(287deg, #9E6EFF 0%, #6633CC 100%) 0% 0% no-repeat padding-box;">
+    <h2 class="text-center text-white mb-3">
+      آموزش استفاده از کارت هدیه
+    </h2>
+    <h5 class="text-center text-white mb-4" style="opacity: 0.8;">
+      سامانه سرمایه‌گذاری آی‌پاسارگاد
+    </h5>
+    <a target="_blank" href="https://academy.ipasargad.ir/ipasargad-gift-card/" class="btn px-4 py-1 border-1"
+      style="border: 1.5px solid #9E6EFF;background-color: #0A141E99;color: #9E6EFF;">
+      اطلاعات بیشتر
+      <svg viewBox="0 0 24 24" width="14px" height="14px" class="me-1">
+        <use xlink:href="#ico_drop_down"></use>
+      </svg>
+    </a>
+  </div>
+
+
+  <app-consulting-guide class="mb-3 d-block"></app-consulting-guide>
+
+</div>
+
+<!-- <div class="col-lg-8">
+  <div class="card  shadow-sm mb-3">
+    <div class="card-body d-flex flex-column ">
+      <div class="mb-0">
+        <div class="d-flex align-items-center">
+          <svg viewBox="0 0 30 30" width="18px" height="18px" class="ms-2">
+            <use xlink:href="#ico_gift"></use>
+          </svg>
+          <h3 class="text-center my-3">کارت هدیه</h3>
+        </div>
+        <p class="text-justify p-2">
+          کارت هدیه آی‌پاسارگاد، یک کارت هدیه از جنس «هدیه سرمایه‌گذاری» است که توسط گروه بازار سرمایه
+          پاسارگاد و برای فراهم کردن یک انتخاب متفاوت و آینده‌نگر برای «هدیه دادن» طراحی و ارائه شده است.
+          با کارت آی‌پاسارگاد، برخلاف کارت‌های هدیه معمولی، ما مفتخریم تا هدیه‌ای از جنس سرمایه‌گذاری را
+          تقدیم شما ‌کنیم.
+
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <mutual-fund-carousel></mutual-fund-carousel>
+
+</div> -->
+
+
+
+</div>

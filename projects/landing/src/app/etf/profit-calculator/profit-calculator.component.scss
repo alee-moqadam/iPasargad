@@ -1,0 +1,73 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
+
+:host {
+  max-width: 1064px;
+  display: block;
+  margin: auto;
+}
+
+.main-bg {
+  background: url("../../../../public/images/etf/Group_23720.png") no-repeat;
+  background-size: 100%;
+}
+
+.downloads {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  border: dashed 2px #0055ff;
+  background-color: #0055ff33;
+  border-radius: 20px;
+  margin: 2rem 0;
+  
+  @include media-breakpoint-down(md) {
+    padding: 1rem;
+  }
+
+  .download-link {
+    background-color: #ddd;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #6633cc;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
+::ng-deep .chart-modal {
+  .modal-content {
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+  &.modal-dialog-centered {
+    min-height: 100vh;
+  }
+}
+
+
+// @supports (-webkit-touch-callout: none) {
+@media (max-width: 576px) {
+  ::ng-deep .chart-modal.modal-dialog {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  ::ng-deep .chart-modal.modal-dialog-centered {
+    transform: none !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  ::ng-deep .chart-modal .modal-content {
+    overflow: hidden;
+    max-width: 100%;
+  }
+}

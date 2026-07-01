@@ -1,0 +1,40 @@
+:host {
+  input[type="radio"] {
+    visibility: hidden;
+  }
+
+  .nav-link.active {
+    background-color: white;
+    box-shadow: var(--dtx-box-shadow-sm) !important;
+  }
+
+  .img-thumbnail {
+    height: 60px;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: #00000099;
+    }
+    img {
+      width: 100%;
+    }
+    fa-icon {
+      position: absolute;
+      top: calc(50% - 10px);
+      left: calc(50% - 10px);
+      z-index: 2;
+      color: #FF8D98
+    }
+  }
+
+  .dropdown-icon {
+    height: 26px;
+  }  
+}
+
+::ng-deep {
+  .tooltip-inner {
+    text-align: justify !important;
+  }
+}

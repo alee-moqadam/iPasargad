@@ -1,0 +1,119 @@
+<div class="card overflow-hidden">
+  <div class="card-header bg-primary text-center text-white py-5">
+    {{selectedContract?.id ? 'ویرایش': 'ثبت'}} قرارداد پرداخت خودکار
+  </div>
+  <div class="card-body p-0">
+    @if(readyToRender()){
+    <div class="pt-5 px-5 pb-4">
+      <label>صندوق:</label>
+      <ng-select [searchable]="false" [clearOnBackspace]="false" [clearable]="false" placeholder="انتخاب صندوق"
+        [(ngModel)]="selectedFund" (change)="onSelectedFundChanged($event)">
+        <ng-option [value]="fund" *ngFor="let fund of mutualFundList ; let i= index">
+          <div class="d-flex align-items-center justify-content-start">
+            <!-- <img *ngIf="fund?.attachments?.length > 0; else logoPlaceholder" 
+              [src]="apiUrl + '/' + getLogo(fund)?.downloadLink"
+              alt="Fund Logo"
+              style="width: 20px;" /> -->
+            <app-svg-viewer *ngIf="fund?.attachments?.length > 0; else logoPlaceholder" 
+                 [svgUrl]="apiUrl + '/' + getLogo(fund)?.downloadLink" style="width: 20px;"></app-svg-viewer>
+
+            <ng-template #logoPlaceholder>
+              <div class="logo-loading-placeholder"></div>
+            </ng-template>
+            <span class="mx-1">{{fund.symbol}}</span>
+          </div>
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="px-5 pb-4">
+      <label>مبلغ سرمایه‌گذاری</label>
+      <div class="input-group">
+        <span class="input-group-text small">ریال</span>
+
+        <input #txtValue pattern="[0-9]*" inputmode="decimal" type="text" class="form-control ltr text-end"
+          [(ngModel)]="amount" placeholder="حداقل مبلغ سرمایه‌گذاری {{ minPrice() | number }} ریال" mask="separator_."
+          thousandSeparator="," (ngModelChange)="onAmountChanged()"
+          [ngClass]="{'is-invalid' : submitted() && (!amount || amount < minPrice())}" />
+      </div>
+      @if(submitted()){
+      <div *ngIf="!amount" class="small text-danger me-2 mt-1">لطفا مبلغ سرمایه‌گذاری را وارد نمایید</div>
+      <div *ngIf="amount && amount < minPrice()" class="small text-danger me-2 mt-1">
+        حداقل مبلغ سرمایه‌گذاری {{ minPrice() | number }} ریال می‌باشد</div>
+      }
+      @if (amount>10) {
+      <small class="p-1">{{ amountInWord() }} تومان</small>
+      }
+    </div>
+    <div class="px-5 pb-3">
+      <label class="mb-2">روزهای برداشت (هرماه)</label>
+      <div class="row day-of-month-grid">
+        <button *ngFor="let day of days; let i = index" class="btn mb-2 px-0"
+          [ngClass]="{ 'btn-cancel': !selectedDaysOfMonth()?.includes(i+1), 'btn-primary': selectedDaysOfMonth()?.includes(i+1)}"
+          (click)="toggleSelectedDay(i + 1)">
+          {{ i + 1 }}
+        </button>
+        <button class="btn mb-2 px-0 last-button"
+          [ngClass]="{'btn-cancel': !selectedDaysOfMonth()?.includes(31), 'btn-primary': selectedDaysOfMonth()?.includes(31)}"
+          (click)="toggleSelectedDay(31)">روز آخر ماه</button>
+      </div>
+      @if(submitted() && !selectedDaysOfMonth().length){
+      <div class="small text-danger me-2 mt-1">لطفا روزهای برداشت در هر ماه را وارد نمایید</div>
+      }
+    </div>
+    <div class="d-flex align-items-center px-5 pb-4">
+      <input class="ms-3 cursor-pointer" type="checkbox" id="selectAllDays"
+        [checked]="selectAllChecked"
+        (change)="toggleSelectAllDays($event.target.checked)">
+      <label class="m-0 cursor-pointer" for="selectAllDays">
+        انتخاب همه روزهای ماه
+      </label>
+    </div>         
+    <div class="form-group px-5 pb-4">
+      <label class="small mb-2">کد تایید</label>
+      <div class="input-group">
+        <input pattern="[0-9]*" inputmode="decimal" name="otp" type="text" id="otp" mask="999999" maxlength="6"
+          class="form-control ltr text-end" placeholder="کد تایید" [(ngModel)]="otp"
+          [ngClass]="{'is-invalid': (submitted() && !otp)}" required />
+        <div class="input-group-text text-center">
+          @if(sendingOTP()){
+          <div class="d-flex align-items-center h-100" style="width: 120px;">
+            ارسال کد تایید<span class="spinner-border spinner-border-sm mx-1"></span>
+          </div>
+          }@else{
+          <button type="button" class="btn text-nowrap btn-radius text-center cursor-pointer" [style.width]="'120px'"
+            (click)="sendOtp()" [counter]="{ seconds: 0, minutes: 2 }" [start]="hasOtpSent$ | async"
+            [disabled]="disableOtpButton$ | async" (value)="onCounterValueChange($event)" text=" ارسال کد تایید"
+            [showCounter]="showCounter$ | async" altText="ارسال کد"></button>
+          }
+        </div>
+      </div>
+      @if(submitted() && !otp){
+      <div class="small text-danger me-2 mt-1">لطفا کد تایید را وارد نمایید</div>
+      }
+    </div>
+    <div class="form-group px-5 pb-5">
+      <div class="input-group d-flex flex-column p-2 flex-nowrap" style="border: 1px dashed; border-radius: 15px; background-color: #6633CC1A;">
+        <div class="d-flex align-items-center">
+          <input id="agreement" type="checkbox" class="checkbox ml-1 cursor-pointer" [(ngModel)]="agreement" />
+          <label for="agreement" class="h6 mt-3 d-block">قوانین و مقررات
+            <a class="btn btn-link p-0 mb-1 mx-1" target="_blank" href="./docs/iPasargad_Direct_Debit_Contract.pdf">
+              پرداخت مستقیم </a>را می‌پذیرم.
+          </label>
+        </div>
+
+        <div class="mt-1 text-danger fs-6" *ngIf="submitted() && !agreement">
+          قوانین پرداخت مستقیم تایید نشده است.
+        </div>
+      </div>
+    </div>
+
+    }
+    <div class="border-0 w-100 d-flex px-5 pb-5">
+      <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">انصراف</button>
+      <app-loading-button class="w-50" [isLoading]="submittingForm()" [disabled]="submittingForm()" [type]="'button'"
+        cssClass="btn btn-primary rounded-pill text-white" (click)="registerScheduledDirectDebit()">
+        تایید
+      </app-loading-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<form [formGroup]="formGroup" (ngSubmit)="submit()" dir="rtl">
+  <div class="card overflow-hidden">
+    <div class="card-body px-5">
+      <a href="https://academy.ipasargad.ir/instruction-to-sign-up-in-ipasargad/" target="_blank">
+        <img class="w-100 rounded my-4" src="/images/signup-banner.webp" alt="راهنمای ثبت‌نام و ایجاد حساب کاربری">
+      </a>
+      <div class="w-100 border-dashed rounded">
+        <span class="mx-4">نوع کاربر</span>
+        <label class="btn mx-0">
+          <input class="form-check-input ms-1" type="radio" name="paymentType" (change)="setLegal(false)" autocomplete="off" [checked]="!isLegal()">
+          حقیقی
+        </label>
+        <label class="btn mx-0">
+          <input class="form-check-input ms-1" type="radio" name="paymentType" (change)="setLegal(true)" autocomplete="off" [checked]="isLegal()">
+          حقوقی
+        </label>
+      </div>
+      <div class="form-group my-4">
+        <label class="form-label" for="nationalId">{{isLegal()?'شناسه شرکت' :'کد ملی'}}</label>
+        <input pattern="[0-9]*" inputmode="decimal" mask="9*" class="form-control ltr text-end" id="nationalId"
+          type="text"
+          [ngClass]="{'is-invalid': !formGroup.controls.nationalId.pristine && formGroup.controls.nationalId.touched && !formGroup.controls.nationalId.valid}"
+          formControlName="nationalId" />
+        <div class="small text-danger me-2 mt-1 invalid-feedback">
+          @if (isLegal()) {
+          لطفا کد ملی را وارد نمایید
+          } @else {
+          لطفا شناسه شرکت را وارد نمایید
+          }
+        </div>
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="mobile">شماره تلفن همراه</label>
+        <input class="form-control ltr text-end" mask="00000000000" id="mobile" type="text" formControlName="mobile"
+          inputmode="decimal"
+          [ngClass]="{'is-invalid': !formGroup.controls.mobile.pristine && formGroup.controls.mobile.touched && !formGroup.controls.mobile.valid}"
+          placeholder="0912******" />
+        <div class="small text-danger me-2 mt-1 invalid-feedback">لطفا شماره تلفن همراه را وارد نمایید</div>
+      </div>
+      <div class="form-group mb-5">
+        <label class="form-label" for="captcha">کد امنیتی</label>
+        <div class="input-group"
+          [ngClass]="{'is-invalid': !formGroup.controls.captcha.pristine && formGroup.controls.captcha.touched && !formGroup.controls.captcha.valid}">
+          <input pattern="[0-9]*" inputmode="decimal" mask="9*" type="text" maxlength="4" minlength="4"
+            class="form-control ltr text-end"
+            [ngClass]="{'is-invalid': !formGroup.controls.captcha.pristine && formGroup.controls.captcha.touched && !formGroup.controls.captcha.valid}"
+            formControlName="captcha" id="captcha" required />
+          @if(generatedCaptchaValue()) {
+          <span class="input-group-text p-0 captcha" (click)="generateNewCaptcha()">
+            <fa-icon class="mx-2" icon="sync"></fa-icon>
+            <img [src]="generatedCaptchaValue().captchaByteData" class="img-fluid ms-2" [style.height]="'30px'" />
+          </span>
+          }
+        </div>
+        <div class="small text-danger me-2 mt-1 invalid-feedback">لطفا کد امنیتی را وارد نمایید</div>
+      </div>
+      @if(errMsg()){
+      <div class="my-4">
+        <p class="text-danger text-center mb-0">* {{ errMsg() }}</p>
+      </div>
+      }
+      <div class="d-flex flex-column mb-4">
+        <app-loading-button class="flex-fill m-2" [isLoading]="submitting()"
+          [disabled]="(submitting() || formGroup.invalid)" [type]="'submit'" cssClass="btn btn-primary">
+          ثبت‌نام
+        </app-loading-button>
+
+      </div>
+    </div>
+    <div class="card-footer d-flex">
+      <button type="button" routerLink="/auth/login" class="btn btn-green flex-fill fw-semibold text-white my-3 mx-2">
+        <span class="opacity-75 mx-1">حساب کاربری دارید؟</span> <span class="mx-1">ورود</span>
+      </button>
+    </div>
+  </div>
+</form>

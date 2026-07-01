@@ -1,0 +1,150 @@
+<div class="row">
+    <div class="col-lg-16">
+        <div class=" px-3 pb-3 pt-2">
+
+            <div class="card mb-4">
+                <form class="card-body d-flex flex-column" [formGroup]="formGroup" (submit)="submit()">
+                    <div class="mb-3">
+                       <label>صندوق</label>
+                       <ng-select [searchable]="false" [clearOnBackspace]="false" [clearable]="false" placeholder="انتخاب صندوق"
+                         formControlName="MutualFundId" (change)="onSelectedFundChanged($event)">
+                         <ng-option [value]="fund.mutualFundId" *ngFor="let fund of mutualFundList ; let i= index">
+                           <div class="d-flex align-items-center justify-content-start">
+                             <!-- <img *ngIf="fund?.attachments?.length > 0; else logoPlaceholder" 
+                               [src]="apiUrl + '/' + getLogo(fund)?.downloadLink"
+                               alt="Fund Logo"
+                               style="width: 20px;" /> -->
+                             <app-svg-viewer *ngIf="fund?.attachments?.length > 0; else logoPlaceholder" 
+                                  [svgUrl]="apiUrl + '/' + getLogo(fund)?.downloadLink" style="width: 20px;"></app-svg-viewer>
+                 
+                             <ng-template #logoPlaceholder>
+                               <div class="logo-loading-placeholder"></div>
+                             </ng-template>
+                             <span class="mx-1">{{fund.symbol}}</span>
+                           </div>
+                         </ng-option>
+                       </ng-select>
+                    </div>
+                    <div class="mb-3">
+                        <label>نوع نظر</label>
+                        <ng-select [searchable]="false" bindValue="code" bindLabel="title" [clearable]="false"
+                            placeholder="نوع محتوا" [items]="ticketTypes()" formControlName="Code"
+                            (change)="selectTicketType($event)">
+                        </ng-select>
+                    </div>
+                    @if(selectedTicket()?.code === 100 ){
+                    <div class="mb-3">
+                        <label>عنوان نظر</label>
+                        <input type="text" class="form-control" placeholder="عنوان" formControlName="Subject">
+                    </div>
+                    }
+                    <div class="mb-3">
+                        <label>موضوع نظر</label>
+                        <textarea type="text" class="form-control" placeholder="موضوع"
+                            formControlName="Message"></textarea>
+                    </div>
+                    <button type="submit" [disabled]="formGroup.invalid"
+                        class=" mt-2 btn btn-success text-white  align-self-end">ثبت نظر</button>
+
+                </form>
+            </div>
+
+
+
+            <ng-container *ngIf="loading()">
+                <div class="card h-100 mb-2  loading-animation" *ngFor="let item of [0,0,0,0,0]">
+                    <div class="card-body">
+                        <div class="col-24 mb-2">
+                            <div class="bg-light py-3"></div>
+                        </div>
+                        <div class="col-24 mb-2">
+                            <div class="bg-light py-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!loading() && (tickets().length > 0)">
+                <div class="card w-100 rounded-sm mt-2 text-right px-0 mb-4" *ngFor="let ticket of tickets()">
+                    <div class="card-header border-radius-15 d-flex align-items-center justify-content-between p-3">
+                        <div class="d-flex align-items-center flex-column">
+                            <h4 class="mb-3">
+                                {{ticket?.subject}}
+                            </h4>
+                            <h5>
+                                {{ticket?.category}}
+                            </h5>
+                        </div>
+                        <div class="d-flex align-items-center align-items-center">
+                            
+                            <span *ngIf="ticket?.mutualFundId">
+                                <img
+                                  [src]="'/images/' + ticket?.mutualFundId + '.svg'"
+                                  alt="Fund Logo"
+                                  style="width: 20px;" />
+                                  
+                            </span>
+                              
+                            <span class="me-1">{{ticket?.mutualFundSymbol}} </span>              
+                            
+                            <span class="mx-1" *ngIf="ticket?.mutualFundId">/</span>
+
+                            @switch (ticket.state) {
+                            @case(1){
+                            <svg viewBox="0 0 24 24" width="30px" height="30px" class="text-warning p-1"
+                            placement="top" [ngbTooltip]="ticket.stateTitle"
+                            >
+                                <use xlink:href="#ico_message_more"></use>
+                            </svg>
+                            }
+                            @case(2){
+                            <svg viewBox="0 0 24 24" width="30px" height="30px" class="text-primary p-1" placement="top" [ngbTooltip]="ticket.stateTitle" >
+                                <use xlink:href="#ico_visibility_on"></use>
+                            </svg>
+
+                            }
+                            @case(3){
+                            <svg viewBox="0 0 24 24" width="30px" height="30px" class="text-success p-1" placement="top" [ngbTooltip]="ticket.stateTitle">
+                                <use xlink:href="#ico_message_accept"></use>
+                            </svg>
+
+                            }
+                            @case(99){
+                            <svg viewBox="0 0 24 24" width="30px" height="30px" class="text-danger p-1" placement="top" [ngbTooltip]="ticket.stateTitle">
+                                <use xlink:href="#ico_message_delete"></use>
+                            </svg>
+
+                            }
+                            }
+                        </div>
+
+                    </div>
+                    <div class="my-2" style="border-top: var(--dtx-gray-250) solid 1px;"></div>
+                    <div class="card-body p-3 w-100 position-relative ">
+                        <div class="text-neutral text-justify mb-2" [innerText]="ticket.message"></div>
+                        <h6 class="w-100 d-flex m-0 justify-content-end text-muted font-weight-light ">
+                            {{ticket.createdJalali}}
+                        </h6>
+                        @if (ticket.answer) {
+                        <div class="my-2" style="border-top: var(--dtx-gray-250) solid 1px;"></div>
+                        <div class="text-neutral text-justify mb-2">پاسخ مدیر:</div>
+                        <div class="text-neutral text-justify mb-2" [innerText]="ticket.answer"></div>
+                        <h6 class="w-100 d-flex m-0 justify-content-end text-muted font-weight-light ">
+                            {{ticket.modifiedJalali}}
+                        </h6>
+                        }
+                    </div>
+                </div>
+            </ng-container>
+
+            <div *ngIf="tickets().length === 0"
+                class="empty-container d-flex justify-content-center text-neutral align-items-center flex-column mt-3">
+                <img width="40%" src="/svg/empty-activity.svg" class="mb-3">
+                <div class="text-center">پیامی ندارید</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <!-- <app-fund-adv></app-fund-adv> -->
+    </div>
+</div>

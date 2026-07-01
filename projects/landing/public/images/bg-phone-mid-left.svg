@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 319 873">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-518.73" y1="820.31" x2="-518.73" y2="819.71" gradientTransform="translate(149036 315638.5) scale(287 -384)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="-518.75" y1="820.68" x2="-518.72" y2="820.05" gradientTransform="translate(149036 370948.5) scale(287 -452)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Layer_1">
+      <rect id="Rectangle_12621" width="319" height="873" fill="#fff" fill-opacity="0"/>
+      <rect id="Mobile_Dashboard-3" x="18" y="486.5" width="287" height="384" rx="20" ry="20" fill="url(#linear-gradient)" isolation="isolate" opacity=".6"/>
+      <rect id="Mobile_Dashboard-4" x="18" y="2.5" width="287" height="452" rx="20" ry="20" fill="url(#linear-gradient-2)" isolation="isolate" opacity=".8"/>
+    </g>
+  </g>
+</svg>

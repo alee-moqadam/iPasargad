@@ -1,0 +1,144 @@
+
+    <div class="card shadow p-0 m-0 bg-gray-150">
+      <div class="card-body  text-center">
+        <img [src]="'svg/success.svg'" alt="subscription success" height="100px" width="100px" />
+        <h4 class="text-center text-green mb-4">تبدیل صندوق با موفقیت انجام شد</h4>
+
+        <div class="p-1 border-dashed  p-2 my-2 custom-radius d-flex justify-content-between">
+          <span>کد رهگیری</span>
+          <span>{{requestId}}</span>
+        </div>
+        <div class="p-1 border-dashed p-2 my-2 custom-radius d-flex justify-content-between align-items-center">
+          <div>
+            <span>نام صندوق</span>
+          </div>
+          <div class="d-flex align-items-center">
+            <span class="ms-1">تبدیل</span>          
+            <span>
+              <div class="d-flex align-items-center">
+                <div class="d-flex justify-content-start align-items-center">
+                  <!-- <img *ngIf="fundDetail?.attachments?.length > 0; else logoPlaceholder"                 
+                    [src]="apiUrl + '/' + getLogo()?.downloadLink"
+                    alt="Fund Logo" style="width: 30px;" class="ms-2" /> -->
+  
+                  <!-- <app-svg-viewer *ngIf="fromFundDetail?.attachments?.length > 0; else logoPlaceholder"
+                   [svgUrl]="apiUrl + '/' + getLogoFromDetail()?.downloadLink" class="d-flex mx-1" style="width: 30px;"></app-svg-viewer>  
+                  <ng-template #logoPlaceholder>
+                    <div class="logo-loading-placeholder ms-1"></div>
+                  </ng-template> -->
+
+                  <app-svg-viewer #popoverRef1="ngbPopover" 
+                    [svgUrl]="apiUrl + '/' + getLogoFromDetail()?.downloadLink" class="d-flex mx-1 cursor-pointer" style="width: 30px;" 
+                    container="body" [ngbPopover]="popoverContent1" popoverClass="custom-popover" triggers="manual" placement="top" 
+                    (mouseenter)="!isMobile && onMouseEnter(popoverRef1)" (mouseleave)="!isMobile && onMouseLeave(popoverRef1)" 
+                    (click)="isMobile && togglePopover(popoverRef1)"> 
+                  </app-svg-viewer> 
+                  <ng-template #logoPlaceholder> 
+                    <div class="logo-loading-placeholder ms-1"></div> 
+                  </ng-template> 
+                  <ng-template #popoverContent1>
+                    <div (mouseenter)="!isMobile && (isInPopover = true)" 
+                        (mouseleave)="!isMobile && onMouseLeave(popoverRef1)" class="text-justify"> {{ fromFundDetail?.symbol}} 
+                    </div>
+                  </ng-template>
+
+                  <!-- <span class="my-2">{{ fromFundDetail?.symbol }}</span> -->
+                </div>
+              </div>
+            </span>
+            <span class="mx-1">به</span>                
+            <span>
+              <div class="d-flex align-items-center">
+                <div class="d-flex justify-content-start align-items-center">
+                  <!-- <img *ngIf="fundDetail?.attachments?.length > 0; else logoPlaceholder"                 
+                    [src]="apiUrl + '/' + getLogo()?.downloadLink"
+                    alt="Fund Logo" style="width: 30px;" class="ms-2" /> -->
+
+                  <app-svg-viewer #popoverRef2="ngbPopover" 
+                    [svgUrl]="apiUrl + '/' + getLogoToDetail()?.downloadLink" class="d-flex mx-1 cursor-pointer" style="width: 30px;" 
+                    container="body" [ngbPopover]="popoverContent2" popoverClass="custom-popover" triggers="manual" placement="top" 
+                    (mouseenter)="!isMobile && onMouseEnter(popoverRef2)" (mouseleave)="!isMobile && onMouseLeave(popoverRef2)" 
+                    (click)="isMobile && togglePopover(popoverRef2)"> 
+                  </app-svg-viewer> 
+                  <ng-template #logoPlaceholder> 
+                    <div class="logo-loading-placeholder ms-1"></div> 
+                  </ng-template> 
+                  <ng-template #popoverContent2>
+                    <div (mouseenter)="!isMobile && (isInPopover = true)" 
+                        (mouseleave)="!isMobile && onMouseLeave(popoverRef2)" class="text-justify"> {{ toFundDetail?.symbol }} 
+                    </div>
+                  </ng-template>
+  
+                  <!-- <app-svg-viewer *ngIf="toFundDetail?.attachments?.length > 0; else logoPlaceholder"
+                   [svgUrl]="apiUrl + '/' + getLogoToDetail()?.downloadLink" class="d-flex mx-1" style="width: 30px;"></app-svg-viewer>
+  
+                  <ng-template #logoPlaceholder>
+                    <div class="logo-loading-placeholder ms-2"></div>
+                  </ng-template> -->
+
+                  <!-- <span class="my-2">{{ toFundDetail?.symbol }}</span> -->
+                </div>
+              </div>
+            </span>
+          </div>
+        </div>
+        <div class="p-1 border-dashed p-2 my-2 custom-radius d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <span>قیمت تقریبی ابطال (NAV)</span>
+            <span class="me-1">
+              <app-svg-viewer #popoverRef3="ngbPopover" 
+                    [svgUrl]="apiUrl + '/' + getLogoFromDetail()?.downloadLink" class="d-flex mx-1 cursor-pointer" style="width: 30px;" 
+                    container="body" [ngbPopover]="popoverContent3" popoverClass="custom-popover" triggers="manual" placement="top" 
+                    (mouseenter)="!isMobile && onMouseEnter(popoverRef3)" (mouseleave)="!isMobile && onMouseLeave(popoverRef3)" 
+                    (click)="isMobile && togglePopover(popoverRef3)"> 
+                  </app-svg-viewer> 
+                  <ng-template #logoPlaceholder> 
+                    <div class="logo-loading-placeholder ms-1"></div> 
+                  </ng-template> 
+                  <ng-template #popoverContent3>
+                    <div (mouseenter)="!isMobile && (isInPopover = true)" 
+                        (mouseleave)="!isMobile && onMouseLeave(popoverRef3)" class="text-justify"> {{ fromFundDetail?.symbol}} 
+                    </div>
+                  </ng-template>
+            </span>
+          </div>
+          <span>{{fromFundDetail?.investType != 1 ? (fromFundDetail?.sellPrice | number) : (fromFundDetail?.performance?.lastRedemptionNav | number)}} ریال</span>
+        </div>
+        <div class="p-1 border-dashed p-2 my-2 custom-radius d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">          
+            <span>تعداد ابطال</span>
+            <span class="me-1">
+              <app-svg-viewer #popoverRef4="ngbPopover" 
+                    [svgUrl]="apiUrl + '/' + getLogoFromDetail()?.downloadLink" class="d-flex mx-1 cursor-pointer" style="width: 30px;" 
+                    container="body" [ngbPopover]="popoverContent3" popoverClass="custom-popover" triggers="manual" placement="top" 
+                    (mouseenter)="!isMobile && onMouseEnter(popoverRef4)" (mouseleave)="!isMobile && onMouseLeave(popoverRef4)" 
+                    (click)="isMobile && togglePopover(popoverRef4)"> 
+                  </app-svg-viewer> 
+                  <ng-template #logoPlaceholder> 
+                    <div class="logo-loading-placeholder ms-1"></div> 
+                  </ng-template> 
+                  <ng-template #popoverContent4>
+                    <div (mouseenter)="!isMobile && (isInPopover = true)" 
+                        (mouseleave)="!isMobile && onMouseLeave(popoverRef4)" class="text-justify"> {{ fromFundDetail?.symbol}} 
+                    </div>
+                  </ng-template>
+            </span>
+          </div>
+          <span>{{estimatedUnits | number }} واحد</span>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center my-2">
+          <textarea rows="10" readonly class="w-100 border-dashed custom-radius p-3 text-justify" [value]="message" #msgBox>{{ message }}</textarea>
+        </div>
+
+        <div class="d-flex">
+          <span class="btn btn-gray-275 ms-2 text-black my-3 w-50" [routerLink]="['/dashboard']" (click)="onDashboardClick()">
+             پیشخوان</span>
+          <span class="btn btn-primary me-2 my-3 w-50" routerLink="/reporting/requests" (click)="onReportsClick()">گزارش
+            درخواست‌ها</span>
+        </div>
+
+      </div>
+
+      <!-- <a class="btn rounded-pill btn-lg btn-primary btn-block mt-4" [routerLink]="['/dashboard']">ادامه</a> -->
+    </div>

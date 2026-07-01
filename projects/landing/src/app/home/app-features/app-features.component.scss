@@ -1,0 +1,852 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
+
+:host {
+  max-width: 1064px;
+  width: 1064px;
+  display: block;
+  margin: auto;
+
+  @include media-breakpoint-down(lg) {
+    width: unset !important;
+  }
+
+}
+
+h2 {
+  .underline {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 185px;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+
+    &.animated {
+      animation: draw-underline 10s linear alternate 1 forwards 500ms;
+    }
+  }
+}
+
+@keyframes draw-underline {
+  from {
+    stroke-dashoffset: 2000;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.feature-item {
+  @include media-breakpoint-down(lg) {
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 80%;
+      bottom: 0;
+      height: 0;
+      border-bottom: solid 1px var(--bs-border-color);
+    }
+  }
+}
+
+.feat-image {
+  max-width: 103px;
+  height: auto;
+}
+
+.features-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.feature-card {
+  position: relative;
+  flex: 0 0 calc(50% - 10px);
+  min-height: 220px;
+
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+
+  background: #fff;
+  border-radius: 16px;
+  padding: 13px;
+  text-align: center;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+}
+
+.feature-card .bg-back {
+  width: 100%;
+  height: 286px;
+  max-height: 286px;
+  object-fit: unset;
+  // margin-bottom: 15px;
+  border-radius: 0.7rem;
+}
+
+.feature-card h3 {
+  margin: 0;
+  // font-size: 20px;
+  font-weight: 600;
+}
+
+/* موبایل */
+@media (max-width: 768px) {
+  .feature-card {
+    flex: 0 0 100%;
+  }
+}
+
+.float-container {
+  position: relative;
+}
+
+/* پایه */
+.float-card {
+  position: absolute;
+  will-change: transform;
+}
+
+/* حرکت نرم بالا پایین */
+@keyframes floatUpDown {
+  0% {
+    transform: translateY(0px) rotate(var(--rot));
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(var(--rot));
+  }
+
+  100% {
+    transform: translateY(0px) rotate(var(--rot));
+  }
+}
+
+/* کارت 1 */
+.card-1 {
+  top: 20px;
+  left: 55px;
+  height: 85px;
+  --rot: 354deg;
+  animation: floatUpDown 1.3s ease-in-out infinite;
+
+  // &:hover {
+  //   animation: floatUpDown 1.3s ease-in-out infinite;
+  // }
+}
+
+/* کارت 2 (برعکس + متفاوت) */
+.card-2 {
+  bottom: 30px;
+  right: 30px;
+  height: 60px;
+  --rot: 1deg;
+  animation: floatUpDown 3s ease-in-out infinite reverse;
+}
+
+@media (max-width: 576px) {
+  .card-0 {
+
+    right: 20px !important;
+    height: 205px !important;
+    width: 90% !important;
+  }
+
+  .card-1 {
+    left: 10px !important;
+    height: 65px !important;
+  }
+
+  .card-2 {
+    right: 0px !important;
+    height: 45px !important;
+  }
+}
+
+
+.payment-animation {
+  position: relative;
+  width: fit-content;
+}
+
+.cards-marquee {
+  position: absolute;
+  top: 2px;
+  right: 40px;
+  height: 320px;
+  width: 400px;
+  overflow: hidden;
+}
+
+.cards-track {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: cardsScroll 15s linear infinite;
+}
+
+.cards-track img {
+  // height: 95px;
+  // width: auto;
+}
+
+.mouse-img {
+  position: absolute;
+  bottom: 50px;
+  left: 110px;
+  height: 50px;
+  z-index: 2;
+}
+
+@media (max-width: 576px) {
+
+  .cards-marquee {
+    right: 15px;
+    width: 85%;
+  }
+
+  .cards-track {
+    gap: 10px;
+  }
+
+  .cards-track img {
+    // height: 65px;
+  }
+
+  .mouse-img {
+    height: 40px;
+  }
+
+}
+
+
+
+@keyframes cardsScroll {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-120px * 3));
+  }
+}
+
+
+// **********************************************************
+
+.safe-supervised {
+  position: relative;
+  width: min(560px, 100%);
+  aspect-ratio: 524 / 317;
+  container-type: inline-size;
+  overflow: visible;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0.7rem;
+}
+
+/* مرکز مشترک تمام مدارها */
+.orbit {
+  position: absolute;
+  left: 50%;
+  top: 73.5cqw;
+  width: 0;
+  height: 0;
+}
+
+/* بازوی مدار */
+.arm {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: center center;
+}
+
+/* آیکون روی مدار */
+.sat {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* لوگوها */
+.orbit-logo {
+  width: clamp(55px, 10cqw, 85px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.15));
+}
+
+/* شیلد مرکزی */
+.shield {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  width: clamp(70px, 12cqw, 100px);
+  transform: translateX(-50%);
+  animation: shieldFloat 2s ease-in-out infinite;
+}
+
+/* Orbit 1 */
+.orbit-1 .arm {
+  animation: swing1 25s ease-in-out -3s infinite alternate;
+}
+.orbit-1 .sat {
+  animation: counter1 25s ease-in-out -3s infinite alternate;
+}
+
+/* Orbit 2 */
+.orbit-2 .arm {
+  animation: swing2 20s ease-in-out -3s infinite alternate;
+}
+.orbit-2 .sat {
+  animation: counter2 20s ease-in-out -3s infinite alternate;
+}
+
+/* Orbit 3 */
+.orbit-3 .arm {
+  animation: swing3 15s ease-in-out -3s infinite alternate;
+}
+.orbit-3 .sat {
+  animation: counter3 15s ease-in-out -3s infinite alternate;
+}
+
+/* Orbit 4 */
+.orbit-4 .arm {
+  animation: swing4 35s ease-in-out -3s infinite alternate;
+}
+.orbit-4 .sat {
+  animation: counter4 35s ease-in-out -3s infinite alternate;
+}
+
+/* Keyframes orbit 1 */
+@keyframes swing1 {
+  from {
+    transform: rotate(34.3deg) translateY(-73.3cqw);
+  }
+  to {
+    transform: rotate(-45.7deg) translateY(-73.3cqw);
+  }
+}
+@keyframes counter1 {
+  from {
+    transform: rotate(-34.3deg);
+  }
+  to {
+    transform: rotate(45.7deg);
+  }
+}
+
+/* Keyframes orbit 2 */
+@keyframes swing2 {
+  from {
+    transform: rotate(-52.6deg) translateY(-49.1cqw);
+  }
+  to {
+    transform: rotate(29.4deg) translateY(-49.1cqw);
+  }
+}
+@keyframes counter2 {
+  from {
+    transform: rotate(52.6deg);
+  }
+  to {
+    transform: rotate(-29.4deg);
+  }
+}
+
+/* Keyframes orbit 3 */
+@keyframes swing3 {
+  from {
+    transform: rotate(45deg) translateY(-61.5cqw);
+  }
+  to {
+    transform: rotate(-49deg) translateY(-61.5cqw);
+  }
+}
+@keyframes counter3 {
+  from {
+    transform: rotate(-45deg);
+  }
+  to {
+    transform: rotate(49deg);
+  }
+}
+
+/* Keyframes orbit 4 */
+@keyframes swing4 {
+  from {
+    transform: rotate(-64.6deg) translateY(-38.5cqw);
+  }
+  to {
+    transform: rotate(43.4deg) translateY(-38.5cqw);
+  }
+}
+@keyframes counter4 {
+  from {
+    transform: rotate(64.6deg);
+  }
+  to {
+    transform: rotate(-43.4deg);
+  }
+}
+
+/* شیلد */
+@keyframes shieldFloat {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-8px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .orbit-logo {
+    width: clamp(40px, 11cqw, 65px);
+  }
+
+  .shield {
+    width: clamp(45px, 13cqw, 80px);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .orbit-1 .arm,
+  .orbit-1 .sat,
+  .orbit-2 .arm,
+  .orbit-2 .sat,
+  .orbit-3 .arm,
+  .orbit-3 .sat,
+  .orbit-4 .arm,
+  .orbit-4 .sat,
+  .shield {
+    animation: none !important;
+  }
+}
+
+
+// @property --a {
+//   syntax: "<angle>";
+//   inherits: true;
+//   initial-value: 0deg;
+// }
+
+// .safe-supervised {
+//   position: relative;
+
+//   width: min(560px, 100%);
+//   aspect-ratio: 524 / 317;
+
+//   container-type: inline-size;
+
+//   overflow: visible;
+// }
+
+// .bg {
+//   position: absolute;
+//   inset: 0;
+
+//   width: 100%;
+//   height: 100%;
+
+//   object-fit: contain;
+//   // height: 300px;
+//   border-radius: 0.7rem;
+// }
+
+// /* مرکز مشترک تمام مدارها */
+// .orbit {
+//   position: absolute;
+
+//   left: 50%;
+//   top: 73.5cqw;
+
+//   width: 0;
+//   height: 0;
+
+//   --a: var(--mid);
+
+//   animation:
+//     swing var(--dur) ease-in-out var(--delay) infinite alternate;
+// }
+
+// @keyframes swing {
+//   from {
+//     --a: calc(var(--mid) - var(--amp));
+//   }
+
+//   to {
+//     --a: calc(var(--mid) + var(--amp));
+//   }
+// }
+
+// /* بازوی مدار */
+// .arm {
+//   position: absolute;
+
+//   left: 0;
+//   top: 0;
+
+//   transform:
+//     rotate(var(--a)) translateY(calc(-1 * var(--r)));
+// }
+
+// /* آیکون روی مدار */
+// .sat {
+//   position: absolute;
+
+//   left: 0;
+//   top: 0;
+
+//   transform:
+//     rotate(calc(-1 * var(--a)));
+
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// /* لوگوها */
+// .orbit-logo {
+//   width: clamp(55px, 10cqw, 85px);
+//   height: auto;
+
+//   display: block;
+
+//   filter:
+//     drop-shadow(0 10px 25px rgba(0, 0, 0, 0.15));
+// }
+
+// /* شیلد مرکزی */
+// .shield {
+//   position: absolute;
+
+//   left: 50%;
+//   bottom: 4%;
+
+//   width: clamp(70px, 12cqw, 100px);
+
+//   transform: translateX(-50%);
+
+//   animation: shieldFloat 3s ease-in-out infinite;
+// }
+
+// @keyframes shieldFloat {
+//   0% {
+//     transform:
+//       translateX(-50%) translateY(0);
+//   }
+
+//   50% {
+//     transform:
+//       translateX(-50%) translateY(-8px);
+//   }
+
+//   100% {
+//     transform:
+//       translateX(-50%) translateY(0);
+//   }
+// }
+
+// @media (max-width: 576px) {
+
+//   .orbit-logo {
+//     width: clamp(40px, 11cqw, 65px);
+//   }
+
+//   .shield {
+//     width: clamp(55px, 13cqw, 80px);
+//   }
+// }
+
+// @media (prefers-reduced-motion: reduce) {
+
+//   .orbit,
+//   .shield {
+//     animation: none;
+//   }
+// }
+
+
+
+// ****************************************
+
+.fund-item-InvestmentFund {
+  opacity: 0;
+  animation-duration: 6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* ---------- Item 1 ---------- */
+.fund-item-1 {
+  animation-name: dropIn1;
+  animation-delay: 0s;
+}
+
+@keyframes dropIn1 {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-180px) rotate(17deg);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+    transform: translateY(0) rotate(17deg);
+  }
+
+  85% {
+    opacity: 0;
+    transform: translateY(20px) rotate(17deg);
+  }
+}
+
+/* ---------- Item 2 ---------- */
+.fund-item-2 {
+  animation-name: dropIn2;
+  animation-delay: .2s;
+}
+
+@keyframes dropIn2 {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-180px) rotate(330deg);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+    transform: translateY(0) rotate(330deg);
+  }
+
+  85% {
+    opacity: 0;
+    transform: translateY(20px) rotate(330deg);
+  }
+}
+
+/* ---------- Item 3 ---------- */
+.fund-item-3 {
+  animation-name: dropIn3;
+  animation-delay: .4s;
+}
+
+@keyframes dropIn3 {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-180px) rotate(17deg);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+    transform: translateY(0) rotate(17deg);
+  }
+
+  85% {
+    opacity: 0;
+    transform: translateY(20px) rotate(17deg);
+  }
+}
+
+/* ---------- Item 4 ---------- */
+.fund-item-4 {
+  animation-name: dropIn4;
+  animation-delay: .6s;
+}
+
+@keyframes dropIn4 {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-180px) rotate(0deg);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+
+  85% {
+    opacity: 0;
+    transform: translateY(20px) rotate(0deg);
+  }
+}
+
+/* ---------- Item 5 ---------- */
+.fund-item-5 {
+  animation-name: dropIn5;
+  animation-delay: .8s;
+}
+
+@keyframes dropIn5 {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-180px) rotate(352deg);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+    transform: translateY(0) rotate(352deg);
+  }
+
+  85% {
+    opacity: 0;
+    transform: translateY(20px) rotate(352deg);
+  }
+}
+
+/* ---------- Item 6 ---------- */
+.fund-item-6 {
+  animation-name: dropIn6;
+  animation-delay: 1s;
+}
+
+@keyframes dropIn6 {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-180px) rotate(347deg);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+    transform: translateY(0) rotate(347deg);
+  }
+
+  85% {
+    opacity: 0;
+    transform: translateY(20px) rotate(347deg);
+  }
+}
+
+/* ---------- Item 7 ---------- */
+.fund-item-7 {
+  animation-name: dropIn7;
+  animation-delay: 1.2s;
+}
+
+@keyframes dropIn7 {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-180px) rotate(1deg);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+    transform: translateY(0) rotate(1deg);
+  }
+
+  85% {
+    opacity: 0;
+    transform: translateY(20px) rotate(1deg);
+  }
+}
+
+// .investment-fund-wrapper {
+//   position: relative;
+//   width: 100%;
+//   max-width: 500px;
+//   margin: 0 auto;
+// }
+
+.bg-back {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 450px) {
+
+  // .investment-fund-wrapper {
+  //   position: relative;
+  //   transform: scale(.8);
+  //   transform-origin: center top;
+  // }
+  .item-iPasargad {
+    height: 100px !important;
+    // right: 110px !important;
+    // top: 40px !important;
+    // top: 30%;left: 50%;transform: translate(-50%, -50%);
+  }
+
+  .fund-item-1 {
+    height: 45px !important;
+    right: -100px !important;
+    bottom: 25px !important;
+  }
+
+  .fund-item-2 {
+    height: 32px !important;
+    right: 55px !important;
+    bottom: 85px !important;
+  }
+
+  .fund-item-3 {
+    height: 35px !important;
+    right: -90px !important;
+    bottom: 0 !important;
+  }
+
+  .fund-item-4 {
+    height: 30px !important;
+    right: 70px !important;
+    bottom: 3px !important;
+  }
+
+  .fund-item-5 {
+    height: 30px !important;
+    left: -45px !important;
+    bottom: 0px !important;
+  }
+
+  .fund-item-6 {
+    height: 40px !important;
+    left: 0px !important;
+    bottom: 60px !important;
+  }
+
+  .fund-item-7 {
+    height: 35px !important;
+    left: 70px !important;
+    bottom: 35px !important;
+  }
+}

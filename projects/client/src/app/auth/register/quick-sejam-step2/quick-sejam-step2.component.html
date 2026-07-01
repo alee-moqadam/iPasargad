@@ -1,0 +1,152 @@
+<div class="row g-0 align-items-center justify-content-center vh-100">
+  <div class="col-lg-12 col-xl-12 overflow-hidden">
+    <div class="card">
+      <div class="card-body row px-4">
+        <img height="100px" src="/images/Pcm_Logo_Rgb_V_Fa_W.svg" alt="IPasargad" class="mb-3">
+
+        <div class="card-header mb-4 p-3">
+          <h3 class="mb-0">اطلاعات سجام</h3>
+        </div>
+        <div class="vh-50 overflow-auto p-2">
+          <div class="row">
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">نام</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.personalInfo?.firstName }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">نام خانوادگی</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.personalInfo?.lastName }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">نام پدر</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.personalInfo?.fatherName }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">جنسیت</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.personalInfo?.genderTitle }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">کد ملی</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.personalInfo?.nationalId }}
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="row align-items-end">
+                <div class="col-lg-12 mb-3">
+                  <label class="mb-2">سری شناسنامه</label>
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo()?.personalInfo?.identitySerialLongNumber }}
+                  </div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <div class="py-3 px-2 bg-gray-150 custom-radius">
+                    {{ customerInfo()?.personalInfo?.identitySerialShortNumber }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">تاریخ تولد</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.personalInfo?.birthDateJalali }}
+              </div>
+            </div>
+
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">محل تولد/ محل صدور</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.personalInfo?.birthPlace }}/{{
+                customerInfo()?.personalInfo?.issuePlace
+                }}
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">تلفن همراه</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.contactInfo?.phone }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">تلفن ثابت</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.contactInfo?.mobile }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">کدپستی</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.contactInfo?.postalCode }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">ایمیل</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.contactInfo?.email }}
+              </div>
+            </div>
+
+            <div class="col-lg-24 mb-3">
+              <label class="mb-2">آدرس</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.contactInfo?.address }}
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">بانک</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.bankAccounts[0]?.bankTitle }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">شعبه</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.bankAccounts[0]?.branchName }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">کد شعبه</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.bankAccounts[0]?.branchCode }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">شماره حساب</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.bankAccounts[0]?.accountNumber }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+              <label class="mb-2">شماره شبا</label>
+              <div class="py-3 px-2 bg-gray-150 custom-radius">
+                {{ customerInfo()?.bankAccounts[0]?.iban }}
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <div class="w-100 text-start">
+          <a (click)="finalizeSejamStatus()" class="btn btn-success mt-5 px-5">تایید اطلاعات</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,264 @@
+<div class="d-flex flex-column align-item-center mb-60">
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <h5 class="text-right text-secondary mb-0" style="color: #919BA5;">
+      روند سرمایه‌گذاری و برداشت
+    </h5>
+
+    <div class="d-flex">
+      <fa-icon icon="file-pdf" class="text-danger ms-2 cursor-pointer border border-1 p-2 border-danger" size="lg"
+        style="border-radius: 5px;" (click)="exportToPdf()"></fa-icon>
+      <fa-icon icon="file-excel" class="text-success ms-2 cursor-pointer border border-1 p-2 border-success" size="lg"
+        style="border-radius: 5px;" (click)="exportToExcel()"></fa-icon>
+    </div>
+
+  </div>
+
+  @if(chartData.length > 0){
+  <div class="card mx-0 mb-4">
+    <div class="card-body p-5">
+      <div class="w-100 h-100">
+        <div [class.ltr]="fontFamily() !== 'PeydaWebFaNum'" echarts [options]="chartOption" style="height: 243px;"></div>
+      </div>
+    </div>
+  </div>
+  }@else {
+  <img src="/images/empty-scenario/Group 19763.svg" class="img-fluid mb-4" alt=""
+    style="height: 243px;object-fit: cover;border-radius: 15px;" />
+  }
+
+
+
+  @for (request of requestList(); track $index)
+  {
+  @let index = $index;
+  <div class="card mx-0 mb-4 overflow-hidden">
+    <div class="card-body p-0">
+      <div class="row mx-0">
+        <div class="col-24 col-md-4 p-0"
+        [ngClass]="{
+          'bg-gift': request?.transactionType === 2 && request?.settlementType === 5,
+          'bg-primary-200': request?.transactionType === 2 && request?.settlementType === 6,
+          'bg-subscription': request?.transactionType === 2 && request?.settlementType !== 5 && request?.settlementType !== 6,
+          'bg-redemption': request?.transactionType === 3
+        }">
+          <div class="d-flex flex-md-column align-items-center justify-content-between justify-content-md-center h-100 ps-4 ps-md-0 pe-2 pe-md-0">
+            <div class="d-flex flex-md-column align-items-center justify-content-md-center p-1 p-md-4 h-100">
+                <svg class="text-primary me-2" viewBox="0 0 24 24" width="18px" height="18px" class="mx-1" [ngClass]="{
+                'text-info': request?.transactionType === 2 && request?.settlementType === 5,
+                'text-primary': request?.transactionType === 2 && request?.settlementType === 6,
+                'text-success': request?.transactionType === 2 && request?.settlementType !== 5 && request?.settlementType !== 6,
+                'text-danger': request?.transactionType === 3
+              }">
+                <use [attr.xlink:href]="
+                request.transactionType === 2 && request.settlementType === 5 ? '#ico_gift_stroke':
+                request.transactionType === 2 && request.settlementType === 6 ? '#ico_s_display_add':
+                request.transactionType === 2 && request.settlementType === 3 ? '#ico_circle_right':
+                request.transactionType === 2 ? '#ico_s_box_plus' :
+                request.transactionType === 3 && request.settlementType === 3 ?  '#ico_circle_left' : '#ico_s_box_minus'
+
+                "></use>
+              </svg>
+              <h5 class="font-weight-bold my-3" [ngClass]="{
+                'text-info': request?.transactionType === 2 && request?.settlementType === 5,
+                'text-primary': request?.transactionType === 2 && request?.settlementType === 6,
+                'text-success': request?.transactionType === 2 && request?.settlementType !== 5 && request?.settlementType !== 6,
+                'text-danger': request?.transactionType === 3
+              }">
+                {{request.transactionTypeTitle}}
+              </h5>
+              <h6 [ngClass]="{
+                'text-info': request?.transactionType === 2 && request?.settlementType === 5,
+                'text-primary': request?.transactionType === 2 && request?.settlementType === 6,
+                'text-success': request?.transactionType === 2 && request?.settlementType !== 5 && request?.settlementType !== 6,
+                'text-danger': request?.transactionType === 3
+              }" class="text-center mb-0 mb-md-3 px-2 px-md-0">
+                <div *ngIf="request?.transactionType === 2">
+                  <ng-container *ngIf="request?.settlementType === 5">
+                    کارت هدیه
+                  </ng-container>
+                  <ng-container *ngIf="request?.settlementType === 6">
+                    پرداخت مستقیم
+                  </ng-container>
+                  <ng-container *ngIf="request?.settlementType !== 5 && request?.settlementType !== 6 && request?.settlementType !== 3">
+                    سرمایه‌گذاری
+                  </ng-container>
+                  <ng-container *ngIf="request?.settlementType === 3">
+                    تبدیل
+                  </ng-container>
+                </div>
+                <div *ngIf="request?.transactionType === 3 && request?.settlementType !== 3">
+                  برداشت
+                </div>
+                <div *ngIf="request?.transactionType === 3 && request?.settlementType === 3">
+                  تبدیل
+                </div>
+              </h6>
+            </div>
+
+            <div>
+              <div class="d-md-none d-flex align-items-center justify-content-between">
+                <span class="badge"
+                  [ngClass]="{'badge-pish': request.state === 1 ||  request.state === 4 ||  request.state === 5 || request.state === 99 || request.state === 3,  'badge-waiting': request.state === 2 , 'badge-confirm': request.state === 8  }">
+                  {{request?.stateTitle}}
+                </span>
+                <span (click)="showMore(index)" class="bg-primary px-2 py-1 me-2 cursor-pointer" style="border-radius: 5px;">
+                  <fa-icon class="text-white" [icon]="showMoreStates[index] ? 'angle-up' : 'angle-down'"></fa-icon>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-24 col-md-20 p-4">
+          <div class="d-flex flex-column">
+            <div class="d-md-flex align-items-center justify-content-between ">
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start">
+                <h5 class="text-secondary">
+                  صندوق
+                </h5>
+                <h5 class="font-weight-bold">
+                  {{request?.mutualFundSymbol}}
+                </h5>
+              </div>
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start align-items-end mt-4 mt-md-0">
+                <h5 class="text-secondary text-left">
+                  @if(request?.transactionType === 2){
+                  مبلغ
+                  }@else{
+                  تعداد
+                  }
+                </h5>
+                <span class="d-flex align-items-center ">
+                  <h5 class="font-weight-bold">
+                    @if(request?.transactionType === 2){
+                    {{request?.amount | number }}
+                    }@else{
+                    {{
+                    request?.volume | number
+                    }}
+                    }
+                  </h5>
+                  <h6 class="me-2">
+                    @if(request?.transactionType === 2){
+                    ریال
+                    }@else{
+                    واحد
+                    }
+                  </h6>
+
+                </span>
+              </div>
+            </div>
+            <div class="d-md-flex align-items-center justify-content-between mt-4 mt-md-3">
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start">
+                <h5 class="text-secondary mb-3">
+                  @if(request.state !== 8) {
+                  تاریخ ایجاد
+                  }@else if (request.state === 8) {
+                  تاریخ تایید
+                  }
+                </h5>
+                <h5 class="font-weight-bold">
+                  @if(request.state === 8 ) {
+                  {{request?.emissionDateJalali}}
+                  }@else if(request.state !== 8) {
+                  {{request?.createdJalali}}
+                  }
+                  <!-- <span> 14:35 </span> <span class="mx-2">/</span> <span>14/05/12 </span> -->
+                </h5>
+              </div>
+              <div class="d-none d-md-flex align-items-center justify-content-between">
+                <span class="badge"
+                  [ngClass]="{'badge-pish': request.state === 1 ||  request.state === 4 ||  request.state === 5 || request.state === 99 || request.state === 3,  'badge-waiting': request.state === 2 , 'badge-confirm': request.state === 8  }">
+                  {{request?.stateTitle}}
+                </span>
+                <span (click)="showMore(index)" class="bg-primary px-2 py-1 me-2 cursor-pointer" style="border-radius: 5px;">
+                  <fa-icon class="text-white" [icon]="showMoreStates[index] ? 'angle-up' : 'angle-down'"></fa-icon>
+                </span>
+
+              </div>
+
+            </div>
+
+            <!-- <div class="col-24 mt-2 d-none" #more> -->
+            <div class="col-24 mt-2" [class.d-none]="!showMoreStates[index]" #more>
+              <div class="">
+                <div class="row px-3 py-2">
+                  <div class="col-md-24 my-2 d-flex justify-content-between" data-label="شماره پیگیری"
+                    data-label-visible="true">
+                    {{ request.ticketNumber || "-" }}
+                  </div>
+
+                  @if(request.state != 8){
+                     <div class="col-md-24 my-2 d-flex justify-content-between" data-label="واحد (تقریبی):"
+                       data-label-visible="true">
+                       {{ request.volume | number }}
+                     </div>
+                  }@else {
+                     <div class="col-md-24 my-2 d-flex justify-content-between" data-label="واحد (نهایی):"
+                       data-label-visible="true">
+                       {{ request.evidenceVolume | number }}
+                     </div>
+                  }                 
+
+                  <div *ngIf="!!request.confirmedAmount" class="col-md-24 my-2 d-flex justify-content-between" data-label="مبلغ تایید شده:"
+                    data-label-visible="true">
+                    {{ request.confirmedAmount | number }}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+  @if (requestList().length > 0 && !isLoading()) {
+  <div class="d-none d-lg-block button-action-container ">
+    <div class="container d-flex h-100 w-100">
+      <div class="rightbar"></div>
+      <div class="row w-100 mx-0 h-100">
+        <div class="col-md-16 mx-0 h-100 d-flex">
+          <div class="w-100 d-flex flex-column align-items-center justify-content-center me-4 px-2 bg-white">
+            <div class="w-100 d-flex align-items-center justify-content-between">
+              <span>مجموع واحدها</span>
+              <span>{{aggregationValues().totalAggrigatedValue2 |number}} واحد </span>
+            </div>
+            <div class="w-100 d-flex align-items-center justify-content-between">
+              <span>مجموع ارزش</span>
+              <span>{{aggregationValues().totalAggrigatedValue1 |number}} ریال </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8"></div>
+
+      </div>
+    </div>
+  </div>
+  }
+
+  @if (requestList().length === 0 && !isLoading()) {
+  <div class="w-100 d-flex align-items-center justify-content-center flex-column mt-5 pt-5">
+    <img src="/svg/badge-empty-asset.svg" class="img-fluid my-3" width="96" />
+    <h5 class="my-2">
+      نتیجه ای یافت نشد!
+    </h5>
+    <h6 style="color: #919BA5;">
+      هنوز هیچ اطلاعاتی ثبت نشده است.
+    </h6>
+  </div>
+  }
+
+
+  @if(isLoading()){
+  @for (item of arrayLength(); track $index) {
+  <app-css-skeleton></app-css-skeleton>
+  }
+  }
+
+
+</div>

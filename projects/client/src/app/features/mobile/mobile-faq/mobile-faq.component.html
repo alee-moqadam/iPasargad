@@ -1,0 +1,29 @@
+<div class="w-100" #animatedBlock class="hidden-block">
+    <div class="row">
+      <div class="col-lg-6 bg-faq-right">
+        <h2 class="mb-3 pt-3 ff-peyda text-center text-md-end">پرسش‌های متداول</h2>
+      </div>
+
+      <div class="col-lg-18 bg-faq-left">
+        @for (item of faqs; track $index) {
+        <div class="card mb-3 shadow-sm accordion-card-item border-radius-15" [ngClass]="{ expanded: !item.collapsed }">
+          <div class="card-body p-3">
+            <div class="card-header cursor-pointer d-flex justify-content-between"
+              [ngClass]="item.collapsed ? 'bg-transparent': 'bg-gray-150' "
+              (click)="item.collapsed = !item.collapsed">
+              <h5 class="mb-0 faq-item_question  ff-peyda" style="width:85% ;"> {{ item.question }} </h5>
+
+              <svg class="text-primary"  viewBox="0 0 24 24" width="18px" height="18px">
+                <use xlink:href="#ico_drop_down"></use>
+              </svg>
+            </div>
+
+            <h6 class="accordion-content mb-0">
+              {{ item.answer }}
+            </h6>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,30 @@
+:host {
+    .icon {
+        width: 32px;
+        height: 32px;
+        background-color: var(--dtx-gray-275);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    .accordion-button::after {
+        content: none;
+    }
+
+    .accordion-button {
+        background: var(--dtx-body-bg);
+        border-radius: 20px !important;
+      }
+      .accordion-button:focus {
+        box-shadow: none;
+      }
+      .accordion-button.collapsed {
+        background: #fff;
+        border-radius: 20px !important;
+      }
+      .accordion-body {
+        border-radius: 20px;
+        padding: 1rem;
+      }
+}

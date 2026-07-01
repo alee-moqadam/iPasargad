@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.216" height="18.797" viewBox="0 0 19.216 18.797">
+  <defs>
+    <filter id="Path_33346" x="1.151" y="0" width="16.964" height="15.785" filterUnits="userSpaceOnUse">
+      <feOffset dx="-1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur"/>
+      <feFlood flood-color="#fff"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_33347" x="0" y="16.297" width="19.216" height="2.5" filterUnits="userSpaceOnUse">
+      <feOffset dx="-1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-2"/>
+      <feFlood flood-color="#fff"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="ico_download" transform="translate(-1.867 -3.06)">
+    <g transform="matrix(1, 0, 0, 1, 1.87, 3.06)" filter="url(#Path_33346)">
+      <path id="Path_33346-2" data-name="Path 33346" d="M19.5,11.4l-6.48,6.04a1.487,1.487,0,0,1-2.04,0L4.5,11.4A1.5,1.5,0,0,1,5.52,8.8H8a1,1,0,0,0,1-1V4.56a1.5,1.5,0,0,1,1.5-1.5h3A1.5,1.5,0,0,1,15,4.56V7.8a1,1,0,0,0,1,1h2.48A1.5,1.5,0,0,1,19.5,11.4Z" transform="translate(-1.87 -3.06)" fill="#cdd7e1"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1.87, 3.06)" filter="url(#Path_33347)">
+      <path id="Path_33347-2" data-name="Path 33347" d="M3.617,19.357H20.333a.75.75,0,0,1,.75.75h0a.75.75,0,0,1-.75.75H3.617a.75.75,0,0,1-.75-.75h0A.75.75,0,0,1,3.617,19.357Z" transform="translate(-1.87 -3.06)" fill="#cdd7e1"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,290 @@
+<div class="card overflow-hidden">
+  <!-- <div class="card-header text-center text-white py-5" style="background-color: #737D87;">
+    {{displayModalHeader()}}
+  </div> -->
+  <div class="card-header text-white text-center py-4 d-flex align-items-center justify-content-between"
+    style="background-color: #737D87;">
+    <span>
+      @if(isMutualFundApplied()){
+        <button type="button" class="bg-opacity-25 bg-white border-0 border-radius-7 d-flex mb-2 me-2 p-2 text-white"
+          aria-label="Close" (click)="backToStep()">
+            <svg class="text-danger me-2" viewBox="0 0 24 24" width="18" height="18" class="mx-0">
+              <use [attr.xlink:href]="'#ico_drop_right'"></use>
+            </svg>
+        </button>
+      }
+    </span>
+    <h5 class="d-flex">
+      {{displayModalHeader()}}
+      <span class="align-items-center badge bg-warning d-flex me-2">به زودی</span>
+    </h5>
+    <button type="button" class="bg-opacity-25 bg-white border-0 border-radius-7 d-flex mb-2 me-2 p-2 text-white"
+      aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <svg viewBox='0 0 16 16' fill='#ffffff' width='16' height='16'>
+        <path
+          d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z' />
+      </svg>
+    </button>
+  </div>
+  <div class="card-body" [ngClass]="isMutualFundApplied() || fundInfo ? 'p-0' : 'pb-6'">
+    @if(fundInfo){
+    <!-- <redemption-fund-content [fundCode]="fundInfo?.seoRegisterNumber"
+      [fundId]="fundInfo?.mutualFundId"></redemption-fund-content> -->
+    <exchange-fund-content [fundCode]="fundInfo?.seoRegisterNumber"
+      [fundId]="fundInfo?.mutualFundId"></exchange-fund-content>
+    }@else {
+    @if(!isLoading()){
+    @if(!isMutualFundApplied()){
+
+    @if(isbrokerFinalizeMoreThanFiveDays()){      
+      <div class="box-finalize-steps mb-4 p-4">    
+        <div class="progress-steps mb-3">    
+          <div class="step step-one"
+               [ngClass]="getStepClass(1)">
+              <fa-icon class="text-gray-000" icon="check-circle" style="margin:2px;"></fa-icon>
+          </div>
+      
+          <div class="step step-two"
+               [ngClass]="getStepClass(2)">
+          </div>
+          
+          <div class="step step-extra"
+               [ngClass]="getExtraStepClass()">
+          </div>
+      
+          <div class="step step-three"
+               [ngClass]="getStepClass(3)">
+          </div>      
+        </div>
+        <div class="progress-steps mb-3">
+              <small class="step-one opacity-75 text-black fw-bold">ثبت نام اولیه</small>
+              <small class="step-two opacity-75 text-black fw-bold">بررسی وضعیت کاربر</small>
+              <small class="step-extra opacity-75 text-black fw-bold"></small>
+              <small class="step-three opacity-75 text-black fw-bold">تایید کاربر</small>        
+        </div>
+      
+        <div class="d-flex mt-1">
+      
+          <div class="d-flex align-items-center text-black" style="font-size: 45px" dir="ltr">
+            <span class="fw-bold">{{ getCurrentStep() }}</span>/3
+          </div>
+      
+          <div class="d-flex align-items-start flex-column mx-5">
+            <div class="d-flex mb-2 text-black">
+              <fa-icon size="lg" class="ms-2" icon="exclamation-triangle"></fa-icon>    
+              <p class="mb-0 fw-bold">
+                <!-- {{ getStatusText() }} -->
+                3 مرحله تا تایید خودکار
+              </p>    
+            </div>
+            <h6 class="text-justify mb-0 text-black" style="opacity: .90;line-height: 1.4;">
+                برای سرمایه‌گذاری در صندوق‌های قابل معامله (ETF)
+                لازم است مشخصات شما در سامانه‌های سجام بررسی و تایید شود
+            </h6>
+          </div>    
+        </div>    
+      </div>
+    }
+
+    @if(!this.isPortfolio){
+      <div class="box-info px-4 py-3">
+        <!-- <span class="d-flex align-items-center my-2">
+          <fa-icon size="lg" class="ms-2" icon="info-circle"></fa-icon>
+          <strong>توجه !</strong>
+        </span> -->
+        <p class="text-justify ff-peyda mb-2" style="line-height: unset !important;">
+           برای استفاده از این قابلیت و تبدیل واحدهای صندوق پاسارگاد و ریتون،
+            لازم است ابتدا از طریق دکمه «سرمایه‌گذاری» نسبت به افزایش دارایی خود حداقل در یکی 
+            از این صندوق‌ها اقدام کنید. پس از پردازش سرمایه‌گذاری و ثبت دارایی شما در سامانه
+           آی‌پاسارگاد، می‌توانید علاوه بر امکان برداشت، دارایی خود را به واحدهای صندوق‌ دیگر نیز تبدیل کنید.
+        </p>
+        <!-- <div class="d-flex justify-content-center align-items-center">
+          <span class="bg-success" style="width: 100px;height: 10px;border-radius: 10px;"></span>
+          <span class="">
+            <svg _ngcontent-ng-c3369580662="" viewBox="0 0 24 24" width="15px" height="15px" class="mx-1 text-primary">
+              <use _ngcontent-ng-c3369580662="" xlink:href="#ico_new"></use>
+            </svg>
+          </span>
+          <span style="width: 100px;height: 10px;border-radius: 10px;background-color: aqua;"></span>
+          <span class="mx-1" style="width: 20px;height: 10px;border-radius: 10px;background-color: rgb(26, 26, 228);"></span>
+        </div> -->
+      </div>
+      <div class="bg-cover"></div>
+    }
+
+    <h6 class="ff-peyda text-justify mx-2" style="color: #919BA5;line-height: 1.2rem;">
+      برای شروع فرآیند مبادله، لطفاً صندوق موردنظر خود را با دقت انتخاب کنید. هر صندوق شرایط و قوانین خاصی برای ابطال و
+      صدور
+      دارد.
+    </h6>
+
+    @for (item of allMutualFundsList(); track $index) {
+    <div [ngClass]="{
+              'mutual-fund-selected': item?.seoRegisterNumber === selectedMutualFund()?.seoRegisterNumber,
+              '': item?.seoRegisterNumber !== selectedMutualFund()?.seoRegisterNumber
+            }" class="mb-3  border-radius-15 cursor-pointer bg-white" style="border:1px solid #cdd7e1 !important;"
+      (click)="selectMutualFund(item)">
+      <div class="card-body d-flex flex-column py-0 px-2">
+        <div class="w-100 my-4">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-between mb-2 w-100">
+              <div class="d-flex w-100 align-items-center">
+                <!-- <img
+                  *ngIf="item.attachments?.length > 0 && getAttachment(item, attachmentTypes.Logo); else logoPlaceholder"
+                  class="ms-4 me-0" alt="Fund Logo" style="width: 40px;"
+                  [src]="'data:' + getAttachment(item, attachmentTypes.Logo)?.contentType + ';base64,' + getAttachment(item, attachmentTypes.Logo)?.base64File" /> -->
+                <ng-container>
+                  <app-svg-viewer  
+                   *ngIf="item.attachments?.length > 0 && getAttachment(item, attachmentTypes.Logo) as Logo; else logoPlaceholder"
+                   [svgUrl]="apiUrl + '/' + getAttachment(item, attachmentTypes.Logo)?.downloadLink"
+                   class="ms-1" style="width: 47px;">
+                  </app-svg-viewer>
+                </ng-container>
+                <ng-template #logoPlaceholder>
+                  <div class="logo-loading-placeholder ms-1 me-0 my-auto"></div>
+                </ng-template>
+                <div class="d-flex flex-column justify-content-center w-100">
+                  <div class="d-flex align-items-center justify-content-between w-100">
+                    <!-- <h5 class="fw-bold mb-0 text-nowrap d-none d-sm-block">صندوق {{ item?.symbol }}</h5> -->
+                    <h5 class="fw-bold mb-0 text-nowrap">{{ item?.mutualFundId == 2 ? 'صندوق پاسارگاد' : 'صندوق' + ' ' + item?.symbol }}</h5>
+                    <div class="d-flex align-items-center">
+                      <h6 class="badge ms-1 mb-0" style="padding: 3px 3px 2px 3px !important"
+                          [ngClass]="{
+                            'badge-confirm': (item?.brokerfinalizeinfo?.brokerFinalize && item?.brokerfinalizeinfo?.finalizeStatus == 2),
+                            'badge-waiting': (item?.brokerfinalizeinfo?.brokerFinalize && item?.brokerfinalizeinfo?.finalizeStatus == 1),
+                            'badge-danger': (!item?.brokerfinalizeinfo?.brokerFinalize && item?.brokerfinalizeinfo?.finalizeStatus == 0)
+                          }"
+                          #popoverRef="ngbPopover"
+                          [ngbPopover]="popoverContent"
+                          popoverClass="custom-popover"
+                          container="body"
+                          triggers="manual"
+                          placement="top"
+                          (click)="isMobile && togglePopover(popoverRef)"
+                          (mouseenter)="!isMobile && onMouseEnter(popoverRef)"
+                          (mouseleave)="!isMobile && onMouseLeave(popoverRef)">                   
+                       
+                          @if(item?.brokerfinalizeinfo?.finalizeStatus == 2){
+                            <svg class="ms-1" viewBox="0 0 24 24" width="15px" height="15px">
+                              <use xlink:href="#ico_new"></use>
+                            </svg>
+                          }@else if(item?.brokerfinalizeinfo?.finalizeStatus == 1){
+                            <svg class="ms-1" viewBox="0 0 24 24" width="15px" height="15px">
+                              <use xlink:href="#ico_clock"></use>
+                            </svg>
+                          }@else {                  
+                            <svg class="ms-1" viewBox="0 0 24 24" width="15px" height="15px">
+                              <use xlink:href="#ico_circle_help"></use>
+                            </svg>
+                          }                   
+                      
+                        <ng-template #popoverContent>
+                          <div (mouseenter)="!isMobile && (isInPopover = true)" 
+                               (mouseleave)="!isMobile && onMouseLeave(popoverRef)" 
+                               class="text-justify">
+                            برای فعال‌سازی معامله صندوق‌های قابل‌معامله (ETF)، لازم است مشخصات شما در 
+                            سامانه‌های سازمان بورس ثبت و تأیید شود؛ این فرآیند معمولاً یک تا دو روز معاملاتی  
+                            زمان می‌برد. در صورت خرید برای اولین بار در آی‌پاسارگاد، سفارش شما ثبت و پردازش 
+                            آن پس از فعال‌سازی انجام می‌شود. برای اطلاع از جزئیات، لطفاً
+                            <a href="https://academy.ipasargad.ir/rq/" class="text-primary" target="_blank">لینک راهنما</a>
+                            را مطالعه کنید.
+                          </div>
+                        </ng-template>
+                         {{item?.brokerfinalizeinfo?.brokerFinalize != false ? 
+                          ((item?.brokerfinalizeinfo?.brokerFinalize && item?.brokerfinalizeinfo?.finalizeStatus == 2) ? 'تایید شده' : 'در حال بررسی')  : 'در حال بررسی' }}
+                      </h6>
+                      <!-- <h6 class="badge" style="padding: 6px 5px 4px 5px !important" 
+                        [ngClass]="{'badge-confirm': item.isAllowRedemption, 'badge-waiting': !item.isAllowRedemption}">
+                        {{ item?.isAllowRedemption ? 'فعال' : 'موقتا &nbsp;&nbsp; غیر فعال'}}
+                      </h6> -->
+                      <h6 class="badge mb-0" style="padding: 6px 5px 4px 5px !important" 
+                        [ngClass]="getBadgeClass(item)"> {{getBadgeTitle(item)}}
+                      </h6>
+                    </div>
+                    @if(item?.seoRegisterNumber === selectedMutualFund()?.seoRegisterNumber){
+                    <svg viewBox="0 0 24 24" width="20px" height="20px" class="text-primary">
+                      <use xlink:href="#ico_circle_accept"></use>
+                    </svg>
+                    }
+                  </div>
+                  <div class="d-flex mt-2" style="color: #737D87;">
+                    <h6 class="text-nowrap py-1 px-2 mb-0"
+                      style="background-color: #CDD7E1;border-radius: 12px;color: #37414B;">
+                      {{item?.tags[1]}} - {{item?.tags[2]}}
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex  justify-content-between mb-2">
+            <div class="d-flex align-items-center flex-column">
+              <div class="d-flex align-items-center flex-column">
+                <div class="d-flex flex-column">
+                  <span class="py-2 h6">قابل برداشت</span>
+                  <span class=" d-flex">
+                    <span class="fw-bold ltr d-inline-block">{{
+                      item?.customerEvidence?.voidableVolume >= 0 ? item?.customerEvidence?.voidableVolume : 0 | number
+                      }}</span>
+                    <span class="small me-1 h6 mb-0"> واحد </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center flex-column">
+              <div class="d-flex align-items-center flex-column">
+                <div class=" align-items-center d-flex flex-fill justify-content-center flex-column">
+                  <span class="p-2 h6">قیمت تقریبی </span>
+                  <span class="px-2 d-flex">
+                    <span class="fw-bold ltr d-inline-block">
+                      {{
+                      item?.investType !== 1
+                      ? (item?.sellPrice != null ? (item?.sellPrice | number) : '-')
+                      : (item?.performance?.lastRedemptionNav != null ? (item?.performance?.lastRedemptionNav | number)
+                      : '-')
+                      }}
+                    </span>
+                    <span class="small me-1"> ریال </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex">
+            <span class="h6 mb-2">
+              تاریخ آخرین بروزرسانی :
+            </span>
+            <span class="h6">
+              {{item?.performance?.lastUpdateDateJalali}}
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- <div class="pt-4 border-0 w-100 d-flex">
+      <button class="btn w-50 btn-cancel rounded-pill" (click)="close()">انصراف</button>
+      <button class="btn w-50 btn-primary rounded-pill me-1 text-white" (click)="applyMutualFund()"
+        [disabled]="!selectedMutualFund()">مرحله بعد</button>
+    </div> -->
+    }@else {
+    <!-- <redemption-fund-content [fundCode]="selectedMutualFund()?.seoRegisterNumber"
+      [fundId]="selectedMutualFund()?.mutualFundId">
+    </redemption-fund-content> -->
+    <exchange-fund-content [fundCode]="selectedMutualFund()?.seoRegisterNumber"
+      [fundId]="selectedMutualFund()?.mutualFundId"></exchange-fund-content>
+    }
+    } @else {      
+      @for (item of arrayLength(); track $index) {
+        <app-css-skeleton></app-css-skeleton>
+      } 
+    }
+    }
+
+  </div>
+
+
+</div>

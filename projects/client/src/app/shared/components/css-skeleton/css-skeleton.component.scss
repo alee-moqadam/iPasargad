@@ -1,0 +1,74 @@
+.card-skeleton {
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #fff;
+    height: 133px;
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+  
+      .row {
+        display: flex;
+        margin: 0;
+  
+        .col-4,
+        .col-20 {
+          padding: 0;
+  
+          &.col-4 {
+            background: linear-gradient(90deg, #e0e0e0, #f3f3f3, #e0e0e0);
+            animation: shimmer 1.5s infinite;
+            height: 150px;
+          }
+  
+          &.col-20 {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+  
+            .skeleton-line {
+              height: 16px;
+              background: linear-gradient(90deg, #e0e0e0, #f3f3f3, #e0e0e0);
+              animation: shimmer 1.5s infinite;
+              border-radius: 4px;
+              margin-bottom: 12px;
+  
+              &.short {
+                width: 30%;
+              }
+  
+              &.medium {
+                width: 60%;
+              }
+  
+              &.long {
+                width: 100%;
+              }
+            }
+  
+            .badge-skeleton {
+              width: 80px;
+              height: 24px;
+              border-radius: 12px;
+              background: linear-gradient(90deg, #e0e0e0, #f3f3f3, #e0e0e0);
+              animation: shimmer 1.5s infinite;
+              margin-top: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+  //  moved to styles.css
+  // @keyframes shimmer {
+  //   0% {
+  //     background-position: -200px 0;
+  //   }
+  //   100% {
+  //     background-position: 200px 0;
+  //   }
+  // }
+  

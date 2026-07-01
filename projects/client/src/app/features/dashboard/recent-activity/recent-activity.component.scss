@@ -1,0 +1,71 @@
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+ul.timeline > li {
+    margin: 10px 0;
+    padding-right: 10px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid #747474;
+    right: 6px;
+    width: 10px;
+    height: 10px;
+    z-index: 400;
+}
+.tab-fade {
+  max-height: 500px;
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  overflow-y: scroll;
+}
+
+:host::ng-deep {
+  .nav {
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-item {
+      flex: 1 0 0;
+  }
+  .nav-link {
+    width: 100%;
+  }
+}
+
+.badge {
+   padding: 3px 6px 1px 6px;
+   background-color: #fff;
+   border-radius: 5px;
+   &-confirm {
+     color: rgba(18, 181, 73, 0.7);
+     border: 1.5px solid rgba(18, 181, 73, 0.7);
+   }
+   &-waiting {
+     color: rgba(255, 153, 0, 0.7);
+     border: 1.5px solid rgba(255, 153, 0, 0.7);
+   }
+   &-pish {
+     color: rgba(78, 98, 118, 0.7);
+     border: 1px solid rgba(78, 98, 118, 0.7);
+   }
+}
+
+
+
+

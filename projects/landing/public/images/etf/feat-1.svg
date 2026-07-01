@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="102.5" height="102.509" viewBox="0 0 102.5 102.509">
+  <g id="Group_23928" data-name="Group 23928" transform="translate(-1259.75 -1015.932)">
+    <path id="Intersection_90" data-name="Intersection 90" d="M-8548-3206.5V-3226a3,3,0,0,1,3-3h12a3,3,0,0,1,3,3v32.84A50.148,50.148,0,0,1-8548-3206.5Z" transform="translate(9821 4306.182)" fill="#d8d4fe" stroke="#062e28" stroke-width="2.5"/>
+    <path id="Intersection_89" data-name="Intersection 89" d="M-8530-3193.161V-3237a3,3,0,0,1,3-3h12a3,3,0,0,1,3,3v47.959A49.751,49.751,0,0,1-8530-3193.161Z" transform="translate(9821 4306.182)" fill="#d8d4fe" stroke="#062e28" stroke-width="2.5"/>
+    <path id="Intersection_88" data-name="Intersection 88" d="M-8510-3189c-.669,0-1.338-.013-2-.04V-3249a3,3,0,0,1,3-3h12a3,3,0,0,1,3,3v57.385A49.93,49.93,0,0,1-8510-3189Z" transform="translate(9821 4306.182)" fill="#d8d4fe" stroke="#062e28" stroke-width="2.5"/>
+    <path id="Intersection_87" data-name="Intersection 87" d="M-8494-3260a3,3,0,0,1,3-3h13a3,3,0,0,1,3,3v56.706a50.016,50.016,0,0,1-19,11.679Z" transform="translate(9821 4306.182)" fill="#a4c4fd" stroke="#062e28" stroke-width="2.5"/>
+    <circle id="Ellipse_2390" data-name="Ellipse 2390" cx="50" cy="50" r="50" transform="translate(1261 1017.182)" fill="none" stroke="#062e28" stroke-width="2.5"/>
+    <g id="Group_23924" data-name="Group 23924" transform="translate(271 36.182)">
+      <path id="Subtraction_1520" data-name="Subtraction 1520" d="M13.5,27C6.056,27,0,23.973,0,20.251V1H.6A9.507,9.507,0,0,0,5.417,4.407,23.352,23.352,0,0,0,13.5,5.751a23.352,23.352,0,0,0,8.083-1.344A9.507,9.507,0,0,0,26.4,1H27V20.251C27,23.973,20.944,27,13.5,27Z" transform="translate(1063 1044)" fill="#a4c4fd" stroke="#062e28" stroke-width="2.5"/>
+      <path id="Path_30545" data-name="Path 30545" d="M27,5c0,3.728-6.044,6.75-13.5,6.75S0,8.728,0,5" transform="translate(1063 1052.282)" fill="none" stroke="#062e28" stroke-width="2.5"/>
+      <path id="Path_30546" data-name="Path 30546" d="M27,5c0,3.728-6.044,6.75-13.5,6.75S0,8.728,0,5" transform="translate(1063 1045.532)" fill="none" stroke="#062e28" stroke-width="2.5"/>
+      <ellipse id="Ellipse_2402" data-name="Ellipse 2402" cx="13.5" cy="7" rx="13.5" ry="7" transform="translate(1063 1037)" fill="#a4c4fd" stroke="#062e28" stroke-width="2.5"/>
+    </g>
+    <g id="Group_23923" data-name="Group 23923" transform="translate(273.715 39.182)">
+      <path id="Subtraction_1521" data-name="Subtraction 1521" d="M13.5,20C6.057,20,0,17.01,0,13.334V0C0,1.778,1.406,3.452,3.959,4.713A22.059,22.059,0,0,0,13.5,6.668C20.943,6.668,27,3.677,27,0V13.334C27,17.01,20.943,20,13.5,20Z" transform="translate(1040 1058)" fill="#a4c4fd" stroke="#062e28" stroke-width="2.5"/>
+      <path id="Path_30547" data-name="Path 30547" d="M27,5c0,3.728-6.044,6.75-13.5,6.75S0,8.728,0,5" transform="translate(1040 1059.602)" fill="none" stroke="#062e28" stroke-width="2.5"/>
+      <ellipse id="Ellipse_2399" data-name="Ellipse 2399" cx="13.5" cy="7" rx="13.5" ry="7" transform="translate(1040 1051)" fill="#a4c4fd" stroke="#062e28" stroke-width="2.5"/>
+    </g>
+    <line id="Line_5422" data-name="Line 5422" x1="56" transform="translate(1266.5 1042.682)" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2.5" stroke-dasharray="3 5"/>
+    <line id="Line_5423" data-name="Line 5423" x1="41" transform="translate(1262.5 1054.682)" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2.5" stroke-dasharray="3 5"/>
+    <line id="Line_5424" data-name="Line 5424" x1="25.5" transform="translate(1262 1066.183)" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2.5" stroke-dasharray="3 5"/>
+  </g>
+</svg>

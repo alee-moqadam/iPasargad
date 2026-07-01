@@ -1,0 +1,175 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
+
+:host {
+  // max-width: 1064px;
+  // width: 1064px;
+  // display: block;
+  // margin: auto;
+
+  //   @include media-breakpoint-down(lg) {
+  //     width: unset !important;
+  // }
+  
+}
+
+.social-section {
+    background-image: url(/images/home/Social/Pattern.webp);
+    background-repeat: no-repeat;
+    // background-position: center;
+    background-position: 53% 120px;
+    background-size: contain;
+    width: 100%;
+}
+
+.social-lines{
+    display:flex;
+    align-items:center;
+    width:100%;
+    // overflow:hidden;
+}
+
+/*****************
+      LEFT
+******************/
+
+.social-left{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    min-width:0;
+}
+
+.line-1{
+    flex:0 0 518px;
+}
+
+.line-1 img{
+    width:518px;
+    height:269px;
+    display:block;
+}
+
+.repeat-right{
+    flex:1;
+    height:269px;
+    background:url('/images/home/Social/Right-4px.svg')
+               left center
+               repeat-x;
+
+    background-size:auto 269px;
+}
+
+
+/*****************
+     CENTER
+******************/
+
+.line-center{
+    flex:0 0 884px;
+    width:884px;
+    height:269px;
+    position:relative;
+    z-index:2;
+}
+
+.line-center__bg{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+/*****************
+      RIGHT
+******************/
+
+.social-right{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    min-width:0;
+}
+
+.repeat-left{
+    flex:1;
+    height:269px;
+    background:url('/images/home/Social/Left-4px.svg')
+               right center
+               repeat-x;
+
+    background-size:auto 269px;
+}
+
+.line-3{
+    flex:0 0 518px;
+}
+
+.line-3 img{
+    width:518px;
+    height:269px;
+    display:block;
+}
+
+// ─── Follow box: centered inside line-center ───────────────
+.follow-box-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-53%, -39%);
+    z-index:2;
+}
+
+.follow-box{
+    width:100%;
+    height:auto;
+}
+
+.si {
+  position: absolute;
+  height: 40px;
+  width: auto;
+  cursor: pointer;
+  display: block;
+
+  &--aparat   { left: 2%;   top: 11%; }
+  &--instagram { right: 19%; bottom: -8%; }
+  &--linkedin  { left: 10%;  bottom: 9%; }
+  &--telegram  { right: 11%; top: -3%; }
+}
+
+.dot {
+  position: absolute;
+  height: 20px;
+
+  &--1 { left: 3%;   top: 76%; }
+  &--2 { left: 15%;  top: 43%; }
+  &--3 { right: 4%;  top: 28%; }
+  &--4 { right: 30%; top: 43%; }
+}
+
+@media (max-width:991.98px){
+
+    .social-left,
+    .social-right{
+        display:none !important;
+    }
+
+    .social-lines{
+        justify-content:center;
+    }
+
+    .line-center{
+        width:min(884px,100%);
+        flex:0 1 auto;
+        height:auto;
+    }
+
+    .line-center__bg{
+        width:100%;
+        height:auto;
+    }
+
+}

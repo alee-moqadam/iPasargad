@@ -1,0 +1,33 @@
+::ng-deep {
+  .custom-popover.popover {
+    background-color: #333;
+    border: 1px solid #000;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.875rem;
+    padding: 10px;
+    max-width: 240px;
+    direction: rtl;
+    .popover-body {
+      padding: 8px;
+      color: #fff;
+      text-align: center;
+
+      a {
+        color: #9b5eff !important;
+        text-decoration: none;
+      }
+    }
+
+    .popover-arrow{
+      bottom: -8px;
+      &::after {
+        border-top-color: #333;
+      }
+    }
+  }
+
+  .form-check-input {
+    border: 1px solid rgb(160, 160, 160) !important;
+  }
+}

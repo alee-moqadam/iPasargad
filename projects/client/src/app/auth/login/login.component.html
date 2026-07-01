@@ -1,0 +1,76 @@
+<form [formGroup]="formGroup" (ngSubmit)="submit()" dir="rtl">
+  <div class="card overflow-hidden">
+    <div class="card-body px-5">
+      <h2 class="text-center my-5">ورود به سامانه</h2>
+      <div class="form-group mb-4">
+        <label class="form-label" for="loginName">کد ملی/شناسه ملی</label>
+        <input pattern="[0-9]*" mask="9*" inputmode="decimal" class="form-control" id="loginName" type="text"
+          [ngClass]="{'is-invalid': !formGroup.controls.loginName.pristine && formGroup.controls.loginName.touched && !formGroup.controls.loginName.valid}"
+          formControlName="loginName" required />
+        <div class="small text-danger me-2 mt-1 invalid-feedback">لطفا کد ملی را وارد نمایید</div>
+      </div>
+      <div>
+        <div class="d-flex justify-content-between align-items-center">
+          <label for="password" class="mb-0">کلمه عبور</label>
+          <a routerLink="/auth/forget-password" [state]="{ nationalId: formGroup.controls.loginName.value }"
+            class="btn-link btn outline-none text-decoration-none fw-bold">
+            فراموشی کلمه عبور؟
+          </a>
+        </div>
+        <div class="form-group mb-4">
+          <div class="input-group"
+            [ngClass]="{'is-invalid': !formGroup.controls.password.pristine && formGroup.controls.password.touched && !formGroup.controls.password.valid}">
+            <app-password id="password" formControlName="password" [showPasswordObligations]="false"
+              [isInvalid]="!formGroup.controls.password.pristine && !formGroup.controls.password.pristine && !formGroup.controls.password.valid"
+              #password />
+          </div>
+          <div class="small text-danger me-2 mt-1 invalid-feedback">لطفا کلمه عبور را وارد نمایید</div>
+        </div>
+        <div class="form-group mb-5">
+          <label class="form-label" for="captcha">کد امنیتی</label>
+          <div class="input-group"
+            [ngClass]="{'is-invalid': !formGroup.controls.captcha.pristine && formGroup.controls.captcha.touched && !formGroup.controls.captcha.valid}">
+            <input pattern="[0-9]*"  mask="9*" inputmode="decimal" type="text" maxlength="4" minlength="4"
+              class="form-control ltr text-end"
+              [ngClass]="{'is-invalid': !formGroup.controls.captcha.pristine && formGroup.controls.captcha.touched && !formGroup.controls.captcha.valid}"
+              formControlName="captcha" id="captcha" required />
+            @if(generatedCaptchaValue()) {
+            <span class="input-group-text p-0 captcha" (click)="generateNewCaptcha()">
+              <fa-icon class="mx-2" icon="sync"></fa-icon>
+              <img [src]="generatedCaptchaValue().captchaByteData" class="img-fluid ms-2" [style.height]="'30px'" />
+            </span>
+            }
+          </div>
+          <div class="small text-danger me-2 mt-1 invalid-feedback">لطفا کد امنیتی را وارد نمایید</div>
+        </div>
+        @if(loginMsg()){
+        <div class="my-4">
+          <p class="text-danger text-center mb-0">* {{ loginMsg() }}</p>
+        </div>
+        }
+        <div class="d-flex flex-column mb-1">
+          <app-loading-button class="w-100 my-3" [isLoading]="submitting()"
+            [disabled]="(submitting() || formGroup.invalid || !formGroup.controls.password.valid)" [type]="'submit'"
+            cssClass="btn btn-primary">
+            ورود
+          </app-loading-button>
+          @if(showLoginByBiometrics()){
+            <app-loading-button class="w-100 my-3 d-lg-none" [isLoading]="biometricSubmitting()"
+            [disabled]="biometricSubmitting()" [type]="'button'" (click)="biometricLogin()"
+            cssClass="btn btn-secondary">
+            ورود با اثر انگشت
+          </app-loading-button>
+          }
+        </div>
+      </div>
+
+    </div>
+    <div class="card-footer d-flex">
+      <button type="button" routerLink="/auth/reg/step1" [state]="{ nationalId: formGroup.controls.loginName.value }"
+        class="btn btn-green flex-fill fw-semibold text-white my-3 mx-2">
+        <span class="opacity-75 mx-1">حساب کاربری ندارید؟</span> <span class="mx-1">ثبت نام</span>
+      </button>
+
+    </div>
+  </div>
+</form>

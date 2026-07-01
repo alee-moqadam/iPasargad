@@ -1,0 +1,39 @@
+<div class="card overflow-hidden">
+  <div class="card-header bg-primary text-center text-white py-5">
+    ثبت یا ویرایش شماره کارت
+  </div>
+  <div class="card-body p-0">
+    <div class="p-5">
+      <img class="w-100" src="/images/register-card-modal-banner.png" alt="">
+    </div>
+    <div class="px-5 pb-5" style="max-width: 435px;">با ای‌ پاسارگاد، سرمایه‌گذاری را به‌صورت خودکار و منظم انجام دهید!
+      <br>
+      فقط یک‌بار کارت بانکی خود را معرفی کنید و هر ماه، بدون نیاز به پیگیری، مبلغ دلخواهتان را به‌صورت خودکار
+      سرمایه‌گذاری کنید. این روش ساده و هوشمند، به شما کمک می‌کند بدون دغدغه پس‌انداز کنید و آینده مالی‌تان را بسازید.
+      <br>
+      شروع کنید و سرمایه‌گذاری را آسان‌تر از همیشه تجربه کنید!.
+    </div>
+    <div class="px-5 pb-5">
+      <label for="volume">شماره کارت</label>
+      <div class="input-group">
+        <span class="input-group-text small text-white">
+          <fa-icon icon="credit-card"></fa-icon>
+        </span>
+        <input pattern="[0-9]*" inputmode="decimal" type="text" class="form-control ltr text-end"
+          [(ngModel)]="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx" mask="0000-0000-0000-0000"
+          [ngClass]="{'is-invalid' : submitted() && (!cardNumber || !isCardNumberValid)}" />
+      </div>
+      @if(submitted()){
+        <div *ngIf="!cardNumber" class="small text-danger me-2 mt-1">لطفا شماره کارت را وارد نمایید</div>
+        <div *ngIf="!isCardNumberValid" class="small text-danger me-2 mt-1">فرمت شماره کارت صحیح نیست</div>
+        }
+    </div>
+    <div class="border-0 w-100 d-flex px-5 pb-5">
+      <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">انصراف</button>
+      <app-loading-button class="w-50" [isLoading]="submittingForm()" [disabled]="submittingForm()" [type]="'button'"
+        cssClass="btn btn-primary rounded-pill text-white" (click)="registerCard($event)">
+        تایید
+      </app-loading-button>
+    </div>
+  </div>
+</div>

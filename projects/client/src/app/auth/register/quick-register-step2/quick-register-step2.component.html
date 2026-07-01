@@ -1,0 +1,61 @@
+<form [formGroup]="formGroup" (ngSubmit)="submit()" dir="rtl">
+  <div class="card overflow-hidden">
+    <div class="card-body px-5">
+      <div class="form-group my-4">
+        <label for="newPassword">رمز عبور</label>
+        <app-password id="newPassword" formControlName="newPassword" [showPasswordObligations]="true" #password />
+      </div>
+      <div class="form-group mb-3">
+        <label for="confirmPassword" class="mb-0">تکرار رمز عبور</label>
+        <div class="input-group"
+          [ngClass]="{'is-invalid': !formGroup.controls.confirmPassword.pristine && formGroup.controls.confirmPassword.touched && (!formGroup.controls.confirmPassword.valid || formGroup.errors?.['passwordMismatch'])}">
+
+          <app-password id="confirmPassword" formControlName="confirmPassword"
+            [isInvalid]="!formGroup.controls.confirmPassword.pristine && formGroup.controls.confirmPassword.touched && (!formGroup.controls.confirmPassword.valid || formGroup.errors?.['passwordMismatch'])"
+            #confirmPassword required />
+        </div>
+        <div class="small text-danger me-2 mt-1 invalid-feedback">
+          @if (formGroup.errors?.['passwordMismatch']){
+          <span>رمز عبور و تکرار آن یکسان نیست</span>
+          }@else {
+          <span>لطفا تکرار رمز عبور را وارد نمایید</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label" for="otp">کد ارسال شده به شماره را وارد نمایید</label>
+        <div class="input-group"
+          [ngClass]="{'is-invalid': !formGroup.controls.otp.pristine && formGroup.controls.otp.touched && !formGroup.controls.otp.valid}">
+
+          <input pattern="[0-9]*" inputmode="decimal" name="otp" type="text" id="otp" class="form-control ltr text-end"
+            formControlName="otp"
+            [ngClass]="{'is-invalid': !formGroup.controls.otp.pristine && formGroup.controls.otp.touched && !formGroup.controls.otp.valid}"
+            required />
+
+          <button type="button" class="input-group-text text-center cursor-pointer" [style.width]="'100px'"
+            (click)="sendOtp()" [counter]="{ seconds: 0, minutes: 2 }" [start]="isOtpSend$ | async"
+            [disabled]="disableOtpButton$ | async" (value)="onCounterValueChange($event)" text="ارسال کد"
+            [showCounter]="showCounter$ | async" altText=""></button>
+        </div>
+        <div class="small text-danger me-2 mt-1 invalid-feedback">لطفا کد تایید را وارد نمایید</div>
+      </div>
+
+      @if(errorMessage()){
+      <div class="my-4">
+        <p class="text-danger text-center mb-0">* {{ errorMessage() }}</p>
+      </div>
+      }
+    </div>
+    <div class="card-footer d-flex">
+      <button type="button" routerLink="/auth/reg/step1" class="flex-fill btn btn-gray-150 m-2 text-black">
+        بازگشت
+      </button>
+      <app-loading-button class="flex-fill m-2" [isLoading]="submitting()"
+        [disabled]="submitting() || formGroup.invalid" [type]="'submit'" cssClass="btn btn-primary">
+        تکمیل ثبت‌نام
+      </app-loading-button>
+
+    </div>
+  </div>
+</form>

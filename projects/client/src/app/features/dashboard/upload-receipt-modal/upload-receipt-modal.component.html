@@ -1,0 +1,289 @@
+<!-- <div class="bg-danger text-justify text-white py-2 px-4 mb-2 rounded">
+  به جهت رعایت قوانین مبارزه با پولشویی، شماره حساب واریز‌کننده وجه باید متعلق به سرمایه‌گذار باشد.
+</div> -->
+<label for="amount">مبلغ سرمایه‌گذاری</label>
+  @if(loadingData()){
+          <h3 class="d-flex align-items-center pt-3 justify-content-end mb-0 badge-skeleton" style="width: 100%;border-radius: 0.6rem;">
+          &nbsp;</h3>
+  } @else {
+   <div class="input-group"
+     [ngClass]="{'is-invalid' : submitted() && (!amount || amount < fundDetail()?.performance?.minPrice)}">
+     <span class="input-group-text small">ریال</span>
+
+     <input #txtValue pattern="[0-9]*" inputmode="decimal" type="text" class="form-control" [(ngModel)]="amount"
+       placeholder="حداقل مبلغ سرمایه‌گذاری {{ fundDetail()?.performance?.minPrice | number }} ریال" mask="separator_."
+       thousandSeparator=","
+       [ngClass]="{'is-invalid' : submitted() && (!amount || amount < fundDetail()?.performance?.minPrice)}"
+       (ngModelChange)="onValueChange()" />
+   </div>
+  }
+
+<div class="small text-danger me-2 mt-1 invalid-feedback">
+  <div *ngIf="!amount">
+    لطفا مبلغ سرمایه‌گذاری را وارد کنید
+  </div>
+  <div *ngIf="amount < fundDetail()?.performance?.minPrice">
+    حداقل مبلغ سرمایه‌گذاری {{ fundDetail()?.performance?.minPrice | number }} ریال می‌باشد
+  </div>
+</div>
+
+@if(amount > 9999999999999999){
+  <div class="mt-1 text-danger mb-2">
+    <strong>
+      مبلغ وارد‌شده از سقف مجاز بیشتر است.
+    </strong>
+  </div>
+}
+
+@if (amount>10 && amountInToman()) {
+<small class="p-1">{{ amountInToman() }} تومان</small>
+}
+
+<div class="d-flex flex-column w-100 flex-nowrap justify-content-between align-items-center mt-3 mb-4">
+  <!-- <div
+    class="d-flex justify-content-between w-100 flex-fill p-0 m-1 text-center">
+    <span class="p-2">تعداد تقریبی</span>
+    <span class="p-2">
+      <span class="fw-bold ms-1">{{ estimatedVolume() }}</span>
+      <span class="small">واحد</span>
+    </span>
+  </div> -->
+  <div
+    class="d-flex justify-content-between w-100 flex-fill p-0 m-1 text-center custom-dashed-border">
+    <span class="p-2">قیمت تقریبی صدور هر واحد</span>
+      @if(loadingData()){
+          <h3 class="d-flex align-items-center pt-3 justify-content-end mb-0 badge-skeleton" style="width: 80px;">
+          &nbsp;</h3>
+      } @else {
+        <span class="p-2">
+          <span class="fw-bold ms-1">
+             {{ fundId != 1 
+                 ? (bestLimit?.buyPrice != null ? (bestLimit?.buyPrice | number) : '-') 
+                 : (fundDetail()?.performance?.lastSubscriptionNav != null ? (fundDetail()?.performance?.lastSubscriptionNav | number) : '-') }}
+
+            <!-- {{(fundId != 1 ? bestLimit?.buyPrice : fundDetail()?.performance?.lastSubscriptionNav) | number }} -->
+          </span>
+          <span class="small">ریال</span>
+        </span>
+      }
+  </div>
+</div>
+<label for="amount" class="d-flex me-1 mt-3"> 
+    <fa-icon ngbTooltip="حساب بانکی صندوق که مبلغ فیش را به آن واریز نمودید" size="sm" class="ms-1 cursor-pointer" icon="info-circle"></fa-icon>
+      بانک واریز شده 
+</label>
+@if(loadingData()){
+    <h3 class="d-flex align-items-center pt-3 justify-content-end mb-0 badge-skeleton" style="width: 100%;border-radius: 0.6rem;">
+    &nbsp;</h3>
+} @else {
+  <ng-select id="bank" [searchable]="false" bindValue="id" [items]="allBankDeposits()" [clearOnBackspace]="true"
+  [clearable]="false" placeholder="بانک" [(ngModel)]="selectedBankId">
+  <ng-template ng-label-tmp let-item="item">
+    <img class="dropdown-icon" src="images/bank-icon-{{item.bankId}}.png" alt="">
+    <span class="mx-1">
+      {{ item?.bankTitle }} - شماره حساب {{item?.accountNumber}}
+    </span>
+  </ng-template>
+  <ng-template ng-option-tmp let-item="item" let-index="index">
+    <img class="dropdown-icon" src="images/bank-icon-{{item.bankId}}.png" alt="">
+    <span class="mx-1">
+      {{ item?.bankTitle }} - شماره حساب {{item?.accountNumber}}
+    </span>
+  </ng-template>
+  <ng-template ng-notfound-tmp>
+    <div class="p-2 text-black-50 custom-radius">هیچ حسابی یافت نشد</div>
+  </ng-template>
+</ng-select>
+}
+
+<div class="mt-1 small text-danger" *ngIf="submitted() && selectedBankId == null">
+  لطفا بانک را انتخاب نمایید
+</div>
+
+<!-- <div class="form-group mt-3 px-2 custom-radius shadow-sm bg-gray-275">
+        <div class="input-group d-flex flex-nowrap align-items-center">
+            <input id="agreement" type="checkbox" class="checkbox ml-1 cursor-pointer"
+                [(ngModel)]="agreement" />
+            <label for="agreement" class="h6 m-2 d-block">
+                <a class="btn btn-link p-0" target="_blank"
+                    href="./docs/Rules_2020-11-18.pdf">قوانین صدور صندوق‌های سرمایه‌گذاری
+                </a> را می‌پذیرم.
+            </label>
+        </div>
+        <div class="mt-1 small text-danger" *ngIf="submitted() && !agreement">
+            قوانین تایید نشده است.
+        </div>
+    </div> -->
+
+<div class="row">
+  @if (!filesUrl()[0]) {
+  <div class="col">
+     <label class="d-flex me-1 mt-3"> 
+        <fa-icon 
+            ngbTooltip="حداکثر حجم مجاز تصویر ۱ مگابایت است و فقط فرمت‌های PNG، JPG، JPEG و WEBP مورد قبول هستند." 
+            size="sm" class="ms-1 cursor-pointer" icon="info-circle"></fa-icon>
+          لطفا تصویر فیش را انتخاب نمایید 
+      </label>
+
+    <label for="upload-image"
+      class="d-flex flex-column justify-content-center align-items-center cursor-pointer mx-0 bg-gray-275 w-100 px-3 border-2 border-dashed border-gray-400 py-5 rounded mt-1">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="mb-2 mx-auto">
+          <fa-icon size="sm" icon="upload"></fa-icon>
+        </div>
+        <span class="d-flex"> 
+          بارگزاری تصویر
+        </span>
+      </div>
+        <!-- <input class="invisible h-0" type="file" id="upload-image" (change)="onFileSelected($event, 1)"
+        accept="image/*" /> -->
+        <input
+          class="invisible h-0"
+          type="file"
+          id="upload-image"
+          (change)="onFileSelected($event, 1)"
+          accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"/>
+    </label>
+
+  </div>
+  } @else {
+  <div class="col-12">
+    <div class="border-2 border-success d-block img-thumbnail mt-3 mx-auto overflow-hidden p-0 position-relative">
+      <fa-icon class="cursor-pointer" size="lg" (click)="removeFile(1)" icon="trash-alt"></fa-icon>
+      <img [src]="filesUrl()[0]" alt="" />
+    </div>
+  </div>
+  <div class="col-12">
+    @if(!filesUrl()[1]) {
+    <label for="upload-image"
+      class="d-flex flex-column justify-content-center align-items-center cursor-pointer mx-0 bg-gray-275 w-100 px-3 border-2 border-dashed border-gray-400 py-5 rounded mt-3">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="mb-2 mx-auto">
+          <fa-icon size="sm" icon="upload"></fa-icon>
+        </div>
+        <span> تصویر دوم فیش </span>
+      </div>
+      <input class="invisible h-0" type="file" id="upload-image" (change)="onFileSelected($event, 2)"
+        accept="image/*" />
+    </label>
+
+    } @else {
+    <div class="border-2 border-success d-block img-thumbnail mt-3 mx-auto overflow-hidden p-0 position-relative">
+      <fa-icon class="cursor-pointer" size="lg" (click)="removeFile(2)" icon="trash-alt"></fa-icon>
+      <img [src]="filesUrl()[1]" alt="" />
+    </div>
+    }
+
+  </div>
+
+  }
+  <div class="mt-1 small text-danger" *ngIf="submitted() && this.selectedFile[0] == null">
+    لطفا تصویر فیش واریز را انتخاب نمایید
+  </div>
+
+  @if ((imageErrorMessage$ | async).hasError) {
+  <div class="col-24 mt-1">
+    <div class="text-danger fs-6 p-1">
+      {{(imageErrorMessage$ | async).errorMessage}}
+    </div>
+  </div>
+
+  }
+
+</div>
+<!-- <img src="" height="120px" id="img-preview" alt="" class="img-fluid w-50 mx-auto"> -->
+
+<!-- @if(otpMode()){
+<div class="form-group">
+  <label class="form-text text-muted small mt-4 mb-2">
+    پیامک کد تایید برای موبایل شما ارسال شده است
+  </label>
+  <div class="input-group">
+    <input name="otp" type="text" id="otp" class="form-control ltr text-right" placeholder="کد تایید"
+      [(ngModel)]="otp" />
+    <button type="button" class="input-group-text text-center cursor-pointer text-black justify-content-center"
+      [style.width]="'120px'" (click)="reSendOtp()" [counter]="{ seconds: 0, minutes: 2 }"
+      [start]="isOtpSend$ | async" [disabled]="disableOtpButton$ | async" text="ارسال کد"
+      [showCounter]="showCounter$ | async" altText=""></button>
+  </div>
+</div>
+<div class="mt-1 small text-danger" *ngIf="submitted() && otp == ''">
+  کد پیامکی الزامی است
+</div>
+} -->
+
+<div class="form-group mt-3 px-2" style="border: 1px dashed; border-radius: 15px; background-color: #6633CC1A;">
+  <div class="input-group d-flex flex-column p-2 flex-nowrap">
+    <div class="d-flex align-items-center">
+      <input id="agreement" type="checkbox" class="checkbox ml-1 cursor-pointer" [(ngModel)]="agreement" />
+      <label for="agreement" class="h6 mt-3 d-block">
+        <!-- {{(fundId === 2 ? 'قرارداد' : 'قوانین')}} -->
+         قوانین
+        @if((this.fundId === 2 || fundDetail()?.fundType == 5)){
+        <a class="btn btn-link p-0 mb-1 mx-1" target="_blank"
+          href="./docs/iPasargad_ETF_Online_Offline_Trading_Agreements.pdf">
+          صندوق‌ ETF
+        </a> 
+        @if(fundDetail()?.fundType == 5){
+         و
+        <a class="btn btn-link p-0 mb-1 mx-1" target="_blank"
+           href="./docs/iPasargad_Gold_Fund_Terms.pdf">
+           صندوق طلا
+        </a> 
+        }
+        .
+        } @else {
+          <a class="btn btn-link p-0 mb-1 mx-1" target="_blank" href="./docs/Hezareh3-Pod_Statute.pdf">  صندوق‌
+            سرمایه‌گذاری</a> و <a class="btn btn-link p-0 mb-1 mx-1" target="_blank"
+            href="./docs/iPasargad_Online_Contract.pdf"> خدمات اینترنتی </a>.
+        }
+      </label>
+    </div>
+    <div class="mt-1 text-danger" *ngIf="submitted() && !agreement">
+      <!-- {{(fundId === 2 ? 'قرارداد' : 'قوانین')}} -->
+       قوانین
+      تایید نشده است.
+    </div>
+  </div>
+</div>
+
+@if(isConfirmedReceipt()){
+<div class="alert alert-warning mt-3 text-justify">
+  به جهت رعایت قوانین مبارزه با پولشویی، شماره حساب واریزکننده وجه باید متعلق به سرمایه‌گذار باشد. آیا از ثبت فیش با
+  اطلاعات وارد شده و واریز وجه از حساب مبدا به نام خودتان به شماره حساب مقصد
+  <b>{{getBankDeposit(selectedBankId).accountNumber}}</b> بابت امور سرمایه‌گذاری و بورس اطمینان دارید؟
+</div>
+<div class="form-group mt-3 px-2" style="border: 1px dashed; border-radius: 15px; background-color: #6633CC1A;">
+  <div class="input-group d-flex flex-column p-2 flex-nowrap">
+    <div class="d-flex">
+      <input id="agreement" type="checkbox" class="checkbox ml-1 cursor-pointer"
+        [(ngModel)]="receiptConfirmAgreement" />
+      <label for="agreement" class="h6 mt-3 d-block text-justify">
+        اطلاعات فیش با اطلاعات وارد شده کاملاً مطابق است، قوانین مبارزه با پولشویی رعایت شده و واریز وجه بابت امور
+        سرمایه‌گذاری و بورس انجام شده است.
+      </label>
+    </div>
+
+    <div class="mt-1 text-danger" *ngIf="receiptSubmitted() && !receiptConfirmAgreement">
+      تطابق اطلاعات فیش تایید نشده است
+    </div>
+  </div>
+</div>
+}
+<div class="pt-6 border-0 w-100 d-flex">
+  <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">انصراف</button>
+  @if(!isConfirmedReceipt()){
+  <app-loading-button class="w-50" [isLoading]="submittingForm()"
+    [disabled]="submittingForm() || !fundDetail()?.isAllowSubscription || !requestComposition()?.subscriptionPermit || !(this.amount >= fundDetail()?.performance?.minPrice)"
+    [type]="'button'" cssClass="btn btn-success rounded-pill text-white" (click)="confirmReceipt($event)">
+    سرمایه‌گذاری
+  </app-loading-button>
+  }@else{
+  <app-loading-button class="w-50" [isLoading]="submittingForm()" [disabled]="submittingForm()" [type]="'button'"
+    cssClass="btn btn-success rounded-pill text-white" (click)="saveReceipt($event)">
+    تایید
+  </app-loading-button>
+  }
+
+
+</div>

@@ -1,0 +1,91 @@
+
+<div class="d-flex flex-column align-item-center">
+  <div class="d-flex align-items-center justify-content-end mb-4">
+      <fa-icon icon="file-excel" class="text-success ms-2 cursor-pointer border border-1 p-2 border-success"
+       size="lg" style="border-radius: 5px;" (click)="exportToExcel()"></fa-icon>
+  </div>
+@for (report of requestList(); track $index) {
+  @let index = $index;
+  <div class="card mx-0 mb-4 overflow-hidden">
+    <div class="card-body p-0">
+      <div class="row mx-0">
+        <div class="col-24 col-md-4 p-0" [ngClass]="{'bg-success-200': report?.debit === 0 ,  'bg-danger-200':( report?.debit - report?.credit > 0)}">
+          <div class="d-flex flex-md-column align-items-center justify-content-between justify-content-md-center p-1 p-md-4 h-100 ps-4 ps-md-0 pe-4 pe-md-0">
+            <h5 class=" my-3 my-md-0"
+             [ngClass]="{'text-success': report?.debit === 0 ,  'text-danger':( report?.debit - report?.credit > 0)}">
+
+                @if(report?.debit === 0){
+                  بستانکار
+                }@else{
+                  بدهکار
+                }
+
+              </h5>
+              <div>
+                <div class="d-md-none d-flex align-items-center justify-content-between">
+                 <span (click)="showMore(index)" class="bg-primary px-2 py-1 me-2 cursor-pointer" style="border-radius: 5px;">
+                  <fa-icon class="text-white" [icon]="showMoreStates[index] ? 'angle-up' : 'angle-down'"></fa-icon>
+                </span>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-24 col-md-20 p-4">
+          <div class="w-100 d-flex align-items-center flex-column">
+            <div class="d-md-flex w-100 align-items-center justify-content-between">
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start">
+                <h5 class="text-secondary mb-3">
+                  تاریخ
+                </h5>
+                <h5 class="">
+                  {{ report.voucherDateJalali }}
+                </h5>
+              </div>
+
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start align-items-end mt-4 mt-md-0">
+                <h5 class="text-secondary text-left">
+                  مبلغ
+                </h5>
+                <h5 class="text-left">
+                  @if(report?.debit !== 0){
+                   {{report?.debit | number}}
+                  }
+                  @if(report?.credit !== 0){
+                    {{report?.credit | number}}
+                  }
+                  <span class="text-secondary small me-1 font-weight-bold">
+                    ریال
+                  </span>
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex w-100 align-items-center mt-4">
+                <h5 class="text-right w-100" [ngClass]="{'mobile-truncate': !showMoreStates[index]}">
+                  {{report?.description}}
+                </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+</div>
+@if (requestList().length === 0 && !isLoading()) {
+
+  <div class="w-100 d-flex align-items-center justify-content-center flex-column mt-5 pt-5">
+    <img src="/svg/badge-empty-asset.svg" class="img-fluid my-3" width="96" />
+    <h5 class="my-2">
+      نتیجه ای یافت نشد!
+    </h5>
+    <h6 style="color: #919BA5;">
+      هنوز هیچ اطلاعاتی ثبت نشده است.
+    </h6>
+  </div>
+  }
+
+  @if(isLoading()){
+    @for (item of arrayLength(); track $index) {
+      <app-css-skeleton></app-css-skeleton>
+    }
+  }

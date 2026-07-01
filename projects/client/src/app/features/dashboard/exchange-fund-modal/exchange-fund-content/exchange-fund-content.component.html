@@ -1,0 +1,416 @@
+<ng-container>
+  @if(!isFromRequestCompositionRedemption() || !isToRequestCompositionSubscription()){
+  <div class="box-info mx-4 px-4 py-3">
+    <span class="d-flex align-items-center my-2">
+      <fa-icon size="lg" class="ms-2" icon="info-circle"></fa-icon>
+      <strong>توجه !</strong>
+    </span>
+    <p class="text-justify ff-peyda" style="line-height: unset !important;">
+      <!-- برای فعال‌سازی معامله صندوق‌های قابل‌معامله (ETF)، لازم است مشخصات شما در
+      سامانه‌های سازمان بورس ثبت و تأیید شود؛ این فرآیند معمولاً یک تا دو روز معاملاتی
+      زمان می‌برد. در صورت خرید برای اولین بار در آی‌پاسارگاد، سفارش شما ثبت و پردازش
+      آن پس از فعال‌سازی انجام می‌شود. برای اطلاع از جزئیات، لطفاً
+      <a href="https://academy.ipasargad.ir/rq/" class="text-primary" target="_blank"> لینک راهنما </a>
+      را مطالعه کنید. -->
+      
+      این تبدیل در حال حاضر به دلیل غیرفعال بودن برای شما در دسترس نیست.
+      برای راهنمایی بیشتر، لطفاً با تیم پشتیبانی آی‌پاسارگاد ارتباط بگیرید.
+    </p>
+    <!-- <div class="d-flex justify-content-center align-items-center mt-1 mb-2">
+      <span class="bg-success" style="width: 100px;height: 10px;border-radius: 10px;"></span>
+      <span class="">
+        <svg viewBox="0 0 24 24" width="15px" height="15px" class="mx-1 text-primary">
+          <use xlink:href="#ico_new"></use>
+        </svg>
+      </span>
+      <span style="width: 100px;height: 10px;border-radius: 10px;background-color: aqua;"></span>
+      <span class="mx-1" style="width: 20px;height: 10px;border-radius: 10px;background-color: rgb(26, 26, 228);"></span>
+    </div> -->
+  </div>
+  <div class="bg-cover"></div>
+  }
+  <div class="p-5">
+    <div class="box-fund mb-2">
+      <div class="my-3 position-relative">
+        <div class="d-flex justify-content-between">
+          <label>صندوق قابل تبدیل:</label>
+          <div class="d-flex justify-content-between">
+            <span class="pb-1 ps-1 align-items-center gap-1 cursor-default d-flex">
+              <svg #popoverRef="ngbPopover" class="mx-1 text-gray-500" icon="info-circle" container="body"
+                [ngbPopover]="popoverContent" popoverClass="custom-popover" triggers="manual" placement="top"
+                (click)="isMobile && togglePopover(popoverRef)" (mouseenter)="!isMobile && onMouseEnter(popoverRef)"
+                (mouseleave)="!isMobile && onMouseLeave(popoverRef)" style="width: 15px;" version="1.1"
+                viewBox="0 0 24 24">
+                <path fill="CurrentColor"
+                  d="M12,1.7c-5.7,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3,10.3-4.6,10.3-10.3c0-2.7-1.1-5.3-3-7.3-1.9-1.9-4.5-3-7.2-3ZM11,6.7c0-.6.4-1,1-1s1,.4,1,1v6.3c0,.6-.4,1-1,1s-1-.4-1-1v-6.3ZM11,16.5c0-.6.4-1,1-1s1,.4,1,1h0c0,.6-.4,1-1,1s-1-.4-1-1h0Z" />
+              </svg>
+              <ng-template #popoverContent>
+                <div (mouseenter)="!isMobile && (isInPopover = true)"
+                  (mouseleave)="!isMobile && onMouseLeave(popoverRef)" class="text-justify">
+                  قیمت تقریبی ابطال هر واحد
+                </div>
+              </ng-template>
+            </span>
+            <span class="fw-bold ltr d-inline-block pb-1">
+              {{
+              [2,3].includes(fromMutualFundId)
+              ? (fromBestLimit()?.sellPrice != null ? (fromBestLimit()?.sellPrice | number) : '-')
+              : (fromFundDetail()?.performance?.lastRedemptionNav != null
+              ? (fromFundDetail()?.performance?.lastRedemptionNav | number)
+              : '-')
+              }}
+            </span>
+            <label class="small" style="padding-top: 1px;"> ریال </label>
+          </div>
+        </div>
+        <ng-select [searchable]="false" bindValue="mutualFundId" [clearOnBackspace]="true" placeholder="انتخاب صندوق"
+          [(ngModel)]="fromMutualFundId" (ngModelChange)="onFromFundChange($event)">
+          <ng-option [value]="fund.mutualFundId" *ngFor="let fund of mutualFundListPortfo ; let i= index">
+            <div class="d-flex align-items-center justify-content-start">
+              <!-- <img *ngIf="fund?.attachments?.length > 0; else logoPlaceholder"
+                [src]="'data:' + getLogo(fund)?.contentType + ';base64,' + getLogo(fund)?.base64File" alt="Fund Logo"
+                style="width: 20px;" /> -->              
+              <app-svg-viewer *ngIf="fund?.attachments?.length > 0; else logoPlaceholder"
+                 [svgUrl]="apiUrl + '/' + getLogofromFundDetail(fund)?.downloadLink" style="width: 20px;">
+              </app-svg-viewer>
+              <ng-template #logoPlaceholder>
+                <div class="logo-loading-placeholder"></div>
+              </ng-template>
+              <span class="mx-1">{{fund.symbol}}</span>
+            </div>
+          </ng-option>
+        </ng-select>
+        @if(fromFundDetail() && fromMutualFundId && ( !fromFundDetail()?.isAllowRedemption || !fromFundDetail()?.isExchangeSetting) ){
+          <span style="position: absolute;left: 70px;bottom: 4px;">
+            <!-- <h6 class="badge"
+              [ngClass]="{'': (fromFundDetail()?.isAllowRedemption && fromFundDetail()?.isExchangeSetting), 'badge-waiting': (!fromFundDetail()?.isAllowRedemption || !fromFundDetail()?.isExchangeSetting)}">
+              {{ (fromFundDetail()?.isAllowRedemption && fromFundDetail()?.isExchangeSetting) ? '' : 'موقتا &nbsp;&nbsp; غیر فعال'}}
+            </h6> -->
+            <h6 class="badge" 
+                [ngClass]="getBadgeClass()"> {{getBadgeTitle()}}
+            </h6>
+          </span>
+        }
+      </div>
+      <div class="my-3">
+        <div class="d-flex justify-content-between flex-wrap">
+          <label for="volume">مبلغ تقریبی تبدیل</label>
+          <div class="d-flex justify-content-between">
+            <span class="ps-1 align-items-center gap-1 cursor-default d-flex" style="padding-bottom: 5px;">
+              <svg #popoverRef1="ngbPopover" class="mx-1 text-gray-500" icon="info-circle" container="body"
+                [ngbPopover]="popoverContent1" popoverClass="custom-popover" triggers="manual" placement="top"
+                (click)="isMobile && togglePopover(popoverRef1)" (mouseenter)="!isMobile && onMouseEnter(popoverRef1)"
+                (mouseleave)="!isMobile && onMouseLeave(popoverRef1)" style="width: 15px;" version="1.1"
+                viewBox="0 0 24 24">
+                <path fill="CurrentColor"
+                  d="M12,1.7c-5.7,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3,10.3-4.6,10.3-10.3c0-2.7-1.1-5.3-3-7.3-1.9-1.9-4.5-3-7.2-3ZM11,6.7c0-.6.4-1,1-1s1,.4,1,1v6.3c0,.6-.4,1-1,1s-1-.4-1-1v-6.3ZM11,16.5c0-.6.4-1,1-1s1,.4,1,1h0c0,.6-.4,1-1,1s-1-.4-1-1h0Z" />
+              </svg>
+              <ng-template #popoverContent1>
+                <div (mouseenter)="!isMobile && (isInPopover = true)"
+                  (mouseleave)="!isMobile && onMouseLeave(popoverRef1)" class="text-justify">
+                  <ul class="nav-tabs">
+                    <li class="nav-item">
+                      <div class="d-flex justify-content-between align-items-center" style="border-bottom: 1px solid rgb(78, 78, 78);">
+                        <span class="p-2 opacity-75">وثیقه شده</span>
+                        <span class="px-2">
+                          <span class="fw-bold">{{customerEvidence()?.gageVolume | number}}</span>
+                          <span class="small me-1 opacity-75 text-gray-200"> واحد </span>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <div class="d-flex justify-content-between align-items-center" style="border-bottom: 1px solid rgb(78, 78, 78);">
+                        <span class="p-2 opacity-75 text-gray-200">برداشت‌ در جریان</span>
+                        <span class="px-2">
+                          <span class="fw-bold">{{customerEvidence()?.watingRedemptiomVolume | number}}</span>
+                          <span class="small me-1 opacity-75 text-gray-200"> واحد </span>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <!-- <span class="p-2 opacity-75 text-gray-200">قابل برداشت</span>
+                      <span class="px-2">
+                        <span class="fw-bold ltr d-inline-block">{{customerEvidence()?.voidableVolume >= 0 ? customerEvidence()?.voidableVolume : 0 | number}}</span>
+                        <span class="small me-1 opacity-75 text-gray-200"> واحد </span>
+                      </span> -->
+
+                       <div class="d-flex justify-content-between align-items-center" style="border-bottom: 1px solid rgb(78, 78, 78);">
+                        <span class="p-2 d-flex align-items-center cursor-pointer" (click)="changeTitle(isCheckVoidableUnit)">
+                          <input id="isCheckVoidableUnit" type="checkbox" class="checkbox ms-2 cursor-pointer" value="" [(ngModel)]="isCheckVoidableUnit" />
+                          <span class="opacity-75 text-gray-200"> تعداد قابل برداشت</span>
+                        </span>
+                         <span class="px-2">
+                           <span class="fw-bold ltr">{{ customerEvidence()?.voidableVolume >= 0 ?
+                             customerEvidence()?.voidableVolume : 0 | number}}</span>
+                           <span class="small me-1 opacity-75 text-gray-200"> واحد </span>
+                         </span>
+                      </div>
+
+                      <!-- <span class="p-1">ارزش تقریبی قابل برداشت:</span><br>
+                      <span class="p-1">
+                        <span class="fw-bold ms-1">{{ estimatedVoidableVolume() | number }}</span>
+                        <span class="small">ریال</span>
+                      </span> -->
+                    </li>
+                    <li class="nav-item">
+                       <div class="d-flex justify-content-between align-items-center">
+                        <span class="p-2 d-flex align-items-center cursor-pointer" (click)="changeTitle(isCheckVoidableVolume)">
+                          <input id="isCheckVoidableVolume" type="checkbox" class="checkbox ms-2 cursor-pointer" value="" [(ngModel)]="isCheckVoidableVolume" />
+                          <span class="opacity-75 text-gray-200">ارزش دارایی قابل برداشت</span>
+                        </span>
+                         <span class="px-2">
+                           <span class="fw-bold ms-1">{{ estimatedVoidableVolume() | number }}</span>
+                           <span class="small me-1 opacity-75 text-gray-200">ریال</span>
+                         </span>
+                      </div>
+                    </li>
+                  </ul>
+                  
+                </div>
+              </ng-template>
+            </span>
+            @if(isCheckVoidableVolume){
+              <span class="fw-bold ltr d-inline-block  pb-1">{{ estimatedVoidableVolume()| number}}</span>
+              <label class="small" style="padding-top: 1px;"> ارزش قابل برداشت</label>
+            }@else {
+              <span class="fw-bold ltr d-inline-block  pb-1">{{ customerEvidence()?.voidableVolume | number}}</span>
+              <label class="small" style="padding-top: 1px;"> تعداد قابل برداشت </label>
+            }
+          </div>
+        </div>
+        <!-- <div class="input-group"
+          [ngClass]="{'is-invalid' : submitted() && (!volume || volume > customerEvidence()?.voidableVolume)}">
+          <span class="input-group-text small">واحد</span>
+          <input #txtValue pattern="[0-9]*" inputmode="decimal" type="text" class="form-control" [(ngModel)]="volume"
+            placeholder="تعداد واحد فروش" mask="separator_." thousandSeparator=","
+            [ngClass]="{'is-invalid' : submitted() && (!volume || volume > customerEvidence()?.voidableVolume)}"
+            (ngModelChange)="onVolumeChange()" />
+        </div> -->
+        <div class="input-group"
+          [ngClass]="{'is-invalid' : submitted() && (!amount || amount > estimatedVoidableVolume())}">
+          <span class="input-group-text small">ریال</span>
+          <input #txtAmount pattern="[0-9]*" inputmode="decimal" type="text" class="form-control" [(ngModel)]="amount"
+            placeholder="مبلغ تبدیل" mask="separator_." thousandSeparator="," (ngModelChange)="onAmountChange($event)"
+            [ngClass]="{'is-invalid' : submitted() && (!amount || amount > estimatedVoidableVolume())}" />
+        </div>
+        <div class="small text-danger me-2 mt-1">
+          <div *ngIf="amount > estimatedVoidableVolume()">
+              @if(isCheckVoidableVolume){
+                حداکثر مبلغ قابل برداشت <span>{{ estimatedVoidableVolume() | number }}</span> ریال می‌باشد
+              }@else{
+                حداکثر تعداد قابل برداشت <span>{{ customerEvidence()?.voidableVolume | number }}</span> واحد می‌باشد
+              }
+          </div>
+          <div *ngIf="amount < (toFundDetail()?.performance?.minPrice+10000) && isMinPriceMsg()">
+                 حداقل مبلغ جهت تبدیل به صندوق <span>{{toFundDetail()?.symbol}}</span> <span>{{ (toFundDetail()?.performance?.minPrice+10000) | number }}</span> ریال می‌باشد
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column w-100 flex-nowrap justify-content-between align-items-center my-3">
+        <div class="d-flex w-100 justify-content-between  flex-fill p-0 text-center  custom-dashed-border">
+          <span class="p-1">تعداد واحد</span>
+          <span class="p-1">
+            <span class="fw-bold ms-1">{{ estimatedUnits() | number }}</span>
+            <span class="small">واحد</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="range-wrapper mt-4 mb-5">
+        <div class="range-track">
+          <div class="range-progress" [style.width.%]="activePercent()"></div>
+
+          <div class="range-steps">
+            <span *ngFor="let step of [0,10,20,30,40,50,60,70,80,90,100]" [class.active]="activePercent() >= step">
+            </span>
+          </div>
+
+          <div class="range-thumb" [style.left.%]="activePercent()">
+            {{ activePercent() }}%
+          </div>
+        </div>
+
+        <div dir="rtl">
+          <!-- <input type="range" min="0" max="100" step="10" [value]="activePercent()"
+            (input)="percentChange($any($event.target).value)" class="custom-range"> -->
+          <input type="range" min="0" max="100" step="1" [value]="activePercent()"
+            (input)="onRangeChange($any($event.target).value)" class="custom-range">
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center position-relative">
+      <span class="span-svg" (click)="changeFunds()">
+        <svg id="Layer_1" data-name="Layer 1" version="1.1" viewBox="0 0 24 24">
+          <path id="Path_2906" data-name="Path 2906" class="cls-1"
+            d="M15.2,2h-6.5c-3.7,0-6.7,3-6.8,6.8v6.5c0,3.7,3,6.7,6.8,6.8h6.5c3.7,0,6.7-3,6.8-6.8v-6.5c0-3.7-3-6.7-6.8-6.8ZM17.9,13.2l-4.4,4.4c-.8.8-2.1.8-2.9,0l-4.4-4.4c-.4-.4-.4-1,0-1.4s1-.4,1.4,0l3.4,3.4V6.4c0-.6.4-1,1-1s1,.4,1,1v8.8l3.4-3.4c.4-.4,1-.4,1.4,0,.4.4.4,1,0,1.4h0Z" />
+        </svg>
+      </span>
+    </div>
+
+    <div class="box-fund">
+      <div class="my-3">
+        <div class="d-flex justify-content-between">
+          <label>صندوق خرید:</label>
+          <div class="d-flex justify-content-between">
+            <span class="pb-1 ps-1 align-items-center gap-1 cursor-default d-flex">
+              <svg #popoverRef2="ngbPopover" class="mx-1 text-gray-500" icon="info-circle" container="body"
+                [ngbPopover]="popoverContent2" popoverClass="custom-popover" triggers="manual" placement="top"
+                (click)="isMobile && togglePopover(popoverRef2)" (mouseenter)="!isMobile && onMouseEnter(popoverRef2)"
+                (mouseleave)="!isMobile && onMouseLeave(popoverRef2)" style="width: 15px;" version="1.1"
+                viewBox="0 0 24 24">
+                <path fill="CurrentColor"
+                  d="M12,1.7c-5.7,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3,10.3-4.6,10.3-10.3c0-2.7-1.1-5.3-3-7.3-1.9-1.9-4.5-3-7.2-3ZM11,6.7c0-.6.4-1,1-1s1,.4,1,1v6.3c0,.6-.4,1-1,1s-1-.4-1-1v-6.3ZM11,16.5c0-.6.4-1,1-1s1,.4,1,1h0c0,.6-.4,1-1,1s-1-.4-1-1h0Z" />
+              </svg>
+              <ng-template #popoverContent2>
+                <div (mouseenter)="!isMobile && (isInPopover = true)"
+                  (mouseleave)="!isMobile && onMouseLeave(popoverRef2)" class="text-justify">
+                  قیمت تقریبی صدور هر واحد
+                </div>
+              </ng-template>
+            </span>
+            <span class="fw-bold ltr d-inline-block pb-1">
+              {{
+              [2,3].includes(toMutualFundId)
+              ? (toBestLimit()?.buyPrice != null ? (toBestLimit()?.buyPrice | number) : '-')
+              : (toFundDetail()?.performance?.lastSubscriptionNav != null
+              ? (toFundDetail()?.performance?.lastSubscriptionNav | number)
+              : '-')
+              }}
+            </span>
+            <label class="small" style="padding-top: 1px;"> ریال </label>
+          </div>
+        </div>
+
+        <!-- <ng-select [searchable]="false" bindValue="mutualFundId" [clearOnBackspace]="true" placeholder="انتخاب صندوق"
+          [(ngModel)]="toMutualFundId" (ngModelChange)="onToFundChange($event)">
+          <ng-option [value]="fund.mutualFundId" *ngFor="let fund of toFundList; let i= index">
+            <div class="d-flex align-items-center justify-content-start">
+              <img *ngIf="fund?.attachments?.length > 0; else logoPlaceholder"
+                [src]="'data:' + getLogo(fund)?.contentType + ';base64,' + getLogo(fund)?.base64File" alt="Fund Logo"
+                style="width: 20px;" />
+              <ng-template #logoPlaceholder>
+                <div class="logo-loading-placeholder"></div>
+              </ng-template>
+              <span class="mx-1">{{fund.symbol}}</span>
+            </div>
+          </ng-option>
+        </ng-select> -->
+        <div class="position-relative">
+          <div class="p-1 border-dashed p-2 my-2 custom-radius d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start align-items-center">
+                  <img *ngIf="toFundDetail()?.seoRegisterNumber" [src]="
+                    'images/' +
+                    toFundDetail()?.seoRegisterNumber +
+                    '.svg'
+                    " alt="fund logo" class="mx-1" height="100%" width="30px" />
+                <span class="my-2">{{ toFundDetail()?.symbol }}</span>
+              </div>
+            </div>
+          </div>
+           <!-- @if(!toFundDetail()?.isAllowSubscription && toFundDetail()){
+            <span style="position: absolute;left: 12px;bottom: 8px;">
+              <h6 class="badge"
+                [ngClass]="{'': toFundDetail()?.isAllowSubscription, 'badge-waiting': !toFundDetail()?.isAllowSubscription}">
+                {{ toFundDetail()?.isAllowSubscription ? '' : 'موقتا &nbsp;&nbsp; غیر فعال'}}
+              </h6>
+            </span>
+           } -->
+           @if (toFundDetail() && (!isToRequestCompositionSubscription() || !toFundDetail()?.isAllowSubscription)) {
+              <span style="position: absolute;left: 12px;bottom: 8px;">
+                <h6 class="badge"
+                    [ngClass]="{
+                      'badge-danger': !isToRequestCompositionSubscription(),
+                      'badge-waiting': isToRequestCompositionSubscription() && !toFundDetail()?.isAllowSubscription}">
+                  {{ !isToRequestCompositionSubscription() ? 'غیر فعال' : 'موقتا غیر فعال' }}
+                </h6>
+              </span>
+            }
+        </div>       
+      </div>
+
+      <div class="d-flex flex-column w-100 flex-nowrap justify-content-between align-items-center my-3">
+        <div class="d-flex w-100 justify-content-between  flex-fill p-0 text-center  custom-dashed-border">
+          <span class="p-1">تعداد تقریبی</span>
+          <span class="p-1">
+            <span class="fw-bold ms-1"> {{ estimatedBuyUnits() | number }}</span>
+            <span class="small">واحد</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-2 px-2" style="border: 1px dashed; border-radius: 15px; background-color: #6633CC1A;">
+      <div class="input-group d-flex flex-column flex-nowrap">
+        <div class="d-flex align-items-center">
+          <input id="agreement" type="checkbox" class="checkbox ml-1 cursor-pointer" [(ngModel)]="agreement" />
+          <label for="agreement" class="h6 mt-3 d-block">
+            قوانین
+            <a class="btn btn-link p-0 mb-1 mx-1" target="_blank"
+              href="./docs/iPasargad_ETF_Online_Offline_Trading_Agreements.pdf">
+              صندوق‌ ETF
+            </a>
+            و
+            <a class="btn btn-link p-0 mb-1 mx-1" target="_blank" href="./docs/iPasargad_Swap_Contract.pdf">
+              تبدیل
+            </a>
+            .
+          </label>
+        </div>
+        <div class="mt-1 small text-danger" *ngIf="submitted() && !agreement">
+          قوانین
+          تایید نشده است.
+        </div>
+      </div>
+    </div>
+
+    @if(exChangeOtpMode()){
+    <div class="form-group mt-2">
+      <label class="form-text text-muted small">
+        پیامک کد تایید ارسال شده را لطفا وارد نمایید
+      </label>
+      <div class="input-group" [ngClass]="{'is-invalid': otpSubmitted() && !otp}">
+        <input pattern="[0-9]*" inputmode="decimal" name="otp" type="text" id="otp" [mask]="00000"
+          class="form-control ltr text-end" placeholder="کد تایید" [(ngModel)]="otp"
+          [ngClass]="{'is-invalid': otpSubmitted() && !otp}" required />
+        <div class="input-group-text text-center">
+          @if(sendingOTP()){
+          <div class="d-flex align-items-center h-100">
+            ارسال کد تایید<span class="spinner-border spinner-border-sm mx-1"></span>
+          </div>
+          }@else{
+          <button type="button" class="btn text-nowrap btn-radius text-center cursor-pointer" [style.width]="'120px'"
+            (click)="reSendOtp()" [counter]="{ seconds: 0, minutes: 1 }" [start]="isOtpSend$ | async"
+            [disabled]="disableOtpButton$ | async" (value)="onCounterValueChange($event)" text=" ارسال کد تایید"
+            [showCounter]="showCounter$ | async" altText="ارسال کد">ارسال کد</button>
+          }
+        </div>
+      </div>
+      <div class="small text-info me-2 mt-1 invalid-feedback">لطفا کد تایید را وارد نمایید</div>
+    </div>
+    }
+
+
+    <div class="mt-5 border-0 w-100 d-flex">
+      <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">
+        انصراف
+      </button>
+      @if(!exChangeOtpMode()){
+      <app-loading-button class="w-50" [isLoading]="submittingForm()"
+        [disabled]="submittingForm() || !fromFundDetail()?.isAllowRedemption || !this.fromFundDetail()?.isExchangeSetting || !toFundDetail()?.isAllowSubscription || !estimatedUnits() || this.amount > estimatedVoidableVolume() || !this.amount || !this.fromMutualFundId || !this.toMutualFundId || !this.agreement"
+        [type]="'button'" cssClass="btn btn-primary rounded-pill text-white" (click)="exchangeStep()">
+        تبدیل
+      </app-loading-button>
+      }@else {
+      <app-loading-button class="w-50" [isLoading]="submittingForm()"
+        [disabled]="submittingForm() || !fromFundDetail()?.isAllowRedemption || !this.fromFundDetail()?.isExchangeSetting || !toFundDetail()?.isAllowSubscription || !this.amount || !this.fromMutualFundId || !this.toMutualFundId || !this.agreement || !this.otp"
+        [type]="'button'" cssClass="btn btn-primary rounded-pill text-white" (click)="exChangeRequest($event)">
+        تبدیل
+      </app-loading-button>
+      }
+
+    </div>
+  </div>
+</ng-container>

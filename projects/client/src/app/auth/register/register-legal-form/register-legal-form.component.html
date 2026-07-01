@@ -1,0 +1,406 @@
+<form [formGroup]="companyForm" (ngSubmit)="onSubmit()" dir="rtl">
+  <div class="row g-0 align-items-center justify-content-center vh-100">
+    <div class="col-lg-12 col-xl-12 overflow-hidden">
+      <div class="card">
+        <div class="card-body row px-4">
+          <img height="100px" src="/images/Pcm_Logo_Rgb_V_Fa_W.svg" alt="IPasargad" class="mb-3">
+
+          <div class="card-header mb-4 p-3">
+            <h3 class="mb-0">ثبت اطلاعات کاربر حقوقی</h3>
+          </div>
+          <div class="vh-50 overflow-auto">
+            <div class="row" formGroupName="personalInfo">
+              <div class="col-24 p-2 bg-gray-150">
+                اطلاعات هویتی
+              </div>
+              <div class="col-lg-8  mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="companyName">نام شرکت:</label>
+                  <input class="form-control" id="companyName" type="text" formControlName="companyName" />
+                  <div
+                    *ngIf="companyForm.get('personalInfo.companyName').invalid &&
+                  (submited() || companyForm.get('personalInfo.companyName').dirty || companyForm.get('personalInfo.companyName').touched)">
+                    <small class="text-danger">نام شرکت الزامی است.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="nationalId">شناسه ملی:</label>
+                  <input class="form-control" id="nationalId" type="text" formControlName="nationalId" />
+                  <div
+                    *ngIf="companyForm.get('personalInfo.nationalId').invalid &&
+                  (submited() || companyForm.get('personalInfo.nationalId').dirty || companyForm.get('personalInfo.nationalId').touched)">
+                    <small class="text-danger">شناسه ملی معتبر نیست.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="registerNumber"> شماره ثبت:</label>
+                  <input class="form-control" id="registerNumber" type="text" formControlName="registerNumber" />
+                  <div
+                    *ngIf="companyForm.get('personalInfo.registerNumber').invalid &&
+                  (submited() || companyForm.get('personalInfo.registerNumber').dirty || companyForm.get('personalInfo.registerNumber').touched)">
+                    <small class="text-danger">شماره ثبت معتبر نیست.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="registerProvince">استان:</label>
+                  <select class="form-control" formControlName="registerProvince" (change)="onProvinceChange()">
+                    <option *ngFor="let province of provinces()" [value]="province.codeId">{{ province.title }}</option>
+                  </select>
+                  <div
+                    *ngIf="companyForm.get('personalInfo.registerProvince').invalid && (submited() || companyForm.get('personalInfo.registerProvince').dirty || companyForm.get('personalInfo.registerProvince').touched)">
+                    <small class="text-danger">استان الزامی است.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 mb-3">
+                <label class="form-label" for="registerPlaceId">شهر:</label>
+                <select class="form-control" formControlName="registerPlaceId">
+                  <option *ngFor="let city of cities()" [value]="city.codeId">{{ city.title }}</option>
+                </select>
+                <div
+                  *ngIf="companyForm.get('personalInfo.registerPlaceId').invalid && (submited() || companyForm.get('personalInfo.registerPlaceId').dirty || companyForm.get('personalInfo.registerPlaceId').touched)">
+                  <small class="text-danger">شهر الزامی است.</small>
+                </div>
+              </div>
+              <div class="col-lg-8 mb-3">
+                <label>تاریخ ثبت شرکت:</label>
+                <div class="input-group">
+                  <span class="input-group-text text-center cursor-pointer" (click)="d1.toggle()">
+                    <svg class="text-primary" viewBox="0 0 24 24" width="18px" height="18px">
+                      <use xlink:href="#ico_calendar"></use>
+                    </svg>
+                  </span>
+
+                  <input class="form-control" placeholder="تاریخ ثبت" name="dp2" formControlName="registerationDate"
+                    ngbDatepicker [maxDate]="maxPickerDate" (click)="d1.toggle()" #d1="ngbDatepicker" />
+                </div>
+              </div>
+              <div class="col-lg-8 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="economicCode"> کد اقتصادی:</label>
+                  <input class="form-control" id="economicCode" type="text" formControlName="economicCode" />
+                  <div
+                    *ngIf="companyForm.get('personalInfo.economicCode').invalid &&
+                  (submited() || companyForm.get('personalInfo.economicCode').dirty || companyForm.get('personalInfo.economicCode').touched)">
+                    <small class="text-danger">کد اقتصادی معتبر نیست.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" formGroupName="contactInfo">
+              <div class="col-24 p-2 bg-gray-150">اطلاعات ارتباطی</div>
+              <div class="col-lg-8 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="mobile">موبایل:</label>
+                  <input class="form-control" id="mobile" type="text" formControlName="mobile" />
+                  <div
+                    *ngIf="companyForm.get('contactInfo.mobile').invalid && (submited() || companyForm.get('contactInfo.mobile').dirty || companyForm.get('contactInfo.mobile').touched)">
+                    <small class="text-danger">موبایل الزامی است.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="phone">تلفن:</label>
+                  <input class="form-control" id="phone" type="text" formControlName="phone" />
+                  <div
+                    *ngIf="companyForm.get('contactInfo.phone').invalid && (submited() || companyForm.get('contactInfo.phone').dirty || companyForm.get('contactInfo.phone').touched)">
+                    <small class="text-danger">تلفن الزامی است.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="email">پست الکترونییکی:</label>
+                  <input class="form-control" id="email" type="email" formControlName="email" />
+                  <div
+                    *ngIf="companyForm.get('contactInfo.email').invalid && (submited() || companyForm.get('contactInfo.email').dirty || companyForm.get('contactInfo.email').touched)">
+                    <small class="text-danger">پست الکترونییکی معتبر نیست.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="postalCode">کد پستی:</label>
+                  <input class="form-control" id="postalCode" type="text" formControlName="postalCode" />
+                  <div
+                    *ngIf="companyForm.get('contactInfo.postalCode').invalid && (submited() || companyForm.get('contactInfo.postalCode').dirty || companyForm.get('contactInfo.postalCode').touched)">
+                    <small class="text-danger">کد پستی معتبر نیست.</small>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-lg-8 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="country">کشور:</label>
+                  <input class="form-control" id="country" type="text" formControlName="country" />
+                  <div
+                    *ngIf="companyForm.get('contactInfo.country').invalid && (submited() || companyForm.get('contactInfo.country').dirty || companyForm.get('contactInfo.country').touched)">
+                    <small class="text-danger">کشور الزامی است.</small>
+                  </div>
+                </div>
+              </div> -->
+              <div class="col-lg-8 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="provinceId">استان:</label>
+                  <select class="form-control" formControlName="provinceId" (change)="onContractProvinceChange()">
+                    <option *ngFor="let province of provinces()" [value]="province.codeId">{{ province.title }}</option>
+                  </select>
+                  <div
+                    *ngIf="companyForm.get('contactInfo.provinceId').invalid && (submited() || companyForm.get('contactInfo.provinceId').dirty || companyForm.get('contactInfo.provinceId').touched)">
+                    <small class="text-danger">استان الزامی است.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 mb-3">
+                <label class="form-label" for="cityId">شهر:</label>
+                <select class="form-control" formControlName="cityId">
+                  <option *ngFor="let city of contactCities()" [value]="city.codeId">{{ city.title }}</option>
+                </select>
+                <div
+                  *ngIf="companyForm.get('contactInfo.cityId').invalid && (submited() || companyForm.get('contactInfo.cityId').dirty || companyForm.get('contactInfo.cityId').touched)">
+                  <small class="text-danger">شهر الزامی است.</small>
+                </div>
+              </div>
+              <div class="col-lg-16 mb-3">
+                <div class="form-group mb-4">
+                  <label class="form-label" for="address">آدرس:</label>
+                  <input class="form-control" id="address" type="text" formControlName="address" />
+                  <div
+                    *ngIf="companyForm.get('contactInfo.address').invalid && (submited() || companyForm.get('contactInfo.address').dirty || companyForm.get('contactInfo.address').touched)">
+                    <small class="text-danger">آدرس الزامی است.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-24 p-2 bg-gray-150">نمایندگان شرکت</div>
+              <!-- مدیرعامل -->
+              <div formArrayName="partyHolderInfo">
+                <div class="row" [formGroupName]="0">
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="firstName-manager">نام مدیرعامل:</label>
+                      <input class="form-control" id="firstName-manager" type="text" formControlName="firstName" />
+                      <div
+                        *ngIf="companyForm.get('partyHolderInfo.0.firstName').invalid && (companyForm.get('partyHolderInfo.0.firstName').dirty || companyForm.get('partyHolderInfo.0.firstName').touched)">
+                        <small class="text-danger">نام مدیرعامل الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="lastName-manager">نام خانوادگی مدیرعامل:</label>
+                      <input class="form-control" id="lastName-manager" type="text" formControlName="lastName" />
+                      <div
+                        *ngIf="companyForm.get('partyHolderInfo.0.lastName').invalid && (companyForm.get('partyHolderInfo.0.lastName').dirty || companyForm.get('partyHolderInfo.0.lastName').touched)">
+                        <small class="text-danger">نام خانوادگی مدیرعامل الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="postalCode-manager">کد پستی مدیرعامل:</label>
+                      <input class="form-control" id="postalCode-manager" type="text" formControlName="postalCode" />
+                      <div
+                        *ngIf="companyForm.get('partyHolderInfo.0.postalCode').invalid && (companyForm.get('partyHolderInfo.0.postalCode').dirty || companyForm.get('partyHolderInfo.0.postalCode').touched)">
+                        <small class="text-danger">کد پستی مدیرعامل الزامی است.</small>
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="personNationalId-manager">کد ملی مدیرعامل:</label>
+                      <input class="form-control" id="personNationalId-manager" type="text"
+                        formControlName="personNationalId" />
+                      <div
+                        *ngIf="companyForm.get('partyHolderInfo.0.personNationalId').invalid && (companyForm.get('partyHolderInfo.0.personNationalId').dirty || companyForm.get('partyHolderInfo.0.personNationalId').touched)">
+                        <small class="text-danger">کد ملی مدیرعامل الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-lg-16 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="address-manager">آدرس مدیرعامل:</label>
+                      <input class="form-control" id="address-manager" type="text" formControlName="address" />
+                      <div
+                        *ngIf="companyForm.get('partyHolderInfo.0.address').invalid && (companyForm.get('partyHolderInfo.0.address').dirty || companyForm.get('partyHolderInfo.0.address').touched)">
+                        <small class="text-danger">آدرس مدیرعامل الزامی است.</small>
+                      </div>
+                    </div>
+                  </div> -->
+
+                  <input type="hidden" formControlName="type" value="Manager" />
+                  <input type="hidden" formControlName="holderType" value="1" />
+                  <input type="hidden" formControlName="positionType" value="Ceo" />
+                  <input type="hidden" formControlName="isOwnerSignature" value="true" />
+                </div>
+
+                <!-- نماینده شرکت -->
+                <div class="row" [formGroupName]="1">
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="firstName-agent">نام نماینده شرکت:</label>
+                      <input class="form-control" id="firstName-agent" type="text" formControlName="firstName" />
+                      <div
+                        *ngIf="companyForm.get('partyHolderInfo.1.firstName').invalid && (companyForm.get('partyHolderInfo.1.firstName').dirty || companyForm.get('partyHolderInfo.1.firstName').touched)">
+                        <small class="text-danger">نام نماینده شرکت الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="lastName-agent">نام خانوادگی نماینده شرکت:</label>
+                      <input class="form-control" id="lastName-agent" type="text" formControlName="lastName" />
+                      <div
+                        *ngIf="companyForm.get('partyHolderInfo.1.lastName').invalid && (companyForm.get('partyHolderInfo.1.lastName').dirty || companyForm.get('partyHolderInfo.1.lastName').touched)">
+                        <small class="text-danger">نام خانوادگی نماینده شرکت الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="postalCode-agent">کد پستی نماینده شرکت:</label>
+                      <input class="form-control" id="postalCode-agent" type="text" formControlName="postalCode" />
+                      <div
+                        *ngIf="companyForm.get('partyHolderInfo.1.postalCode').invalid && (companyForm.get('partyHolderInfo.1.postalCode').dirty || companyForm.get('partyHolderInfo.1.postalCode').touched)">
+                        <small class="text-danger">کد پستی نماینده شرکت الزامی است.</small>
+                      </div>
+                    </div>
+                  </div> -->
+
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="personNationalId-agent">کد ملی نماینده شرکت:</label>
+                      <input class="form-control" id="personNationalId-agent" type="text"
+                        formControlName="personNationalId" />
+                      <div
+                        *ngIf="companyForm.get('partyHolderInfo.1.personNationalId').invalid && (companyForm.get('partyHolderInfo.1.personNationalId').dirty || companyForm.get('partyHolderInfo.1.personNationalId').touched)">
+                        <small class="text-danger">کد ملی نماینده شرکت الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-lg-16 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="address-agent">آدرس نماینده شرکت:</label>
+                      <input class="form-control" id="address-agent" type="text" formControlName="address" />
+                      <div
+                        *ngIf="companyForm.get('partyHolderInfo.1.address').invalid && (companyForm.get('partyHolderInfo.1.address').dirty || companyForm.get('partyHolderInfo.1.address').touched)">
+                        <small class="text-danger">آدرس نماینده شرکت الزامی است.</small>
+                      </div>
+                    </div>
+                  </div> -->
+                  <input type="hidden" formControlName="type" value="Agent" />
+                  <input type="hidden" formControlName="holderType" value="1" />
+                  <input type="hidden" formControlName="positionType" value="Agent" />
+                  <input type="hidden" formControlName="isOwnerSignature" value="true" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row" formArrayName="bankAccounts">
+              <div class="col-24 p-2 bg-gray-150">اطلاعات حساب بانکی</div>
+              <div *ngFor="let bankAccount of bankAccounts.controls; let i = index" [formGroupName]="i">
+                <div class="row">
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="accountNumber-{{i}}">شماره حساب:</label>
+                      <input class="form-control" id="accountNumber-{{i}}" type="text"
+                        formControlName="accountNumber" />
+                      <div
+                        *ngIf="bankAccount.get('accountNumber').invalid && (bankAccount.get('accountNumber').dirty || bankAccount.get('accountNumber').touched)">
+                        <small class="text-danger">شماره حساب الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="accountType-{{i}}">نوع حساب:</label>
+                      <select class="form-control" id="accountType-{{i}}" formControlName="accountType">
+                        <option *ngFor="let accountType of accountTypes()" [value]="accountType.code">{{
+                          accountType.title
+                          }}</option>
+                      </select>
+                      <div
+                        *ngIf="bankAccount.get('accountType').invalid && (bankAccount.get('accountType').dirty || bankAccount.get('accountType').touched)">
+                        <small class="text-danger">نوع حساب الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="iban-{{i}}">شماره شبا:</label>
+                      <input class="form-control" id="iban-{{i}}" type="text" formControlName="iban" />
+                      <div
+                        *ngIf="bankAccount.get('iban').invalid && (bankAccount.get('iban').dirty || bankAccount.get('iban').touched)">
+                        <small class="text-danger">شماره شبا الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="branchCode-{{i}}">کد شعبه:</label>
+                      <input class="form-control" id="branchCode-{{i}}" type="text" formControlName="branchCode" />
+                      <div
+                        *ngIf="bankAccount.get('branchCode').invalid && (bankAccount.get('branchCode').dirty || bankAccount.get('branchCode').touched)">
+                        <small class="text-danger">کد شعبه الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="branchName-{{i}}">نام شعبه:</label>
+                      <input class="form-control" id="branchName-{{i}}" type="text" formControlName="branchName" />
+                      <div
+                        *ngIf="bankAccount.get('branchName').invalid && (bankAccount.get('branchName').dirty || bankAccount.get('branchName').touched)">
+                        <small class="text-danger">نام شعبه الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="bankId-{{i}}">بانک:</label>
+                      <select class="form-control" id="bankId-{{i}}" formControlName="bankId">
+                        <option *ngFor="let bank of banks()" [value]="bank.codeId">{{ bank.title }}</option>
+                      </select>
+                      <div
+                        *ngIf="bankAccount.get('bankId').invalid && (bankAccount.get('bankId').dirty || bankAccount.get('bankId').touched)">
+                        <small class="text-danger">بانک الزامی است.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 mb-3">
+                    <div class="form-group mb-4">
+                      <label class="form-label" for="isDefault-{{i}}">حساب پیش فرض:</label>
+                      <input id="isDefault-{{i}}" type="checkbox" formControlName="isDefault"
+                        (change)="onDefaultChange(i)" />
+                    </div>
+                  </div>
+                  <div class="col-4 mb-3">
+                    <button type="button" [disabled]="!canDelete" class="btn btn-danger" (click)="removeBankAccount(i)">حذف حساب</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-24 mb-3">
+                <button type="button" class="btn btn-primary m-2" (click)="addBankAccount()">افزودن حساب جدید</button>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="w-100 text-start">
+            <button type="submit" class="btn btn-success mt-5 px-5">ثبت کاربر</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

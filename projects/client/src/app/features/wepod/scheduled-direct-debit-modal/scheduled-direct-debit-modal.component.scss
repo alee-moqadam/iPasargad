@@ -1,0 +1,48 @@
+.rial-label {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+  border-radius: calc(var(--dtx-border-radius) / 3) !important;
+  padding: 0 0.35rem;
+  min-width: 32px;
+  background-color: #cdd7e1;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.day-of-month-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 7px;
+  margin: auto;
+  button {
+    min-height: 40px;
+    white-space: nowrap;
+    width: auto;
+  }
+
+  .last-button {
+    grid-column: span 3 !important;
+  }
+}
+
+
+  .logo-loading-placeholder {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 40%;
+    background: linear-gradient(90deg, #f3f3f3 25%, #e0e0e0 50%, #f3f3f3 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite linear;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }

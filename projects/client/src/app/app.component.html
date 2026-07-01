@@ -1,0 +1,19 @@
+<router-outlet />
+<app-toasts />
+<app-svg-icons-repo></app-svg-icons-repo>
+<ng-template #lastChangesModal>
+  <div class="modal-header custome-header">
+      <h4>نسخه جدید قابل دریافت است</h4>
+  </div>
+  <div class="modal-body custome-body">
+      <span class="h4 mb-4">تغییرات</span>
+      <ul>
+        @for(item of lastChangesItem; track item){
+          <li>{{item}}</li>
+        }
+      </ul>
+      <div class="mt-4 text-center">
+          <button (click)="reloadApp()" class="btn btn-block btn-primary">بروزرسانی</button>
+      </div>
+  </div>
+</ng-template>

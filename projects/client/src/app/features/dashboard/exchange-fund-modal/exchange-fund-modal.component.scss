@@ -1,0 +1,181 @@
+:host {
+  .mutual-fund-selected {
+    border: 1.5px solid #6633CC;
+    background: transparent radial-gradient(closest-side at 73% -23%, #EFEAFA1A 0%, #EFEAFA 100%) 0% 0% no-repeat padding-box;
+  }
+
+
+  .badge {
+    padding: 3px 6px 1px 6px;
+    background-color: #fff;
+    border-radius: 5px;
+
+    &-confirm {
+      color: rgba(18, 181, 73, 0.7);
+      border: 1.5px solid rgba(18, 181, 73, 0.7);
+    }
+
+    &-waiting {
+      color: rgba(255, 153, 0, 0.7);
+      border: 1.5px solid rgba(255, 153, 0, 0.7);
+    }
+
+    &-pish {
+      color: rgba(78, 98, 118, 0.7);
+      border: 1px solid rgba(78, 98, 118, 0.7);
+    }
+
+    &-danger {
+      color: rgba(239, 83, 80, 0.7);
+      border: 1px solid rgba(239, 83, 80, 0.7);
+    }
+  }
+
+  .logo-loading-placeholder {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 40%;
+    background: linear-gradient(90deg, #f3f3f3 25%, #e0e0e0 50%, #f3f3f3 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite linear;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  .bg-cover {
+    background: #ffffff;
+    height: 415px;
+    width: 100%;
+    position: absolute;
+    z-index: 99;
+    opacity: 0.6;
+  }
+
+  .box-info {
+    // background-color: #fca40b;
+    /* color: #fff; */
+    position: relative;
+    text-align: justify;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    border: 1px dashed;
+    background-color: #ffc10754;
+  }
+
+  .box-finalize-steps {
+    background: linear-gradient(135deg, #fca40b, #ffb733);
+    color: #fff;
+    border-radius: 15px;
+  }
+
+  .progress-steps {
+    display: flex;
+    gap: 2px;
+    direction: ltr;
+  }
+
+  .step {
+    // flex: 1;
+    height: 18px;
+    background-color: #f3e3c3;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-one {
+    border-radius: 10px 4px 4px 10px;
+    width: 30%;
+  }
+
+  .step-two {
+    border-radius: 4px;
+    width: 45%;
+  }
+
+  .step-extra {
+    border-radius: 4px;
+    width: 5%;
+  }
+
+  .step-three {
+    border-radius: 4px 10px 10px 4px;
+    width: 20%;
+  }
+
+  .step-one.done {
+    background-color: #6f42c1;
+  }
+
+  .step-two.done {
+    background-color: #0d6efd;
+  }
+
+  .step-three.done {
+    background-color: #198754;
+  }
+
+  .step.active {
+    background-color: #d9d9d9;
+  }
+
+  .step.active::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(318deg, rgb(243 227 195) 0px,
+     rgba(255, 255, 255, 0.7) 6px, transparent 6px, #00000000 8px);
+  }
+
+  .step.pending {
+    background-color: #f3e3c3;
+  }
+
+  .step-extra.done-extra {
+    background-color: #35dcdc;
+  }
+}
+
+::ng-deep {
+  .custom-popover.popover {
+    background-color: #333;
+    border: 1px solid #000;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.875rem;
+    padding: 10px;
+    max-width: 240px;
+    direction: rtl;
+
+    .popover-body {
+      padding: 8px;
+      color: #fff;
+      text-align: center;
+
+      a {
+        color: #9b5eff !important;
+        text-decoration: none;
+      }
+    }
+
+    .popover-arrow {
+      bottom: -8px;
+
+      &::after {
+        border-top-color: #333;
+      }
+    }
+  }
+
+  .fs-icon-sm {
+    font-size: 0.85rem !important;
+  }
+}

@@ -1,0 +1,127 @@
+
+@if(showAccountsInfo()){
+<div class="d-none d-xl-block account-number-container ff-peyda">
+  <div class="p-3">
+    <div class="w-100 d-flex justify-content-end">
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeAccountData()"></button>
+
+    </div>
+    <div class="d-flex align-items-start mb-4 mt-3">
+      <img src="./images/ico_bell.svg" style="width: 10%;" />
+      <h3 class="mb-0 me-2 fw-bold" style="color: #6633cc;">
+        شماره حساب‌های صندوق هزاره سوم پاد
+      </h3>
+    </div>
+    @for (bank of bankDeposit(); track $index) {
+      <h4 style="color: #333333;" class="mb-1">
+      {{bank.bankTitle}}
+    </h4>
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h5 class="mb-0" style="color: #737D87;">
+        حساب
+      </h5>
+      <h4 class="mb-0 fw-bold cursor-pointer" style="color: #000;" (click)="copyToClipboard(bank.accountNumber)">
+        {{bank.accountNumber}}
+      </h4>
+    </div>
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h5 class="mb-0" style="color: #737D87;">
+        شبا
+      </h5>
+      <h4 class="mb-0 fw-bold cursor-pointer" style="color: #000;"
+        (click)="copyToClipboard(bank.iban)">
+        {{bank.iban}}
+      </h4>
+    </div>
+    }
+    <!-- <section class="mb-5">
+      <h4 style="color: #333333;" class="mb-2">
+        بانک پاسارگاد
+      </h4>
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <h5 class="mb-0" style="color: #737D87;">
+          حساب
+        </h5>
+        <h4 class="mb-0 fw-bold cursor-pointer" style="color: #000;" (click)="copyToClipboard('2068100110705812')">
+          206.8100.11070581.2
+        </h4>
+      </div>
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <h5 class="mb-0" style="color: #737D87;">
+          شبا
+        </h5>
+        <h4 class="mb-0 fw-bold cursor-pointer" style="color: #000;"
+          (click)="copyToClipboard('IR200570020681011070581102')">
+          IR200570020681011070581102
+        </h4>
+      </div>
+    </section> -->
+    <!-- <h4 style="color: #333333;" class="mb-1">
+      بانک خاورمیانه
+    </h4>
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h5 class="mb-0" style="color: #737D87;">
+        حساب
+      </h5>
+      <h4 class="mb-0 fw-bold cursor-pointer" style="color: #000;" (click)="copyToClipboard('101310810707074747')">
+        101310810707074747
+      </h4>
+    </div>
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h5 class="mb-0" style="color: #737D87;">
+        شبا
+      </h5>
+      <h4 class="mb-0 fw-bold cursor-pointer" style="color: #000;"
+        (click)="copyToClipboard('IR780780101310810707074747')">
+        IR780780101310810707074747
+      </h4>
+    </div> -->
+  </div>
+</div>
+}
+<div class="communicate-holder ff-peyda px-3">
+  <div class="d-flex align-items-center w-100 h-100 justify-content-between">
+    <!-- <span style="background-color:#F5FAFF;border-radius: 9px; "> -->
+    <img src="/images/ico_phone_call.svg" class="p-2" loading="lazy" alt="شماره تماس" style="width: 15%;" />
+    <!-- </span> -->
+    <div class="d-flex flex-column align-items-center">
+      <a href="tel:+982158241000" class="d-flex align-items-center flex-column" style="text-decoration: none;">
+        <bdi class="d-flex align-items-center">
+          <h5 class="text-light mb-0 me-1">(021)</h5>
+          <h4 class="text-white mb-0">58241</h4>
+        </bdi>
+        <span class="d-flex align-items-center" style="direction: ltr;">
+          <h6 class="text-light mb-0 me-1">(021)</h6>
+          <h6 class="text-white mb-0">58241000</h6>
+          <h6 class="text-white mb-0 ms-1">
+            (داخلی 1)
+          </h6>
+        </span>
+      </a>
+      <!-- <a class="d-flex align-items-center" style="text-decoration: none;">
+        <bdi class="d-flex align-items-center">
+          <h5 class="text-light mb-0 me-1">(021)</h5>
+          <h4 class="text-white mb-0">58241000(داخلی 1)</h4>
+        </bdi>
+      </a> -->
+
+      <!-- <h5 class="mb-0" style="color: #828C96;">برای ورود مشکلی دارید؟</h5> -->
+    </div>
+    <button class="btn chat-btn text-white" id="goftino-toggle">
+      چت آنلاین
+    </button>
+  </div>
+</div>
+
+<!-- <a class="phone-container" href="tel:+982158241000">
+  <div style="width: 50px;height: 50px; border-radius: 7px;background-color: #666666;">
+    <img src="/images/ico_phone_call.svg" class="p-2" loading="lazy" alt="شماره تماس"
+      style="width: 100%;z-index: 1000;" />
+  </div>
+</a>
+<a class="chat-container" id="goftino-toggle-mobile">
+  <div style="width: 50px;height: 50px; border-radius: 7px;background-color: #666666;">
+    <img src="/images/ico_headphone.svg" class="p-2" loading="lazy" alt="شماره تماس"
+      style="width: 100%;z-index: 1000;" />
+  </div>
+</a> -->

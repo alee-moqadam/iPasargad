@@ -1,0 +1,210 @@
+// Existing SCSS variables and imports
+
+// Gray Color Variables
+$gray-150: #f6f8fa;
+$gray-175: #f0f6fc;
+$gray-200: #eff2f5;
+$gray-225: #e6eaef;
+$gray-250: #e5e5e5;
+$gray-275: #e0e6eb;
+$gray-300: #dae0e7;
+$gray-325: #d1d9e0;
+$gray-350: #d1d7e0;
+$gray-375: #d0d7de;
+$gray-400: #c8d1da;
+$gray-425: #b7bdc8;
+$gray-450: #b2b2b2;
+$gray-475: #838b95;
+$gray-500: #818d98;
+$gray-525: #656c76;
+$gray-550: #5c6670;
+$gray-575: #4c4c4c;
+$gray-600: #454d54;
+$gray-625: #3d444d;
+$gray-638: #333;
+$gray-650: #394046;
+$gray-675: #2f3742;
+$gray-700: #2a313c;
+$gray-725: #262c36;
+$gray-750: #252a2e;
+$gray-775: #24292f;
+$gray-800: #212830;
+$gray-825: #1f2328;
+$gray-850: #151b23;
+$gray-875: #0d1117;
+$gray-900: #010409;
+
+// Color Variables
+$primary: #faaf16;
+$secondary: #4e6276;
+$complementary: #1661fa;
+$blue: #0014FF;
+$purple: #6633CC;
+$split-right: #16d3fa;
+$tetraduc-left: #af16fa;
+$tetraduc-right: #16faaf;
+$tetraduc-right: #fa1661;
+
+$success: #28a745;
+$danger: #dc3545;
+$warning: #ffc107;
+$info: #17a2b8;
+$light: #f8f9fa;
+$dark: #343a40;
+$cancel: $gray-250;
+$transparent: #ffffff;
+
+// Font Sizes
+$font-size-base: 1rem;
+$font-size-sm: $font-size-base * 0.875 !default;
+$font-size-lg: $font-size-base * 1.25 !default;
+
+// Headings
+$h1-font-size: $font-size-base * 2 !default;
+$h2-font-size: $font-size-base * 1.6 !default;
+$h3-font-size: $font-size-base * 1.4 !default;
+$h4-font-size: $font-size-base * 1.2 !default;
+$h5-font-size: $font-size-base * 1 !default;
+$h6-font-size: $font-size-base * 0.8 !default;
+
+// Buttons + Forms
+$input-btn-padding-y: 0.687rem;
+$input-btn-padding-x: 1rem;
+$btn-border-radius: 1.5rem;
+$btn-border-radius-sm: 1.5rem;
+$btn-border-radius-lg: 1.5rem;
+$input-btn-padding-y-sm: 0.25rem !default;
+$input-btn-padding-x-sm: 0.5rem !default;
+$input-btn-font-size-sm: $font-size-sm !default;
+$input-btn-padding-y-lg: 0.875rem !default;
+$input-btn-padding-x-lg: 1.625rem;
+$input-btn-font-size-lg: 1.2rem;
+$btn-padding-y-sm: $input-btn-padding-y-sm !default;
+$btn-padding-x-sm: $input-btn-padding-x-sm !default;
+$btn-font-size-sm: $input-btn-font-size-sm !default;
+$btn-padding-y-lg: $input-btn-padding-y-lg !default;
+$btn-padding-x-lg: $input-btn-padding-x-lg !default;
+$btn-font-size-lg: $input-btn-font-size-lg !default;
+$btn-link-disabled-color: $gray-250;
+$btn-disabled-opacity: 1;
+
+// Grids Column
+$grid-columns: 24 !default;
+$grid-gutter-width: 1rem !default;
+
+// Tabs
+$nav-tabs-link-active-border-color: $gray-775;
+$nav-link-color: $gray-775;
+
+// Import Bootstrap functions and variables
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+
+$enable-negative-margins: true;
+
+$new-theme-colors: (
+  complementary: $complementary,
+  gray-275: $gray-275,
+  gray-150: $gray-150,
+  purple: $purple,
+);
+
+
+
+$theme-colors: map-merge($theme-colors, $new-theme-colors);
+
+$spacers: map-merge(
+  $spacers,
+  (
+
+    6: $spacer * 3.5,
+    7: $spacer * 4,
+    8: $spacer * 5,
+    9: $spacer * 6,
+    10: $spacer * 7,
+    11: $spacer * 8,
+    12: $spacer * 9
+  )
+);
+
+// Button styles
+@each $color, $value in $theme-colors {
+    .btn-#{"" + $color} {
+        @if $color != "light" {
+            --bs-btn-color: #{$white};
+        }
+
+        &:disabled {
+            --bs-btn-bg: #{$gray-250};
+            --bs-btn-border-color: #{$gray-150};
+            --bs-btn-color: #{$gray-150};
+        }
+
+        @if $color == "cancel" {
+            --bs-btn-border-color: #{$gray-650};
+            --bs-btn-color: #{$gray-650};
+            --bs-btn-hover-border-color: #{$gray-650};
+        }
+    }
+}
+
+// Button outline styles
+@each $color, $value in $theme-colors {
+    .btn-outline-#{"" + $color} {
+        --bs-btn-hover-color: #{$white};
+        --bs-btn-border-width: 1px;
+
+        // Move these declarations above nested rules to avoid deprecation warnings
+        --bs-btn-disabled-color: #{$gray-150};
+        --bs-btn-disabled-bg: #{$gray-250};
+        --bs-btn-disabled-border-color: #{$gray-150};
+
+        @if $color == "cancel" {
+            --bs-btn-border-color: #{$gray-650};
+            --bs-btn-color: #{$gray-650};
+            --bs-btn-hover-border-color: #{$gray-650};
+            --bs-btn-hover-color: #{$gray-650};
+        }
+    }
+}
+
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+// Custom CSS Variables for Bootstrap
+:root {
+    --bs-border-radius: 1rem;
+    --bs-border-radius-sm: 2rem;
+    --bs-border-radius-lg: 3rem;
+    --bs-border-radius-xl: 4rem;
+    --bs-border-radius-xxl: 5rem;
+    --bs-border-radius-2xl: var(--bs-border-radius-xxl);
+    --bs-border-radius-pill: 50rem;
+    --bs-body-font-family: "iransans";
+    --bs-body-font-size: 1rem;
+    --bs-border-width: 0;
+
+    --bs-heading-color: $gray-638;
+
+    @media (max-width: 1200px) {
+        --bs-body-font-size: calc(0.8rem + 0.3vw);
+    }
+
+    --bs-btn-border-color: #{$gray-650}; // Move this declaration above nested rules
+    --bs-btn-color: #{$gray-650}; // Move this declaration above nested rules
+    --bs-btn-hover-border-color: #{$gray-650}; // Move this declaration above nested rules
+    // CSS variables for disabled button styles
+    --bs-btn-disabled-color: #{$gray-150};
+    --bs-btn-disabled-bg: #{$gray-250};
+    --bs-btn-disabled-border-color: #{$gray-150};
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1{
+    line-height: 2rem;
+}
+
+.radius-10{
+    border-radius: 0.625rem !important;
+}
+.radius-20 {
+    border-radius: 1.25rem !important;
+}

@@ -1,0 +1,118 @@
+<div class="d-flex flex-column align-item-center mb-60">
+  <div class="d-flex align-items-center justify-content-end mb-4">
+      <fa-icon icon="file-excel" class="text-success ms-2 cursor-pointer border border-1 p-2 border-success"
+       size="lg" style="border-radius: 5px;" (click)="exportToExcel()"></fa-icon>
+  </div>
+@for (report of requestList(); track $index) {
+  <div class="card mx-0 mb-4 overflow-hidden">
+    <div class="card-body p-0">
+      <div class="row mx-0">
+        <div class="col-24 col-md-4 p-0 bg-warning-200">
+
+         <div class="d-flex flex-md-column align-items-center justify-content-between justify-content-md-center h-100 ps-4 ps-md-0 pe-2 pe-md-0">
+           <div class="d-flex flex-md-column align-items-center justify-content-md-center p-1 p-md-4 h-100">
+             <!-- <fa-icon size="lg" class="d-flex align-items-center mb-0 mb-md-3"
+               [icon]="'divide'" style="color: #ff9900cc"></fa-icon> -->
+              <svg class="text-danger me-2" viewBox="0 0 24 24" width="18px" height="18px" class="mx-1" style="color: #FF9900;">
+                <use [attr.xlink:href]="'#ico_s_box_percent'"></use>
+              </svg>
+               <h5 class="text-nowrap my-2 my-md-3 me-1 me-md-0 font-weight-bold" style="color: #FF9900;">سود</h5>
+               <h6 class="text-nowrap mb-0 mb-md-3 me-1 me-md-0" style="color: #ff9900cc">تقسیمی</h6>
+           </div>
+          </div>
+
+        </div>
+        <div class="col-24 col-md-20 p-4">
+          <div class="d-flex flex-column">
+            <div class="d-md-flex align-items-center justify-content-between">
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start">
+                <h5 class="text-secondary">
+                  صندوق
+                </h5>
+                <h5 class="font-weight-bold">
+                  {{report?.mutualFundSymbol }}
+                </h5>
+              </div>
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start align-items-end mt-4 mt-md-0">
+                <h5 class="text-secondary">
+                  مبلغ
+                </h5>
+                <h5 class="font-weight-bold">
+                  {{report?.profit | number }}
+                  <span class="small mx-1">
+                    ریال
+                  </span>
+                </h5>
+              </div>
+            </div>
+            <div class="d-md-flex align-items-center justify-content-between mt-4 mt-md-3">
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start">
+                <h5 class="text-secondary">
+                  تاریخ
+                </h5>
+                <h5 class="font-weight-bold">
+                  {{ report.dateJalali }}
+                </h5>
+              </div>
+              <div class="d-flex flex-md-column justify-content-between justify-content-md-start align-items-end mt-4 mt-md-0">
+                <h5 class="text-secondary">
+                  تعداد
+                </h5>
+                <h5 class="font-weight-bold">
+                  {{report?.profitUnit | number }}
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+
+@if (!requestList() || requestList()?.length > 0 && !isLoading()) {
+  <div class="d-none d-lg-block button-action-container ">
+    <div class="container h-100 w-100">
+      <div class="row mx-0 h-100">
+        <div class="col-md-5"></div>
+        <div class="col-md-13 mx-0 h-100 d-flex ps-5">
+          <div class="w-100 d-flex flex-column align-items-center justify-content-center w-100">
+            <div class="w-100 d-flex align-items-center justify-content-between">
+              <span>مجموع واحدها</span>
+              <span>{{aggregationValues().totalAggrigatedValue1 |number}} واحد </span>
+            </div>
+            <div class="w-100 d-flex align-items-center justify-content-between">
+              <span>مجموع ارزش</span>
+              <span>{{aggregationValues().totalAggrigatedValue4 |number}} ریال </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6"></div>
+
+      </div>
+    </div>
+  </div>
+  }
+
+</div>
+@if (requestList().length === 0 && !isLoading()) {
+
+  <div class="w-100 d-flex align-items-center justify-content-center flex-column mt-5 pt-5">
+    <img src="/svg/badge-empty-asset.svg" class="img-fluid my-3" width="96" />
+    <h5 class="my-2">
+      نتیجه ای یافت نشد!
+    </h5>
+    <h6 style="color: #919BA5;">
+      هنوز هیچ اطلاعاتی ثبت نشده است.
+    </h6>
+  </div>
+
+  }
+
+
+  @if(isLoading()){
+    @for (item of arrayLength(); track $index) {
+      <app-css-skeleton></app-css-skeleton>
+    }
+  }

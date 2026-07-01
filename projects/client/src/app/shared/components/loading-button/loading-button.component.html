@@ -1,0 +1,41 @@
+<button [disabled]="disabled" [type]="type" [ngClass]="{'is-loading': isLoading}" [class]="cssClass">
+  @if (isLoading) {
+  <div class="loaderPixel">
+    <div class="pixels-container">
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+      <div class="pixels"></div>
+    </div>
+  </div>
+  }
+  @else {
+  <ng-content></ng-content>
+  }
+</button>

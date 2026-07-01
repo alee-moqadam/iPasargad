@@ -1,0 +1,64 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "strict": false,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "noImplicitAny": false,
+    "types": ["node"],
+    "paths": {
+      "@admin/*": [
+        "projects/admin/src/app/*"
+      ],
+      "@admin/core/*": [
+        "projects/admin/src/app/core/*"
+      ],
+      "@admin/rest-services/*": [
+        "projects/admin/src/app/shared/rest-services/*"
+      ],
+      "@admin/shared/*": [
+        "projects/admin/src/app/shared/*"
+      ],
+      "@client/*": [
+        "projects/client/src/app/*"
+      ],
+      "@client/core/*": [
+        "projects/client/src/app/core/*"
+      ],
+      "@client/rest-services/*": [
+        "projects/client/src/app/shared/rest-services/*"
+      ],
+      "@client/shared/*": [
+        "projects/client/src/app/shared/*"
+      ]
+    },
+    "importHelpers": true,
+    "target": "ES2018",
+    "module": "ES2022",
+    "lib": [
+      "ES2022",
+      "dom"
+    ]
+  },
+  "exclude": ["node_modules"],
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": false,
+    "noImplicitOverride": true
+  }
+}

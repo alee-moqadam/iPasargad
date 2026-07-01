@@ -1,0 +1,17 @@
+.rial-label {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+  border-radius: calc(var(--dtx-border-radius) / 3) !important;
+  padding: 0 0.35rem;
+  min-width: 32px;
+  background-color: #cdd7e1;
+  z-index: 6;
+  display: flex
+;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}

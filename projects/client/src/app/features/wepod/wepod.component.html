@@ -1,0 +1,588 @@
+<div class="row">
+  <div class="col-lg-16 px-4">
+    <!-- mobile view -->
+    <div class="d-lg-none card mb-4 bg-black overflow-hidden border-radius-15" style="z-index: 1;">
+      <div class="card-body d-flex flex-column justify-content-end pb-0 px-5 px-sm-7 text-gray-250"
+        style="height: 93px;">
+        <div class="d-flex align-items-center ">
+          <span>
+            <img src="/images/pod-card-logo.png" height="35" />
+          </span>
+          <div class="d-flex flex-fill align-items-end align-items-sm-center flex-sm-row"
+            [class.flex-column-reverse]="directDebitContract() && directDebitContract().accountNumber">
+            @if(!directDebitContract() || !directDebitContract().accountNumber){
+            <button class="btn btn-sm mt-2 mt-sm-0 text-white btn-info border-radius-7"
+              (click)="directDebitContract() ? openRegisterCardModal(): openRegisterDirectDebitContractModal()">
+              <svg viewBox="0 0 24 24" width="14px" height="14px" class="ms-2">
+                <use xlink:href="#ico_box_plus"></use>
+              </svg>
+              ثبت کارت
+            </button>
+            } @else {
+            <span class="mt-2 mt-sm-1 h4 mb-0 white-space-nowrap ltr h6">{{ formattedCardNumber }}</span>
+            }
+
+            <img src="/images/shetab-logo.png" height="24" width="34" class="me-3 mt-1 mt-sm-0" />
+          </div>
+        </div>
+        <div class="d-flex justify-content-between mt-1 mb-2 my-sm-3">
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+          <img src="/images/pod-card-flower.png" height="12" width="12" />
+        </div>
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between bg-dark text-gray-400 px-5 px-sm-7"
+        style="height: 57px;">
+        @if(!hasEmptyContract()){
+        <span class="ms-2 fs-lg-5 mb-0">موجودی حساب دیجیتال</span>
+        <!-- <svg (click)="inquiryAccountBalance()" ngbTooltip="بروزرسانی" placement="left" viewBox="0 0 24 24" width="16px" height="16px"
+            class="cursor-pointer text-white ms-auto">
+            <use xlink:href="#ico_s_refresh"></use>
+          </svg> -->
+        <svg [class.cursor-pointer]="!isDisabled" [class.opacity-50]="isDisabled"
+          [attr.disabled]="isDisabled ? true : null" [ngbTooltip]="!isDisabled ? 'بروزرسانی' : null"
+          (click)="!isDisabled && inquiryAccountBalance()" placement="left" viewBox="0 0 24 24" width="16px"
+          height="16px" class="text-white ms-auto">
+          <use xlink:href="#ico_s_refresh"></use>
+        </svg>
+        <span>
+          @if(isContractLoading()){
+          <h4 class="d-flex align-items-center pt-1 justify-content-end mb-0" style="width: 100px;">
+            <span class="w-100 text-white badge-skeleton">&nbsp;&nbsp;</span>
+            <span class="fs-6 me-1"> ریال </span>
+          </h4>
+          }@else{
+          <h4 class="d-flex align-items-center pt-1 justify-content-end mb-0">
+            <span class="text-white" [maskNumber]="directDebitContract() ? (accountBalance()?.amount || 0) : 0"></span>
+            <span class="fs-6 me-1"> ریال </span>
+          </h4>
+          }
+
+        </span>
+        } @else {
+        <h6 class="w-100 d-flex justify-content-center">
+          برای مشاهده موجودی، قرارداد پرداخت مستقیم خود را فعال کنید.
+
+        </h6>
+        }
+      </div>
+    </div>
+
+    <!-- Web View -->
+    <div class="d-none d-lg-block m-auto " style="width: 408px;">
+      <div class="card mb-4 bg-black overflow-hidden border-radius-15" style="z-index: 1;">
+        <div class="card-body d-flex flex-column justify-content-end pb-0 px-5 px-sm-7 text-gray-250"
+          style="height: 93px;">
+          <div class="d-flex align-items-center ">
+            <span>
+              <img src="/images/pod-card-logo.png" height="35" />
+            </span>
+            <div class="d-flex flex-fill align-items-end align-items-sm-center flex-sm-row"
+              [class.flex-column-reverse]="directDebitContract() && directDebitContract().accountNumber">
+              @if((!directDebitContract() || !directDebitContract().accountNumber)){
+              <button class="btn btn-sm me-auto mt-2 mt-sm-0 text-white btn-info border-radius-7"
+                (click)="directDebitContract() ? openRegisterCardModal(): openRegisterDirectDebitContractModal()">
+                <svg viewBox="0 0 24 24" width="14px" height="14px" class="ms-2">
+                  <use xlink:href="#ico_box_plus"></use>
+                </svg>
+                ثبت کارت
+              </button>
+              } @else {
+              <span class="me-auto mt-2 mt-sm-1 h4 mb-0 white-space-nowrap ltr" style="font-size: 0.8rem;">{{
+                formattedCardNumber }}</span>
+              }
+
+              <img src="/images/shetab-logo.png" height="24" width="34" class="me-3 mt-1 mt-sm-0" />
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-1 mb-2 my-sm-3">
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+            <img src="/images/pod-card-flower.png" height="12" width="12" />
+          </div>
+        </div>
+        <div class="card-footer d-flex align-items-center justify-content-between bg-dark text-gray-400 px-5 px-sm-7"
+          style="height: 57px;">
+          @if(!hasEmptyContract()){
+          <span class="ms-2 fs-lg-5 mb-0">موجودی حساب دیجیتال</span>
+          <!-- <svg (click)="inquiryAccountBalance()" ngbTooltip="بروزرسانی" placement="left" viewBox="0 0 24 24" width="16px" height="16px"
+            class="cursor-pointer text-white ms-auto">
+            <use xlink:href="#ico_s_refresh"></use>
+          </svg> -->
+          <svg [class.cursor-pointer]="!isDisabled" [class.opacity-50]="isDisabled"
+            [attr.disabled]="isDisabled ? true : null" [ngbTooltip]="!isDisabled ? 'بروزرسانی' : null"
+            (click)="!isDisabled && inquiryAccountBalance()" placement="left" viewBox="0 0 24 24" width="16px"
+            height="16px" class="text-white ms-auto">
+            <use xlink:href="#ico_s_refresh"></use>
+          </svg>
+          <span>
+            @if(isContractLoading()){
+            <h4 class="d-flex align-items-center pt-1 justify-content-end mb-0" style="width: 100px;">
+              <span class="w-100 text-white badge-skeleton">&nbsp;&nbsp;</span>
+              <span class="fs-6 me-1"> ریال </span>
+            </h4>
+            }@else{
+            <h4 class="d-flex align-items-center pt-1 justify-content-end mb-0">
+              <span class="text-white"
+                [maskNumber]="directDebitContract() ? (accountBalance()?.amount || 0) : 0"></span>
+              <span class="fs-6 me-1"> ریال </span>
+            </h4>
+            }
+
+          </span>
+          }@else {
+          <h6 class="w-100 d-flex justify-content-center">
+            برای مشاهده موجودی، قرارداد پرداخت مستقیم خود را فعال کنید.
+
+          </h6>
+          }
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-radius-15 mb-3 contract-info-container">
+      <div class="card-body h-100 p-5">
+        <div class="d-flex align-items-end justify-content-end h-100">
+          @if(!hasEmptyContract()){
+          <div class="w-100 d-flex flex-column mt-3">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h5 class="mb-0" style="color: #919BA5;">
+                شماره حساب
+              </h5>
+              <h4 [class.cursor-pointer]="!!accountBalance()" class="mb-0 fw-bold" style="color: #000;"
+                (click)="copyToClipboard(accountBalance()?.depositNumber)">
+                @if(isContractLoading()){
+                <h4 class="d-flex align-items-center pt-1 justify-content-end mb-0" style="width: 100px;">
+                  <span class="w-100  badge-skeleton">&nbsp;&nbsp;</span>
+
+                </h4>
+                }@else{
+                <h4 class="d-flex align-items-center pt-1 justify-content-end mb-0">
+                  <span class="d-flex" style="color: #37414B;font-size: 0.8rem;">
+                    <svg *ngIf="!!accountBalance()" viewBox="0 0 24 24" width="14px" height="14px"
+                      class="ms-2 text-primary">
+                      <use xlink:href="#ico_s_operations_copy"></use>
+                    </svg>
+                    {{accountBalance()?.depositNumber || '--'}}
+                  </span>
+                </h4>
+                }
+              </h4>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h5 class="mb-0" style="color: #919BA5;">
+                شماره شبا
+              </h5>
+              <h4 [class.cursor-pointer]="!!accountBalance()" class="mb-0 fw-bold" style="color: #000;"
+                (click)="copyToClipboard(accountBalance()?.sheba)">
+                @if(isContractLoading()){
+                <h4 class="d-flex align-items-center pt-1 justify-content-end mb-0" style="width: 100px;">
+                  <span class="w-100  badge-skeleton">&nbsp;&nbsp;</span>
+                </h4>
+                }@else{
+                <h4 class="d-flex align-items-center pt-1 justify-content-end mb-0">
+                  <span class="d-flex" style="color: #37414B;font-size: 0.8rem;">
+                    <svg *ngIf="!!accountBalance()" viewBox="0 0 24 24" width="14px" height="14px"
+                      class="ms-2 text-primary">
+                      <use xlink:href="#ico_s_operations_copy"></use>
+                    </svg>
+                    {{accountBalance()?.sheba || '--'}}
+
+
+                  </span>
+                </h4>
+                }
+              </h4>
+            </div>
+          </div>
+          }@else{
+          <div class="d-flex align-items-center justify-content-center flex-column w-100 mt-3">
+            <h5 class="w-100 d-flex justify-content-center mb-3">
+              فعال‌سازی پرداخت مستقیم
+            </h5>
+            <h6 class="mb-2  d-flex justify-content-center text-justify" style="line-height: 1.2rem;">
+
+              تنها با یک‌بار ثبت کارت بانکی، سرمایه‌گذاری خود را آسان و مطمئن انجام دهید.
+              مبلغ دلخواهتان را به‌صورت خودکار و با روشی ساده و هوشمند سرمایه‌گذاری کنید.
+              <!-- برای مشاهده موجودی، قرارداد پرداخت مستقیم خود را فعال کنید. -->
+            </h6>
+            <button class="btn btn-sm mt-2 mt-sm-0 text-white btn-info border-radius-7"
+              (click)="directDebitContract() ? openRegisterCardModal(): openRegisterDirectDebitContractModal()">
+              <svg viewBox="0 0 24 24" width="14px" height="14px" class="ms-2">
+                <use xlink:href="#ico_box_plus"></use>
+              </svg>
+              ثبت کارت
+            </button>
+          </div>
+          }
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div
+      class="d-flex align-items-center justify-content-between p-4 mb-4 border-primary w-100 border-radius-15 cursor-pointer"
+      (click)="openRegisterDirectDebitContractModal()" style="border: 1px dashed;background-color: #6633CC1A;">
+      <div class="d-flex align-items-center ">
+        <svg viewBox="0 0 24 24" width="28px" height="28px" class="me-3 text-primary">
+          <use xlink:href="#ico_stars"></use>
+        </svg>
+        <div class="me-5">
+          <h5 class="mb-1" style="color: #46503C;">قرارداد پرداخت مستقیم</h5>
+          <h6 class="mt-2 text-gray-600">با انتخاب این گزینه، امکان برداشت از حساب دیجیتال پاسارگاد برای سرمایه‌گذاری در
+            صندوق‌ها فراهم می‌شود.</h6>
+          <span class="fs-6 text-gray-500">پرداخت سریع، تجربه ساده‌تر سرمایه‌گذاری</span>
+        </div>
+      </div>
+      <svg viewBox="0 0 24 24" width="14px" height="14px" class="me-2 text-gray-500">
+        <use xlink:href="#ico_drop_left"></use>
+      </svg>
+    </div>
+
+    <div
+      class="d-flex align-items-center justify-content-between p-4 mb-4 border-primary w-100 border-radius-15 cursor-pointer"
+      (click)="directDebitContract() ? openScheduledDirectDebitModal(undefined) : openRegisterDirectDebitContractModal()"
+      style="border: 1px dashed;background-color: #6633CC1A;">
+      <div class="d-flex align-items-center ">
+        <svg viewBox="0 0 24 24" width="28px" height="28px" class="me-3 text-primary">
+          <use xlink:href="#ico_coffee"></use>
+        </svg>
+        <div class="me-5">
+          <h5 class="mb-1" style="color: #46503C;">پرداخت خودکار</h5>
+          <span class="fs-6 text-gray-500">امکان سرمایه‌گذاری با مشخص کردن زمان و میزان سرمایه‌گذاری به صورت
+            خودکار</span>
+        </div>
+      </div>
+      <svg viewBox="0 0 24 24" width="14px" height="14px" class="me-2 text-gray-500">
+        <use xlink:href="#ico_drop_left"></use>
+      </svg>
+    </div>
+
+    @if (directDebitContract()) {
+    <div class="bg-white p-4 mb-4 border-success w-100 border-radius-15" style="border: 1px dashed;">
+      <div class="d-flex flex-column">
+        <div class="d-flex w-100 align-items-center justify-content-between">
+          <svg viewBox="0 0 24 24" width="28px" height="28px" class="me-3 text-primary">
+            <use xlink:href="#ico_stars"></use>
+          </svg>
+          <h5 class="mb-0 ms-auto me-5" style="color: #46503C;">قرارداد پرداخت مستقیم</h5>
+          <div class="d-flex align-items-center">
+            <span class="border-radius-10 bg-tertiary mx-2 py-1 px-4 fs-6">{{ directDebitContract().isActive ? 'فعال' :
+              'غیرغعال' }}</span>
+            <span class="border-radius-10 p-1 bg-primary me-2 text-white cursor-pointer"
+              (click)="openRegisterDirectDebitContractModal()">
+              <fa-icon class="p-1" icon="gear" size="lg"></fa-icon>
+            </span>
+          </div>
+        </div>
+        <div class="align-items-center d-flex flex-column flex-sm-row justify-content-between mt-4 w-100">
+          <div
+            class="align-items-center custom-dashed-border d-flex flex-column justify-content-center mb-3 mb-sm-0 me-0 ms-sm-3 py-4 w-100">
+            <h6 class="mb-3">
+              معتبر تا تاریخ
+            </h6>
+            <h5>
+              {{convertToJalali(directDebitContract().validUntil, 'D MMMM YYYY')}}
+              <button
+                class="btn btn-sm btn-tertiary mx-2 px-4 cursor-default">{{directDebitContractDuration(directDebitContract().validFrom,
+                directDebitContract().validUntil).title}}</button>
+            </h5>
+          </div>
+          <div class="align-items-center custom-dashed-border d-flex flex-column justify-content-center py-4 w-100">
+            <h6 class="mb-3">
+              سقف برداشت
+            </h6>
+
+            <span class="d-flex align-items-center mb-4">
+              <h5 class="m-0" [maskNumber]="directDebitContract().contractAmount"></h5>
+              <span class="fs-6 text-secondary me-1">ریال</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      @if(hasEmptyTraditionalAccountContract()==null){
+      <div
+        class="d-flex align-items-center justify-content-between p-4 my-4 border-primary w-100 border-radius-10 cursor-pointer"
+        style="border: 1px dashed;background-color: #cc70331a;">
+        <div class="d-flex align-items-center">
+          <svg viewBox="0 0 24 24" width="28px" height="28px" class="me-3 text-primary">
+            <use xlink:href="#ico_stars"></use>
+          </svg>
+          <div class="me-5 text-justify">
+            <h5 class="mb-1" style="color: #46503C;">قرارداد سرمایه‌گذاری از طریق حساب سنتی</h5>
+            <div class="mb-3 mt-2 fw-bold d-flex align-items-center" style="color: #46503C;">
+              <h4 class="mb-0">
+                در حال بررسی اتصال به حساب <span class="position-relative d-inline-block">سنتی
+                  <span class="loader position-absolute"></span>
+                </span>
+              </h4>
+            </div>
+            <div class="fs-6 text-gray-500 mt-3">لطفاً کمی صبر کنید. وضعیت حساب سنتی شما در حال استعلام است و تا چند
+              لحظه دیگر نتیجه اتصال اعلام خواهد شد.</div>
+          </div>
+        </div>
+      </div>
+      }@else if(hasEmptyTraditionalAccountContract()==true){
+      <div
+        class="d-flex align-items-center justify-content-between p-4 my-4 border-primary w-100 border-radius-10 cursor-pointer"
+        (click)="openTraditionalAccountContractModal()" style="border: 1px dashed;background-color: #cc70331a;">
+        <div class="d-flex align-items-center ">
+          <svg viewBox="0 0 24 24" width="28px" height="28px" class="me-3 text-primary">
+            <use xlink:href="#ico_stars"></use>
+          </svg>
+          <div class="me-5">
+            <h5 class="mb-1" style="color: #46503C;">قرارداد سرمایه‌گذاری از طریق حساب سنتی</h5>
+            <span class="fs-6 text-gray-500">برای سرمایه‌گذاری با مبالغ بیشتر و استفاده از حساب سنتی </span>
+          </div>
+        </div>
+        <svg viewBox="0 0 24 24" width="14px" height="14px" class="me-2 text-gray-500">
+          <use xlink:href="#ico_drop_left"></use>
+        </svg>
+      </div>
+      }@else if(hasEmptyTraditionalAccountContract()==false){
+      <div
+        class="d-flex align-items-center justify-content-between p-4 my-4 border-primary w-100 border-radius-10 cursor-pointer"
+        style="border: 1px dashed;background-color: #cc70331a;">
+        <div class="d-flex align-items-center ">
+          <svg viewBox="0 0 24 24" width="28px" height="28px" class="me-3 text-primary">
+            <use xlink:href="#ico_stars"></use>
+          </svg>
+          <div class="me-5">
+            <h5 class="mb-1" style="color: #46503C;">قرارداد سرمایه‌گذاری از طریق حساب سنتی</h5>
+            <span class="fs-5 text-gray-500">حساب دیجیتال شما به حساب سنتی متصل است </span>
+            <p><small class="fs-6 text-gray-500">محدودیت سقف برداشت، مطابق با سقف تعیین شده در قرارداد هوشمند لحاظ شده
+                است.</small></p>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }@else{
+    <div class="alert d-flex align-items-center w-100" style="background-color: #fff;">
+      <svg viewBox="0 0 24 24" width="18px" height="18px" style="color: #737D87;">
+        <use xlink:href="#ico_warning"></use>
+      </svg>
+      <span class="me-2" style="color: #737D87;">
+        قرارداد پرداخت مستقیم فعالی ندارید.
+      </span>
+    </div>
+    }
+
+    @for (item of scheduledDirectDebits(); track $index) {
+    <div class="bg-white p-4 mb-4 border-success w-100 border-radius-15" style="border: 1px dashed;">
+      <div class="d-flex flex-column">
+        <div class="d-flex w-100 align-items-center justify-content-between">
+          <svg viewBox="0 0 24 24" width="28px" height="28px" class="me-3 text-primary">
+            <use xlink:href="#ico_coffee"></use>
+          </svg>
+          <h5 class="mb-0 ms-auto me-5" style="color: #46503C;">سرمایه‌گذاری خودکار</h5>
+          <div class="d-flex align-items-center">
+            <div class="form-check form-switch mb-0 p-0">
+              <input [disabled]="loading()" class="form-check-input mx-2 cursor-pointer" type="checkbox" type="checkbox"
+                [checked]="item.isActive" (change)="toggleScheduledDirectDebitActivation($index)">
+              <label class="form-check-label text-white mb-0" for="reinvest">
+                <h5 class="mb-0 font-weight-semi text-black">
+                  {{ item.isActive ? 'فعال' : 'غیرغعال' }}
+                </h5>
+              </label>
+            </div>
+            <span class="border-radius-10 p-1 bg-primary me-2 text-white cursor-pointer"
+              (click)="directDebitContract() ? openScheduledDirectDebitModal(item): openRegisterDirectDebitContractModal()">
+              <fa-icon class="p-1" icon="gear" size="lg"></fa-icon>
+            </span>
+          </div>
+        </div>
+        <div class="d-flex align-items-center mt-4">
+          <!-- <img *ngIf="allMutualFundDetail()?.[0]?.attachments?.length > 0; else logoPlaceholder" 
+            [src]="apiUrl + '/' + getLogo(item.mutualFundId)?.downloadLink"
+            alt="Fund Logo"
+            style="width: 30px;" class="ms-2" /> -->
+
+          <app-svg-viewer *ngIf="allMutualFundDetail()?.[0]?.attachments?.length > 0; else logoPlaceholder" 
+                 [svgUrl]="apiUrl + '/' + getLogo(item.mutualFundId)?.downloadLink" class="ms-2" style="width: 30px;"></app-svg-viewer>
+
+          <ng-template #logoPlaceholder>
+            <div class="logo-loading-placeholder ms-2"></div>
+          </ng-template>
+          <span class="fw-bold">{{item.mutualFundTitle}}</span>
+        </div>
+        <div class="align-items-center d-flex flex-column flex-sm-row justify-content-between mt-4 w-100">
+          <div
+            class="align-items-center custom-dashed-border d-flex flex-column justify-content-center mb-3 mb-sm-0 me-0 ms-sm-3 py-4 w-100">
+            <h6 class="mb-3">
+              روز سرمایه‌گذاری در ماه
+            </h6>
+            <h5 class="px-3">
+              {{getSelectedDaysOfMonthStr(item.selectedDaysOfMonth)}}
+            </h5>
+          </div>
+          <div class="align-items-center custom-dashed-border d-flex flex-column justify-content-center py-4 w-100">
+            <h6 class="mb-3">
+              مبلغ سرمایه‌گذاری
+            </h6>
+
+            <span class="d-flex align-items-center mb-4">
+              <h5 class="m-0" [maskNumber]="item.amount"></h5>
+              <span class="fs-6 text-secondary me-1">ریال</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="rounded bg-light-blue p-3 mt-4 d-flex align-items-center">
+          <fa-icon class="p-1 text-success ms-1" icon="exclamation-triangle" size="lg"></fa-icon>
+          <span>شما می‌توانید هر زمان که می‌خواهید این عملیات را غیر فعال کنید.</span>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!--
+    <div class="card mb-4 border-radius-15">
+      <div class="card-body me-1 me-sm-5 d-flex align-items-center justify-content-between cursor-pointer"
+        (click)="openRegisterDirectDebitContractModal()">
+        <div class="d-flex flex-column">
+          <h4>قرارداد پرداخت مستقیم</h4>
+          <span class="text-gray-500">
+            <span class="fs-6 ms-1">سقف تراکنش روزانه:</span>
+            <span>{{100000000000 | number}}</span>
+            <span class="fs-6 mx-1"> ریال </span>
+            <span class="fs-6">(پیشنهاد ما)</span>
+          </span>
+        </div>
+        <svg viewBox="0 0 24 24" width="14px" height="14px" class="me-2 text-gray-500">
+          <use xlink:href="#ico_drop_left"></use>
+        </svg>
+      </div>
+    </div>
+
+    @if(directDebitContract()){
+    <div class="w-100 d-flex align-items-start">
+      <svg viewBox="0 0 24 24" width="18px" height="18px" class="ms-2" style="color: #828C96;">
+        <use xlink:href="#ico_chart_bar_box"></use>
+      </svg>
+      <h5 class="mb-2 fw-bold" style="color: #46503C;">
+        قرارداد فعلی
+      </h5>
+    </div>
+    <div class="card shadow-sm mb-2 border-radius-15">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center" style="color: #737D87;">
+
+          <svg viewBox="0 0 24 24" width="20px" height="20px" class="me-2">
+            <use xlink:href="#ico_credit_card_stroke"></use>
+          </svg>
+          <div class=" me-5 font-weight-semi">
+            {{directDebitContract().serviceTitle}} </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+          <h6 class=" my-0 me-2 font-weight-" style="color: #737D87;">
+            تاریخ اعتبار: {{directDebitContract().validUntilJalali}}</h6>
+        </div>
+        <div class="d-flex flex-nowrap align-items-center ">
+          <span class="h5 fw-bold m-0 px-3">{{directDebitContract().contractAmount |number}}
+          </span>
+          <span class="fs-6 mx-2"> ریال </span>
+
+        </div>
+      </div>
+    </div>
+    } -->
+
+    <a href="https://academy.ipasargad.ir/direct-investing-in-hezareh3-pod/" target="_blank">
+      <img src="/images/academy-banner.webp" alt="آموزش پرداخت مستقیم" class="mb-4 border-radius-15 w-100">
+    </a>
+    <app-consulting-guide class="mb-3 d-block"></app-consulting-guide>
+
+  </div>
+
+  <div class="col-lg-8">
+    <div class="d-none d-md-block card shadow-sm mb-3 border-radius-15">
+      <div class="card-body text-justify">
+
+        <div class="mb-0">
+          <div class="d-flex align-items-center">
+            <fa-icon icon="credit-card"></fa-icon>
+            <h3 class="text-center m-3">پرداخت مستقیم</h3>
+          </div>
+          <p class="text-justify p-2">
+            پرداخت مستقیم به شما این امکان را می‌دهد که از حساب دیجیتال خود برای سرمایه‌گذاری در صندوق‌های سرمایه‌گذاری
+            استفاده نمایید.
+
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="d-none d-md-block card shadow-sm mb-3 border-radius-15">
+      <div class="card-body text-justify">
+
+        <div class="mb-0">
+          <div class="d-flex align-items-center">
+            <img width="20px" src="svg/podLogoMark-black-.svg">
+
+
+            <h3 class="text-center m-3">ویپاد</h3>
+          </div>
+          <p class="text-justify p-2">
+            ویپاد یک بانک دیجیتال است که با تکنولوژی‌های نوین، تمامی خدمات بانکی ضروری را از طریق اپلیکیشن خود به‌صورت
+            تجربه‌ای جدید برای شما فراهم می‌کند. ویپاد با حمایت بانک پاسارگاد و پشتیبانی بانک مرکزی ایران، از اواخر سال
+            ۱۳۹۸
+            فعالیت خود را آغاز کرده و تمام سپرده‌های کاربران آن نزد بانک پاسارگاد نگهداری می‌شود.
+          </p>
+          <div class="text-center cursor-pointer">
+            <img width="90px" src="svg/podLogoMark.svg" alt="" ngbTooltip="wepod.ir" (click)="openWepod()">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #inquiryAccountBalanceTem let-toast="toast">
+  <div class="d-flex justify-content-between align-items-center gap-3">
+    <h5 class="mb-0">
+      دسترسی به حساب دیجیتال ویپاد منقضی شده است. برای استفاده از خدمات پرداخت مستقیم، لطفاً دسترسی را به‌روزرسانی کنید.
+    </h5>
+
+    <div class="d-flex justify-content-between">
+      <button
+        class="btn btn-warning d-flex align-items-center gap-1"
+        (click)="openUpdateTokenPod();">
+        به‌روزرسانی
+        <!-- <fa-icon icon="angle-left"></fa-icon> -->
+      </button>  
+      
+      <!-- <span class="d-flex align-items-center me-4">
+        <fa-icon icon="close" class="text-black" (click)="toastService.remove(toast)"></fa-icon>
+      </span> -->
+    </div>
+    
+  </div>
+</ng-template>

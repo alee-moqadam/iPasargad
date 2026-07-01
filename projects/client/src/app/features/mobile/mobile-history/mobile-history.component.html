@@ -1,0 +1,49 @@
+<div class=" w-100 h-100 p-0">
+    @for (item of history() | slice:0:10; track $index) {
+
+    <div class="card mx-0 mb-4 overflow-hidden">
+        <div class="card-body p-0">
+            <div class="row mx-0">
+                <div class="col-4  p-0 bg-primary-200">
+                    <div class="d-flex flex-column align-items-center justify-content-center p-4 h-100">
+                        <svg class="text-primary mb-2" viewBox="0 0 24 24" width="18px" height="18px" 
+                            stroke-width="2">
+                            <use [attr.xlink:href]="item.type === 1 ? '#ico_s_cellphone' : '#ico_s_display'"></use>
+                        </svg>
+                        <h5 class="font-weight-bold text-primary">
+                            {{item.typeDescription}}
+                        </h5>
+                    </div>
+                </div>
+                <div class="col-20 p-4">
+                    <div class="d-flex flex-column">
+                            <div class="d-flex mb-3 justify-content-start">
+                                <svg class="ms-1" viewBox="0 0 24 24" width="18px" height="18px">
+                                    <use xlink:href="#ico_s_earth_world"></use>
+                                </svg>
+                                {{item.ip}}
+                            </div>
+                            <div class="d-flex align-items-center">
+
+                                <svg class=" text-success" viewBox="0 0 24 24" width="12px" height="12px"
+                                    stroke-width="2">
+                                    <use xlink:href="#ico_s_navigation_up"></use>
+                                </svg>
+                                <h6 class=" mb-0">{{item.dateJalali}}</h6>
+
+                                <svg class="me-2 text-danger" viewBox="0 0 24 24" width="12px" height="12px"
+                                    stroke-width="2">
+                                    <use xlink:href="#ico_s_navigation_down"></use>
+                                </svg>
+                                <h6 class=" mb-0">{{item.expireDateJalali}}</h6>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    }
+</div>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 4 310">
+  <!-- Generator: Adobe Illustrator 30.4.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 226)  -->
+  <defs>
+    <linearGradient id="linear-gradient" x1="-1466.07" y1="36.62" x2="464.6" y2="36.62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#63d600" stop-opacity="0"/>
+      <stop offset=".09" stop-color="#b3ff72"/>
+      <stop offset=".92" stop-color="#12b549"/>
+      <stop offset="1" stop-color="#12b549" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient1" x1="-1466.07" y1="105.43" x2="464.6" y2="105.43" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#feb5b6" stop-opacity="0"/>
+      <stop offset=".08" stop-color="#ff484a"/>
+      <stop offset=".92" stop-color="#ffdde0"/>
+      <stop offset="1" stop-color="#ff919b" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient2" x1="-1466.07" y1="170.08" x2="464.6" y2="170.08" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#faaf16" stop-opacity="0"/>
+      <stop offset=".05" stop-color="#ffdd6a"/>
+      <stop offset=".93" stop-color="#ff4500"/>
+      <stop offset="1" stop-color="#f90" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient3" x1="-1466.07" y1="233.79" x2="464.6" y2="233.79" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9e6eff" stop-opacity="0"/>
+      <stop offset=".07" stop-color="#6a21ff"/>
+      <stop offset=".91" stop-color="#ceb5ff"/>
+      <stop offset="1" stop-color="#63c" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="4" height="310" fill="#fff" fill-opacity="0"/>
+  <g>
+    <rect x=".01" y="14.12" width="4" height="45" fill="url(#linear-gradient)" isolation="isolate" opacity=".5"/>
+    <rect x=".01" y="82.93" width="4" height="45" fill="url(#linear-gradient1)" isolation="isolate" opacity=".5"/>
+    <rect x=".01" y="147.57" width="4" height="45.02" fill="url(#linear-gradient2)" isolation="isolate" opacity=".5"/>
+    <rect x=".01" y="211.29" width="4" height="45" fill="url(#linear-gradient3)" isolation="isolate" opacity=".5"/>
+  </g>
+</svg>

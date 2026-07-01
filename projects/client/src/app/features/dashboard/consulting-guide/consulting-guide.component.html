@@ -1,0 +1,20 @@
+<div class="card help-bg bg-white d-flex justify-content-center align-items-center" style="border-radius: 15px;">
+  <fa-icon size="2x" class="m-3 opacity-25" icon="headset"></fa-icon>
+  @if(!this.isInSupportPage) {
+  <h2 class="my-2">به راهنمایی یا مشاوره نیاز دارید؟</h2>
+  <h4 class="my-2">از کارشناسان ما مشاوره بگیرید.</h4>
+  <div class="d-flex m-3">
+    <a routerLink="/customer-support" class="btn btn-sm border border-2 border-warning m-2">تماس با کارشناسان</a>
+    <a id="goftino-toggle-help" class="btn btn-sm border border-2 border-primary m-2">ارسال پیام</a>
+  </div>
+  } @else {
+  <h2 class="my-2">راهنمایی تلفنی</h2>
+  <h6 class="my-2 text-secondary opacity-75">در صورتی که از طریق روش‌های بالا مشکلتان حل نشده تماس بگیرید</h6>
+  <a style="background-color: #2F9485;" href="tel:+982158241000" class="btn btn-sm m-2 mb-4 text-white">
+    <svg viewBox="0 0 24 24" width="14px" height="14px" class="ms-1">
+      <use xlink:href="#ico_phone"></use>
+    </svg>
+    تماس تلفنی
+  </a>
+  }
+</div>

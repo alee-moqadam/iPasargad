@@ -1,0 +1,517 @@
+<div class="row">
+  <div class="col-lg-16 order-2 px-4" style="padding-bottom: 75px;">
+    <div class="w-100">
+      <div class="card border-radius-15">
+        <div class="card-body p-0">
+          <div class=" d-flex align-items-center justify-content-center flex-column p-5"
+            [style.background-image]="bgImage"
+            style="background-repeat: no-repeat;background-size: cover;border-radius: 15px;">
+
+            <!-- <img *ngIf="fundInfo()?.mutualFundDetail?.attachments?.length > 0; else logoPlaceholder"              
+              [src]="apiUrl + '/' + getAttachment(item, attachmentTypes.Logo)?.downloadLink"
+              alt="Fund Logo" style="width: 40px;" /> -->
+          
+            <app-svg-viewer *ngIf="fundInfo()?.mutualFundDetail?.attachments?.length > 0; else logoPlaceholder"
+                 [svgUrl]="apiUrl + '/' + getAttachment(attachmentTypes.Logo)?.downloadLink"  style="width: 40px;"></app-svg-viewer>
+
+            <ng-template #logoPlaceholder>
+              <div class="logo-loading-placeholder"></div>
+            </ng-template>
+            <h3 class="mt-5 mb-2">
+              {{fundInfo()?.mutualFundDetail?.symbol}}
+            </h3>
+            <h4 class="text-secondary">
+              {{fundInfo()?.mutualFundDetail?.fundTypeTitle}}
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="card my-4 border-radius-15">
+        <div class="card-body p-5">
+          <h5 class="text-right text-secondary mb-5">
+            ویژگی‌های این صندوق
+          </h5>
+          <p class="text-justify text-gray-650 mb-5">
+            {{ fundInfo()?.mutualFundDetail?.targetDescription }}
+          </p>
+          <div class="d-flex mb-4 flex-wrap">
+            @for (hashtag of fundInfo()?.mutualFundDetail?.tags; track $index) {
+            @if(hashtag){
+            <span class=" py-1 px-4 mx-1 my-2 fund-detail-badge">{{hashtag}}</span>
+            }
+            }
+          </div>
+          <div class="d-flex align-items-center flex-column w-100 mb-4">
+            @if(fundInfo()?.mutualFundDetail?.mutualFundId==2){
+            <div class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2">
+              <div class="text-secondary">پیش‌بینی بازده موثر</div>
+              <div class="font-weight-bold">{{fundInfo()?.mutualFundDetail?.performance?.effectiveYearlyPercent |
+                number}} %</div>
+            </div>
+            }@else if(![1, 5].includes(fundInfo()?.mutualFundDetail?.fundType)){
+            <div class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2">
+              <!-- <div class="text-secondary">آخرین سود محقق شده (سالانه)</div> -->
+              <div class="text-secondary">پیش‌بینی بازده اسمی (سالانه)</div>
+              <div class="font-weight-bold">{{fundInfo()?.mutualFundDetail?.performance?.yearlyPercent |
+                number}} %</div>
+            </div>
+            }
+            <div class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2">
+              <div class="text-secondary">کل خالص ارزش دارایی ها</div>
+              <div class="font-weight-bold"> {{fundInfo()?.lastNav?.netAssetValue | number}} <span
+                  class="small text-secondary mx-1">ریال</span></div>
+            </div>
+            @if(fundInfo()?.mutualFundDetail?.fixedIncomeFundType === 1){
+            <div class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2">
+              <div class="text-secondary">تقسیم سود</div>
+              <div class="font-weight-bold"> {{fundInfo()?.mutualFundDetail?.dividendType}}</div>
+            </div>
+            }
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between w-100">
+            @if (fundInfo()?.mutualFundDetail?.investType!=1) {
+            <div
+              class="d-flex align-items-center justify-content-center flex-column custom-dashed-border py-4 w-50 ms-3 me-0">
+              <h6 class="text-success mb-2">
+                قیمت صدور
+              </h6>
+              <h4>
+                {{ bestLimit()?.buyPrice != null ? (bestLimit()?.buyPrice | number) : '-' }}
+                <span class="small text-secondary">ریال</span>
+              </h4>
+            </div>
+            <div class="d-flex align-items-center justify-content-center flex-column custom-dashed-border py-4 w-50">
+              <h6 class="text-danger mb-2">
+                قیمت ابطال
+              </h6>
+              <h4>
+                <!-- {{bestLimit()?.sellPrice | number}} -->
+                {{ bestLimit()?.sellPrice != null ? (bestLimit()?.sellPrice | number) : '-' }}
+                 <span class="small text-secondary">ریال</span>
+              </h4>
+            </div>
+            }@else {
+            <div
+              class="d-flex align-items-center justify-content-center flex-column custom-dashed-border py-4 w-50 ms-3 me-0">
+              <h6 class="text-success mb-2">
+                قیمت صدور
+              </h6>
+              <h4>
+                {{fundInfo()?.lastNav?.subscriptionNAV | number}} <span class="small text-secondary">ریال</span>
+              </h4>
+            </div>
+            <div class="d-flex align-items-center justify-content-center flex-column custom-dashed-border py-4 w-50">
+              <h6 class="text-danger mb-2">
+                قیمت ابطال
+              </h6>
+              <h4>
+                {{fundInfo()?.lastNav?.redemptionNAV | number}} <span class="small text-secondary">ریال</span>
+              </h4>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="card h-100 shadow-sm bg-panel-investing">
+          <div class="card-body p-6 pe-6 d-flex flex-column flex-sm-row bg-panel-svg cursor-pointer">
+            
+            <img src="/images/academy-title.png" loading="lazy" alt="پشتیبانی مشتریان"
+                 width="110" class="align-self-center d-flex mb-2">    
+      
+            <div class="d-none d-sm-block me-6 bg-white" style="width:2px; height:57px;"></div>       
+      
+            <div class="w-100 d-flex align-items-center justify-content-center flex-column mt-auto">
+              
+              <h5 class="mb-3 text-justify text-white">
+                آموزش نحوه سرمایه‌گذاری در صندوق 
+                {{ getFundInfo()?.name }}
+              </h5>
+              
+              @if(getFundInfo()){
+                <div class="text-start d-flex align-items-center justify-content-center gradient-btn">
+                  <a [href]="getFundInfo()?.url" target="_blank"
+                     class="btn btn-link py-1 fs-6 text-decoration-none text-white"
+                     style="white-space: nowrap;">
+                    <span>آموزش بیشتر</span>
+                    <img src="/images/arrow-left.svg" class="me-2" loading="lazy" width="16" height="16">
+                  </a>
+                </div>
+              }
+      
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="card shadow-sm my-3">
+        <img class="w-100 img-fluid custom-radius" src="images/Group 19551.png" alt="banner" />
+      </div> -->
+      @if(fundInfo()?.mutualFundDetail?.mutualFundId === 1){
+      <div ngbAccordion>
+        <div ngbAccordionItem class="mb-3" [collapsed]="isCollapsed4" (shown)="isCollapsed4 = false"
+          (hidden)="isCollapsed4 = true">
+          <span ngbAccordionHeader class="border-radius-15">
+            <button class=" d-flex justify-content-between py-3 px-4" ngbAccordionButton>
+              <div class="d-flex align-items-center justify-content-between w-100">
+                <h5 class="text-secondary mb-0">
+                  حساب‌های بانکی صندوق
+                </h5>
+
+              </div>
+              <div class="d-flex align-items-center">
+                <h5 class="text-primary text-nowrap mb-0">
+                  نمایش اطلاعات
+                </h5>
+                <svg class="text-primary me-2" viewBox="0 0 24 24" width="14px" height="14px">
+                  <use [attr.xlink:href]="isCollapsed4 ? '#ico_drop_down' : '#ico_drop_up'"></use>
+                </svg>
+              </div>
+            </button>
+          </span>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody class="p-5 border-radius-15">
+              <ng-template>
+                @for (bank of bankDeposit(); track $index) {
+                <div
+                  class="w-100 flex-column d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2">
+                  <div class="d-flex w-100 justify-content-between mb-4">
+                    <span class="text-secondary">نام بانک:</span>
+                    <span class="font-weight-bold">{{bank.bankTitle}} (شعبه {{bank.branchName}})</span>
+                  </div>
+                  <div class="d-flex w-100 justify-content-between mb-4">
+                    <span class="text-secondary">شماره حساب:</span>
+                    <span class="font-weight-bold cursor-pointer d-flex" (click)="copyToClipboard(bank.accountNumber)">
+                      <fa-icon ngbTooltip="کپی متن" class="text-primary mx-3" icon="copy"></fa-icon>{{
+                      bank.accountNumber }}
+                    </span>
+                  </div>
+                  <div class="d-flex w-100 justify-content-between">
+                    <span class="text-secondary">شماره شبا:</span>
+                    <span class="font-weight-bold cursor-pointer d-flex" (click)="copyToClipboard(bank.iban)">
+                      <fa-icon ngbTooltip="کپی متن" class="text-primary mx-3" icon="copy"></fa-icon>{{bank.iban}}
+                    </span>
+                  </div>
+                </div>
+                }
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      }
+
+      <div ngbAccordion>
+        <div ngbAccordionItem class="mb-3" [collapsed]="isCollapsed1" (shown)="isCollapsed1 = false"
+          (hidden)="isCollapsed1 = false">
+          <span ngbAccordionHeader class="border-radius-15">
+            <button class=" d-flex justify-content-between py-3 px-4" ngbAccordionButton>
+              <div class="d-flex align-items-center justify-content-between w-100">
+                <h5 class="text-secondary mb-0">
+                  پروفایل هویتی صندوق
+                </h5>
+
+              </div>
+              <div class="d-flex align-items-center">
+                <h5 class="text-primary text-nowrap mb-0">
+                  نمایش اطلاعات
+                </h5>
+                <svg class="text-primary me-2" viewBox="0 0 24 24" width="14px" height="14px">
+                  <use [attr.xlink:href]="isCollapsed1 ? '#ico_drop_down' : '#ico_drop_up'"></use>
+                </svg>
+              </div>
+            </button>
+          </span>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody class="p-5 border-radius-15">
+              <ng-template>
+                <div class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2">
+                  <div class="text-secondary">تاریخ آغاز فعالیت</div>
+                  <div class="font-weight-bold">{{fundInfo()?.mutualFundDetail?.registerDateJalali}}
+                  </div>
+                </div>
+                @for (manager of fundInfo()?.mutualFundDetail?.managers; track $index) {
+
+                <div class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2">
+                  <span class="text-secondary">{{ manager.typeTitle }}</span>
+                  <span class="font-weight-bold">{{ manager.name }}</span>
+                </div>
+                }
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="my-5 align-items-center justify-content-between fund-info-links">
+        <a target="_blank" href="{{ fundInfo()?.mutualFundDetail?.website }}"
+          class="btn btn-primary text-white py-4 px-5 me-2 text-nowrap">وبسایت صندوق</a>
+        <a target="_blank" href="{{ fundInfo()?.mutualFundDetail?.statute }}"
+          class="btn btn-primary text-white py-4 px-5 me-2">اساسنامه</a>
+        <a target="_blank" href="{{ fundInfo()?.mutualFundDetail?.prospectus }}"
+          class="btn btn-primary text-white py-4 px-5 me-2">امیدنامه</a>
+      </div>
+
+
+      <div ngbAccordion class="my-3">
+        <div ngbAccordionItem class="mb-3" [collapsed]="isCollapsed2" (shown)="isCollapsed2 = false"
+          (hidden)="isCollapsed2 = true">
+          <h2 ngbAccordionHeader>
+            <button class="custom-radius d-flex justify-content-between py-3 px-4 border-radius-15" ngbAccordionButton>
+              <div class="d-flex align-items-center justify-content-between w-100">
+                <h5 class="text-secondary mb-0">
+                  نمودار‌ها
+                </h5>
+              </div>
+              <div class="d-flex align-items-center">
+                <h5 class="text-primary mb-0 text-nowrap">
+                  نمایش اطلاعات
+                </h5>
+
+                <svg class="text-primary me-2" viewBox="0 0 24 24" width="14px" height="14px">
+                  <use [attr.xlink:href]="isCollapsed2 ? '#ico_drop_down' : '#ico_drop_up'"></use>
+                </svg>
+              </div>
+            </button>
+          </h2>
+
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody class="p-5 border-radius-15">
+              <ng-template>
+                <app-asset-chart class="mb-3 d-block" [fundDetail]="{ seoRegisterNumber: fundCode }"></app-asset-chart>
+
+
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div ngbAccordion>
+        <div ngbAccordionItem class="mb-3" [collapsed]="isCollapsed3" (shown)="isCollapsed3 = false"
+          (hidden)="isCollapsed3 = true">
+          <h2 ngbAccordionHeader>
+            <button class="custom-radius d-flex justify-content-between py-3 px-4 border-radius-15" ngbAccordionButton>
+              <div class="d-flex align-items-center justify-content-between w-100 ">
+                <h5 class="text-secondary mb-0">
+                  ترکیب دارایی
+                </h5>
+              </div>
+              <div class="d-flex align-items-center">
+                <h5 class="text-primary mb-0 text-nowrap">
+                  نمایش اطلاعات
+                </h5>
+
+                <svg class="text-primary me-2" viewBox="0 0 24 24" width="14px" height="14px">
+                  <use [attr.xlink:href]="isCollapsed3 ? '#ico_drop_down' : '#ico_drop_up'"></use>
+                </svg>
+
+              </div>
+            </button>
+          </h2>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody class="p-5 border-radius-15">
+              <ng-template>
+
+                <div class=" overflow-hidden">
+                  <div class=" asset-svg text-gray-250">
+                    <div class="d-flex ">
+                      <div
+                        class="{{fundInfo()?.mutualFundDetail?.mutualFundId === 3 ? 'w-100' : 'w-50'}} p-4 d-flex my-2 ms-2 me-0 flex-column justify-content-center border border-1 custom-radius"
+                        style="border: 1px solid #cdd7e1;">
+                        <span class="text-center custom-radius mt-4" style="color: #818d98;">ترکیب دارایی صندوق</span>
+
+                        @if (lastMutualFund$ | async) {
+                        <span class="fs-6 text-center">
+                          <app-composition-chart [lastMutualFund]="lastMutualFund$.getValue()"></app-composition-chart>
+                        </span>
+                        }
+                      </div>
+                      <div *ngIf="fundInfo()?.mutualFundDetail?.mutualFundId !== 3"
+                        class=" p-4 d-flex w-50 my-2 ms-0 me-2 flex-column justify-content-center border border-1  custom-radius"
+                        style="border: 1px solid #cdd7e1;">
+                        <span class="text-center custom-radius mt-4" style="color: #818d98;">ترکیب صنایع صندوق</span>
+
+                        @if (sectors().length > 0) {
+                        <span class="fs-6 text-center">
+                          <app-industry-chart [sectors]="sectors()"></app-industry-chart>
+                        </span>
+                        }
+                      </div>
+
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center my-5">
+                      <h5 class=" mb-0" style="color: #818d98;">لیست ترکیب صندوق</h5>
+                      <div class="form-check form-switch mb-0" *ngIf="fundInfo()?.mutualFundDetail?.mutualFundId !== 3">
+                        <input class="form-check-input" type="checkbox" checked [(ngModel)]="assetCompositionCheckbox">
+                        <label class="form-check-label text-white mb-0" for="flexSwitchCheckChecked">
+                          <h5 class="mb-0 font-weight-semi" style="color: #818d98;">
+                            @if(assetCompositionCheckbox){
+                            ترکیب دارایی
+                            }@else {
+                            ترکیب صنایع
+                            }
+                          </h5>
+                        </label>
+                      </div>
+                    </div>
+                    @if (assetCompositionCheckbox) {
+                    @for (item of lastMutualFund$ | async ; track $index) {
+                      @if(item?.value > 0) {
+                        <div class="text-black mb-2 p-3 border-radius-10" style="background-color: #ebf5ff;">
+                          <div class="d-flex align-items-center justify-content-between  ">
+                            <div class="d-flex aling-items-center">
+                              <span [style.backgroundColor]="item.color" class="dot"></span>
+                              <span class="me-2">{{item.name}}</span>
+                            </div>
+                            <div class="ms-2">
+                              {{item.value}} %
+                            </div>
+    
+                          </div>
+                        </div>
+                      }                   
+                    }
+                    }@else {
+                    @for (item of sectors(); track $index) {
+                    <div class="text-black mb-2 p-3 border-radius-10" style="background-color: #ebf5ff;">
+                      <div class="d-flex align-items-center justify-content-between  ">
+                        <div class="d-flex aling-items-center">
+                          <span [style.backgroundColor]="item.color" class="dot"></span>
+                          <span class="me-2">{{item.title}}</span>
+                        </div>
+                        <div class="ms-2">
+                          {{item.percent}} %
+                        </div>
+
+                      </div>
+                    </div>
+                    }
+                    }
+                  </div>
+                </div>
+                <!-- <div class="card bg-asset overflow-hidden">
+                  <div class="card-body asset-svg text-gray-250">
+                    <div class="d-flex ">
+                      <div
+                        class=" d-flex w-50 m-2 flex-column justify-content-center border border-1 border-gray-500 custom-radius">
+                        <app-composition-chart></app-composition-chart>
+
+
+                      </div>
+
+                      <div class=" d-flex w-50">
+                        <app-industry-chart></app-industry-chart>
+                      </div>
+
+                    </div>
+                  </div>
+                </div> -->
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <app-consulting-guide class="mb-6 d-block"></app-consulting-guide>
+
+    </div>
+  </div>
+  <div class="col-lg-8 order-lg-2 mb-3 d-none d-lg-block">
+    <div class="card border-radius-15">
+      <div class="card-body p-4">
+        <div class="w-100 d-flex align-items-center flex-column">
+          <div class="d-flex align-items-center mb-4 w-100">
+            <!-- <img *ngIf="getAttachment(attachmentTypes.Logo); else logoPlaceholder"
+              [src]="apiUrl + '/' + getAttachment(item, attachmentTypes.Logo)?.downloadLink"
+              alt="Fund Logo" style="width: 40px;" /> -->
+            <app-svg-viewer *ngIf="getAttachment(attachmentTypes.Logo); else logoPlaceholder"
+                 [svgUrl]="apiUrl + '/' + getAttachment(attachmentTypes.Logo)?.downloadLink"  style="width: 40px;"></app-svg-viewer>
+                 
+            <ng-template #logoPlaceholder>
+              <div class="logo-loading-placeholder"></div>
+            </ng-template>
+            <div class="d-flex  flex-column mx-2">
+              <h4 class="text-secondary">
+                {{fundInfo()?.mutualFundDetail?.symbol}}
+              </h4>
+              <h5 class="text-secondary">
+                {{fundInfo()?.mutualFundDetail?.fundTypeTitle}}
+              </h5>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between w-100 mb-5">
+            <h5 class="text-secondary">تعداد واحد</h5>
+            <div class="d-flex" style="align-items: center !important">
+              <!-- @if(fundInfo()?.fundComposition?.remainVolume){
+                <h5 [maskNumber]="fundInfo()?.fundComposition?.remainVolume"></h5>
+              } @else {
+                <h5>-</h5>
+              } -->
+              <h5 [maskNumber]="fundInfo()?.fundComposition?.remainVolume ?? 0" class="mb-0"></h5>
+              <span class="mx-2 text-secondary">واحد</span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-between w-100 mb-5">
+            <h5 class="text-secondary">دارایی</h5>
+            <div class="d-flex" style="align-items: center !important">
+              @if(fundInfo()?.fundComposition?.netValue){
+                  <h5 [maskNumber]="fundInfo()?.fundComposition?.netValue" class="mb-0"></h5>
+              } @else {
+                <h5 class="mb-0">-</h5>
+              }
+              <!-- <h5 [maskNumber]="fundInfo()?.fundComposition?.netValue | number"></h5> -->
+              <span class="mx-2 text-secondary">ریال</span>
+            </div>
+          </div>
+          @if(!checkCustomerStepService.getCustomerStep() && fundInfo()?.mutualFundDetail?.reinvest === 1){
+          <div class="d-flex align-items-center justify-content-between py-4 px-3 mb-4 border-primary w-100 cursor-pointer"
+            (click)="openReinvestPercentModal(fundInfo(),$event)"
+            style="border: 1px dashed;border-radius: 15px;background-color: #6633CC1A;">
+            <div class="d-flex align-items-center ">
+              <svg viewBox="0 0 24 24" width="18px" height="18px" class="text-primary">
+                <use xlink:href="#ico_energy_recover"></use>
+              </svg>
+              <h5 class="mb-0 me-1" style="color: #46503C;">
+                سرمایه‌گذاری مجدد
+              </h5>
+            </div>
+            <div>
+              <div class="form-check form-switch mb-0 cursor-pointer">
+                <input class="form-check-input cursor-pointer" type="checkbox" type="checkbox"
+                  [checked]="fundInfo()?.customerEvidence?.reinvest">
+                <label class="form-check-label text-white mb-0 cursor-pointer" for="reinvest">
+                  <h6 class="mb-0 font-weight-semi text-black ms-1">
+                    {{fundInfo()?.customerEvidence?.reinvest ? fundInfo()?.customerEvidence?.reinvest+'%' : 'غیرغعال' }}
+                  </h6>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="w-100 d-flex align-items-center">
+            <div class="d-flex">
+              <svg class="text-warning ms-2" viewBox="0 0 24 24" width="24px" height="24px">
+                <use xlink:href="#ico_warning"></use>
+              </svg>
+              <span class="text-justify text-secondary d-flex align-items-center mb-0 h6"
+                style="color: #828C96;line-height: 1.3rem;">
+                شما می‌توانید سود بیشتری دریافت کنید و سود خود را به سرمایه تبدیل کنید.
+              </span>
+
+            </div>
+          </div>
+          }
+        </div>
+
+
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 82 82">
+  <!-- Generator: Adobe Illustrator 29.6.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 9)  -->
+  <g id="Group_24526">
+    <rect id="Rectangle_18973" x="1" y="1" width="72" height="72" rx="10" ry="10" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Intersection_90" d="M14.6,49h8.4c1.657,0,3,1.343,3,3v21h-14.4v-21c0-1.657,1.343-3,3-3Z" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+    <path id="Intersection_89" d="M29,40.201h8.4c1.657,0,3,1.343,3,3v29.8h-14.4v-29.8c0-1.657,1.343-3,3-3Z" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+    <path id="Intersection_88" d="M43.401,30.601h8.4c1.657,0,3,1.343,3,3v39.4h-14.4v-39.4c0-1.657,1.343-3,3-3Z" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+    <path id="Intersection_87" d="M57.799,21.8h8.4c1.657,0,3,1.343,3,3v46.2h-14.4V24.8c0-1.657,1.343-3,3-3Z" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+    <g id="Group_23924">
+      <path id="Subtraction_1520" d="M70.2,73c-5.955,0-10.8-2.421-10.8-5.4v-15.4h.482c.962,1.294,2.311,2.249,3.851,2.726,2.076.736,4.265,1.1,6.467,1.074,2.202.026,4.392-.338,6.467-1.075,1.54-.477,2.889-1.431,3.851-2.725h.482v15.4c0,2.979-4.845,5.4-10.8,5.4Z" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30545" d="M81,62.025c0,2.982-4.835,5.4-10.8,5.4s-10.8-2.418-10.8-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30546" d="M81,56.626c0,2.982-4.835,5.4-10.8,5.4s-10.8-2.418-10.8-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+      <ellipse id="Ellipse_2402" cx="70.2" cy="51.4" rx="10.8" ry="5.6" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+    </g>
+    <g id="Group_23923">
+      <path id="Subtraction_1521" d="M53.972,81c-5.955,0-10.8-2.392-10.8-5.332v-10.668c0,1.422,1.125,2.762,3.167,3.77,2.396,1.084,5.004,1.619,7.633,1.565,5.955,0,10.8-2.393,10.8-5.335v10.668c0,2.94-4.845,5.332-10.8,5.332Z" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30547" d="M64.772,70.281c0,2.982-4.835,5.4-10.8,5.4s-10.8-2.418-10.8-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+      <ellipse id="Ellipse_2399" cx="53.972" cy="65" rx="10.8" ry="5.6" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+    </g>
+    <path id="Path_31862" d="M3.33,21.4h49.241" fill="none" stroke="#062e28" stroke-dasharray="2 5" stroke-linecap="round" stroke-width="2"/>
+    <path id="Path_31863" d="M3.447,31.501h35.053" fill="none" stroke="#062e28" stroke-dasharray="2 5" stroke-linecap="round" stroke-width="2"/>
+    <line id="Line_5424" x1="3.5" y1="40.5" x2="24.7" y2="40.5" fill="none" stroke="#062e28" stroke-dasharray="2 5" stroke-linecap="round" stroke-width="2"/>
+    <path id="Path_30623" d="M69.2,27.481l-5.559-5.559" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_30627" d="M61.951,48.232l-7.211-7.211" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_30624" d="M69.122,34.6l-12.4-12.4" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_30628" d="M59.118,51.799l-4.378-4.378" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_30625" d="M69.354,41.235l-14.284-14.284" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_30629" d="M59.319,59.2l-4.249-4.249" fill="none" stroke="#062e28" stroke-width="2"/>
+    <path id="Path_30626" d="M66.937,46.018l-12.052-12.052" fill="none" stroke="#062e28" stroke-width="2"/>
+  </g>
+</svg>

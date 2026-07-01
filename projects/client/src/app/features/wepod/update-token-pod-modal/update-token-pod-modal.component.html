@@ -1,0 +1,46 @@
+<div class="card overflow-hidden">
+  <div class="card-header bg-primary text-center text-white py-5">
+    به‌روزرسانی دسترسی پرداخت مستقیم (حساب دیجیتال)
+  </div>
+  <div class="card-body p-0 px-5">
+    <p class="text-justify px-1 py-4 mb-0">
+      برای به‌روزرسانی دسترسی، ابتدا «ارسال کد» را بزنید و سپس کد یکبارمصرف ارسال‌شده به شماره موبایل خود از طرف ویپاد را وارد کنید.
+    </p>
+    <div class="form-group px-0 pb-4">
+      <!-- <label class="form-text text-muted small mb-2">کد تایید</label> -->
+
+      <div class="input-group">
+        <input pattern="[0-9]*" inputmode="decimal" name="otpDebit" type="text" id="otpDebit" mask="999999" maxlength="6"
+          class="form-control ltr text-end" placeholder="کد تایید" [(ngModel)]="otpDebit"
+          [ngClass]="{ 'is-invalid': otpDebitSubmitted() && !otpDebit }" />
+
+        <div class="input-group-text text-center">
+          @if (sendingOtpPod()) {
+          <div class="d-flex align-items-center h-100">
+            ارسال کد تایید
+            <span class="spinner-border spinner-border-sm mx-1"></span>
+          </div>
+          } @else {
+          <button type="button" class="btn text-nowrap btn-radius text-center cursor-pointer" [style.width]="'120px'"
+            (click)="sendOtpDebit()" [counter]="{ seconds: 0, minutes: 2 }" [start]="hasOtpPodSent$ | async"
+            [disabled]="disableOtpDebitButton$ | async" (value)="onCounterValueChangeDebit($event)"
+            text="ارسال کد تایید" [showCounter]="showCounterDebit$ | async" altText="ارسال کد">ارسال کد</button>
+          }
+        </div>
+      </div>
+
+      @if (otpDebitSubmitted() && !otpDebit) {
+      <div class="small text-danger me-2 mt-1">
+        لطفا کد تایید را وارد نمایید
+      </div>
+      }
+    </div>
+    <div class="border-0 w-100 d-flex pb-5">
+      <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">انصراف</button>
+      <app-loading-button class="w-50" [isLoading]="submittingDebit()" [disabled]="!otpDebit || submittingDebit()"
+        [type]="'button'" cssClass="btn btn-primary rounded-pill text-white" (click)="verifyOtpDebit()">
+        تایید
+      </app-loading-button>
+    </div>
+  </div>
+</div>

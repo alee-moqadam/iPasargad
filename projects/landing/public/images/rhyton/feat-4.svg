@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 102.5 102.5">
+  <!-- Generator: Adobe Illustrator 29.5.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 141)  -->
+  <g id="Group_24390">
+    <g id="Group_23929">
+      <path id="Path_31406" d="M4.995,65.87c-2.486-5.717-3.761-11.886-3.745-18.12C1.25,22.069,22.542,1.25,48.796,1.25s47.546,20.819,47.546,46.5c0,.845-.023,1.686-.084,2.785" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2.5"/>
+      <path id="Subtraction_1538" d="M66.996,43.584h-32l6.506-20.505c.621-2.059,2.509-3.474,4.659-3.495h9.671c2.15.019,4.038,1.436,4.658,3.495l6.506,20.505Z" fill="#d8d4fe" stroke="#062e28" stroke-linejoin="round" stroke-width="2.5"/>
+      <path id="Subtraction_1541" d="M34.487,91.584H2.487l6.506-20.505c.621-2.059,2.509-3.474,4.659-3.495h9.671c2.15.019,4.038,1.436,4.658,3.495l6.506,20.505Z" fill="#d8d4fe" stroke="#062e28" stroke-linejoin="round" stroke-width="2.5"/>
+      <path id="Subtraction_1539" d="M50.487,67.584H18.487l6.506-20.505c.621-2.059,2.509-3.474,4.659-3.495h9.671c2.15.019,4.038,1.436,4.658,3.495l6.506,20.505Z" fill="#d8d4fe" stroke="#062e28" stroke-linejoin="round" stroke-width="2.5"/>
+      <path id="Subtraction_1540" d="M82.997,67.584h-32l6.506-20.505c.621-2.059,2.509-3.474,4.659-3.495h9.671c2.15.019,4.038,1.436,4.658,3.495l6.506,20.505Z" fill="#d8d4fe" stroke="#062e28" stroke-linejoin="round" stroke-width="2.5"/>
+      <path id="Subtraction_1542" d="M66.996,91.584h-32l6.506-20.505c.621-2.059,2.509-3.474,4.659-3.495h9.671c2.15.019,4.038,1.436,4.658,3.495l6.506,20.505Z" fill="#d8d4fe" stroke="#062e28" stroke-linejoin="round" stroke-width="2.5"/>
+      <g id="Group_23915">
+        <path id="Subtraction_1520" d="M87.75,91.25c-7.444,0-13.5-3.027-13.5-6.749v-19.251h.6c1.204,1.618,2.891,2.811,4.817,3.407,2.594.921,5.331,1.376,8.083,1.344,2.752.032,5.489-.423,8.083-1.344,1.926-.596,3.613-1.789,4.817-3.407h.6v19.251c0,3.722-6.056,6.749-13.5,6.749Z" fill="#efe3cc" stroke="#062e28" stroke-width="2.5"/>
+        <path id="Path_30545" d="M101.25,77.532c0,3.728-6.044,6.75-13.5,6.75s-13.5-3.022-13.5-6.75" fill="none" stroke="#062e28" stroke-width="2.5"/>
+        <path id="Path_30546" d="M101.25,70.782c0,3.728-6.044,6.75-13.5,6.75s-13.5-3.022-13.5-6.75" fill="none" stroke="#062e28" stroke-width="2.5"/>
+        <ellipse id="Ellipse_2402" cx="87.75" cy="64.25" rx="13.5" ry="7" fill="#efe3cc" stroke="#062e28" stroke-width="2.5"/>
+      </g>
+      <g id="Group_23916">
+        <path id="Subtraction_1521" d="M67.573,101.25c-7.443,0-13.5-2.99-13.5-6.666v-13.334c0,1.778,1.406,3.452,3.959,4.713,2.995,1.354,6.255,2.022,9.541,1.955,7.443,0,13.5-2.991,13.5-6.668v13.334c0,3.676-6.057,6.666-13.5,6.666Z" fill="#efe3cc" stroke="#062e28" stroke-width="2.5"/>
+        <path id="Path_30547" d="M81.073,87.852c0,3.728-6.044,6.75-13.5,6.75s-13.5-3.022-13.5-6.75" fill="none" stroke="#062e28" stroke-width="2.5"/>
+        <ellipse id="Ellipse_2399" cx="67.573" cy="81.25" rx="13.5" ry="7" fill="#efe3cc" stroke="#062e28" stroke-width="2.5"/>
+      </g>
+      <g id="Group_24534">
+        <path id="Union_589" d="M43.023,67.584c-1.657,0-3-1.343-3-3v-8.771h-7.648c-1.105-.001-1.999-.898-1.998-2.002,0-.523.206-1.024.572-1.398l18.382-18.694c.775-.787,2.041-.797,2.828-.023.008.007.015.015.023.023l18.383,18.691c.773.789.761,2.055-.028,2.828-.373.366-.875.571-1.398.572h-6.923v8.771c0,1.657-1.343,3-3,3l-16.193.003Z" fill="#efe3cc" stroke="#062e28" stroke-width="2.5"/>
+        <g id="Group_24533">
+          <path id="Path_30630" d="M58.613,41.55l-18.847,18.847" fill="none" stroke="#062e28" stroke-width="2.5"/>
+          <path id="Path_31413" d="M55.396,36.567l-18.937,18.937" fill="none" stroke="#062e28" stroke-width="2.5"/>
+          <path id="Path_30631" d="M63.581,44.897l-21.907,21.907" fill="none" stroke="#062e28" stroke-width="2.5"/>
+          <path id="Path_30632" d="M67.451,49.712l-17.5,17.5" fill="none" stroke="#062e28" stroke-width="2.5"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

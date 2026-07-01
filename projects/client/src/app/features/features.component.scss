@@ -1,0 +1,142 @@
+@import 'node_modules/bootstrap/scss/_functions.scss';
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 767px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1440px
+);
+
+@import 'node_modules/bootstrap/scss/_variables.scss';
+@import 'node_modules/bootstrap/scss/_mixins.scss';
+
+
+::ng-deep {
+
+    @include media-breakpoint-down(lg) {
+        main {
+            padding-bottom: calc(3.75rem + 1rem);
+        }
+    }
+
+    .main-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .rightbar {
+
+        transition: width .4s ease-in-out;
+        overflow: hidden;
+    }
+
+    .rightbar+main {
+        width: 100%
+    }
+
+
+    @include media-breakpoint-up(lg) {
+
+        .main-wrapper {
+            flex-direction: row;
+        }
+
+        .rightbar {
+            display: block;
+            width: var(--rightbar-width-collapsed);
+
+            // height: 700px;
+            .card {
+                width: var(--rightbar-width-collapsed)
+            }
+        }
+
+        .rightbar+main {
+            transition: width .4s ease-in-out;
+            padding-right: 1rem;
+            width: calc(100% - var(--rightbar-width-collapsed));
+        }
+
+        .fixed .rightbar {
+            width: var(--rightbar-width);
+            flex-shrink: 0;
+            position: relative;
+
+            .card {
+                width: var(--rightbar-width)
+            }
+        }
+
+        .fixed .rightbar+main {
+            padding-right: 1rem;
+            width: calc(100% - var(--rightbar-width));
+        }
+    }
+
+    .bg-net-worth {
+        background-color: #16FAB0;
+    }
+
+    .chat-btn {
+        width: 85px;
+        height: 40px;
+        white-space: nowrap;
+        background: #6633CC;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chat-btn:hover {
+        background: #6633CC;
+
+    }
+
+    .phone-container {
+        display: block;
+        position: fixed;
+        left: 30px;
+        bottom: 30px;
+        z-index: 100000;
+
+        @media(min-width : 991px) {
+            display: none;
+        }
+    }
+
+    .communicate-holder {
+        display: none;
+
+        @media(min-width : 991px) {
+            display: block;
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 300px;
+            height: 70px;
+            background-color: #28323C;
+            box-shadow: -3px 3px 6px #00000029;
+            border-radius: 13px;
+            z-index: 1056;
+        }
+    }
+
+    .goftino-container {
+        display: block;
+        position: fixed;
+        right: 30px;
+        bottom: 30px;
+        z-index: 100000;
+
+        @media(min-width : 991px) {
+            display: none;
+        }
+    }
+
+
+
+
+
+}

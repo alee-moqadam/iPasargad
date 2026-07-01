@@ -1,0 +1,65 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
+
+:host {
+  max-width: 1064px;
+  display: block;
+  margin: auto;
+}
+
+h2 {
+  .underline {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 185px;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+
+    &.animated {
+      animation: draw-underline 10s linear alternate 1 forwards 500ms;
+    }
+  }
+}
+
+@keyframes draw-underline {
+  from {
+    stroke-dashoffset: 2000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.feature-item {
+  border-radius: 16px;
+  background-color: #ebf5ff;
+  padding: 16px;
+  width: 100%;
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  @include media-breakpoint-down(md) {
+    h3 {
+      margin-bottom: 0;
+    }
+    aspect-ratio: auto;
+    img {
+      margin: 30px 20px 0;
+    }
+    h3 {
+      margin-bottom: 30px;
+    }
+  }
+
+  img {
+    width: 80px;
+    margin-bottom: 30px;
+  }
+}
+
+.feat-image {
+  max-width: 103px;
+  height: auto;
+}

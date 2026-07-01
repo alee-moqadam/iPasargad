@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 82 83.466">
+  <!-- Generator: Adobe Illustrator 29.6.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 9)  -->
+  <g id="Group_24813">
+    <path id="Path_31881" d="M31.963,76.091c-3.29-.847-6.444-2.157-9.365-3.892-4.523-2.682-8.398-6.329-11.349-10.68" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+    <g id="Group_24812">
+      <path id="Path_31842" d="M8.967,17.173h44.618c4.409.009,7.976,3.591,7.967,8v28.8c.009,4.409-3.558,7.991-7.967,8H8.967c-4.409-.009-7.976-3.591-7.967-8v-28.8c-.009-4.409,3.558-7.991,7.967-8Z" fill="#d8d4fe" stroke="#062e28" stroke-width="2"/>
+      <g id="Group_23917">
+        <line id="Line_5420" x1="25.81" y1="40.528" x2="15.231" y2="51.151" fill="none" stroke="#062e28" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+        <line id="Line_5421" x1="25.81" y1="51.152" x2="15.231" y2="40.529" fill="none" stroke="#062e28" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+      </g>
+      <path id="Path_31843" d="M8.967,17.173h44.618c4.409.009,7.976,3.591,7.967,8v5.2H1v-5.2c-.009-4.409,3.558-7.991,7.967-8Z" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+      <path id="Union_561" d="M39.578,20.383v-6.42c0-1.32,1.07-2.39,2.39-2.39s2.39,1.07,2.39,2.39v6.42c0,1.32-1.07,2.39-2.39,2.39s-2.39-1.07-2.39-2.39ZM17.269,20.383v-6.42c0-1.32,1.07-2.391,2.391-2.391s2.391,1.07,2.391,2.391v6.42c0,1.32-1.07,2.391-2.391,2.391s-2.391-1.07-2.391-2.391h0Z" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+      <g id="Group_23941">
+        <path id="Path_30638" d="M10.752,17.358L1.273,26.876" fill="none" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30634" d="M38.526,17.472l-12.978,13.026" fill="none" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30637" d="M17.308,17.972l-12.537,12.593" fill="none" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30633" d="M40.351,22.042l-8.183,8.213" fill="none" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30636" d="M19.29,22.385l-7.756,7.784" fill="none" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30630" d="M52.225,17.317l-13.022,13.075" fill="none" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30635" d="M31.509,17.317l-13.07,13.119" fill="none" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30631" d="M57.613,18.306l-12.037,12.083" fill="none" stroke="#062e28" stroke-width="2"/>
+        <path id="Path_30632" d="M61.173,21.932l-8.426,8.461" fill="none" stroke="#062e28" stroke-width="2"/>
+      </g>
+    </g>
+    <g id="Group_23915">
+      <path id="Subtraction_1520" d="M70.244,73.293c-5.931,0-10.756-2.421-10.756-5.4v-15.4h.48c.957,1.293,2.3,2.248,3.836,2.726,2.066.736,4.247,1.1,6.44,1.074,2.195.026,4.377-.337,6.444-1.074,1.534-.479,2.876-1.434,3.832-2.726h.48v15.4c0,2.979-4.825,5.4-10.756,5.4Z" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30545" d="M81,62.318c0,2.982-4.816,5.4-10.756,5.4s-10.756-2.418-10.756-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30546" d="M81,56.919c0,2.982-4.816,5.4-10.756,5.4s-10.756-2.418-10.756-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+      <ellipse id="Ellipse_2402" cx="70.244" cy="51.693" rx="10.756" ry="5.6" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+    </g>
+    <g id="Group_23916">
+      <path id="Subtraction_1521" d="M54.628,81.292c-5.93,0-10.756-2.392-10.756-5.332v-10.668c0,1.422,1.12,2.762,3.154,3.77,2.385,1.083,4.982,1.617,7.6,1.564,5.93,0,10.756-2.393,10.756-5.335v10.669c.002,2.94-4.823,5.332-10.754,5.332Z" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+      <path id="Path_30547" d="M65.384,70.573c0,2.982-4.816,5.4-10.756,5.4s-10.756-2.418-10.756-5.4" fill="none" stroke="#062e28" stroke-width="2"/>
+      <ellipse id="Ellipse_2399" cx="54.628" cy="65.292" rx="10.756" ry="5.6" fill="#a4c4fd" stroke="#062e28" stroke-width="2"/>
+    </g>
+    <path id="Path_31880" d="M28.723,68.85l4.177,7.205-7.222,4.15" fill="none" stroke="#062e28" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+    <path id="Path_31882" d="M52.95,14.615l-4.177-7.205,7.222-4.15" fill="none" stroke="#062e28" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+    <path id="Path_31883" d="M49.593,7.338c15.929,4.041,27.066,18.402,27.016,34.835" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+    <path id="Path_31884" d="M21.27,12.139c4.307-2.844,9.178-4.72,14.28-5.5,1.75-.261,3.517-.39,5.287-.385" fill="none" stroke="#062e28" stroke-linecap="round" stroke-width="2"/>
+  </g>
+</svg>

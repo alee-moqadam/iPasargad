@@ -1,0 +1,21 @@
+:host{
+    max-width: 1064px;
+  display: block;
+    margin: auto;
+}
+
+.asset-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+> h4 {
+  display: block;
+  min-width: 20px;
+  height: 20px;
+
+  &:nth-child(2) {
+    width: 100px;
+  }
+
+}}

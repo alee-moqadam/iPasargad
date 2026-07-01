@@ -1,0 +1,31 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
+
+.cert-container {
+  height: 72px;
+  width: 72px;
+  border: dashed 1px #cdd7e1;
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  img {
+    height: 72px;
+    width: 72px;
+  }
+}
+
+.card-header {
+  svg {
+    opacity: 0.3;
+  }
+
+  .location-container {
+    border-left: dashed 2px #ffffff33;
+
+    @include media-breakpoint-down(md) {
+      border-left: none;
+      border-bottom: dashed 2px #ffffff33;
+    }
+  }
+}

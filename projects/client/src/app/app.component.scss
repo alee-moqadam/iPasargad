@@ -1,0 +1,13 @@
+::ng-deep .modal-content {
+    border-radius: var(--dtx-border-radius-sm);
+    // background-color: var(--dtx-modal-bg) !important;
+}
+.custome-header{
+    background-color: var(--dtx-modal-bg) !important;
+    border-radius: 20px 20px 0px 0px;
+    border-bottom: 1px solid #b6b6b6;
+}
+.custome-body{
+    background-color: var(--dtx-modal-bg) !important;
+    border-radius: 0px 0px 20px 20px;
+}

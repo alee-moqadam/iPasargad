@@ -1,0 +1,44 @@
+@import 'node_modules/bootstrap/scss/_functions.scss';
+@import 'node_modules/bootstrap/scss/_variables.scss';
+@import 'node_modules/bootstrap/scss/_mixins.scss';
+
+:host {
+  display: block;
+
+  // .bg-about {
+  //   padding: 10rem 0;
+
+  //   @include media-breakpoint-down(md) {
+  //     padding: 6rem 0 0;
+  //   }
+  // }
+
+  .bg-ads::after,
+  .bg-ads::before {
+    position: absolute;
+    content: "";
+    display: block;
+
+    background-repeat: no-repeat;
+  }
+
+  .bg-ads::before {
+    background-image: url("../../../public/images/bg-ads-end.svg");
+    width: 100%;
+    top: 100%;
+    bottom: 0;
+    right: -50px;
+    background-position: bottom right;
+    background-size: 690px;
+    height: 140px;
+  }
+
+  .bg-ads::after {
+    background-image: url("../../../public/images/bg-ads-start.svg");
+    width: 160px;
+    left: -160px;
+    top: -50px;
+    height: 100%;
+    background-size: 580px;
+  }
+}

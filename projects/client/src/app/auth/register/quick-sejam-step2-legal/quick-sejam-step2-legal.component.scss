@@ -1,0 +1,38 @@
+.bg-auth {
+    background: #eee url("../../../../../public/images/signup-bg.svg");
+    background-size: cover;
+    background-position: bottom;
+}
+
+.vh-50 {
+    height: 50vh;
+}
+
+::ng-deep {
+    // .input-group>.form-control {
+    //     border-radius: var(--dtx-border-radius) !important;
+    //     border-top-left-radius: 0 !important;
+    //     border-bottom-left-radius: 0 !important;
+    // }
+
+    // .input-group> :not(:first-child) {
+    //     border-radius: var(--dtx-border-radius) !important;
+    //     border-top-right-radius: 0 !important;
+    //     border-bottom-right-radius: 0 !important;
+    // }
+
+    .content {
+        position: relative;
+        direction: ltr;
+        overflow: auto;
+        height: 50%;
+        max-height: 300px;
+        -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        overflow-y: scroll;
+    }
+
+    .content div {
+        direction: rtl;
+    }
+}

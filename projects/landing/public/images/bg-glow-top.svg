@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1920 1080">
+  <defs>
+    <radialGradient id="radial-gradient" cx="277" cy="924.13" fx="277" fy="924.13" r=".75" gradientTransform="translate(-543981.56 1370807.76) rotate(.16) scale(1920.01 -1485.03) skewX(.28)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#faaf16" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#faaf16" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g isolation="isolate">
+    <g id="Layer_1">
+      <rect id="Rectangle_12038" width="1920" height="1080" fill="url(#radial-gradient)" isolation="isolate" mix-blend-mode="overlay"/>
+    </g>
+  </g>
+</svg>

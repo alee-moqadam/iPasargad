@@ -1,0 +1,28 @@
+::ng-deep {
+
+  .auth-container{
+    max-width: 430px;
+  }
+
+
+  .content {
+    position: relative;
+    overflow: hidden
+  }
+
+  .content div {
+    direction: rtl;
+  }
+
+  .divider {
+    display: block;
+    width: .25rem;
+    height: .25rem;
+  }
+
+  .auth-bg {
+    background: url('/images/auth-bg.svg') no-repeat center center fixed;
+    background-size: 1100px;
+  }
+
+}

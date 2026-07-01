@@ -1,0 +1,60 @@
+<div class="card overflow-hidden">
+    <div class="card-header bg-primary text-center text-white py-5">
+      {{userContract?.id ? 'ویرایش': 'تکمیل'}} قرارداد پرداخت مستقیم
+    </div>
+    <div class="card-body p-0">
+      <p class="m-4 text-justify">جهت اتصال به حساب سنتی برای سرمایه‌گذاری در صندوق‌های سرمایه‌گذاری لطفا کد ارسال شده به تلفن همراه خود را در فرم زیر وارد نمایید </p>
+
+
+      <div class="form-group px-5 pb-5">
+        <label class="form-text text-muted small mb-2">
+          کد تایید
+        </label>
+        <div class="input-group">
+          <input pattern="[0-9]*" inputmode="decimal" name="otp" type="text" id="otp" mask="999999" maxlength="6"
+            class="form-control ltr text-end" placeholder="کد تایید" [(ngModel)]="otp"
+            [ngClass]="{'is-invalid': submitted() && !otp}" required />
+          <div class="input-group-text text-center">
+            @if(sendingOTP()){
+            <div class="d-flex align-items-center h-100">
+              ارسال کد تایید<span class="spinner-border spinner-border-sm mx-1"></span>
+            </div>
+            }@else{
+            <button type="button" class="btn text-nowrap btn-radius text-center cursor-pointer" [style.width]="'120px'"
+              (click)="sendOtp()" [counter]="{ seconds: 0, minutes: 2 }" [start]="hasOtpSent$ | async"
+              [disabled]="disableOtpButton$ | async" (value)="onCounterValueChange($event)" text=" ارسال کد تایید"
+              [showCounter]="showCounter$ | async" altText="ارسال کد"></button>
+            }
+          </div>
+        </div>
+        @if(submitted() && !otp){
+        <div class="small text-danger me-2 mt-1">لطفا کد تایید را وارد نمایید</div>
+        }
+      </div>
+      <div class="form-group px-5 pb-5">
+        <div class="input-group d-flex flex-column p-2 flex-nowrap custom-radius" style="border: 1px dashed; border-radius: 15px; background-color: #6633CC1A;">
+          <div class="d-flex text-nowrap align-items-center">
+            <input id="agreement" type="checkbox" class="checkbox ml-1 cursor-pointer"
+              [(ngModel)]="directDebitAgreement" />
+            <label for="agreement" class="h6 mt-3 d-block">قوانین و مقررات
+              <a class="btn btn-link p-0 mb-1 mx-1" target="_blank" href="./docs/iPasargad_Direct_Debit_Contract.pdf">
+                اتصال به حساب سنتی </a>را می‌پذیرم.
+            </label>
+          </div>
+
+          <div class="mt-1 text-danger fs-6" *ngIf="submitted() && !directDebitAgreement">
+            قوانین پرداخت از حساب سنتی تایید نشده است.
+          </div>
+        </div>
+      </div>
+
+
+      <div class="border-0 w-100 d-flex px-5 pb-5">
+        <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="close()">انصراف</button>
+        <app-loading-button class="w-50" [isLoading]="submittingForm()" [disabled]="submittingForm()" [type]="'button'"
+          cssClass="btn btn-primary rounded-pill text-white" (click)="registerTraditionalContract($event)">
+          تایید
+        </app-loading-button>
+      </div>
+    </div>
+  </div>

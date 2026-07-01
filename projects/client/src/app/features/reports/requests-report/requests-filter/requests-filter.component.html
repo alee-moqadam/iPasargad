@@ -1,0 +1,163 @@
+<ng-template #filtersForm>
+  <form [formGroup]="formGroup" class="form-group row align-items-center col-24 m-0" (submit)="search()">
+    <!-- <div *ngIf="!isShortScreen" [class.my-2]="!isExtraShortScreen">
+      <label>صندوق:</label>
+      <ng-select [searchable]="false" bindValue="seoRegisterNumber" [clearOnBackspace]="true" placeholder="انتخاب صندوق"
+        formControlName="mutualFundCode">
+        <ng-option [value]="fund.seoRegisterNumber" *ngFor="let fund of mutualFundList ; let i= index">
+          <div class="d-flex align-items-center justify-content-start">
+            <img *ngIf="fund?.attachments?.length > 0; else logoPlaceholder"
+              [src]="'data:' + getLogo(fund)?.contentType + ';base64,' + getLogo(fund)?.base64File" alt="Fund Logo"
+              style="width: 20px;" />
+            <ng-template #logoPlaceholder>
+              <div class="logo-loading-placeholder"></div>
+            </ng-template>
+            <span class="mx-1">{{fund.symbol}}</span>
+          </div>
+        </ng-option>
+
+      </ng-select>
+    </div>
+
+    <div *ngIf="isShortScreen" [class.my-2]="!isExtraShortScreen">
+      <label>صندوق:</label>
+      <ng-select [searchable]="false" bindValue="seoRegisterNumber" bindLabel="symbol" [clearOnBackspace]="true"
+        placeholder="انتخاب صندوق" [items]="mutualFundList" formControlName="mutualFundCode">
+      </ng-select>
+    </div> -->
+
+    <div [class.my-2]="!isExtraShortScreen">
+      <label>صندوق:</label>
+      <ng-select [searchable]="false" bindValue="seoRegisterNumber" [clearOnBackspace]="true" placeholder="انتخاب صندوق"
+        formControlName="mutualFundCode">
+        <ng-option [value]="fund.seoRegisterNumber" *ngFor="let fund of mutualFundList ; let i= index">
+          <div class="d-flex align-items-center justify-content-start">
+            <!-- <img *ngIf="fund?.attachments?.length > 0; else logoPlaceholder"              
+              [src]="apiUrl + '/' + getLogo(fund)?.downloadLink"
+              alt="Fund Logo"
+              style="width: 20px;" /> -->
+            <app-svg-viewer *ngIf="fund?.attachments?.length > 0; else logoPlaceholder"
+                 [svgUrl]="apiUrl + '/' + getLogo(fund)?.downloadLink" style="width: 20px;"></app-svg-viewer>
+
+            <ng-template #logoPlaceholder>
+              <div class="logo-loading-placeholder"></div>
+            </ng-template>
+            <span class="mx-1">{{fund.symbol}}</span>
+          </div>
+        </ng-option>
+
+      </ng-select>
+    </div>
+
+    <div [class.hidden-row]="isExtraShortScreen" [class.my-2]="!isExtraShortScreen">
+      <label>شروع گزارش از:</label>
+      <div class="input-group">
+        <span class="input-group-text text-center cursor-pointer" (click)="d1.toggle()">
+          <svg class="text-primary" viewBox="0 0 24 24" width="18px" height="18px">
+            <use xlink:href="#ico_calendar"></use>
+          </svg>
+        </span>
+
+        <input class="form-control" placeholder="تاریخ شروع" name="dp2" formControlName="startDate" ngbDatepicker
+          ngbDatepicker container="body" (click)="d1.toggle()" #d1="ngbDatepicker" />
+      </div>
+    </div>
+
+    <div [class.hidden-row]="isExtraShortScreen" [class.my-2]="!isExtraShortScreen">
+      <label>پایان گزارش تا:</label>
+      <div class="input-group">
+        <span class="input-group-text text-center cursor-pointer" (click)="d2.toggle()">
+          <svg class="text-primary" viewBox="0 0 24 24" width="18px" height="18px">
+            <use xlink:href="#ico_calendar"></use>
+          </svg>
+        </span>
+        <input class="form-control" placeholder="تاریخ پایان" name="dp2" formControlName="endDate" ngbDatepicker
+          container="body" (click)="d2.toggle()" #d2="ngbDatepicker" />
+      </div>
+    </div>
+
+    <!-- <div [class.hidden-row]="isShortScreen" [class.my-2]="!isExtraShortScreen">
+      <label>تعداد واحد:</label>
+      <input type="text" class="form-control" placeholder="تعداد" formControlName="volume">
+    </div>
+
+    <div [class.hidden-row]="isShortScreen" [class.my-2]="!isExtraShortScreen">
+      <label>شماره درخواست:</label>
+      <input type="text" class="form-control" placeholder="شماره" formControlName="transactionNumber">
+    </div> -->
+
+    <div [class.hidden-row]="isShortScreen" [class.my-2]="!isExtraShortScreen">
+      <label>صدور یا ابطال: </label>
+      <ng-select [searchable]="false" [dropdownPosition]="'top'" bindValue="code" bindLabel="title"
+        [clearOnBackspace]="true" placeholder="نوع درخواست" [items]="transactionType" formControlName="transactionType">
+      </ng-select>
+    </div>
+
+    <div [class.hidden-row]="isShortScreen" [class.my-2]="!isExtraShortScreen">
+      <label>وضعیت درخواست: </label>
+      <ng-select [searchable]="false" [dropdownPosition]="'top'" bindValue="code" bindLabel="title"
+        [clearOnBackspace]="true" placeholder="وضعیت درخواست" [items]="transactionState"
+        formControlName="transactionState">
+      </ng-select>
+    </div>
+    <!-- 
+    <div [class.hidden-row]="isShortScreen" [class.my-2]="!isExtraShortScreen">
+      <label>وضعیت درخواست: </label>
+      <ng-select [searchable]="false" [dropdownPosition]="'top'" bindValue="code"
+        [clearOnBackspace]="true" placeholder="وضعیت درخواست" formControlName="transactionState">
+        <ng-option [value]="state.code" *ngFor="let state of transactionState">
+          {{state.title}}
+        </ng-option>
+      </ng-select>
+    </div> -->
+
+    <div class="my-2 btn-submit-row">
+      <button class="btn d-flex btn-primary align-items-center justify-content-center w-100" type="submit"
+        [disabled]="formGroup.invalid">
+        <fa-icon icon="search" class="mx-2"></fa-icon>
+        <span>جستجو</span>
+      </button>
+    </div>
+  </form>
+
+</ng-template>
+<div class="fixed-filters">
+  <ng-container [ngTemplateOutlet]="filtersForm"></ng-container>
+  <div [class.hidden-row]="!isShortScreen" (click)="openModal(modalContent)"
+    class="text-primary cursor-pointer mb-4 py-3 border-bottom-1 border-dashed border-gray-275 border-top-0 border-start-0 border-end-0 text-center fw-bold">
+    جستجوی پیشرفته</div>
+</div>
+<div class="d-flex align-items-center justify-content-between m-2">
+  <span>مرتب‌سازی</span>
+  <ng-select class="w-50" [clearable]='false' [dropdownPosition]="'top'" [searchable]="false" [(ngModel)]="sortType"
+    (change)="search()">
+    <ng-option value="desc">صعودی‌</ng-option>
+    <ng-option value="asc">نزولی</ng-option>
+  </ng-select>
+</div>
+<div class="d-flex align-items-center justify-content-between m-2">
+  <span>براساس</span>
+  <ng-select class="w-50" [clearable]='false' [dropdownPosition]="'top'" [searchable]="false" [(ngModel)]="sortFiled"
+    (change)="search()">
+    <ng-option value="date">تاریخ ثبت</ng-option>
+    <ng-option value="amount">مبلغ</ng-option>
+  </ng-select>
+</div>
+
+<ng-template #modalContent let-modal>
+  <div class="card overflow-hidden">
+    <div class="card-header bg-primary text-center text-white py-2" [class.py-4]="!isExtraShortScreen">
+      فیلترها
+    </div>
+    <div class="card-body p-4" [class.py-2]="isExtraShortScreen">
+      <ng-container [ngTemplateOutlet]="filtersForm"></ng-container>
+      <div [class.my-4]="isExtraShortScreen" [class.pt-6]="!isExtraShortScreen" class="border-0 w-100 d-flex">
+        <button class="btn w-50 btn-cancel rounded-pill ms-1" (click)="modal.dismiss('Cross click')">انصراف</button>
+        <button class="w-50 btn btn-primary rounded-pill text-white"
+          (click)="applyChanges(formGroup.value); modal.dismiss('Cross click');">
+          اعمال فیلتر
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

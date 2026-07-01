@@ -1,0 +1,168 @@
+<div class="card p-0 overflow-hidden responsive-card">
+  <div class="card-header text-white bg-primary py-5 d-flex align-items-center justify-content-between">
+    دریافت امضاء اعضای هیئت مدیره (حقیقی)
+    <button type="button" class="bg-opacity-25 bg-white border-0 border-radius-7 d-flex mb-2 me-2 p-2 text-white"
+      aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <svg viewBox='0 0 16 16' fill='#ffffff' width='16' height='16'>
+        <path
+          d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z' />
+      </svg>
+    </button>
+  </div>
+
+  <div class="card-body p-5">
+    <!-- Loading indicator -->
+    @if (submitting()) {
+      <div class="text-center py-4">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">در حال بارگذاری...</span>
+        </div>
+        <p class="mt-2 text-muted">در حال بارگذاری اطلاعات...</p>
+      </div>
+    } @else if (loadingError()) {
+      <div class="text-center py-4">
+        <div class="text-danger mb-3">
+          <i class="fas fa-exclamation-triangle fa-3x"></i>
+        </div>
+        <h5 class="text-danger mb-3">خطا در بارگذاری اطلاعات</h5>
+        <p class="text-muted mb-3">متأسفانه در بارگذاری اطلاعات مشکلی پیش آمده است.</p>
+        <button type="button" class="btn btn-primary" (click)="loadCustomerInfo()">
+          تلاش مجدد
+        </button>
+      </div>
+    } @else {
+      <form [formGroup]="formGroup" dir="rtl">
+
+        <div class="d-flex align-items-center justify-content-between w-100 me-2">
+          <h5 class="text-secondary"> ابتدا نماینده را انتخاب کنید: </h5>
+        </div>
+        
+        <div class="mb-5">
+          <label>نماینده</label>
+          <ng-select [(ngModel)]="selectedPersonId" [ngModelOptions]="{ standalone: true }" bindLabel="label"
+            bindValue="personNationalId" [items]="agentList()" [searchable]="false" [clearable]="false"
+            [disabled]="isAgentDisabled()" placeholder="انتخاب کنید">
+            <ng-template ng-option-tmp let-item="item">
+              <span>
+                {{ item.label }}
+                @if (!item?.isHolderRegistered) {
+                  <span class="text-danger mx-1">(در سامانه ثبت نام نشده است)</span>
+                }
+              </span>
+            </ng-template>
+          </ng-select>
+        </div>
+
+        <div class="py-3 px-2 bg-gray-150 custom-radius d-flex mb-2 flex-header">
+          <div class="w-50 w-md-100">
+            <label for="fullName" class="w-50 me-0">نام و خانوادگی</label>
+            <label for="positionType" class="w-50 me-0">سمت</label>
+          </div>
+          <div class="w-50">
+            <label for="operation" class="w-50 me-4">عملیات</label>
+          </div>
+        </div>
+
+        <div class="overflow-auto" style="height: 300px;">
+          @for (item of customerInfo()?.holders; track $index) {
+          @if(item?.isRealPerson && holdersPositionTypes.includes(item?.positionType)){
+
+          @if (item?.isHolderRegistered && !item?.isHolderVerified) {
+          <div class="d-flex align-items-center mb-3 flex-wrap gap-2 custom-dashed-border p-2 responsive-item">
+            <div class="w-50">
+              <label for="fullName" class="form-text text-muted fw-bold small w-50 me-0">
+                {{ item.fullName }}
+              </label>
+
+              <label for="positionType" class="form-text text-muted small w-50 me-0">
+                {{ getPosition(item.positionType) }}
+              </label>
+            </div>
+
+            @if (!otpInputs?.[item.personNationalId]) {
+            @if (isSendOtp(item)) {
+            <button type="button" class="btn btn-primary btn-sm " (click)="sendOtp(item)">
+              ارسال کد
+            </button>
+            } @else {
+            <button type="button" class="btn btn-secondary btn-sm" disabled>
+              ارسال کد
+            </button>
+            }
+            } @else {
+            <input type="text" class="form-control form-control-sm" [formControlName]="'otp_' + item.personNationalId"
+              placeholder="کد تایید" maxlength="6" pattern="[0-9]*" inputmode="numeric" style="width: 60px;" />
+
+            <button type="button" class="btn btn-success btn-sm text-white me-2 me-sm-0"
+              [disabled]="isSubmitting(item.personNationalId)" (click)="verifyOtp(item)">
+              تایید
+            </button>
+
+            <div class="input-group-append me-2 me-sm-0">
+              <button (click)="sendOtp(item)" [counter]="{seconds: 0, minutes: 3}" [start]="isOtpSend$ | async"
+                [disabled]="(isOtpSend$ | async)" (value)="onCounterValueChange($event)" text="ارسال مجدد کد"
+                altText="ارسال مجدد کد" class="btn btn-secondary btn-sm" type="button">ارسال کد
+                تایید</button>
+            </div>
+            }
+          </div>
+          }
+
+          @if (item?.isHolderRegistered && item?.isHolderVerified) {
+          <div class="d-flex align-items-center mb-3 flex-wrap custom-dashed-border p-2 responsive-item">
+            <div class="w-50">
+              <label for="fullName" class="form-text text-muted small fw-bold w-50 me-0">
+                {{ item.fullName }}
+              </label>
+
+              <label for="positionType" class="form-text text-muted small w-50 me-0">
+                {{ getPosition(item.positionType) }}
+              </label>
+            </div>
+            <div class="w-50 d-flex">
+              <fa-icon icon="square-check" class="mx-2 text-success fs-4"></fa-icon>
+              <span class="text-success fw-bold">دارای امضا می باشد</span>
+            </div>
+          </div>
+          }
+
+          @if (!item?.isHolderRegistered && !item?.isHolderVerified) {
+          <div class="d-flex align-items-center mb-3 flex-wrap custom-dashed-border p-2 responsive-item">
+            <div class="w-50">
+              <label for="fullName" class="form-text text-muted small fw-bold w-50 me-0">
+                {{ item.fullName }}
+              </label>
+
+              <label for="positionType" class="form-text text-muted small w-50 me-0">
+                {{ getPosition(item.positionType) }}
+              </label>
+            </div>
+            <div class="w-50">
+              <span class="text-danger fw-bold small">در سامانه ثبت نام نشده است</span>
+            </div>
+          </div>
+          }
+
+          }
+          }
+        </div>
+
+        <div
+          class="d-flex align-items-center justify-content-between p-1 mt-4 border-primary w-100 border-radius-10 responsive-hint"
+          style="border: 1px dashed;background-color: #e21d5f1a;">
+          <div class="d-flex align-items-center">
+            <div class="mx-1">
+              <h5 class="mt-2 text-gray-600 text-justify px-3 lh-sm">
+                برای شروع سرمایه‌گذاری حقوقی، ابتدا یک نماینده دارای ثبت‌نام در سامانه آی‌پاسارگاد معرفی کنید. سپس
+                مدیرعامل و حداقل دو نفر از اعضای هیئت‌مدیره نیز باید ثبت‌نام کرده
+                و با وارد کردن کد یک‌بار مصرف ارسال‌شده به شماره سجامی خود، فرآیند نهایی‌سازی ثبت‌نام پنل حقوقی را انجام
+                دهند.
+              </h5>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    }
+  </div>
+</div>

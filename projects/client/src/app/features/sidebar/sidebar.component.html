@@ -1,0 +1,206 @@
+<div class="card shadow-sm sidebar-container">
+  <!-- <div class="d-flex toggleicon">
+    <div class="p-2 rounded-circle bg-secondary text-white cursor-pointer" (click)="onToggleMenuStateClick()">
+      <span class="ico compress m-0" viewBox="0 0 24 24">
+        <fa-icon icon="expand-alt"></fa-icon>
+      </span>
+      <span class="ico expand m-0" viewBox="0 0 24 24">
+        <fa-icon icon="compress-alt"></fa-icon>
+      </span>
+    </div>
+  </div> -->
+  <div class="h-100 d-flex flex-column pt-5 px-3">
+    <!-- <h3 class="my-4 text-center expand">
+      <img height="30px" src="/images/logo-horizontal-left.svg" alt="IPasargad" />
+    </h3>
+    <h3 class="my-4 mx-2 compress">
+      <img height="35px" src="/images/c-logo.png" alt="IPasargad" />
+    </h3> -->
+
+    <div class="rounded-pill menu-item cursor-pointer d-flex mx-2" routerLink="dashboard"
+      routerLinkActive="bg-success-200 text-success fw-bold right-border">
+      <div class="d-flex flex-fill justify-content-start">
+        <svg viewBox="0 0 24 24" width="18px" height="18px">
+          <use xlink:href="#ico_home"></use>
+        </svg>
+        <span class="expand mx-3">داشبورد</span>
+      </div>
+    </div>
+
+    <!-- <div class="rounded-pill menu-item cursor-pointer d-flex mx-2" routerLink="/fund-list"
+      routerLinkActive="bg-success-200 text-success fw-bold right-border">
+      <div class="d-flex flex-fill justify-content-start">
+        <svg viewBox="0 0 24 24" width="18px" height="18px">
+          <use xlink:href="#ico_app"></use>
+        </svg>
+        <span class="expand mx-3">صندوق‌ها</span>
+      </div>
+    </div> -->
+
+    <div class="rounded-pill menu-item cursor-pointer d-flex mx-2" routerLink="reporting"
+      routerLinkActive="bg-success-200 text-success fw-bold right-border">
+      <div class="d-flex flex-fill justify-content-start">
+        <svg viewBox="0 0 24 24" width="18px" height="18px">
+          <use xlink:href="#ico_chart_bar_box"></use>
+        </svg>
+        <span class="expand mx-3">گزارش‌ها</span>
+      </div>
+    </div>
+
+    <div class="rounded-pill menu-item cursor-pointer d-flex mx-2" routerLink="portfolio"
+      routerLinkActive="bg-success-200 text-success fw-bold right-border">
+      <div class="d-flex flex-fill justify-content-start">
+        <svg viewBox="0 0 24 24" width="18px" height="18px">
+          <use xlink:href="#ico_portfolio"></use>
+        </svg>
+        <span class="expand mx-3">دارایی</span>
+      </div>
+    </div>
+
+    <!-- <div class="rounded-pill menu-item cursor-pointer d-flex mx-2" routerLink="wepod"
+      routerLinkActive="bg-success-200 text-success fw-bold right-border">
+      <div class="d-flex flex-fill justify-content-start">
+        <fa-icon icon="credit-card"></fa-icon>
+        <span class="expand mx-3">پرداخت مستقیم</span>
+      </div>
+    </div>
+
+    <div class="rounded-pill menu-item cursor-pointer d-flex mx-2" routerLink="gift-card"
+      routerLinkActive="bg-success-200 text-success fw-bold right-border">
+      <div class="d-flex flex-fill justify-content-start">
+        <svg viewBox="0 0 24 24" width="20px" height="20px">
+          <use xlink:href="#ico_gift"></use>
+        </svg>
+        <span class="expand mx-3">کارت هدیه</span>
+        <span class="align-items-center badge bg-success d-flex">جدید</span>
+      </div>
+    </div> -->
+
+    <!--<div
+      class="rounded-pill menu-item cursor-pointer d-flex mx-2"
+      routerLink="profile"
+      routerLinkActive="bg-success-200 text-success fw-bold"
+    >
+      <div class="d-flex flex-fill justify-content-start">
+        <fa-icon icon="user"></fa-icon>
+        <span class="expand mx-3">پروفایل</span>
+      </div>
+    </div> -->
+
+    <div class="rounded-pill menu-item cursor-pointer d-flex mx-2"
+         (click)="toggleToolsSubMenu()"
+         [class.bg-success-200]="showToolsSubMenu()"
+         [class.text-success]="showToolsSubMenu()"
+
+         routerLinkActive="bg-success-200 text-success fw-bold right-border">
+      <div class="d-flex flex-fill justify-content-start">
+        <svg viewBox="0 0 24 24" width="18px" height="18px">
+          <use xlink:href="#ico_app"></use>
+        </svg>
+        <span class="expand mx-3">ابزارها</span>
+        <span class="align-items-center badge bg-success d-flex">جدید</span>
+        <svg viewBox="0 0 24 24" width="18px" height="18px" class="me-2">
+           @if(showToolsSubMenu()){
+             <use xlink:href="#ico_drop_up"></use>
+           }@else {
+            <use xlink:href="#ico_drop_down"></use>
+           }
+        </svg>
+      </div>
+    </div>
+
+    @if(showToolsSubMenu()){
+    <div class="">
+      <div class="rounded-pill menu-item cursor-pointer d-flex"
+           routerLink="/fund-list"
+           routerLinkActive="bg-success-200 text-success fw-bold right-border">
+        <div class="d-flex flex-fill justify-content-start pe-5">
+          <svg viewBox="0 0 24 24" width="15px" height="15px">
+            <use xlink:href="#ico_3d_box"></use>
+          </svg>
+          <span class="expand mx-3 fs-13">صندوق‌ها</span>
+        </div>
+      </div>
+
+      <div class="rounded-pill menu-item cursor-pointer d-flex"
+           routerLink="wepod"
+           routerLinkActive="bg-success-200 text-success fw-bold right-border">
+        <div class="d-flex flex-fill justify-content-start pe-5">
+          <fa-icon icon="credit-card" size="sm"></fa-icon>
+          <span class="expand mx-3 fs-13">پرداخت مستقیم</span>
+        </div>
+      </div>
+
+      <div class="rounded-pill menu-item cursor-pointer d-flex"
+           routerLink="gift-card"
+           routerLinkActive="bg-success-200 text-success fw-bold right-border">
+        <div class="d-flex flex-fill justify-content-start pe-5">
+          <svg viewBox="0 0 24 24" width="14px" height="14px">
+            <use xlink:href="#ico_gift"></use>
+          </svg>
+          <span class="expand mx-3 fs-13">کارت هدیه</span>
+          <!-- <span class="align-items-center badge bg-success d-flex">جدید</span> -->
+        </div>
+      </div>
+    </div>
+    }
+
+    <div class="rounded-pill menu-item cursor-pointer d-flex mt-auto mx-1 pt-3 " routerLink="notifications"
+      routerLinkActive="bg-success-200 text-success fw-bold right-border">
+      <div class="d-flex flex-fill">
+        <svg viewBox="0 0 24 24" width="18px" height="18px">
+          <use xlink:href="#ico_bell"></use>
+        </svg>
+        <span class=" white-space-nowrap d-flex justify-content-between flex-fill">
+          <span class="expand mx-3">اعلان‌ها</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-around align-items-center ">
+      <div
+        class=" cursor-pointer bg-light-blue p-3 mx-1 flex-fill d-flex justify-content-center align-items-center custom-radius"
+        routerLink="/customer-support" routerLinkActive="bg-gray-275" ngbTooltip="پشتیبانی">
+        <svg viewBox="0 0 24 24" width="20px" height="20px" class="me-1">
+          <use xlink:href="#ico_box_help"></use>
+        </svg>
+      </div>
+
+      <div
+        class=" cursor-pointer bg-light-blue p-3 mx-1 flex-fill d-flex justify-content-center align-items-center custom-radius"
+        (click)="toggleMasking()" routerLinkActive="bg-gray-275" fw-bold ngbTooltip="مشاهده مبالغ">
+        @if(isMasked()){
+        <svg viewBox="0 0 24 24" width="20px" height="20px" class="me-1">
+          <use xlink:href="#ico_visibility_off"></use>
+        </svg>
+        }@else {
+        <svg viewBox="0 0 24 24" width="20px" height="20px" class="me-1">
+          <use xlink:href="#ico_visibility_on"></use>
+        </svg>
+        }
+
+      </div>
+    </div>
+    <!-- <div class="p-1 d-flex justify-content-between mt-2">
+      <button class="btn btn-gray-200 rounded-pill" (click)="(1)">
+        <fa-icon size="sm" class="text-secondary mx-1" icon="bell"></fa-icon>
+      </button>
+      <button class="btn btn-gray-200 rounded-pill" (click)="(1)">
+        <fa-icon size="sm" class="text-secondary mx-1" icon="moon"></fa-icon>
+      </button>
+      <button class="btn btn-gray-200 rounded-pill" (click)="logout()">
+        <fa-icon size="sm" class="text-secondary mx-1" icon="power-off"></fa-icon>
+      </button>
+      <button class="btn btn-gray-200 rounded-pill" (click)="(1)">
+        <fa-icon size="sm" class="text-secondary mx-1" icon="question-circle"></fa-icon>
+      </button>
+    </div> -->
+    <small class="expand text-center my-1 version-position cursor-pointer" (click)="reloadApp()" ngbTooltip="به روزرسانی نرم‌افزار">
+      نسخه {{appVersion}}  
+      <!-- ({{appVersionCode}}) -->
+      @if(appVersionCode){
+        ({{appVersionCode}})
+      }
+    </small>
+  </div>
+</div>
