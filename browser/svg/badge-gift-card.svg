@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 96 96">
+  <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <g>
+    <g opacity=".2">
+      <rect x="27.413" y="41.12" width="13.76" height="13.76" fill="#2f3742" isolation="isolate" opacity=".2"/>
+      <rect x="27.413" y="27.44" width="13.76" height="13.68" fill="#2f3742" isolation="isolate" opacity=".25"/>
+      <rect x="27.413" y="54.88" width="13.76" height="13.68" fill="#2f3742" isolation="isolate" opacity=".1"/>
+      <rect x="68.56" y="82.24" width="13.68" height="13.76" fill="#2f3742" isolation="isolate" opacity=".1"/>
+      <rect x="82.24" y="27.44" width="13.76" height="13.68" fill="#2f3742" isolation="isolate" opacity=".5"/>
+      <rect x="68.56" y="41.12" width="13.68" height="13.76" fill="#2f3742" isolation="isolate" opacity=".5"/>
+      <rect y="41.12" width="13.76" height="13.68" fill="#2f3742" isolation="isolate" opacity=".5"/>
+      <rect x="27.413" width="13.76" height="13.68" fill="#2f3742" isolation="isolate" opacity=".1"/>
+      <rect x="41.16" y="13.68" width="13.68" height="13.76" fill="#2f3742" isolation="isolate" opacity=".1"/>
+      <rect x="41.16" y="27.44" width="13.68" height="13.68" fill="#2f3742" isolation="isolate" opacity=".2"/>
+      <rect x="27.68" y="54.826" width="13.76" height="13.76" fill="#2f3742" isolation="isolate" opacity=".3"/>
+      <rect x="41.44" y="68.56" width="13.68" height="13.68" fill="#2f3742" isolation="isolate" opacity=".2"/>
+      <rect x="41.16" y="13.68" width="13.68" height="13.68" fill="#2f3742" isolation="isolate" opacity=".2"/>
+      <rect x="55.11" y="82.24" width="13.68" height="13.76" fill="#2f3742" isolation="isolate" opacity=".3"/>
+      <rect x="14" y="54.826" width="13.68" height="13.76" fill="#2f3742" isolation="isolate" opacity=".1"/>
+    </g>
+    <rect x="27.137" y="30.51" width="35.67" height="29.634" rx="2.76" ry="2.76" fill="#fff" stroke="#d2d2d2" stroke-miterlimit="10"/>
+    <line x1="40.089" y1="34.819" x2="48.5" y2="34.819" fill="none" stroke="#d2d2d2"/>
+    <line x1="40.089" y1="46.819" x2="48.5" y2="46.819" fill="none" stroke="#d2d2d2"/>
+    <line x1="40.089" y1="40.819" x2="48.5" y2="40.819" fill="none" stroke="#d2d2d2"/>
+    <line x1="40.089" y1="52.819" x2="48.5" y2="52.819" fill="none" stroke="#d2d2d2"/>
+    <line x1="40.089" y1="37.819" x2="48.5" y2="37.819" fill="none" stroke="#d2d2d2"/>
+    <line x1="40.089" y1="49.819" x2="48.5" y2="49.819" fill="none" stroke="#d2d2d2"/>
+    <line x1="40.089" y1="43.819" x2="48.5" y2="43.819" fill="none" stroke="#d2d2d2"/>
+    <line x1="40.089" y1="55.819" x2="48.5" y2="55.819" fill="none" stroke="#d2d2d2"/>
+    <line x1="40.089" y1="58.819" x2="48.5" y2="58.819" fill="none" stroke="#d2d2d2"/>
+    <rect x="25.366" y="23" width="39.26" height="10.09" rx="2.76" ry="2.76" fill="#d2d2d2"/>
+    <line x1="38.915" y1="31" x2="49.675" y2="31" fill="none" stroke="#fff"/>
+    <line x1="38.915" y1="28" x2="49.675" y2="28" fill="none" stroke="#fff"/>
+    <path d="M39.5,15h0c2.485,0,4.5,2.015,4.5,4.5v4.5h-4.5c-2.485,0-4.5-2.015-4.5-4.5h0c0-2.485,2.015-4.5,4.5-4.5Z" fill="none" stroke="#d2d2d2" stroke-width="3"/>
+    <path d="M48.5,15h0c2.485,0,4.5,2.015,4.5,4.5h0c0,2.485-2.015,4.5-4.5,4.5h-4.5v-4.5c0-2.485,2.015-4.5,4.5-4.5Z" fill="none" stroke="#d2d2d2" stroke-width="3"/>
+    <path d="M73.5,65.179h-26.745c-1.523-.002-2.757-1.237-2.759-2.76v-23.2c.001-1.523,1.236-2.758,2.759-2.76h26.782c.25,1.358,1.554,2.255,2.912,2.005,1.02-.188,1.817-.986,2.005-2.005h8.037c1.523.002,2.758,1.237,2.76,2.76v23.2c-.001,1.523-1.236,2.758-2.76,2.76h-8c0-.059.006-.116.006-.177,0-1.381-1.119-2.5-2.5-2.5s-2.5,1.119-2.5,2.5c0,.06,0,.119.006.177h-.003Z" fill="#fff" stroke="#0014ff" stroke-miterlimit="10"/>
+    <path d="M81.908,65.178l-1.952-9.314,9.3-8.75v4.478l-6.038,5.738-.2.191.057.272,1.532,7.385h-2.699ZM78.494,65.178c0-.059.006-.118.006-.178,0-1.381-1.119-2.5-2.5-2.5-.116,0-.232.008-.347.024l-.1-.45-1.986-9.061,6.816-6.136.846-.76-1.131-.108-9.036-.87-3.6-8.516-.069-.163h2.758l2.529,6.135.114.278.3.029,14.3,1.413-10.791,9.973-.209.193.059.279,2.224,10.418h-.182ZM73.502,65.178h-.8l-5.443-3.378-.265-.163-.264.163-5.442,3.378h-5.966l2.225-10.418.06-.279-.208-.193-10.792-9.973,14.3-1.413.3-.029.116-.278,2.529-6.135h2.758l-.069.163-3.6,8.516-9.033.87-1.131.108.845.76,6.815,6.136-1.985,9.061-.25,1.137,1-.6,7.806-4.72,7.807,4.721.177.107c-.903.401-1.484,1.296-1.485,2.284,0,.06,0,.119.006.178l-.011-.003ZM49.396,65.178l1.533-7.385.057-.272-.2-.191-6.784-6.447v-4.47l10.043,9.451-1.952,9.314h-2.697ZM67.25,53.878l-.251-.147-.251.147-3.641,2.115.92-4.038.067-.292-.227-.2-3.153-2.725,4.192-.388.292-.028.119-.269,1.681-3.812,1.681,3.812.119.269.292.028,4.192.388-3.153,2.725-.227.2.067.292.92,4.038-3.639-2.115ZM44,39.223c0-.249.034-.496.1-.735l12.716-1.292.3-.03.113-.281.169-.423h2.872l-1.288,3.184-14.981,1.506v-1.929ZM75.02,39.647l-.741-1.831c1.001.951,2.583.911,3.534-.09.125-.132.236-.277.33-.433l10.99,1.117c.081.263.123.537.122.813v1.855l-14.235-1.431Z" fill="none" stroke="#0014ff"/>
+    <line x1="38.915" y1="25" x2="49.675" y2="25" fill="none" stroke="#fff"/>
+  </g>
+  <g>
+    <line x1="84.138" y1="15.523" x2="84.138" y2="19.8" fill="none" stroke="#faaf16" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+    <line x1="86.276" y1="17.661" x2="82" y2="17.661" fill="none" stroke="#faaf16" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+  </g>
+  <g>
+    <line x1="79.138" y1="24.523" x2="79.138" y2="28.8" fill="none" stroke="#faaf16" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+    <line x1="81.276" y1="26.661" x2="77" y2="26.661" fill="none" stroke="#faaf16" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+  </g>
+  <g>
+    <line x1="16.138" y1="7.523" x2="16.138" y2="11.8" fill="none" stroke="#faaf16" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+    <line x1="18.276" y1="9.661" x2="14" y2="9.661" fill="none" stroke="#faaf16" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+  </g>
+  <g>
+    <line x1="35.138" y1="52.523" x2="35.138" y2="56.8" fill="none" stroke="#faaf16" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+    <line x1="37.276" y1="54.661" x2="33" y2="54.661" fill="none" stroke="#faaf16" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2"/>
+  </g>
+</svg>

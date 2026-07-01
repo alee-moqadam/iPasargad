@@ -1,0 +1,86 @@
+{
+  "configVersion": 1,
+  "timestamp": 1782918170379,
+  "index": "/iPasargad/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/iPasargad/chunk-4AW4S7K3.js",
+        "/iPasargad/chunk-7R55MI2J.js",
+        "/iPasargad/chunk-B3PZICON.js",
+        "/iPasargad/chunk-IALZ2JJO.js",
+        "/iPasargad/chunk-KU4CRFCR.js",
+        "/iPasargad/chunk-MZCHVNR4.js",
+        "/iPasargad/chunk-T33Z6M7Z.js",
+        "/iPasargad/chunk-UKAVRTVA.js",
+        "/iPasargad/chunk-WWX6BADO.js",
+        "/iPasargad/chunk-X6ALKZLO.js",
+        "/iPasargad/chunk-YVVAUF7R.js",
+        "/iPasargad/favicon.ico",
+        "/iPasargad/font.css",
+        "/iPasargad/index.html",
+        "/iPasargad/main-CFYSBNAB.js",
+        "/iPasargad/manifest.webmanifest",
+        "/iPasargad/polyfills-T43BAFMO.js",
+        "/iPasargad/styles-Z4B4NPJO.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/iPasargad/chunk-4AW4S7K3.js": "06de823382783b2940783149687e8ce14dfe26d4",
+    "/iPasargad/chunk-7R55MI2J.js": "f3f1a181dfcfb5c53840efc2d5d5e6ffbe29af24",
+    "/iPasargad/chunk-B3PZICON.js": "cdd3566caa54873007ead6d36a8fe9bfd1d9d399",
+    "/iPasargad/chunk-IALZ2JJO.js": "0f93767d6cbd4322d916219913740515a40d42ec",
+    "/iPasargad/chunk-KU4CRFCR.js": "8e6c4307b168dd998a1469d8baee8513e83579b2",
+    "/iPasargad/chunk-MZCHVNR4.js": "66bfb1cabd0800fe7e6e441fc4aea36c15e04ecc",
+    "/iPasargad/chunk-T33Z6M7Z.js": "e7e126004e92cfd7f61a7f2278af692de4509254",
+    "/iPasargad/chunk-UKAVRTVA.js": "b0351461dc0a0e5754feee44eb9fb05d7a4ce29c",
+    "/iPasargad/chunk-WWX6BADO.js": "cf7aac42b93d52979f1c92de60f44de3a4cbc74a",
+    "/iPasargad/chunk-X6ALKZLO.js": "2cc46eca5401d6899c230756e81e96796688950f",
+    "/iPasargad/chunk-YVVAUF7R.js": "a6df03362695dc6ab238f65eda2e8461d0af0259",
+    "/iPasargad/favicon.ico": "fdcc89514833bcc2ec551c810b6f00a21561ff78",
+    "/iPasargad/font.css": "78c541af0af918f598d9a1b4a43dc886a20bc3e4",
+    "/iPasargad/index.html": "f9976d1ca774a3b2e5515a2ab8a816e11b371084",
+    "/iPasargad/main-CFYSBNAB.js": "86be3ad0978ab6d524204c3a407772650aff2eb2",
+    "/iPasargad/manifest.webmanifest": "c9403b006acd2324944f3139479f3f2d6639d121",
+    "/iPasargad/polyfills-T43BAFMO.js": "dcd5fbe4170fa085803e06aa617904c3acd533b7",
+    "/iPasargad/styles-Z4B4NPJO.css": "244e43f81fe2d4e6629837cd57cd16db5687dedd"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
