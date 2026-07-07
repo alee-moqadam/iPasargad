@@ -54,6 +54,7 @@ Variablepie(Highcharts);
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   readonly useMockViewData = true; // UI preview only. Turn off before production handoff.
+  activeSummaryCard = signal<'assets' | 'bank-card' | 'direct-debit'>('assets');
 
   // UI preview mock data only. Do not use for production logic.
   readonly mockFundCards = [
@@ -546,6 +547,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   getDisplayTotalNetValue(): number {
     return Number(this.totalNetValue() ?? (this.useMockViewData ? 773000000 : 0));
+  }
+
+  setActiveSummaryCard(cardType: 'assets' | 'bank-card' | 'direct-debit') {
+    this.activeSummaryCard.set(cardType);
+  }
+
+  isActiveSummaryCard(cardType: 'assets' | 'bank-card' | 'direct-debit'): boolean {
+    return this.activeSummaryCard() === cardType;
   }
 
   getDisplayFundCards() {

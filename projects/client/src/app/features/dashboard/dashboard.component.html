@@ -1,86 +1,158 @@
 <main class="dashboard-shell" dir="rtl">
-  <section class="dashboard-hero">
-    <div class="dashboard-hero__copy">
-      <span class="dashboard-eyebrow">داشبورد آی‌پاسارگاد</span>
-      <h1>سلام، وضعیت سرمایه‌گذاری‌های شما آماده است</h1>
-      <p>خلاصه دارایی، درخواست‌های در جریان و مسیرهای اصلی سرمایه‌گذاری را در یک نگاه ببینید.</p>
+  <section class="dashboard-summary-carousel" aria-label="خلاصه وضعیت">
+    <div class="dashboard-summary-track">
+      <article class="summary-carousel-card asset-summary-card" [class.summary-carousel-card--active]="isActiveSummaryCard('assets')"
+        (click)="setActiveSummaryCard('assets')">
+        <div class="section-kicker">دارایی کل</div>
+        <div class="asset-summary-card__value">
+          <span [maskNumber]="getDisplayTotalNetValue()"></span>
+          <small>ریال</small>
+        </div>
+        <div class="asset-summary-card__meta">
+          <span>مجموع ارزش سرمایه‌گذاری‌های شما</span>
+          <span>به‌روزرسانی امروز</span>
+        </div>
+        <button class="btn btn-light btn-sm asset-summary-card__button" routerLink="/portfolio">
+          سبد دارایی
+          <svg viewBox="0 0 24 24" width="14" height="14">
+            <use xlink:href="#ico_drop_left"></use>
+          </svg>
+        </button>
+      </article>
+
+      <article class="summary-carousel-card bank-status-card" [class.summary-carousel-card--active]="isActiveSummaryCard('bank-card')"
+        (click)="setActiveSummaryCard('bank-card')">
+        <div class="summary-card-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <use xlink:href="#ico_card"></use>
+          </svg>
+        </div>
+        <div>
+        <span class="section-kicker">کارت بانکی</span>
+        <strong>کارت متصل به حساب</strong>
+        <small>مدیریت کارت‌های بانکی و پرداخت‌ها</small>
+        </div>
+        <div class="summary-card-footer">
+          <span class="status-chip status-chip--active">فعال</span>
+          <span class="action-hint">مدیریت کارت</span>
+        </div>
+      </article>
+
+      <article class="summary-carousel-card bank-status-card bank-status-card--direct" [class.summary-carousel-card--active]="isActiveSummaryCard('direct-debit')"
+        (click)="setActiveSummaryCard('direct-debit')">
+        <div class="summary-card-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <use xlink:href="#ico_box_plus_fill"></use>
+          </svg>
+        </div>
+        <div>
+          <span class="section-kicker">پرداخت مستقیم</span>
+          <strong>اتصال به حساب</strong>
+          <small>پرداخت سریع‌تر با اتصال مستقیم حساب بانکی</small>
+        </div>
+        <div class="summary-card-footer">
+          <span class="status-chip">آماده فعال‌سازی</span>
+          <span class="action-hint">مشاهده تنظیمات</span>
+        </div>
+      </article>
     </div>
-    <div class="dashboard-profile-status">
-      <span class="status-dot"></span>
-      <div>
-        <strong>پروفایل فعال</strong>
-        <small>دسترسی به عملیات سرمایه‌گذاری و برداشت</small>
-      </div>
+
+    <div class="summary-carousel-indicators" aria-label="انتخاب کارت خلاصه">
+      <button type="button" [class.active]="isActiveSummaryCard('assets')" aria-label="نمایش دارایی کل"
+        (click)="setActiveSummaryCard('assets')"></button>
+      <button type="button" [class.active]="isActiveSummaryCard('bank-card')" aria-label="نمایش کارت بانکی"
+        (click)="setActiveSummaryCard('bank-card')"></button>
+      <button type="button" [class.active]="isActiveSummaryCard('direct-debit')" aria-label="نمایش پرداخت مستقیم"
+        (click)="setActiveSummaryCard('direct-debit')"></button>
     </div>
   </section>
 
-  <section class="dashboard-grid dashboard-grid--top">
-    <article class="asset-summary-card">
-      <div class="section-kicker">ارزش کل دارایی</div>
-      <div class="asset-summary-card__value">
-        <span [maskNumber]="getDisplayTotalNetValue()"></span>
-        <small>ریال</small>
-      </div>
-      <div class="asset-summary-card__meta">
-        <span>۴ صندوق اصلی</span>
-        <span>آخرین به‌روزرسانی امروز</span>
-      </div>
-      <button class="btn btn-light btn-sm asset-summary-card__button" routerLink="/portfolio">
-        سبد دارایی
-        <svg viewBox="0 0 24 24" width="14" height="14">
-          <use xlink:href="#ico_drop_left"></use>
+  <section class="dashboard-quick-actions" aria-label="عملیات سریع">
+    @if(activeSummaryCard() === 'assets') {
+    <button type="button" class="quick-action quick-action--invest" (click)="openSubscriptionModal()">
+      <span class="quick-action__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#ico_box_plus_fill"></use>
         </svg>
-      </button>
-    </article>
-
-    @if(hasPendingRequests()){
-    <article class="urgent-card">
-      <div class="urgent-card__header">
-        <svg viewBox="0 0 24 24" width="22" height="22">
-          <use xlink:href="#ico_hourglass"></use>
+      </span>
+      <span class="quick-action__label">سرمایه‌گذاری</span>
+      <small>خرید صندوق</small>
+    </button>
+    <button type="button" class="quick-action quick-action--exchange" (click)="openExchangeModal()">
+      <span class="quick-action__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#ico_box_exhange_fill"></use>
         </svg>
-        <div>
-          <strong>درخواست در جریان دارید</strong>
-          <small>برای پیگیری جزئیات به گزارش درخواست‌ها بروید.</small>
-        </div>
-      </div>
-      <div class="urgent-card__rows">
-        <div>
-          <span>سرمایه‌گذاری در جریان</span>
-          <strong><span [maskNumber]="getWaitingSubscriptionAmount()"></span> ریال</strong>
-        </div>
-        <div>
-          <span>برداشت در جریان</span>
-          <strong><span [maskNumber]="getWaitingRedemptionVolume()"></span> واحد</strong>
-        </div>
-      </div>
-      <button class="btn btn-outline-primary btn-sm" routerLink="/reporting/requests">مشاهده درخواست‌ها</button>
-    </article>
+      </span>
+      <span class="quick-action__label">تبدیل</span>
+      <small>بین صندوق‌ها</small>
+    </button>
+    <button type="button" class="quick-action quick-action--withdraw" (click)="openRedemptionModal()">
+      <span class="quick-action__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#ico_box_minuse_fill"></use>
+        </svg>
+      </span>
+      <span class="quick-action__label">برداشت</span>
+      <small>دریافت وجه</small>
+    </button>
+    } @else if(activeSummaryCard() === 'bank-card') {
+    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+      <span class="quick-action__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#ico_card"></use>
+        </svg>
+      </span>
+      <span class="quick-action__label">مدیریت کارت</span>
+      <small>به‌زودی</small>
+    </button>
+    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+      <span class="quick-action__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#ico_box_plus_fill"></use>
+        </svg>
+      </span>
+      <span class="quick-action__label">افزودن کارت</span>
+      <small>نمایشی</small>
+    </button>
+    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+      <span class="quick-action__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#ico_chart_bar_box"></use>
+        </svg>
+      </span>
+      <span class="quick-action__label">پرداخت‌ها</span>
+      <small>گزارش</small>
+    </button>
+    } @else {
+    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+      <span class="quick-action__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#ico_box_plus_fill"></use>
+        </svg>
+      </span>
+      <span class="quick-action__label">فعال‌سازی</span>
+      <small>به‌زودی</small>
+    </button>
+    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+      <span class="quick-action__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#ico_app"></use>
+        </svg>
+      </span>
+      <span class="quick-action__label">مدیریت اتصال</span>
+      <small>نمایشی</small>
+    </button>
+    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+      <span class="quick-action__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#ico_chart_bar_box"></use>
+        </svg>
+      </span>
+      <span class="quick-action__label">مشاهده وضعیت</span>
+      <small>پیگیری</small>
+    </button>
     }
-  </section>
-
-  <section class="primary-actions" aria-label="عملیات اصلی">
-    <button type="button" class="primary-action primary-action--invest" (click)="openSubscriptionModal()">
-      <svg viewBox="0 0 24 24" width="30" height="30">
-        <use xlink:href="#ico_box_plus_fill"></use>
-      </svg>
-      <span>سرمایه‌گذاری</span>
-      <small>خرید واحد صندوق</small>
-    </button>
-    <button type="button" class="primary-action primary-action--redeem" (click)="openRedemptionModal()">
-      <svg viewBox="0 0 24 24" width="30" height="30">
-        <use xlink:href="#ico_box_minuse_fill"></use>
-      </svg>
-      <span>برداشت</span>
-      <small>ابطال و دریافت وجه</small>
-    </button>
-    <button type="button" class="primary-action primary-action--exchange" (click)="openExchangeModal()">
-      <svg viewBox="0 0 24 24" width="30" height="30">
-        <use xlink:href="#ico_box_exhange_fill"></use>
-      </svg>
-      <span>تبدیل صندوق</span>
-      <small>انتقال بین صندوق‌ها</small>
-    </button>
   </section>
 
   <section class="dashboard-help-link">

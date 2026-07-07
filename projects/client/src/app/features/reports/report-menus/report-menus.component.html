@@ -1,72 +1,58 @@
-<div class="h-100 w-100">
-    <div class="row mb-3">
-        <div class="col-12 ">
-            <div class="card mb-5" (click)="navigateToPage('requests')">
-                <div class="card-body">
-                    <div class="w-100 d-flex align-items-center justify-content-center flex-column">
-                        <fa-icon class="mt-3 mb-2" icon="credit-card" size="lg"></fa-icon>
-        
-                        <h5 class="mb-3">
-                            درخواست‌ها
-                        </h5>
-                        <h6 class="text-secondary text-center">
-                            جزئیات تراکنش‌های مالی شما به صورت دقیق
-                        </h6>
-                    </div>
-                </div>
-            </div>
-    
-        </div>
-        <div class="col-12 " routerLink="/gift-card" >
-            <div class="card mb-5" (click)="navigateToPage('payments')">
-                <div class="card-body">
-                    <div class="w-100 d-flex align-items-center justify-content-center flex-column">
-                        <fa-icon class="mt-3 mb-2" icon="money-bill-1" size="lg"></fa-icon>
-                        <h5 class="mb-3">
-                            واریز وجه
-                        </h5>
-                        <h6 class="text-secondary text-center">
-                            وضعیت و جزئیات 
-                            <br />
-                            واریز وجه
-                        </h6>
-                    </div>
-                </div>
-            </div>
-    
-        </div>
-        <div class="col-12 " routerLink="/gift-card" >
-            <div class="card mb-5" (click)="navigateToPage('accounting')">
-                <div class="card-body">
-                    <div class="w-100 d-flex align-items-center justify-content-center flex-column">
-                        <fa-icon class="mt-3 mb-2" icon="receipt" size="lg"> </fa-icon>
-                        <h5 class="mb-3">
-                            حسابداری
-                        </h5>
-                        <h6 class="text-secondary text-center">
-                            اطلاعات جامع مالی و خلاصه تراکنش‌های شما
-                        </h6>
-                    </div>
-                </div>
-            </div>
-    
-        </div>
-        <div class="col-12 " routerLink="/gift-card" >
-            <div class="card mb-5" (click)="navigateToPage('dividend')">
-                <div class="card-body">
-                    <div class="w-100 d-flex align-items-center justify-content-center flex-column">
-                        <fa-icon class="mt-3 mb-2" icon="circle-info" size="lg"></fa-icon>
-        
-                        <h5 class="mb-3">
-                            تقسیم سود
-                        </h5>
-                        <h6 class="text-secondary text-center">
-                            جزئیات واریز سودهای دوره‌ای صندوق‌های شما
-                        </h6>
-                    </div>
-                </div>
-            </div>
-    
-        </div>
+<main class="reports-menu-shell" dir="rtl">
+  <header class="reports-menu-header">
+    <span>گزارش‌ها</span>
+    <h1>گزارش‌ها</h1>
+    <p>وضعیت درخواست‌ها، پرداخت‌ها، حسابداری و سودهای واریزی را پیگیری کنید.</p>
+  </header>
+
+  <section class="pending-report-events" aria-label="درخواست‌های در جریان">
+    <div class="pending-report-events__header">
+      <div>
+        <span>پیگیری عملیات</span>
+        <h2>درخواست‌های در جریان</h2>
+        <p>عملیات جدید و مواردی که هنوز نیاز به پیگیری دارند.</p>
+      </div>
+      <button type="button" class="btn btn-outline-primary btn-sm" (click)="navigateToPage('requests')">
+        مشاهده همه درخواست‌ها
+      </button>
     </div>
-</div>
+
+    <div class="pending-report-events__list">
+      @for(event of pendingReportEvents; track event.title) {
+      <article class="pending-report-card" [class]="'pending-report-card pending-report-card--' + event.tone">
+        <div>
+          <strong>{{ event.title }}</strong>
+          <span>{{ event.description }}</span>
+        </div>
+        <small>{{ event.status }}</small>
+      </article>
+      }
+    </div>
+  </section>
+
+  <section class="report-card-grid" aria-label="فهرست گزارش‌ها">
+    <article class="report-menu-card" (click)="navigateToPage('requests')">
+      <fa-icon class="report-menu-card__icon" icon="credit-card" size="lg"></fa-icon>
+      <h2>درخواست‌ها</h2>
+      <p>جزئیات تراکنش‌های مالی شما به صورت دقیق</p>
+    </article>
+
+    <article class="report-menu-card" (click)="navigateToPage('payments')">
+      <fa-icon class="report-menu-card__icon" icon="money-bill-1" size="lg"></fa-icon>
+      <h2>واریز وجه</h2>
+      <p>وضعیت و جزئیات واریز وجه</p>
+    </article>
+
+    <article class="report-menu-card" (click)="navigateToPage('accounting')">
+      <fa-icon class="report-menu-card__icon" icon="receipt" size="lg"> </fa-icon>
+      <h2>حسابداری</h2>
+      <p>اطلاعات جامع مالی و خلاصه تراکنش‌های شما</p>
+    </article>
+
+    <article class="report-menu-card" (click)="navigateToPage('dividend')">
+      <fa-icon class="report-menu-card__icon" icon="circle-info" size="lg"></fa-icon>
+      <h2>تقسیم سود</h2>
+      <p>جزئیات واریز سودهای دوره‌ای صندوق‌های شما</p>
+    </article>
+  </section>
+</main>
