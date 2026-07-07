@@ -1,640 +1,240 @@
-<div class="row">
-  <div class="col-lg-16 px-4">
-    @if (portfolioData()?.allMutualFundDetail.length === 0) {
-    <div class="card mb-4 bg-empty-asset overflow-hidden border-radius-15">
-      <div class="card-body p-0 asset-svg text-gray-250">
-        <div class="d-flex justify-content-between align-items-center mt-5">
-          <div class="d-flex flex-column p-3 fw-bold flex-shrink-0 me-4">
-            <img src="/svg/typo.svg" width="83px" height="22px" />
-            <h5 class="mx-0 my-3">ارزش کل دارایی شما:</h5>
-            <h3 class="pt-3 mb-0 d-flex align-items-center">
-              <h4 class="fw-bold mb-0">0 </h4>
-              <h6 class="me-2 fs-6 mb-0">ریال</h6>
-            </h3>
-          </div>
-
-          <div class="d-flex align-items-center justify-content-end ms-2  w-100">
-            <div class="ms-5" style="width: 86px;height: 86px;">
-              <img src="/images/empty-scenario/Group 19811.svg" class="img-fluid " alt="" />
-            </div>
-          </div>
-        </div>
-        <div class="p-4 bg-opacity-25">
-          <div class="card text-bg-gray-500 text-white rounded">
-            <div class="card-body d-flex justify-content-between align-items-center flex-wrap py-2 px-4">
-              <div class="d-flex align-items-center">
-                <span class="dot d-flex justify-content-center align-items-center fw-bolder"
-                  style="background-color: #b4c0ca;">
-                  0 %
-                </span>
-                <div class="d-felx align-items-center flex-column me-2">
-                  <h5 class="font-weight-semi mb-0">
-                    صندوق درآمد ثابت
-                  </h5>
-                  <!-- <h6 class="mb-0">
-                      <span class="ms-1">بروزرسانی</span>
-                      {{convertToJalali(item.navDate)}}
-                    </h6> -->
-                </div>
-
-              </div>
-              <div class=" d-flex align-items-center">
-                <h4 class="my-2 my-md-0 mx-1 mb-0">0</h4>
-                <h6 class="fs-6 mb-0">ریال</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<section class="portfolio-page" dir="rtl">
+  <header class="portfolio-hero">
+    <div class="portfolio-hero__text">
+      <span class="portfolio-eyebrow">مدیریت دارایی</span>
+      <h1>سبد سرمایه‌گذاری شما</h1>
+      <p>نمایی سریع از ارزش دارایی، ترکیب صندوق‌ها، سود و زیان و درخواست‌های در جریان.</p>
     </div>
-    <!-- <div class="text-center">
-      <img [style.maxHeight.px]="180" src="/svg/badge-empty-asset.svg" class="img-fluid mx-auto mt-5" />
-    </div> -->
-    }@else{
-    <div class="card mb-4 bg-asset overflow-hidden border-radius-15">
-      <div class="card-body p-0 asset-svg text-gray-250">
-        <div class="d-flex justify-content-between align-items-center mt-5">
-          <div class="d-flex flex-column p-3 fw-bold flex-shrink-0 me-4">
-            <img src="/svg/typo.svg" width="83px" height="22px" />
-            <h5 class="mx-0 my-3">ارزش کل دارایی شما:</h5>
 
-            @if(totalNetValue()==null){
-            <h3 class="d-flex align-items-center pt-3 justify-content-end mb-0 badge-skeleton" style="width: 80px;">
-              &nbsp;</h3>
-            }@else{
-            <h3 class="pt-3 mb-0 d-flex align-items-center">
-              <h4 class="fw-bold mb-0" [maskNumber]="totalNetValue()"> </h4>
-              <h6 class="me-2 fs-6 mb-0">ریال</h6>
-            </h3>
-            }
+    <button type="button" class="portfolio-mask-btn" (click)="toggleMask()">
+      {{ isMasked() ? 'نمایش مبالغ' : 'پنهان‌سازی مبالغ' }}
+    </button>
+  </header>
 
-
-
-
-          </div>
-
-          <div class="d-flex align-items-center justify-content-end m-2  w-100">
-            @if ( requestAllocation().length > 0) {
-            <div style="width: 86px;height: 86px;">
-              <div class="w-100" echarts [options]="chartOptions" style="width: 86px;height: 86px;"></div>
-            </div>
-            } @if ( requestAllocation().length === 0) {
-
-            <div class="text-center">
-              <img src="/svg/badge-empty-portfolio.svg" class="img-fluid " alt="" />
-            </div>
-            }
-          </div>
-        </div>
-        <div class="p-4 bg-opacity-25">
-          <div *ngFor="let item of customerRequestCompositions; let i= index"
-            class="card text-bg-gray-500 text-white rounded mb-2">
-            <div class="card-body d-flex justify-content-between align-items-center flex-wrap">
-              <div class="d-flex align-items-center flex-fill">
-                <span class="dot d-flex justify-content-center align-items-center fw-bolder border border-white border-1 border-opacity-50"
-                  [ngStyle]="{'background-color': getFundColor(item.mutualFundId), }">
-                  {{math.round(item.percent)}} %
-                </span>
-                <div class="d-flex align-items-start flex-column flex-fill me-2">
-                  <div class="d-flex w-100">
-                    <h5 class="font-weight-semi">
-                      {{item.symbol}}
-                    </h5>
-                    <h6 class="text-gray-400 mx-2">{{item.fundTypeTitle}}</h6>
-                  </div>
-                  <div class="d-flex flex-wrap justify-content-between align-items-center w-100">
-                      <div class="d-flex">
-                        <h6 class="mb-0">
-                         <!-- <span class="ms-1">آخرین تغییر</span>
-                         {{convertToJalali(item.emissionDate)}} -->
-                         <span class="d-flex align-items-center text-nowrap cursor-pointer">
-                           <svg #popoverRef="ngbPopover" class="mx-1" icon="info-circle" container="body" [ngbPopover]="popoverContent"
-                             popoverClass="custom-popover" triggers="manual" placement="top"
-                             (click)="isMobile && togglePopover(popoverRef)" (mouseenter)="!isMobile && onMouseEnter(popoverRef)"
-                             (mouseleave)="!isMobile && onMouseLeave(popoverRef)" style="width: 16px;" version="1.1" viewBox="0 0 24 24">
-                             <path fill="CurrentColor"
-                               d="M12,1.7c-5.7,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3,10.3-4.6,10.3-10.3c0-2.7-1.1-5.3-3-7.3-1.9-1.9-4.5-3-7.2-3ZM11,6.7c0-.6.4-1,1-1s1,.4,1,1v6.3c0,.6-.4,1-1,1s-1-.4-1-1v-6.3ZM11,16.5c0-.6.4-1,1-1s1,.4,1,1h0c0,.6-.4,1-1,1s-1-.4-1-1h0Z" />
-                           </svg>
-                           <ng-template #popoverContent>
-                             <div (mouseenter)="!isMobile && (isInPopover = true)" (mouseleave)="!isMobile && onMouseLeave(popoverRef)" class="text-justify fs-6">
-                               آخرین درخواست موفق در آی‌پاسارگاد
-                               <span>{{item.lastSuccessfulRequestDate ? convertToJalali(item.lastSuccessfulRequestDate) : '-'}}</span>
-                             </div>
-                           </ng-template>
-                         </span>
-                        </h6>
-
-                        @if (item?.mutualFundId == 1) {
-                          <span class="text-gray-400 small">
-                            سرمایه گذاری مجدد
-                          </span>
-                          <span class="text-gray-400 small">
-                            <svg viewBox="0 0 24 24" width="15px" height="15px" class="me-1 mb-1 text-light">
-                              <use xlink:href="#ico_coffee"></use>
-                            </svg>
-                          </span>
-                          <span class="d-flex align-items-center text-nowrap cursor-pointer small" (click)="openReinvestPercentModal(item,$event,true)">
-                            <span #popoverRef1="ngbPopover" class="mx-1 text-gray-200" container="body" [ngbPopover]="popoverContent1"
-                              popoverClass="custom-popover" triggers="manual" placement="top"
-                              (click)="isMobile && togglePopover(popoverRef1)" (mouseenter)="!isMobile && onMouseEnter(popoverRef1)"
-                              (mouseleave)="!isMobile && onMouseLeave(popoverRef1)">     
-                              {{item?.reinvest > 0 ? 'فعال' : 'غیرغعال' }}                        
-                            </span>
-                            <ng-template #popoverContent1>
-                              <div (mouseenter)="!isMobile && (isInPopover = true)" (mouseleave)="!isMobile && onMouseLeave(popoverRef1)" class="text-justify fs-6">
-                                <span class="text-gray-400">{{item?.reinvest > 0 ? item?.reinvest+'%' : '0%' }}</span>
-                              </div>
-                            </ng-template>
-                          </span>
-                        } @else {
-                          <!-- <span class="text-gray-400">
-                            @if(item?.profitOrLossPercent > 0){
-                              <span class="d-flex text-success fw-bold">{{item?.profitOrLossPercent | number:'1.0-2'}}% <fa-icon class="mx-1" icon="caret-up"></fa-icon></span> 
-                            }@else if(item?.profitOrLossPercent < 0){
-                              <span class="d-flex text-danger fw-bold">{{item?.profitOrLossPercent | number:'1.0-2'}}% <fa-icon class="mx-1" icon="caret-down"></fa-icon></span> 
-                            }@else{
-                              <span class="">{{item?.profitOrLossPercent | number:'1.0-2'}}</span> 
-                            }                           
-                          </span>
-                          <span class="text-gray-400 mx-1">
-                             |
-                          </span>
-                          <span class="text-gray-400 mx-1">
-                            سود فعلی 
-                          </span>
-                          <span class="text-gray-400">
-                            @if(item?.profitOrLoss > 0){
-                              <span class="">
-                                {{Math.round(item?.profitOrLoss ?? 0) | number}}                                
-                              </span>
-                            }@else if(item?.profitOrLoss < 0){
-                              <span class="text-danger">
-                                ({{Math.round((Math.abs(item?.profitOrLoss ?? 0))) | number}})                                                                                           
-                              </span>
-                            }@else{
-                              <span class="">
-                                {{Math.round(item?.profitOrLoss ?? 0) | number}}                                
-                              </span>
-                            }
-                          </span> -->
-
-                          <span
-                            class="d-flex fw-bold small me-1"
-                            [ngClass]="{
-                              'text-success': item?.profitOrLossPercent > 0,
-                              'text-danger': item?.profitOrLossPercent < 0,
-                              'text-gray-400': item?.profitOrLossPercent === 0
-                            }">
-
-                            @if(item?.profitOrLossPercent >= 0){
-                              {{ item?.profitOrLossPercent | number:'1.0-2' }}%                              
-                            }@else{
-                             % {{ Math.abs(item?.profitOrLossPercent ?? 0) | number }} -
-                            }
-                          
-                            @if(item?.profitOrLossPercent > 0){
-                              <fa-icon class="mx-1" icon="caret-up"></fa-icon>
-                            }
-                          
-                            @if(item?.profitOrLossPercent < 0){
-                              <fa-icon class="mx-1" icon="caret-down"></fa-icon>
-                            }
-                          </span>
-                          
-                          <span class="text-gray-400 mx-1 small">|</span>
-                          
-                          <span class="text-gray-400 mx-1 small">
-                            سود فعلی
-                          </span>
-                          
-                          <span class="small" [ngClass]="{'text-danger': item?.profitOrLoss < 0, 'text-gray-400': item?.profitOrLoss >= 0}">
-                            @if (item?.profitOrLoss < 0) {
-                              ({{ Math.round(Math.abs(item?.profitOrLoss ?? 0)) | number }})
-                            } @else {
-                              {{ Math.round(item?.profitOrLoss ?? 0) | number }}
-                            }
-                          </span>
-                        }
-                      </div>                      
-                      <div class="d-flex flex-grow-1 flex-md-grow-0 align-items-center justify-content-end flex-nowrap">
-                        <h4 class="my-2 my-md-0 mx-1" [maskNumber]="item.netValue"></h4>
-                        <h6 class="fs-6 mb-0">ریال</h6>
-                      </div>
-                  </div>                  
-                </div>
-              </div>             
-            </div>
-          </div>
-        </div>
-      </div>
+  <section class="portfolio-summary" aria-label="خلاصه دارایی">
+    <div class="summary-card summary-card--primary">
+      <span>ارزش کل دارایی</span>
+      <strong>
+        <span [maskNumber]="getDisplayTotalNetValue()"></span>
+        <small>ریال</small>
+      </strong>
     </div>
-    <!-- <div class="d-flex align-items-center flex-column m-4 w-100">
-      <div class="d-flex align-items-center mb-3 w-100">
-        <fa-icon icon="triangle-exclamation" class="text-success"></fa-icon>
-        <h5 class="fw-bolder text-gray-500 me-1 mb-0">توجه!</h5>
+
+    <div class="summary-card">
+      <span>صندوق‌های فعال</span>
+      <strong>
+        {{ getActiveHoldingCount() | number }}
+        <small>صندوق</small>
+      </strong>
+    </div>
+
+    <a class="summary-card summary-card--link" routerLink="/reporting/requests">
+      <span>پیگیری درخواست‌ها</span>
+      <strong>گزارش‌ها</strong>
+    </a>
+  </section>
+
+  <section class="allocation-strip" aria-label="ترکیب دارایی">
+    <div class="allocation-strip__header">
+      <div>
+        <h2>ترکیب دارایی</h2>
+        <p>سهم هر گروه از کل دارایی شما</p>
       </div>
-      <h5 class="fw-bolder text-gray-500 me-1 mb-0 w-100">
-        کلیه درخواست های ثبت شده از ساعت 16:00 الی 24:00 روز کاری بعد بررسی و رسیدگی می شود.
-      </h5>
-    </div> -->
-    }
 
-    @for (mutualFund of portfolioData()?.allMutualFundDetail; track $index) {
-    <div class="card shadow-sm mb-4 py-4 border-radius-15">
-      <div class="card-body d-flex flex-column py-0">
-        @if(mutualFund?.investType == 1){
-        <div class="d-lg-none">
-          <div class="d-flex align-items-center justify-content-end">
-            <button [disabled]="disablePdfBtn()" class="btn btn-secondary d-flex align-items-center text-white"
-              style="padding: 4px 10px;" (click)="evidenceReceipt(mutualFund?.seoRegisterNumber)">
-              <h6 class="mb-0">
-                صدور گواهی
-              </h6>
-              <svg viewBox="0 0 24 24" width="20px" height="20px" class="me-1">
-                <use xlink:href="#ico_file_pdf"></use>
-              </svg>
-            </button>
-          </div>
-        </div>
-        }
-        <div class="d-flex align-items-center justify-content-between w-100 my-4">
-          <div class="d-flex align-items-start">
-            <!-- <img *ngIf="mutualFund?.attachments?.length > 0; else logoPlaceholder"              
-              [src]="apiUrl + '/' + getLogo(mutualFund)?.downloadLink"
-              alt="Fund Logo" style="width: 40px;" class="ms-2" /> -->
-            <app-svg-viewer *ngIf="mutualFund?.attachments?.length > 0; else logoPlaceholder" 
-                 [svgUrl]="apiUrl + '/' + getLogo(mutualFund)?.downloadLink" class="ms-2" style="width: 40px;"></app-svg-viewer>
+      @if (requestAllocation().length > 0) {
+      <div class="allocation-donut" echarts [options]="chartOptions"></div>
+      }
+    </div>
 
+    <div class="allocation-list">
+      @for (item of getAllocationSummary(); track item.label) {
+      <div class="allocation-item">
+        <span class="allocation-item__marker" [ngStyle]="{'background-color': item.color}"></span>
+        <span class="allocation-item__label">{{ item.label }}</span>
+        <strong>
+          <span [maskNumber]="item.value"></span>
+          <small>ریال</small>
+        </strong>
+        <em>{{ getAllocationShare(item.value) | number:'1.0-0' }}٪</em>
+      </div>
+      }
+    </div>
+  </section>
+
+  @if (getDisplayHoldings().length === 0) {
+  <section class="portfolio-empty">
+    <img src="/svg/badge-empty-portfolio.svg" alt="" />
+    <h2>هنوز دارایی فعالی ندارید</h2>
+    <p>بعد از شروع سرمایه‌گذاری، ارزش دارایی، تعداد واحدها و وضعیت درخواست‌های شما همین‌جا نمایش داده می‌شود.</p>
+    <a class="btn btn-primary portfolio-empty__action" routerLink="/fund-list">مشاهده صندوق‌ها</a>
+  </section>
+  } @else {
+  <section class="holdings-section" aria-label="دارایی صندوق‌ها">
+    <div class="section-title">
+      <h2>دارایی در صندوق‌ها</h2>
+      <span>{{ getDisplayHoldings().length | number }} مورد</span>
+    </div>
+
+    <div class="holding-grid">
+      @for (mutualFund of getDisplayHoldings(); track mutualFund?.seoRegisterNumber || $index) {
+      <article class="holding-card">
+        <div class="holding-card__top">
+          <div class="fund-identity">
+            <app-svg-viewer *ngIf="mutualFund?.attachments?.length > 0; else logoPlaceholder"
+              [svgUrl]="apiUrl + '/' + getLogo(mutualFund)?.downloadLink"
+              class="fund-identity__logo"></app-svg-viewer>
             <ng-template #logoPlaceholder>
-              <div class="logo-loading-placeholder ms-2"></div>
+              <span class="fund-identity__logo fund-identity__logo--placeholder">{{ mutualFund?.symbol?.slice(0, 1) }}</span>
             </ng-template>
-            <div class="d-flex flex-column justify-content-center">
-              <h5 class="fw-bold mb-0 text-nowrap">صندوق {{ mutualFund?.symbol }}</h5>
-              <div class="d-flex mt-2" style="color: #737D87;">
-                <h6 class="text-nowrap">{{mutualFund?.fundTypeTitle
-                  }}</h6>
-                <h6 class="mx-1">|</h6>
-                <h6 class="text-nowrap">به روزرسانی ، {{mutualFund?.performance?.lastUpdateDateJalali}}</h6>
 
-              </div>
+            <div>
+              <strong>{{ mutualFund?.symbol }}</strong>
+              <span>{{ mutualFund?.fundTypeTitle }}</span>
             </div>
           </div>
-          <span class="d-none d-lg-block">
-            <div class="d-flex flex-wrap justify-content-end">
-              @if(mutualFund?.investType == 1){
-              <button [disabled]="disablePdfBtn()" class="btn btn-secondary d-flex m-1 align-items-center text-white"
-                style="padding: 8px 16px;" (click)="evidenceReceipt(mutualFund?.seoRegisterNumber)">
-                <h5 class="mb-0 d-none d-lg-block">
-                  صدور گواهی
-                </h5>
-                <svg viewBox="0 0 24 24" width="20px" height="20px" class="me-1">
-                  <use xlink:href="#ico_file_pdf"></use>
-                </svg>
-              </button>
-              }
-              <button class="btn btn-primary d-flex m-1 align-items-center text-white" style="padding: 8px 16px;"
-                (click)="openPortfolioDetailModal(mutualFund)">
-                <h5 class="mb-0">
-                  جزئیات
-                </h5>
-                <svg viewBox="0 0 24 24" width="14px" height="14px" class="me-3">
-                  <use xlink:href="#ico_drop_left"></use>
-                </svg>
-              </button>
-            </div>
-          </span>
-          <span class="d-lg-none">
-            <div class="d-flex flex-wrap justify-content-end">
-              <button class="btn btn-primary d-flex m-1 align-items-center text-white" style="padding: 8px 16px;"
-                (click)="openPortfolioDetailModal(mutualFund)">
-                <h6 class="mb-0">
-                  جزئیات
-                </h6>
-                <svg viewBox="0 0 24 24" width="14px" height="14px" class="me-1">
-                  <use xlink:href="#ico_drop_left"></use>
-                </svg>
-              </button>
-              <!-- <button [disabled]="disablePdfBtn()" class="btn btn-secondary d-flex m-1 align-items-center text-white"
-                  style="padding: 8px 16px;" (click)="evidenceReceipt(mutualFund?.seoRegisterNumber)">
-                  <h5 class="mb-0 d-none d-lg-block">
-                    صدور گواهی
-                  </h5>
-                  <svg viewBox="0 0 24 24" width="20px" height="20px" class="me-1">
-                    <use xlink:href="#ico_file_pdf"></use>
-                  </svg>
-                </button> -->
-            </div>
-          </span>
-        </div>
-        @if(!checkCustomerStepService.getCustomerStep() && mutualFund?.reinvest === 1){
-        <div
-          class="d-flex align-items-center justify-content-between p-4 pe-0 mb-4 border-primary w-100 border-radius-10 cursor-pointer"
-          (click)="openReinvestPercentModal(mutualFund,$event)" style="border: 1px dashed;background-color: #6633CC1A;">
-          <div class="d-flex align-items-center ">
-            <svg viewBox="0 0 24 24" width="28px" height="28px" class="me-3" style="color: #B4BEC8;">
-              <use xlink:href="#ico_energy_recover"></use>
-            </svg>
 
-            <h5 class="mb-0 me-3 text-nowrap" style="color: #46503C;">
-              سرمایه‌گذاری مجدد از سود
-            </h5>
+          <button type="button" class="btn btn-light holding-card__detail" (click)="openPortfolioDetailModal(mutualFund)">
+            جزئیات
+          </button>
+        </div>
+
+        <div class="holding-value">
+          <span>ارزش فعلی</span>
+          <strong>
+            <span [maskNumber]="getHoldingComposition(mutualFund)?.netValue"></span>
+            <small>ریال</small>
+          </strong>
+        </div>
+
+        <div class="holding-metrics">
+          <div>
+            <span>تعداد واحد</span>
+            <strong>{{ getHoldingComposition(mutualFund)?.remainVolume | number }}</strong>
           </div>
           <div>
-            <div class="form-check form-switch mb-0 cursor-pointer">
-              <input class="form-check-input cursor-pointer" type="checkbox" type="checkbox"
-                [checked]="mutualFund?.customerEvidences?.reinvest">
-              <label class="form-check-label text-white mb-0 cursor-pointer" for="reinvest">
-                <h5 class="mb-0 font-weight-semi text-black ms-1">
-                  {{mutualFund?.customerEvidences?.reinvest ? mutualFund?.customerEvidences?.reinvest+'%' : 'غیرغعال' }}
-                </h5>
-              </label>
-            </div>
+            <span>سهم از سبد</span>
+            <strong>{{ getHoldingShare(mutualFund) | number:'1.0-1' }}٪</strong>
           </div>
+        </div>
 
+        @if (hasProfitOrLoss(mutualFund)) {
+        <div class="profit-line" [ngClass]="{
+          'profit-line--up': getHoldingProfitOrLoss(mutualFund).amount > 0,
+          'profit-line--down': getHoldingProfitOrLoss(mutualFund).amount < 0
+        }">
+          <span>سود / زیان فعلی</span>
+          <strong>
+            {{ getHoldingProfitOrLoss(mutualFund).amount | number }}
+            <small>ریال</small>
+            <em>{{ getHoldingProfitOrLoss(mutualFund).percent | number:'1.0-2' }}٪</em>
+          </strong>
         </div>
         }
-        <div class="d-none d-lg-block ">
-          <div class="d-flex align-items-center justify-content-evenly mb-5">
-            @if(mutualFund?.fixedIncomeFundType === 1){
-            <div class="d-flex align-items-center justify-content-center flex-column">
-              <h5 class="mb-4" style="color: #737D87;">
-                مجموع سودهای واریزی
-              </h5>
-              <h5 class="mb-0 fw-bold d-flex align-items-center" style="color: #394046;">
-                {{dividend() | number}}
-                <h6 class="mb-0 me-1">ریال</h6>
-              </h5>
 
-            </div>
-            <div style="border-right:1px solid #CDD7E1;height: 40px ;"></div>
-            }
-            <div class="d-flex align-items-center justify-content-center flex-column">
-              <h5 class="mb-4" style="color: #737D87;">
-                تعداد واحد صندوق
-              </h5>
-              <h5 class="mb-0 fw-bold d-flex align-items-center" style="color: #394046;">
-                {{mutualFund.customerRequestCompositions?.remainVolume | number}}
-                <h6 class="mb-0 me-1">واحد</h6>
-              </h5>
+        @if(!checkCustomerStepService.getCustomerStep() && mutualFund?.reinvest === 1) {
+        <button type="button" class="reinvest-status" (click)="openReinvestPercentModal(mutualFund, $event)">
+          <span>سرمایه‌گذاری مجدد</span>
+          <strong>{{ getHoldingEvidence(mutualFund)?.reinvest ? getHoldingEvidence(mutualFund)?.reinvest + '%' : 'غیرفعال' }}</strong>
+        </button>
+        }
 
-            </div>
-            <div style="border-right:1px solid #CDD7E1;height: 40px ;"></div>
-            <div class="d-flex align-items-center justify-content-center flex-column">
-              <h5 class="mb-4" style="color: #737D87;">
-                ارزش دارایی این صندوق </h5>
-              <h5 class="mb-0 fw-bold d-flex align-items-center" style="color: #394046;">
-                {{mutualFund.customerRequestCompositions?.netValue | number}}
-                <h6 class="mb-0 me-1">ریال</h6>
-              </h5>
-            </div>
-          </div>
-        </div>
-
-        <div class="d-lg-none my-5">
-
-          <div class="d-flex align-items-baseline justify-content-between mb-4">
-            <h5 style="color: #737D87;">
-              ارزش </h5>
-            <h5 class="mb-0 fw-bold d-flex align-items-center" style="color: #394046;">
-              {{mutualFund.customerRequestCompositions?.netValue | number}}
-              <h6 class="mb-0 me-1">ریال</h6>
-            </h5>
-          </div>
-          <div class="d-flex align-items-baseline justify-content-between mb-4">
-            <h5 style="color: #737D87;">
-              تعداد
-            </h5>
-            <h5 class="mb-0 fw-bold d-flex align-items-center" style="color: #394046;">
-              {{mutualFund.customerRequestCompositions?.remainVolume | number}}
-              <h6 class="mb-0 me-1">واحد</h6>
-            </h5>
-
-          </div>
-          @if(mutualFund.customerRequestCompositions?.mutualFundId === 1){
-          <div class="d-flex align-items-baseline justify-content-between">
-            <h5 style="color: #737D87;">
-              سود واریزی
-            </h5>
-            <h5 class="mb-0 fw-bold d-flex align-items-center" style="color: #394046;">
-              {{dividend() | number}}
-              <h6 class="mb-0 me-1">ریال</h6>
-            </h5>
-
-          </div>
+        @if (hasPendingSubscription(mutualFund) || hasPendingRedemption(mutualFund)) {
+        <div class="pending-box">
+          @if (hasPendingSubscription(mutualFund)) {
+          <a routerLink="/reporting/requests">
+            <span>سرمایه‌گذاری در جریان</span>
+            <strong>
+              <span [maskNumber]="getHoldingEvidence(mutualFund)?.watingSubscriptionAmount"></span>
+              <small>ریال</small>
+            </strong>
+          </a>
           }
 
-
+          @if (hasPendingRedemption(mutualFund)) {
+          <a routerLink="/reporting/requests">
+            <span>برداشت در جریان</span>
+            <strong>
+              {{ getHoldingEvidence(mutualFund)?.watingRedemptiomVolume | number }}
+              <small>واحد</small>
+            </strong>
+          </a>
+          }
         </div>
-
-
-
-
-
-
-        <div class="d-flex text-center mb-3">
-          <button type="button"
-            class="d-flex align-items-center justify-content-center btn  border-success bg-white  border-2 m-2 me-0  py-3 px-2 fw-semibold  border-radius-10"
-            (click)="openSubscriptionModal(mutualFund)" style="flex: 1;">
-            <svg viewBox="0 0 24 24" width="30px" height="30px" class="text-success p-1">
-              <use xlink:href="#ico_box_plus_fill"></use>
-            </svg>
-            <h5 class="mx-2 text-success mb-0 font-weight-semi text-nowrap">سرمایه‌گذاری</h5>
-          </button>
-          <button type="button"
-            class="d-flex align-items-center justify-content-center btn  border-danger bg-white  border-2 m-2 ms-0 py-3 px-2 fw-semibold border-radius-10"
-            (click)="openRedemptionModal(mutualFund)" style="flex: 1;">
-            <svg viewBox="0 0 24 24" width="30px" height="30px" class="text-danger p-1">
-              <use xlink:href="#ico_box_minuse_fill"></use>
-            </svg>
-            <span class="mx-2 text-danger  mb-0 font-weight-semi text-nowrap">برداشت وجه</span>
-          </button>
-        </div>
-        <div class="d-none d-lg-block">
-          <div class="custom-dashed-border my-3 border-radius-15 w-100">
-            <div class="card-body d-flex justify-content-between align-items-center">
-              <div class="d-flex align-items-center cursor-pointer" routerLink="/reporting/requests">
-
-                <svg viewBox="0 0 24 24" width="20px" height="20px" class="text-green">
-                  <use xlink:href="#ico_hourglass"></use>
-                </svg>
-                <div class=" me-5 font-weight-semi" style="color: #737D87;">سرمایه‌گذاری‌ در جریان</div>
-              </div>
-              <div class="d-flex flex-nowrap align-items-center ">
-                <span class="h5 fw-bold m-0 px-3 cursor-pointer"
-                  [maskNumber]="mutualFund?.customerEvidences?.watingSubscriptionAmount">
-                </span>
-                <span class="fs-6 mx-2"> ریال </span>
-                <svg viewBox="0 0 24 24" width="14px" height="14px" class="cursor-pointer" style="color: #737D87;"
-                  routerLink="/reporting/requests">
-                  <use xlink:href="#ico_drop_left"></use>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="custom-dashed-border mb-5 border-radius-15 w-100">
-            <div class="card-body d-flex justify-content-between align-items-center">
-              <div class="d-flex align-items-center cursor-pointer" routerLink="/reporting/requests">
-                <svg viewBox="0 0 24 24" width="20px" height="20px" class="text-danger" style="rotate: 180deg;">
-                  <use xlink:href="#ico_hourglass"></use>
-                </svg>
-                <div class="me-5 font-weight-semi" style="color: #737D87;">برداشت‌ در جریان</div>
-              </div>
-
-              <div class="d-flex flex-nowrap align-items-center ">
-                <span class="h5 fw-bold m-0 px-3 cursor-pointer"
-                  [maskNumber]="mutualFund?.customerEvidences?.watingRedemptiomVolume">
-                </span>
-                <span class="fs-6 mx-2"> واحد </span>
-                <svg class="cursor-pointer" viewBox="0 0 24 24" width="14px" height="14px" style="color: #737D87;"
-                  routerLink="/reporting/requests">
-                  <use xlink:href="#ico_drop_left"></use>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="d-lg-none">
-          <div style="border: 1px dashed rgb(18, 181, 73)!important;"
-            class="border-radius-15 d-flex flex-column p-4 mb-3">
-            <div class="d-flex align-items-center justify-content-start mb-4">
-              <svg viewBox="0 0 24 24" width="20px" height="20px" class="text-green">
-                <use xlink:href="#ico_hourglass"></use>
-              </svg>
-              <div class=" me-1 text-success font-weight-semi" style="color: #737D87;">سرمایه‌گذاری‌ در جریان</div>
-            </div>
-            <div class="d-flex align-items-center justify-content-end">
-              <span class="h5 fw-bold m-0 px-1 cursor-pointer"
-                [maskNumber]="mutualFund?.customerEvidences?.watingSubscriptionAmount">
-              </span>
-              <span class="fs-6 mx-1"> ریال </span>
-            </div>
-
-          </div>
-          <div style="border: 1px dashed rgb(239, 83, 80)!important;" class="border-radius-15 d-flex flex-column p-4">
-            <div class="d-flex align-items-center justify-content-start mb-4">
-              <svg viewBox="0 0 24 24" width="20px" height="20px" class="text-danger">
-                <use xlink:href="#ico_hourglass"></use>
-              </svg>
-              <div class=" me-1 text-danger font-weight-semi" style="color: #737D87;">برداشت‌ در جریان</div>
-            </div>
-            <div class="d-flex align-items-center justify-content-end">
-              <span class="h5 fw-bold m-0 px-1 cursor-pointer"
-                [maskNumber]="mutualFund?.customerEvidences?.watingRedemptiomVolume">
-              </span>
-              <span class="fs-6 mx-1"> واحد </span>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    }
-
-    <div class="d-none d-sm-block">
-      <ngb-carousel class="d-none d-lg-block" class="mb-3" [showNavigationArrows]="false">
-        @for (item of getCarouselList(portfolioData()?.allMutualFundDetail); track $index) {
-        <!-- <ng-template ngbSlide class="h-100">
-          <div class="card shadow-sm mb-3 cursor-pointer"
-            [routerLink]="'/fund/'+item.seoRegisterNumber+'/fund-detail/'+item.seoRegisterNumber">
-            <img class="w-100 img-fluid border-radius-15" [src]="'/images/bg-' + item.seoRegisterNumber + '.png'"
-              alt="بنر" />
-
-            <div class="text-white" class="text-white"
-              style="position: absolute; left: 5%; top: 10%;font-weight: bolder;font-size: 500%;">
-              {{item?.performance?.yearlyPercent}}%</div>
-            <img style="position: absolute; left: 5%; top: 90px; width: 25%;" src="/images/Group 19830.png"
-              alt="سود محقق شده">
-          </div>
-        </ng-template> -->
-          <ng-template ngbSlide class="h-100" style="height: 213px;">
-           <div class="card shadow-sm mb-3 cursor-pointer"
-             [routerLink]="'/fund/'+item.seoRegisterNumber+'/fund-detail/'+item.seoRegisterNumber">
-             <img *ngIf="item?.attachments?.length > 0; else bannerPlaceholder"               
-               [src]="apiUrl + '/' + getImage(item)?.downloadLink"
-               alt="" class="w-100 img-fluid border-radius-15 vertical-banner" />
-             <ng-template #bannerPlaceholder>
-               <div class="banner-loading-placeholder w-100 border-radius-15"></div>
-             </ng-template>
-      
-             <!-- @if(item.mutualFundId!==3){
-             <h4 class=" text-center text-white w-100"
-                style="position: absolute; left: 5%; top: 10%;font-weight: bolder;font-size: 500%;">
-               {{item?.symbol}}
-             </h4>
-             } -->
-             @if(item.mutualFundId==2){
-             <div class="text-white"
-                style="position: absolute; left: 5%; top: 10%;font-weight: bolder;font-size: 500%;">
-               {{item?.performance?.effectiveYearlyPercent}}%</div>
-             <div class="banner-minitext border-radius-10 px-2">پیش‌بینی بازده موثر</div>
-             }@else if(item.mutualFundId==1){
-             <div class="text-white"
-                style="position: absolute; left: 5%; top: 10%;font-weight: bolder;font-size: 500%;">
-               {{item?.performance?.yearlyPercent}}%</div>
-             <div class="banner-minitext border-radius-10 px-2">بازده اسمی سالانه</div>
-             }
-      
-           </div>
-         </ng-template>
         }
-      </ngb-carousel>
-    </div>
-    <app-consulting-guide class="mb-3 d-block"></app-consulting-guide>
 
-  </div>
-
-  <div class="col-lg-8">
-    <div class="d-none d-md-block card shadow-sm mb-3 border-radius-15">
-      <div class="card-body">
-        <div class="d-flex flex-column justify-content-center">
-          <span class="custom-radius bg-gray-150 p-4 mb-3"> ترکیب دارایی </span>
+        <div class="holding-actions">
+          <button type="button" class="btn btn-outline-primary" (click)="openSubscriptionModal(mutualFund)">
+            سرمایه‌گذاری
+          </button>
+          <button type="button" class="btn btn-outline-danger" (click)="openRedemptionModal(mutualFund)">
+            برداشت وجه
+          </button>
         </div>
 
-        <div>
-          <div class="text-center rounded overflow-hidden">
-            @if (customerRequestCompositions.length) {
-            <highcharts-chart class="d-block w-100 my-auto" [Highcharts]="highcharts"
-              [options]="treeMapChartOption()"></highcharts-chart>
-            } @else {
-            <img src="/svg/badge-empty-chart.svg" class="img-fluid w-50 my-3" />
-            }
-          </div>
+        <div class="holding-secondary-actions">
+          @if(mutualFund?.investType == 1) {
+          <button type="button" class="secondary-action" [disabled]="disablePdfBtn()"
+            (click)="evidenceReceipt(mutualFund?.seoRegisterNumber)">
+            صدور گواهی
+          </button>
+          }
 
-          <div class="mt-3">
-            <div
-              class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2 border-gray-300 border-dashed">
-              <span>درآمد ثابت</span>
-              <span>
-                <span class="fw-bold" [maskNumber]="fixedIncomeNetValue()"></span> ریال
-              </span>
-            </div>
-            <div
-              class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2 border-gray-300 border-dashed">
-              <span>طلا</span>
-              <span>
-                <span class="fw-bold" [maskNumber]="goldNetValue()"></span> ریال
-              </span>
-            </div>
-            <div
-              class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2 border-gray-300 border-dashed">
-              <span>سهامی</span>
-              <span>
-                <span class="fw-bold" [maskNumber]="stockNetValue()"></span> ریال
-              </span>
-            </div>
-            <div
-              class="w-100 d-flex align-items-center justify-content-between fund-profile-info px-3 py-4 mb-2 border-gray-300 border-dashed">
-              <span>سود واریزی</span>
-              <span>
-                <span class="fw-bold" [maskNumber]="dividend()"></span> ریال
-              </span>
-            </div>            
-          </div>
+          @if(!checkCustomerStepService.getCustomerStep() && mutualFund?.reinvest === 1) {
+          <button type="button" class="secondary-action" (click)="openReinvestPercentModal(mutualFund, $event)">
+            سرمایه‌گذاری مجدد
+          </button>
+          }
         </div>
-      </div>
+      </article>
+      }
     </div>
+  </section>
+  }
+
+  <section class="portfolio-chart-panel">
+    <div class="section-title">
+      <h2>نمای تصویری دارایی</h2>
+      <span>بر اساس ارزش روز</span>
+    </div>
+
+    @if (getDisplayCompositions().length) {
+    <highcharts-chart class="portfolio-treemap" [Highcharts]="highcharts"
+      [options]="treeMapChartOption()"></highcharts-chart>
+    } @else {
+    <img src="/svg/badge-empty-chart.svg" class="portfolio-chart-panel__empty" alt="" />
+    }
+  </section>
+
+  <div class="portfolio-links">
+    <a routerLink="/reporting/requests">مشاهده وضعیت همه درخواست‌ها</a>
+    <a routerLink="/fund-list">شروع سرمایه‌گذاری جدید</a>
   </div>
 
+  <div class="portfolio-carousel d-none d-sm-block">
+    <ngb-carousel class="mb-3 d-none d-lg-block" [showNavigationArrows]="false">
+      @for (item of getCarouselList(getDisplayHoldings()); track $index) {
+      <ng-template ngbSlide class="h-100">
+        <div class="carousel-banner card shadow-sm mb-3 cursor-pointer"
+          [routerLink]="'/fund/'+item.seoRegisterNumber+'/fund-detail/'+item.seoRegisterNumber">
+          <img *ngIf="item?.attachments?.length > 0; else bannerPlaceholder"
+            [src]="apiUrl + '/' + getImage(item)?.downloadLink"
+            alt="" class="w-100 img-fluid border-radius-15 vertical-banner" />
+          <ng-template #bannerPlaceholder>
+            <div class="banner-loading-placeholder w-100 border-radius-15"></div>
+          </ng-template>
 
+          @if(item.mutualFundId==2){
+          <div class="carousel-banner__rate">{{item?.performance?.effectiveYearlyPercent}}%</div>
+          <div class="banner-minitext border-radius-10 px-2">پیش‌بینی بازده موثر</div>
+          } @else if(item.mutualFundId==1){
+          <div class="carousel-banner__rate">{{item?.performance?.yearlyPercent}}%</div>
+          <div class="banner-minitext border-radius-10 px-2">بازده اسمی سالانه</div>
+          }
+        </div>
+      </ng-template>
+      }
+    </ngb-carousel>
+  </div>
 
-</div>
+  <app-consulting-guide class="mb-3 d-block"></app-consulting-guide>
+</section>

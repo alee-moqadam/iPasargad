@@ -49,6 +49,140 @@ Tree(Highcharts);
   providers: [DecimalPipe, MaskNumberPipe, provideEchartsCore({ echarts })]
 })
 export class PortfolioComponent implements OnInit, OnDestroy {
+  readonly useMockViewData = true; // UI preview only. Turn off before production handoff.
+
+  // UI preview mock data only. Do not use for production logic.
+  readonly mockPortfolioHoldings = [
+    {
+      mutualFundId: 1,
+      seoRegisterNumber: 11168,
+      symbol: 'هزاره سوم',
+      title: 'صندوق درآمد ثابت صدور و ابطالی هزاره سوم پاد',
+      fundTypeTitle: 'درآمد ثابت - صدور و ابطالی',
+      fundType: 2,
+      investType: 1,
+      fixedIncomeFundType: 1,
+      reinvest: 1,
+      isAllowSubscription: true,
+      isAllowRedemption: true,
+      performance: { yearlyPercent: 27.8, lastUpdateDateJalali: '۱۴۰۵/۰۴/۱۶' },
+      customerRequestCompositions: {
+        mutualFundId: 1,
+        mutualFundCode: 11168,
+        symbol: 'هزاره سوم',
+        fundType: 2,
+        fundTypeTitle: 'درآمد ثابت',
+        netValue: 245000000,
+        remainVolume: 240,
+        percent: 44,
+        subscriptionPermit: true,
+        redemptionPermit: true,
+        reinvest: 30,
+        profitOrLoss: 8600000,
+        profitOrLossPercent: 3.62
+      },
+      customerEvidences: {
+        mutualFundCode: 11168,
+        reinvest: 30,
+        watingSubscriptionAmount: 12000000,
+        watingRedemptiomVolume: 0
+      }
+    },
+    {
+      mutualFundId: 2,
+      seoRegisterNumber: 11355,
+      symbol: 'پاسارگاد',
+      title: 'صندوق درآمد ثابت قابل معامله پاسارگاد',
+      fundTypeTitle: 'درآمد ثابت - قابل معامله',
+      fundType: 2,
+      investType: 2,
+      isAllowSubscription: true,
+      isAllowRedemption: true,
+      performance: { effectiveYearlyPercent: 27.1, lastUpdateDateJalali: '۱۴۰۵/۰۴/۱۶' },
+      customerRequestCompositions: {
+        mutualFundId: 2,
+        mutualFundCode: 11355,
+        symbol: 'پاسارگاد',
+        fundType: 2,
+        fundTypeTitle: 'درآمد ثابت',
+        netValue: 128500000,
+        remainVolume: 126,
+        percent: 23,
+        subscriptionPermit: true,
+        redemptionPermit: true,
+        profitOrLoss: 2100000,
+        profitOrLossPercent: 1.66
+      },
+      customerEvidences: {
+        mutualFundCode: 11355,
+        watingSubscriptionAmount: 0,
+        watingRedemptiomVolume: 14
+      }
+    },
+    {
+      mutualFundId: 3,
+      seoRegisterNumber: 11421,
+      symbol: 'ریتون',
+      title: 'صندوق طلای قابل معامله چندکالایی پاسارگاد',
+      fundTypeTitle: 'طلا - قابل معامله',
+      fundType: 5,
+      investType: 2,
+      isAllowSubscription: true,
+      isAllowRedemption: true,
+      performance: { yearlyPercent: 34.2, lastUpdateDateJalali: '۱۴۰۵/۰۴/۱۶' },
+      customerRequestCompositions: {
+        mutualFundId: 3,
+        mutualFundCode: 11421,
+        symbol: 'ریتون',
+        fundType: 5,
+        fundTypeTitle: 'طلا',
+        netValue: 103000000,
+        remainVolume: 52,
+        percent: 18,
+        subscriptionPermit: true,
+        redemptionPermit: true,
+        profitOrLoss: -1450000,
+        profitOrLossPercent: -1.39
+      },
+      customerEvidences: {
+        mutualFundCode: 11421,
+        watingSubscriptionAmount: 8000000,
+        watingRedemptiomVolume: 0
+      }
+    },
+    {
+      mutualFundId: 4,
+      seoRegisterNumber: 11509,
+      symbol: 'تکپاد',
+      title: 'صندوق سهامی قابل معامله ارزش پرداز آریان',
+      fundTypeTitle: 'سهامی - قابل معامله',
+      fundType: 1,
+      investType: 2,
+      isAllowSubscription: true,
+      isAllowRedemption: true,
+      performance: { yearlyPercent: 41.7, lastUpdateDateJalali: '۱۴۰۵/۰۴/۱۶' },
+      customerRequestCompositions: {
+        mutualFundId: 4,
+        mutualFundCode: 11509,
+        symbol: 'تکپاد',
+        fundType: 1,
+        fundTypeTitle: 'سهامی',
+        netValue: 84500000,
+        remainVolume: 39,
+        percent: 15,
+        subscriptionPermit: true,
+        redemptionPermit: true,
+        profitOrLoss: 5600000,
+        profitOrLossPercent: 7.1
+      },
+      customerEvidences: {
+        mutualFundCode: 11509,
+        watingSubscriptionAmount: 0,
+        watingRedemptiomVolume: 0
+      }
+    }
+  ];
+
   apiUrl: string = environment.apiUrl;
   Math = Math;
   showChart = signal(false)
@@ -81,27 +215,27 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     '#23e274'
   ]
   fixedIncomeNetValue = computed(() => {
-    const customerRequestCompositions = this.portfolioData()?.customerRequestCompositions || [];
+    const customerRequestCompositions = this.getDisplayCompositions();
     return customerRequestCompositions
       .filter(c => c?.fundType !== 5 && c?.fundType !== 1)
       .reduce((acc, current) => acc + (current.netValue || 0), 0);
   });
   goldNetValue = computed(() => {
-    const customerRequestCompositions = this.portfolioData()?.customerRequestCompositions || [];
+    const customerRequestCompositions = this.getDisplayCompositions();
     return customerRequestCompositions
       .filter(c => c?.fundType === 5)
       .reduce((acc, current) => acc + (current.netValue || 0), 0);
   });
   stockNetValue = computed(() => {
-    const customerRequestCompositions = this.portfolioData()?.customerRequestCompositions || [];
+    const customerRequestCompositions = this.getDisplayCompositions();
     return customerRequestCompositions
       .filter(c => c?.fundType === 1)
       .reduce((acc, current) => acc + (current.netValue || 0), 0);
   });
   treeMapChartOption = computed(() => {
     const _self = this;
-    this.customerRequestCompositions = this.portfolioData()?.customerRequestCompositions || [];
-    const allFunds = this.portfolioData()?.allMutualFundDetail || [];
+    this.customerRequestCompositions = this.getDisplayCompositions();
+    const allFunds = this.getDisplayHoldings();
     return {
       plotOptions: {
         series: {
@@ -215,6 +349,89 @@ export class PortfolioComponent implements OnInit, OnDestroy {
 
   private getFundColor(id: number): string {
     return this.fundColorMap[id] || '#ccccc';
+  }
+
+  getDisplayHoldings(): any[] {
+    const holdings = this.portfolioData()?.allMutualFundDetail || [];
+    if (holdings.length) {
+      return holdings;
+    }
+
+    return this.useMockViewData ? this.mockPortfolioHoldings : [];
+  }
+
+  getDisplayCompositions(): any[] {
+    const compositions = this.portfolioData()?.customerRequestCompositions || [];
+    if (compositions.length) {
+      return compositions;
+    }
+
+    return this.useMockViewData ? this.mockPortfolioHoldings.map(fund => fund.customerRequestCompositions) : [];
+  }
+
+  getDisplayTotalNetValue(): number {
+    const realCompositions = this.portfolioData()?.customerRequestCompositions || [];
+    if (realCompositions.length) {
+      return Number(this.totalNetValue() ?? realCompositions.reduce((sum, item) => sum + Number(item?.netValue || 0), 0));
+    }
+
+    return this.getDisplayCompositions().reduce((sum, item) => sum + Number(item?.netValue || 0), 0);
+  }
+
+  getActiveHoldingCount(): number {
+    return this.getDisplayHoldings().filter(item => Number(this.getHoldingComposition(item)?.netValue || 0) > 0).length;
+  }
+
+  getHoldingComposition(mutualFund: any): any {
+    return mutualFund?.customerRequestCompositions
+      || this.getDisplayCompositions().find(item => item?.mutualFundCode === mutualFund?.seoRegisterNumber)
+      || {};
+  }
+
+  getHoldingEvidence(mutualFund: any): any {
+    return mutualFund?.customerEvidences
+      || (this.portfolioData()?.customerEvidences || []).find(item => item?.mutualFundCode === mutualFund?.seoRegisterNumber)
+      || {};
+  }
+
+  getHoldingShare(mutualFund: any): number {
+    const composition = this.getHoldingComposition(mutualFund);
+    const total = this.getDisplayTotalNetValue();
+    return Number(composition?.percent ?? (total ? (Number(composition?.netValue || 0) / total) * 100 : 0));
+  }
+
+  getHoldingProfitOrLoss(mutualFund: any): any {
+    const composition = this.getHoldingComposition(mutualFund);
+    return {
+      amount: Number(composition?.profitOrLoss || 0),
+      percent: Number(composition?.profitOrLossPercent || 0)
+    };
+  }
+
+  hasProfitOrLoss(mutualFund: any): boolean {
+    const profitOrLoss = this.getHoldingProfitOrLoss(mutualFund);
+    return profitOrLoss.amount !== 0 || profitOrLoss.percent !== 0;
+  }
+
+  getAllocationSummary(): { label: string; value: number; color: string }[] {
+    return [
+      { label: 'درآمد ثابت', value: this.fixedIncomeNetValue(), color: '#1661fa' },
+      { label: 'طلا', value: this.goldNetValue(), color: '#f6aa1c' },
+      { label: 'سهامی', value: this.stockNetValue(), color: '#6633CC' }
+    ].filter(item => item.value > 0 || this.useMockViewData);
+  }
+
+  getAllocationShare(value: number): number {
+    const total = this.getDisplayTotalNetValue();
+    return total ? Math.round((Number(value || 0) / total) * 100) : 0;
+  }
+
+  hasPendingSubscription(mutualFund: any): boolean {
+    return Number(this.getHoldingEvidence(mutualFund)?.watingSubscriptionAmount || 0) > 0;
+  }
+
+  hasPendingRedemption(mutualFund: any): boolean {
+    return Number(this.getHoldingEvidence(mutualFund)?.watingRedemptiomVolume || 0) > 0;
   }
 
   constructor(private fundService: FundService, private fundListService: FundListService, private userSettingsService: UserSettingsService, private decimalPipe: DecimalPipe, private ngbModal: NgbModal,

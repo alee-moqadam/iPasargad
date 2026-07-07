@@ -1,122 +1,546 @@
-.bg-asset {
-    background: transparent linear-gradient(91deg, #37414b 0%, #0080ff 100%) 0% 0% no-repeat padding-box;
-}
-.asset-svg {
-    background: url("../../../../public/svg/card-dashboard-bg.svg");
-    background-size: cover;
-}
-.percentage-box {
-  width: 45px;
-  height: 45px;
-  border-radius: .5rem;
+.portfolio-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px 12px 24px;
+  color: #26313d;
+  background: #f6f8fb;
 }
 
-.fund-profile-info {
-  background: #EBF5FF;
+.portfolio-hero,
+.portfolio-summary,
+.allocation-strip,
+.holding-card,
+.portfolio-chart-panel,
+.portfolio-empty {
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(31, 41, 55, 0.06);
+}
+
+.portfolio-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  background: linear-gradient(135deg, #172235 0%, #205a8f 58%, #f0f6ff 100%);
+  color: #fff;
+}
+
+.portfolio-hero h1,
+.portfolio-hero p,
+.allocation-strip h2,
+.allocation-strip p,
+.section-title h2 {
+  margin: 0;
+}
+
+.portfolio-hero h1 {
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.portfolio-hero p {
+  max-width: 560px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.9;
+}
+
+.portfolio-eyebrow {
+  display: inline-flex;
+  margin-bottom: 8px;
+  color: #b8d9ff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.portfolio-mask-btn {
+  min-height: 44px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 10px;
+  background: rgba(255, 255, 255, 0.13);
+  color: #fff;
+  font-weight: 700;
 }
 
-.custom-dashed-border {
-  border: 1px dashed #cdd7e1;
+.portfolio-summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 12px;
+}
+
+.summary-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 74px;
+  padding: 14px;
+  border: 1px solid #edf2f7;
   border-radius: 10px;
+  color: #566474;
+  text-decoration: none;
+  background: #f9fbfd;
 }
 
-.dot{
-  height: 48px;
-  width: 48px;
+.summary-card strong {
+  color: #172235;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.summary-card small {
+  margin-right: 4px;
+  color: #687789;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.summary-card--primary {
+  background: #eef7ff;
+  border-color: #cde5ff;
+}
+
+.summary-card--link {
+  background: #f5fff8;
+  border-color: #c9efd3;
+}
+
+.allocation-strip {
+  padding: 16px;
+}
+
+.allocation-strip__header,
+.section-title,
+.holding-card__top,
+.fund-identity,
+.holding-value,
+.allocation-item,
+.portfolio-links {
+  display: flex;
+  align-items: center;
+}
+
+.allocation-strip__header,
+.section-title,
+.holding-card__top,
+.holding-value,
+.allocation-item {
+  justify-content: space-between;
+}
+
+.allocation-strip h2,
+.section-title h2 {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.allocation-strip p,
+.section-title span,
+.fund-identity span,
+.holding-value span,
+.holding-metrics span,
+.profit-line span,
+.reinvest-status span,
+.pending-box span {
+  color: #6b7786;
+  font-size: 0.82rem;
+}
+
+.allocation-donut {
+  width: 74px;
+  height: 74px;
+  flex: 0 0 74px;
+}
+
+.allocation-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.allocation-item {
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+
+.allocation-item__marker {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.allocation-item__label {
+  flex: 1;
+  font-weight: 700;
+}
+
+.allocation-item strong {
+  font-size: 0.9rem;
+}
+
+.allocation-item em {
+  min-width: 38px;
+  color: #205a8f;
+  font-style: normal;
+  font-weight: 800;
+  text-align: left;
+}
+
+.holdings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.holding-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.holding-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px;
+}
+
+.fund-identity {
+  gap: 10px;
+  min-width: 0;
+}
+
+.fund-identity__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 12px;
+  background: #eef3f8;
+  color: #205a8f;
+  font-weight: 900;
+}
+
+.fund-identity strong {
+  display: block;
+  color: #172235;
+  font-size: 1.05rem;
+}
+
+.holding-card__detail {
+  min-width: 78px;
+  min-height: 40px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.holding-value {
+  padding: 14px;
+  border-radius: 12px;
+  background: #172235;
+  color: #fff;
+}
+
+.holding-value span,
+.holding-value small {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.holding-value strong {
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.holding-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.holding-metrics div,
+.profit-line,
+.reinvest-status,
+.pending-box a {
+  padding: 12px;
+  border: 1px solid #edf2f7;
+  border-radius: 10px;
+  background: #fbfcfe;
+}
+
+.holding-metrics strong,
+.profit-line strong,
+.reinvest-status strong,
+.pending-box strong {
+  display: block;
+  margin-top: 6px;
+  color: #172235;
+  font-size: 0.95rem;
+}
+
+.profit-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profit-line strong {
+  margin: 0;
+  text-align: left;
+}
+
+.profit-line em {
+  display: block;
+  margin-top: 3px;
+  font-style: normal;
+}
+
+.profit-line--up strong {
+  color: #138a46;
+}
+
+.profit-line--down strong {
+  color: #d64545;
+}
+
+.reinvest-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  border-color: #d8c8ff;
+  background: #f6f0ff;
+  text-align: right;
+}
+
+.pending-box {
+  display: grid;
+  gap: 8px;
+}
+
+.pending-box a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: inherit;
+  text-decoration: none;
+}
+
+.holding-actions,
+.holding-secondary-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.holding-actions .btn,
+.secondary-action,
+.portfolio-empty__action {
+  min-height: 48px;
+  border-radius: 10px;
+  font-weight: 800;
+}
+
+.secondary-action {
+  border: 1px dashed #b8c4d2;
+  background: #fff;
+  color: #405064;
+}
+
+.portfolio-empty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 18px;
+  text-align: center;
+}
+
+.portfolio-empty img {
+  max-width: 150px;
+}
+
+.portfolio-empty h2,
+.portfolio-empty p {
+  margin: 0;
+}
+
+.portfolio-empty p {
+  color: #64748b;
+  line-height: 1.9;
+}
+
+.portfolio-chart-panel {
+  padding: 16px;
+}
+
+.portfolio-treemap {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f7fafc;
+}
+
+.portfolio-chart-panel__empty {
+  display: block;
+  max-width: 160px;
+  margin: 18px auto 4px;
+}
+
+.portfolio-links {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.portfolio-links a {
+  width: 100%;
+  min-height: 48px;
+  padding: 13px 16px;
+  border-radius: 10px;
+  background: #fff;
+  color: #205a8f;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+}
+
+.carousel-banner {
+  position: relative;
+  overflow: hidden;
   border-radius: 15px;
 }
 
-.custom-modal-width{
-  border-radius: 0 !important;
-  @media only screen and (min-width: 991px) {
-        width: 443px !important;
-  }
+.carousel-banner__rate {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 900;
 }
 
-.bg-empty-asset{
-  background: transparent linear-gradient(91deg, #37414b 0%, #798ea0 100%) 0% 0% no-repeat padding-box;
-
-}
-
-::ng-deep .carousel-indicators [data-bs-target] {
-  border: none !important; // این خط خیلی مهمه
-
-}
-
-
-::ng-deep {
-  .carousel-indicators {
-    margin-bottom: 0rem;
-
-    button[type="button"][role="tab"] {
-      background-color: #a0aab4;
-      width: 7px;
-      height: 7px;
-      border-radius: 50% !important;
-    }
-
-    button[type="button"][role="tab"].active {
-      background-color: #33cc66;
-      width: 18px;
-      height: 7px;
-      border-radius: 10px !important;
-    }
-  }
-
-  .custom-popover.popover {
-    background-color: #333;
-    border: 1px solid #000;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 0.875rem;
-    padding: 0;
-    max-width: 182px;
-    direction: rtl;
-    .popover-body {
-      padding: 8px;
-      color: #fff;
-      text-align: center;
-
-      a {
-        color: #9b5eff !important;
-        text-decoration: none;
-      }
-    }
-
-    .popover-arrow{
-      bottom: -8px;
-      &::after {
-        border-top-color: #333;
-      }
-    }
-  }
-}
-
-  
-  .logo-loading-placeholder {
-    width: 40px;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 40%;
-    background: linear-gradient(90deg, #f3f3f3 25%, #e0e0e0 50%, #f3f3f3 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.2s infinite linear;
-  }
-
-  @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-
-  .banner-minitext {
+.banner-minitext {
   position: absolute;
   left: 5%;
   top: 60px;
   width: 25%;
+  min-width: 120px;
   white-space: nowrap;
   background-color: #1a2cfd;
   color: white;
   text-align: center;
-  opacity: 0.7;
+  opacity: 0.8;
+}
+
+.banner-loading-placeholder,
+.logo-loading-placeholder {
+  background: linear-gradient(90deg, #f3f3f3 25%, #e0e0e0 50%, #f3f3f3 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+
+.banner-loading-placeholder {
+  min-height: 160px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+::ng-deep {
+  .carousel-indicators {
+    margin-bottom: 0;
+
+    button[type="button"][role="tab"] {
+      width: 7px;
+      height: 7px;
+      border: none !important;
+      border-radius: 50% !important;
+      background-color: #a0aab4;
+    }
+
+    button[type="button"][role="tab"].active {
+      width: 18px;
+      border-radius: 10px !important;
+      background-color: #33cc66;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .portfolio-summary,
+  .holding-actions,
+  .holding-secondary-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .summary-card--link {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 992px) {
+  .portfolio-page {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: start;
+    gap: 20px;
+    padding: 20px 24px 32px;
+  }
+
+  .portfolio-hero,
+  .portfolio-summary,
+  .holdings-section,
+  .portfolio-links,
+  .portfolio-carousel,
+  app-consulting-guide {
+    grid-column: 1;
+  }
+
+  .allocation-strip,
+  .portfolio-chart-panel {
+    grid-column: 2;
+  }
+
+  .portfolio-hero {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .portfolio-mask-btn {
+    width: auto;
+    min-width: 150px;
+  }
+
+  .portfolio-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .summary-card--link {
+    grid-column: auto;
+  }
+
+  .holding-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-links {
+    flex-direction: row;
+  }
 }
