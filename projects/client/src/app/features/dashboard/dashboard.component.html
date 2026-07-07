@@ -1,6 +1,6 @@
 <main class="dashboard-shell" dir="rtl">
   <section class="dashboard-summary-carousel" aria-label="خلاصه وضعیت">
-    <div class="dashboard-summary-track">
+    <div class="dashboard-summary-track" #summaryTrack (scroll)="onSummaryCarouselScroll(summaryTrack)">
       <article class="summary-carousel-card asset-summary-card" [class.summary-carousel-card--active]="isActiveSummaryCard('assets')"
         (click)="setActiveSummaryCard('assets')">
         <div class="section-kicker">دارایی کل</div>
@@ -59,11 +59,11 @@
 
     <div class="summary-carousel-indicators" aria-label="انتخاب کارت خلاصه">
       <button type="button" [class.active]="isActiveSummaryCard('assets')" aria-label="نمایش دارایی کل"
-        (click)="setActiveSummaryCard('assets')"></button>
+        (click)="selectSummaryCard('assets', summaryTrack)"></button>
       <button type="button" [class.active]="isActiveSummaryCard('bank-card')" aria-label="نمایش کارت بانکی"
-        (click)="setActiveSummaryCard('bank-card')"></button>
+        (click)="selectSummaryCard('bank-card', summaryTrack)"></button>
       <button type="button" [class.active]="isActiveSummaryCard('direct-debit')" aria-label="نمایش پرداخت مستقیم"
-        (click)="setActiveSummaryCard('direct-debit')"></button>
+        (click)="selectSummaryCard('direct-debit', summaryTrack)"></button>
     </div>
   </section>
 

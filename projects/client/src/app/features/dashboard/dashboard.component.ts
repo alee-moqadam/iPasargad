@@ -34,6 +34,7 @@ import { GlobalEventService } from '@client/core/services/global-event.service';
 import { ExchangeFundModalComponent } from './exchange-fund-modal/exchange-fund-modal.component';
 import { environment } from 'projects/client/src/environments/environment';
 
+type SummaryCardType = 'assets' | 'bank-card' | 'direct-debit';
 
 echarts.use([TitleComponent, TooltipComponent, GridComponent, DatasetComponent, PieChart, CanvasRenderer, LegendComponent, LineChart]);
 Variablepie(Highcharts);
@@ -54,7 +55,9 @@ Variablepie(Highcharts);
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   readonly useMockViewData = true; // UI preview only. Turn off before production handoff.
-  activeSummaryCard = signal<'assets' | 'bank-card' | 'direct-debit'>('assets');
+  readonly summaryCardOrder: readonly SummaryCardType[] = ['assets', 'bank-card', 'direct-debit'] as const;
+  activeSummaryCard = signal<SummaryCardType>('assets');
+  private summaryScrollTimer: ReturnType<typeof setTimeout> | null = null;
 
   // UI preview mock data only. Do not use for production logic.
   readonly mockFundCards = [
@@ -517,6 +520,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.summaryScrollTimer) {
+      clearTimeout(this.summaryScrollTimer);
+      this.summaryScrollTimer = null;
+    }
+
     this.ngUnsubscribe$.next(true);
     this.ngUnsubscribe$.complete();
   }
@@ -549,11 +557,58 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return Number(this.totalNetValue() ?? (this.useMockViewData ? 773000000 : 0));
   }
 
-  setActiveSummaryCard(cardType: 'assets' | 'bank-card' | 'direct-debit') {
+  setActiveSummaryCard(cardType: SummaryCardType) {
     this.activeSummaryCard.set(cardType);
   }
 
-  isActiveSummaryCard(cardType: 'assets' | 'bank-card' | 'direct-debit'): boolean {
+  selectSummaryCard(cardType: SummaryCardType, track?: HTMLElement) {
+    this.setActiveSummaryCard(cardType);
+
+    if (!track) {
+      return;
+    }
+
+    const cardIndex = this.summaryCardOrder.indexOf(cardType);
+    const card = track.querySelectorAll<HTMLElement>('.summary-carousel-card')[cardIndex];
+    card?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  onSummaryCarouselScroll(track: HTMLElement) {
+    if (this.summaryScrollTimer) {
+      clearTimeout(this.summaryScrollTimer);
+    }
+
+    this.summaryScrollTimer = setTimeout(() => {
+      const cards = Array.from(track.querySelectorAll<HTMLElement>('.summary-carousel-card'));
+
+      if (!cards.length) {
+        return;
+      }
+
+      const trackRect = track.getBoundingClientRect();
+      const trackCenter = trackRect.left + trackRect.width / 2;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(cardCenter - trackCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      const cardType = this.summaryCardOrder[closestIndex];
+      if (cardType && this.activeSummaryCard() !== cardType) {
+        this.activeSummaryCard.set(cardType);
+      }
+    }, 80);
+  }
+
+  isActiveSummaryCard(cardType: SummaryCardType): boolean {
     return this.activeSummaryCard() === cardType;
   }
 

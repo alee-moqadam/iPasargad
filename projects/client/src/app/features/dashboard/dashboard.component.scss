@@ -63,8 +63,13 @@
 }
 
 .summary-carousel-card {
+  cursor: pointer;
   scroll-snap-align: center;
   transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.summary-carousel-card:active {
+  transform: scale(0.99);
 }
 
 .summary-carousel-card--active {
