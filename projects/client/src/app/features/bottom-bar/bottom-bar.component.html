@@ -1,5 +1,5 @@
 <nav class="bottom-bar" aria-label="ناوبری اصلی">
-    <div class="bottom-bar__capsule">
+    <div class="bottom-bar__capsule bottom-bar__main">
         <span routerLink="/dashboard" class="bottom-bar__item d-flex flex-column align-items-center justify-content-center"
             routerLinkActive="activate-route bottom-bar__item--active">
             <svg viewBox="0 0 24 24" width="24px" height="24px">
@@ -15,13 +15,6 @@
             </svg>
             <small class="bottom-bar__label">گزارش‌ها</small>
         </span>
-        <span routerLink="/mobile/more-tools" class="bottom-bar__item d-flex flex-column align-items-center justify-content-center"
-            routerLinkActive="activate-route bottom-bar__item--active">
-            <svg viewBox="0 0 24 24" width="24px" height="24px">
-                <use xlink:href="#ico_app"></use>
-            </svg>
-            <small class="bottom-bar__label">ابزارها</small>
-        </span>
         <span routerLink="/portfolio" class="bottom-bar__item d-flex flex-column align-items-center justify-content-center"
             routerLinkActive="activate-route bottom-bar__item--active">
             <svg viewBox="0 0 24 24" width="24px" height="24px">
@@ -31,11 +24,24 @@
         </span>
     </div>
 
-    <span routerLink="/mobile/profile" class="bottom-bar__profile d-flex flex-column align-items-center justify-content-center"
-        routerLinkActive="activate-route bottom-bar__profile--active" title="حساب من" aria-label="حساب من">
-        <svg viewBox="0 0 24 24" width="24px" height="24px">
-            <use xlink:href="#ico_person_circle"></use>
-        </svg>
-        <small class="bottom-bar__profile-label">حساب من</small>
-    </span>
+    <div class="bottom-bar__side-group" aria-label="خدمات و حساب کاربری">
+        <span routerLink="/mobile/more-tools"
+            class="bottom-bar__side-item bottom-bar__side-item--services d-flex flex-column align-items-center justify-content-center"
+            routerLinkActive="activate-route bottom-bar__side-item--active">
+            <svg viewBox="0 0 24 24" width="24px" height="24px">
+                <use xlink:href="#ico_app"></use>
+            </svg>
+            <small class="bottom-bar__side-label">خدمات</small>
+        </span>
+
+        <span routerLink="/mobile/profile"
+            class="bottom-bar__side-item bottom-bar__side-item--profile bottom-bar__profile d-flex flex-column align-items-center justify-content-center"
+            routerLinkActive="activate-route bottom-bar__side-item--active bottom-bar__profile--active" title="حساب من"
+            aria-label="حساب من">
+            <svg viewBox="0 0 24 24" width="24px" height="24px">
+                <use xlink:href="#ico_person_circle"></use>
+            </svg>
+            <small class="bottom-bar__side-label bottom-bar__profile-label">حساب من</small>
+        </span>
+    </div>
 </nav>

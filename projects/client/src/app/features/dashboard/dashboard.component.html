@@ -170,31 +170,49 @@
     </span>
   </section>
 
-  <section class="dashboard-section">
-    <div class="dashboard-section__header">
-      <div>
-        <span class="section-kicker">نمای کلی صندوق‌ها</span>
-        <h2>۴ صندوق اصلی</h2>
-      </div>
-      <button class="btn btn-link text-decoration-none" routerLink="/fund-list">مشاهده همه</button>
+  <section class="dashboard-section dashboard-section--funds">
+    <div class="fund-section-header">
+      <span class="section-kicker">صندوق‌های سرمایه‌گذاری</span>
+      <a class="fund-section-link" routerLink="/fund-list">جزئیات صندوق‌ها</a>
     </div>
-    <div class="fund-card-grid">
-      @for(fund of getDisplayFundCards(); track fund.title){
-      <article class="fund-overview-card" [class]="'fund-overview-card fund-overview-card--' + fund.tone">
-        <div>
-          <strong>{{fund.title}}</strong>
-          <span>{{fund.type}}</span>
-        </div>
-        <div class="fund-overview-card__value">
-          <span [maskNumber]="fund.value"></span>
-          <small>ریال</small>
-        </div>
-        <div class="fund-overview-card__footer">
-          <span>{{fund.trend}}</span>
-          <strong>{{fund.returnText}}</strong>
-        </div>
-      </article>
-      }
+
+    <div class="fund-overview-scroll">
+      <div class="fund-overview-track">
+        @for(fund of getDisplayFundCards(); track fund.title){
+        <article
+          [class]="'fund-overview-card fund-overview-card--' + fund.tone"
+          [class.fund-overview-card--linked]="getFundDetailLink(fund)"
+          [class.fund-overview-card--featured]="fund.isFeatured"
+          [routerLink]="getFundDetailLink(fund)"
+          [attr.role]="getFundDetailLink(fund) ? 'link' : null"
+          [attr.tabindex]="getFundDetailLink(fund) ? '0' : null">
+          <div class="fund-overview-card__media">
+            <img [src]="fund.imageSrc" [alt]="fund.symbol || fund.title" />
+          </div>
+          <div class="fund-overview-card__identity">
+            <div class="fund-overview-card__symbol-row">
+              <strong class="fund-overview-card__title">{{fund.symbol || fund.title}}</strong>
+              <span class="fund-overview-card__status" aria-hidden="true">
+                <span class="fund-overview-card__status-inner"></span>
+              </span>
+            </div>
+            <div class="fund-overview-card__topline">
+              <small class="fund-overview-card__type">{{fund.typeLabel || fund.type}}</small>
+              @if(fund.isEtf) {
+              <span class="fund-overview-card__etf-tag">ETF</span>
+              }
+            </div>
+            <p class="fund-overview-card__description">{{fund.description}}</p>
+          </div>
+          <div class="fund-overview-card__return">
+            <small>بازده روز</small>
+            <b class="fund-overview-card__return-value" [class.is-negative]="fund.returnTone === 'negative'">
+              {{fund.dailyReturnLabel || fund.returnText}}
+            </b>
+          </div>
+        </article>
+        }
+      </div>
     </div>
   </section>
 
@@ -203,7 +221,6 @@
       <div class="dashboard-section__header">
         <div>
           <span class="section-kicker">روند دارایی</span>
-          <h2>سرمایه‌گذاری و برداشت</h2>
         </div>
         <button class="btn btn-link text-decoration-none" routerLink="/portfolio">سبد دارایی</button>
       </div>
@@ -219,8 +236,7 @@
     <article class="dashboard-panel">
       <div class="dashboard-section__header">
         <div>
-          <span class="section-kicker">آخرین رویدادها</span>
-          <h2>فعالیت‌های اخیر</h2>
+          <span class="section-kicker">فعالیت‌های اخیر</span>
         </div>
         <button class="btn btn-link text-decoration-none" routerLink="/reporting/requests">گزارش‌ها</button>
       </div>
@@ -245,7 +261,6 @@
     <div class="dashboard-section__header">
       <div>
         <span class="section-kicker">خدمات تکمیلی</span>
-        <h2>سرویس‌های کاربردی</h2>
       </div>
     </div>
     <div class="secondary-service-grid">

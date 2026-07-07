@@ -61,10 +61,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   // UI preview mock data only. Do not use for production logic.
   readonly mockFundCards = [
-    { title: 'هزاره سوم', type: 'درآمد ثابت صدور و ابطالی', value: 485000000, returnText: '۲۸.۵٪', trend: 'بازده موثر سالانه', tone: 'green' },
-    { title: 'پاسارگاد', type: 'درآمد ثابت قابل معامله', value: 132000000, returnText: '۲۷.۹٪', trend: 'بازده موثر سالانه', tone: 'green' },
-    { title: 'ریتون', type: 'طلای قابل معامله', value: 92000000, returnText: '۳۴.۲٪', trend: 'بازده یک‌ساله', tone: 'gold' },
-    { title: 'تکپاد', type: 'سهامی قابل معامله', value: 64000000, returnText: '۴۱.۷٪', trend: 'بازده سالانه', tone: 'purple' }
+    { title: 'هزاره سوم', symbol: 'هزاره سوم', seoRegisterNumber: 11168, imageSrc: 'assets/images/funds/hezareh-sevom.svg', type: 'درآمد ثابت صدور و ابطالی', typeLabel: 'درآمد ثابت', isEtf: false, managerLabel: 'صندوق هزاره سوم پاد', description: 'مناسب سرمایه‌گذاری کم‌ریسک؛ هدف، درآمد پایدار با امکان صدور و ابطال.', isFeatured: true, value: 485000000, returnText: '۲۸.۵٪', returnTone: 'positive', trend: 'بازده روز', tradeValueLabel: '۰.۴۸ همت', transactionValueLabel: '۴۸۵ میلیون ریال', dailyReturnLabel: '۲۸.۵٪', tone: 'green' },
+    { title: 'پاسارگاد', symbol: 'پاسارگاد', seoRegisterNumber: 11355, imageSrc: 'assets/images/funds/pasargad.svg', type: 'درآمد ثابت قابل معامله', typeLabel: 'درآمد ثابت', isEtf: true, managerLabel: 'صندوق درآمد ثابت پاسارگاد', description: 'مناسب سرمایه‌گذاران ریسک‌گریز؛ هدف، حفظ اصل سرمایه و کسب بازدهی منظم.', value: 132000000, returnText: '۲۷.۹٪', returnTone: 'positive', trend: 'بازده روز', tradeValueLabel: '۰.۱۳ همت', transactionValueLabel: '۱۳۲ میلیون ریال', dailyReturnLabel: '۲۷.۹٪', tone: 'green' },
+    { title: 'ریتون', symbol: 'ریتون', seoRegisterNumber: 11421, imageSrc: 'assets/images/funds/riton.svg', type: 'طلای قابل معامله', typeLabel: 'طلا', isEtf: true, managerLabel: 'صندوق چندکالایی پاسارگاد', description: 'مناسب پوشش ریسک تورم و طلا؛ هدف، همراهی با نوسان قیمت طلا.', value: 92000000, returnText: '۳۴.۲٪', returnTone: 'positive', trend: 'بازده روز', tradeValueLabel: '۰.۰۹ همت', transactionValueLabel: '۹۲ میلیون ریال', dailyReturnLabel: '۳۴.۲٪', tone: 'gold' },
+    { title: 'تکپاد', symbol: 'تکپاد', seoRegisterNumber: 11509, imageSrc: 'assets/images/funds/tekpad.svg', type: 'سهامی قابل معامله', typeLabel: 'سهامی', isEtf: true, managerLabel: 'صندوق ارزش پرداز آریان', description: 'مناسب سرمایه‌گذاران ریسک‌پذیر؛ هدف، رشد سرمایه از بازار سهام.', value: 64000000, returnText: '۴۱.۷٪', returnTone: 'positive', trend: 'بازده روز', tradeValueLabel: '۰.۰۶ همت', transactionValueLabel: '۶۴ میلیون ریال', dailyReturnLabel: '۴۱.۷٪', tone: 'purple' }
   ];
 
   // UI preview mock data only. Do not use for production logic.
@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   readonly secondaryServices = [
     { title: 'افزودن کارت بانکی آی‌پاسارگاد', description: 'مدیریت سریع‌تر پرداخت‌ها و برداشت‌ها با کارت بانکی متصل.', icon: '#ico_card' },
     { title: 'سرمایه‌گذاری خودکار', description: 'زمان‌بندی سرمایه‌گذاری‌های دوره‌ای برای نظم بیشتر در پس‌انداز.', icon: '#ico_hourglass' },
-    { title: 'پرداخت مستقیم / دایرکت دبیت', description: 'سرمایه‌گذاری با تایید ساده و بدون ورود دوباره به درگاه.', icon: '#ico_box_plus_fill' }
+    { title: 'پرداخت مستقیم ', description: 'سرمایه‌گذاری با تایید ساده و بدون ورود دوباره به درگاه.', icon: '#ico_box_plus_fill' }
   ];
 
   apiUrl: string = environment.apiUrl;
@@ -616,14 +616,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.requestComposition().length > 0) {
       return this.requestComposition().slice(0, 4).map((item: any, index: number) => ({
         title: item.mutualFundSymbol,
+        symbol: item.mutualFundSymbol,
+        seoRegisterNumber: item.seoRegisterNumber ?? item.mutualFundCode,
         type: item.fundTypeTitle ?? this.mockFundCards[index]?.type ?? 'صندوق سرمایه‌گذاری',
+        typeLabel: item.fundTypeTitle ?? this.mockFundCards[index]?.typeLabel ?? 'صندوق',
+        isEtf: this.mockFundCards[index]?.isEtf ?? false,
+        imageSrc: this.mockFundCards[index]?.imageSrc,
+        managerLabel: this.mockFundCards[index]?.managerLabel ?? 'صندوق سرمایه‌گذاری آی‌پاسارگاد',
+        description: this.mockFundCards[index]?.description ?? 'مناسب پیگیری سرمایه‌گذاری؛ هدف، مدیریت دارایی بر اساس نوع صندوق.',
+        isFeatured: index === 0,
         value: item.netValue,
         returnText: this.mockFundCards[index]?.returnText ?? '-',
-        trend: this.mockFundCards[index]?.trend ?? 'ارزش روز',
+        trend: this.mockFundCards[index]?.trend ?? 'بازده روز',
+        tradeValueLabel: this.mockFundCards[index]?.tradeValueLabel ?? (item.netValue ? `${commaSeparate(Number(item.netValue) / 10000000000000)} همت` : '-'),
+        transactionValueLabel: item.netValue ? `${commaSeparate(item.netValue)} ریال` : '-',
+        dailyReturnLabel: this.mockFundCards[index]?.dailyReturnLabel ?? '-',
+        returnTone: this.mockFundCards[index]?.returnTone ?? 'positive',
         tone: this.mockFundCards[index]?.tone ?? 'green'
       }));
     }
 
     return this.useMockViewData ? this.mockFundCards : [];
+  }
+
+  getFundDetailLink(fund: { seoRegisterNumber?: number | string | null }) {
+    const seoRegisterNumber = fund?.seoRegisterNumber;
+
+    if (!seoRegisterNumber) {
+      return null;
+    }
+
+    return ['/fund', seoRegisterNumber, 'fund-detail', seoRegisterNumber];
   }
 }  
