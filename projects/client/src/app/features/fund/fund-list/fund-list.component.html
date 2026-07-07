@@ -1,13 +1,110 @@
-<div class="row">
-    <div class="col-lg-16 px-4">
-        @if (fundType()=='fixed-income'|| fundType()==null) {
-        @for (fund of mutualFundList$ | async; track $index) {
-        <app-fund-item [fundDetail]="fund" [composition]="compositionsByCode()[fund.seoRegisterNumber]" />
-        }
-        }
+<main class="fund-list-shell" dir="rtl">
+  <section class="fund-list-hero">
+    <div>
+      <span class="section-kicker">صندوق‌های آی‌پاسارگاد</span>
+      <h1>انتخاب صندوق بر اساس هدف، ریسک و نقدشوندگی</h1>
+      <p>
+        صندوق‌ها را به زبان ساده مقایسه کنید؛ ببینید هر صندوق برای چه کسی مناسب است،
+        چه سطح ریسکی دارد و اگر دارایی دارید، مسیر مدیریت آن را سریع‌تر پیدا کنید.
+      </p>
+    </div>
+    <a class="compare-entry" routerLink="/fund-list">
+      مقایسه سبک صندوق‌ها
+      <svg viewBox="0 0 24 24" width="16" height="16">
+        <use xlink:href="#ico_box_exhange_fill"></use>
+      </svg>
+    </a>
+  </section>
 
+  <nav class="fund-category-chips" aria-label="دسته‌بندی صندوق‌ها">
+    @for(chip of categoryChips; track chip.label){
+    <a
+      [routerLink]="chip.link"
+      class="fund-category-chip"
+      [class.fund-category-chip--active]="fundType() === chip.value || (fundType() === null && chip.value === null)">
+      {{chip.label}}
+    </a>
+    }
+  </nav>
+
+  <section class="fund-card-grid">
+    @for(fund of getDisplayFunds(); track fund.seoRegisterNumber){
+    <article class="fund-card" [class.fund-card--owned]="hasHolding(fund)">
+      <header class="fund-card__header">
+        <div>
+          <span class="fund-type">{{fund.fundTypeTitle}}</span>
+          <h2>{{fund.title || ('صندوق ' + fund.symbol)}}</h2>
+        </div>
+        @if(hasHolding(fund)){
+        <span class="holding-badge">دارایی دارید</span>
+        }@else {
+        <span class="holding-badge holding-badge--empty">بدون دارایی</span>
+        }
+      </header>
+
+      <p class="fund-card__description">{{getSuitableFor(fund)}}</p>
+
+      <div class="fund-card__metrics">
+        <div>
+          <span>سطح ریسک</span>
+          <strong>{{getRiskLevel(fund)}}</strong>
+        </div>
+        <div>
+          <span>{{getReturnLabel(fund)}}</span>
+          <strong>{{getReturnValue(fund)}}</strong>
+        </div>
+        <div>
+          <span>نقدشوندگی / تسویه</span>
+          <strong>{{getSettlementHint(fund)}}</strong>
+        </div>
+      </div>
+
+      <div class="fund-card__holding">
+        @if(hasHolding(fund)){
+        <span>ارزش دارایی شما</span>
+        <strong>{{getCompositionForFund(fund).netValue | number}} ریال</strong>
+        }@else {
+        <span>وضعیت دارایی شما</span>
+        <strong>هنوز سرمایه‌گذاری ثبت نشده است</strong>
+        }
+      </div>
+
+      <footer class="fund-card__actions">
+        <a
+          class="btn btn-outline-primary fund-card__details"
+          [routerLink]="['/fund', fund.seoRegisterNumber, 'fund-detail', fund.seoRegisterNumber]">
+          جزئیات
+        </a>
+
+        <app-fund-item
+          class="fund-action-proxy"
+          [fundDetail]="fund"
+          [composition]="getCompositionForFund(fund)" />
+
+        @if(hasHolding(fund)){
+        <a
+          class="btn btn-light fund-card__manage"
+          [routerLink]="['/fund', fund.seoRegisterNumber, 'user-fund', fund.seoRegisterNumber]">
+          مدیریت
+        </a>
+        }@else {
+        <a
+          class="btn btn-light fund-card__manage fund-card__manage--disabled"
+          [routerLink]="['/fund', fund.seoRegisterNumber, 'fund-detail', fund.seoRegisterNumber]">
+          مدیریت
+        </a>
+        }
+      </footer>
+    </article>
+    }@empty {
+    <div class="fund-list-empty">
+      <strong>صندوقی برای نمایش پیدا نشد</strong>
+      <span>در صورت نبود داده آنلاین، حالت پیش‌نمایش باید صندوق‌های اصلی را نشان دهد.</span>
     </div>
-    <div class="col-lg-8 h-100 d-none d-lg-block">
-        <mutual-fund-carousel></mutual-fund-carousel>
-    </div>
-</div>
+    }
+  </section>
+
+  <aside class="fund-list-side d-none d-lg-block">
+    <mutual-fund-carousel></mutual-fund-carousel>
+  </aside>
+</main>
