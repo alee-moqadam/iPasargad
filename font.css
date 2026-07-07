@@ -1,0 +1,70 @@
+/* projects/client/public/fonts/IranSansX/fontiran.css */
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 100;
+  src: url("./media/IRANSansX-Thin.woff") format("woff"), url("./media/IRANSansX-Thin.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 200;
+  src: url("./media/IRANSansX-UltraLight.woff") format("woff"), url("./media/IRANSansX-UltraLight.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 300;
+  src: url("./media/IRANSansX-Light.woff") format("woff"), url("./media/IRANSansX-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 500;
+  src: url("./media/IRANSansX-Medium.woff") format("woff"), url("./media/IRANSansX-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 600;
+  src: url("./media/IRANSansX-DemiBold.woff") format("woff"), url("./media/IRANSansX-DemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 800;
+  src: url("./media/IRANSansX-ExtraBold.woff") format("woff"), url("./media/IRANSansX-ExtraBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 900;
+  src: url("./media/IRANSansX-Black.woff") format("woff"), url("./media/IRANSansX-Black.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 950;
+  src: url("./media/IRANSansX-ExtraBlack.woff") format("woff"), url("./media/IRANSansX-ExtraBlack.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 1000;
+  src: url("./media/IRANSansX-Heavy.woff") format("woff"), url("./media/IRANSansX-Heavy.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: bold;
+  src: url("./media/IRANSansX-Bold.woff") format("woff"), url("./media/IRANSansX-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: normal;
+  src: url("./media/IRANSansX-Regular.woff") format("woff"), url("./media/IRANSansX-Regular.woff2") format("woff2");
+}
+
+/* angular:styles/global:font */
+/*# sourceMappingURL=font.css.map */

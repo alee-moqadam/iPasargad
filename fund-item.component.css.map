@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/client/src/app/features/fund/fund-list/fund-item/fund-item.component.scss"],
+  "sourcesContent": ["  ::ng-deep .fund-logo > svg {\n    max-width: 100%;\n    max-height: 100%;\n  }\n  \n  .logo-loading-placeholder {\n    width: 40px;\n    min-width: 40px;\n    height: 40px;\n    border-radius: 40%;\n    background: linear-gradient(90deg, #f3f3f3 25%, #e0e0e0 50%, #f3f3f3 75%);\n    background-size: 200% 100%;\n    animation: shimmer 1.2s infinite linear;\n  }\n\n  @keyframes shimmer {\n    0% { background-position: 200% 0; }\n    100% { background-position: -200% 0; }\n  }\n"],
+  "mappings": ";AAAE,UAAA,CAAA,UAAA,EAAA;AACE,aAAA;AACA,cAAA;;AAGF,CAAA;AACE,SAAA;AACA,aAAA;AACA,UAAA;AACA,iBAAA;AACA;IAAA;MAAA,KAAA;MAAA,QAAA,GAAA;MAAA,QAAA,GAAA;MAAA,QAAA;AACA,mBAAA,KAAA;AACA,aAAA,QAAA,KAAA,SAAA;;AAGF,WAHE;AAIA;AAAK,yBAAA,KAAA;;AACL;AAAO,yBAAA,MAAA;;;",
+  "names": []
+}

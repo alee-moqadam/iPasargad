@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/client/src/app/features/dashboard/subscription-fund-modal/subscription-fund-content/subscription-fund-content.component.scss"],
+  "sourcesContent": [":host {\n  .nav {\n    border-radius: 0 !important;\n  }\n\n  input[type=\"radio\"] {\n    visibility: hidden;\n    width: 0;\n  }\n\n  .nav-link {\n    background-color: var(--dtx-secondary);\n    color: white;\n\n    &.active {\n      color: inherit;\n      background-color: var(--dtx-warning);\n      box-shadow: var(--dtx-box-shadow-sm) !important;\n    }\n  }\n\n  .btn-radius {\n    border-radius: var(--dtx-btn-border-radius) 0 0 var(--dtx-btn-border-radius);\n  }\n\n  ul {\n    display: flex;\n\n    li {\n      flex: 1;\n    }\n  }\n\n  // /* حالت پیش‌فرض بوت‌استرپ (چند درگاه) */\n  // .btn-group.multi-button > .btn {\n  //   flex: 1 1 auto !important;\n  // }\n  \n  // /* وقتی فقط یک دکمه داریم */\n  // .btn-group.single-button > .btn {\n  //   flex: 0 0 176px !important;\n  //   max-width: 176px !important;\n  // }\n}"],
+  "mappings": ";AACE,MAAA,CAAA;AACE,iBAAA;;AAGF,MAAA,KAAA,CAAA;AACE,cAAA;AACA,SAAA;;AAGF,MAAA,CAAA;AACE,oBAAA,IAAA;AACA,SAAA;;AAEA,MAAA,CAJF,QAIE,CAAA;AACE,SAAA;AACA,oBAAA,IAAA;AACA,cAAA,IAAA;;AAIJ,MAAA,CAAA;AACE,iBAAA,IAAA,yBAAA,EAAA,EAAA,IAAA;;AAGF,MAAA;AACE,WAAA;;AAEA,MAAA,GAAA;AACE,QAAA;;",
+  "names": []
+}

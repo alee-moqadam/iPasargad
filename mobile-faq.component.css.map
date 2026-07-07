@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/client/src/app/features/mobile/mobile-faq/mobile-faq.component.scss"],
+  "sourcesContent": [".accordion-content {\n    max-height: 0;\n    opacity: 0;\n    overflow: hidden;\n    -webkit-transition: all 0.25s ease-in-out;\n    -moz-transition: all 0.25s ease-in-out;\n    -o-transition: all 0.25s ease-in-out;\n    transition: all 0.25s ease-in-out;\n  }\n\n  .accordion-card-item.expanded .accordion-content {\n    max-height: 100px;\n    opacity: 1;\n    margin-top: 1rem;\n  }"],
+  "mappings": ";AAAA,CAAA;AACI,cAAA;AACA,WAAA;AACA,YAAA;AACA,sBAAA,IAAA,MAAA;AACA,mBAAA,IAAA,MAAA;AACA,iBAAA,IAAA,MAAA;AACA,cAAA,IAAA,MAAA;;AAGF,CAAA,mBAAA,CAAA,SAAA,CAVF;AAWI,cAAA;AACA,WAAA;AACA,cAAA;;",
+  "names": []
+}

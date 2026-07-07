@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/client/src/app/features/dashboard/asset-chart/asset-chart.component.scss"],
+  "sourcesContent": ["// .highcharts-figure,\n// .highcharts-data-table table {\n//     min-width: 310px;\n//     max-width: 800px;\n//     margin: 1em auto;\n// }\n\n#container {\n    height: 400px;\n    position: relative;\n}\n\n:host {\n    .asset-chart-tab{\n        display: flex;\n        div {\n            flex: 1;\n        }\n    }\n    .nav {\n        border-radius: 10px !important;\n        padding: 0;\n    }\n\n    .nav-link{\n        width: 100%;\n        \n    }\n\n    .nav .nav-link.active{\n        background-color: #FF9900;\n        color: white;\n    }\n\n}"],
+  "mappings": ";AAOA,CAAA;AACI,UAAA;AACA,YAAA;;AAIA,MAAA,CAAA;AACI,WAAA;;AACA,MAAA,CAFJ,gBAEI;AACI,QAAA;;AAGR,MAAA,CAAA;AACI,iBAAA;AACA,WAAA;;AAGJ,MAAA,CAAA;AACI,SAAA;;AAIJ,MAAA,CAVA,IAUA,CALA,QAKA,CAAA;AACI,oBAAA;AACA,SAAA;;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/client/src/app/features/portfolio/asset-chart/portfolio-asset-chart.component.scss"],
+  "sourcesContent": [".clicked{\n    color: #ffffff;\n  background-color: #3333cc;\n  border-color: #3333cc;\n}"],
+  "mappings": ";AAAA,CAAA;AACI,SAAA;AACF,oBAAA;AACA,gBAAA;;",
+  "names": []
+}

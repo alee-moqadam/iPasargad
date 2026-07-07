@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/client/src/app/features/fund/fund.component.scss"],
+  "sourcesContent": [":host {\n\n    .caret-icon {\n\n        width: 32px;\n        height: 32px;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        border-radius: 50%;\n        background-color: var(--bs-gray-300);\n    }\n\n    .button-action-container {\n        position: fixed;\n        bottom: 0;\n        right: 0;\n        width: 100%;\n        height: 90px;\n        background-color: #FFFFFF;\n        display: flex;\n        z-index: 1055;\n    \n        a {\n            flex: 1;\n        }\n    }\n\n    .button-container{\n        display: flex;\n        button{\n            flex:1\n        }\n    }\n    .active-menu-btn{\n        background-color: #FF9900 !important;\n        color: #fff !important;\n    }\n    .fund-page-container{\n        padding-top:70px;\n        @media(min-width : 991px) {\n            padding-top: 0;\n        }\n    }\n\n}"],
+  "mappings": ";AAEI,MAAA,CAAA;AAEI,SAAA;AACA,UAAA;AACA,WAAA;AACA,eAAA;AACA,mBAAA;AACA,iBAAA;AACA,oBAAA,IAAA;;AAGJ,MAAA,CAAA;AACI,YAAA;AACA,UAAA;AACA,SAAA;AACA,SAAA;AACA,UAAA;AACA,oBAAA;AACA,WAAA;AACA,WAAA;;AAEA,MAAA,CAVJ,wBAUI;AACI,QAAA;;AAIR,MAAA,CAAA;AACI,WAAA;;AACA,MAAA,CAFJ,iBAEI;AACI,QAAA;;AAGR,MAAA,CAAA;AACI,oBAAA;AACA,SAAA;;AAEJ,MAAA,CAAA;AACI,eAAA;;AACA,OAAA,CAAA,SAAA,EAAA;AAFJ,QAAA,CAAA;AAGQ,iBAAA;;;",
+  "names": []
+}

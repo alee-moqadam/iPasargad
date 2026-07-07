@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/client/src/app/features/dashboard/consulting-guide/consulting-guide.component.scss"],
+  "sourcesContent": [".help-bg{      \n    background: url('../../../../../public/svg/help-link-bg.svg');\n    background-size: contain;\n  }\n\n"],
+  "mappings": ";AAAA,CAAA;AACI,cAAA;AACA,mBAAA;;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["toasts.component.ts"],
+  "sourcesContent": ["\n      :host {\n\n        top: 100px !important;\n          position: fixed;\n          bottom: unset !important;\n          left: 0 !important;\n          margin: 0.5em;\n          z-index: 1200;\n          @media (min-width: 900px) {\n            right: 50% !important;\n            transform: translateX(50%);\n          }\n          @media (max-width: 900px) {\n            right: 0 !important;\n          }\n\n      }\n    "],
+  "mappings": ";AACM;AAEE,OAAA;AACE,YAAA;AACA,UAAA;AACA,QAAA;AACA,UAAA;AACA,WAAA;;AACA,OAAA,CAAA,SAAA,EAAA;AARJ;AASM,WAAA;AACA,eAAA,WAAA;;;AAEF,OAAA,CAAA,SAAA,EAAA;AAZJ;AAaM,WAAA;;;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/client/src/app/auth/register/quick-sejam-step2/quick-sejam-step2.component.scss"],
+  "sourcesContent": [".bg-auth {\n    background: #eee url(\"../../../../../public/images/signup-bg.svg\");\n    background-size: cover;\n    background-position: bottom;\n}\n\n.vh-50 {\n    height: 50vh;\n}\n\n::ng-deep {\n    // .input-group>.form-control {\n    //     border-radius: var(--dtx-border-radius) !important;\n    //     border-top-left-radius: 0 !important;\n    //     border-bottom-left-radius: 0 !important;\n    // }\n\n    // .input-group> :not(:first-child) {\n    //     border-radius: var(--dtx-border-radius) !important;\n    //     border-top-right-radius: 0 !important;\n    //     border-bottom-right-radius: 0 !important;\n    // }\n\n    .content {\n        position: relative;\n        direction: ltr;\n        overflow: auto;\n        height: 50%;\n        max-height: 300px;\n        -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);\n        mask-image: linear-gradient(to bottom, black 50%, transparent 100%);\n        overflow-y: scroll;\n    }\n\n    .content div {\n        direction: rtl;\n    }\n}\n"],
+  "mappings": ";AAAA,CAAA;AACI,cAAA,KAAA;AACA,mBAAA;AACA,uBAAA;;AAGJ,CAAA;AACI,UAAA;;AAgBA,UAAA,CAAA;AACI,YAAA;AACA,aAAA;AACA,YAAA;AACA,UAAA;AACA,cAAA;AACA;IAAA;MAAA,GAAA,MAAA;MAAA,MAAA,GAAA;MAAA,YAAA;AACA;IAAA;MAAA,GAAA,MAAA;MAAA,MAAA,GAAA;MAAA,YAAA;AACA,cAAA;;AAGJ,UAAA,CAXA,QAWA;AACI,aAAA;;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/client/src/app/auth/register/quick-register/quick-register.component.scss"],
+  "sourcesContent": [".bg-auth{\n    background: #eee url('../../../../../public/images/signup-bg.svg');\n    background-size: cover;\n    background-position: bottom;\n}\ninput[type=\"radio\"] {\n    border: solid 1px #ddd;\n  }"],
+  "mappings": ";AAAA,CAAA;AACI,cAAA,KAAA;AACA,mBAAA;AACA,uBAAA;;AAEJ,KAAA,CAAA;AACI,UAAA,MAAA,IAAA;;",
+  "names": []
+}
