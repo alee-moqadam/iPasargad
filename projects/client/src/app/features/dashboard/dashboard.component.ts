@@ -53,6 +53,30 @@ Variablepie(Highcharts);
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  readonly useMockViewData = true;
+
+  // UI preview mock data only. Do not use for production logic.
+  readonly mockFundCards = [
+    { title: 'گنجینه پاسارگاد', type: 'درآمد ثابت', value: 485000000, returnText: '۲۸.۵٪', trend: 'بازده موثر سالانه', tone: 'green' },
+    { title: 'زرین پاسارگاد', type: 'طلا', value: 132000000, returnText: '۱۲.۴٪', trend: 'بازده یک ماهه', tone: 'gold' },
+    { title: 'پیشتازان پاسارگاد', type: 'سهامی', value: 92000000, returnText: '۱۸.۹٪', trend: 'بازده سه ماهه', tone: 'purple' },
+    { title: 'سپهر اندیشه', type: 'مختلط', value: 64000000, returnText: '۹.۷٪', trend: 'بازده سه ماهه', tone: 'blue' }
+  ];
+
+  // UI preview mock data only. Do not use for production logic.
+  readonly mockActivities = [
+    { title: 'سرمایه‌گذاری در گنجینه پاسارگاد', date: '۱۴۰۳/۰۴/۱۲', amount: '۸۰,۰۰۰,۰۰۰ ریال', status: 'در انتظار تایید' },
+    { title: 'برداشت از زرین پاسارگاد', date: '۱۴۰۳/۰۴/۰۸', amount: '۱۲۰ واحد', status: 'ثبت شده' },
+    { title: 'واریز آنلاین', date: '۱۴۰۳/۰۴/۰۵', amount: '۳۵,۰۰۰,۰۰۰ ریال', status: 'موفق' }
+  ];
+
+  // UI preview mock data only. Do not use for production logic.
+  readonly secondaryServices = [
+    { title: 'افزودن کارت بانکی آی‌پاسارگاد', description: 'مدیریت سریع‌تر پرداخت‌ها و برداشت‌ها با کارت بانکی متصل.', icon: '#ico_card' },
+    { title: 'سرمایه‌گذاری خودکار', description: 'زمان‌بندی سرمایه‌گذاری‌های دوره‌ای برای نظم بیشتر در پس‌انداز.', icon: '#ico_hourglass' },
+    { title: 'پرداخت مستقیم / دایرکت دبیت', description: 'سرمایه‌گذاری با تایید ساده و بدون ورود دوباره به درگاه.', icon: '#ico_box_plus_fill' }
+  ];
+
   apiUrl: string = environment.apiUrl;
   assetChkbox = true
   allMutualFundDetail = signal([])
@@ -506,5 +530,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigate(['/fund', fund.seoRegisterNumber, 'fund-detail', fund.seoRegisterNumber]);
     }
+  }
+
+  hasPendingRequests(): boolean {
+    return this.getWaitingSubscriptionAmount() > 0 || this.getWaitingRedemptionVolume() > 0;
+  }
+
+  getWaitingSubscriptionAmount(): number {
+    return Number((this.waitingRequests() as any)?.waitingSubscriptionAmount ?? (this.useMockViewData ? 120000000 : 0));
+  }
+
+  getWaitingRedemptionVolume(): number {
+    return Number((this.waitingRequests() as any)?.waitingRedemptionVolume ?? (this.useMockViewData ? 85 : 0));
+  }
+
+  getDisplayTotalNetValue(): number {
+    return Number(this.totalNetValue() ?? (this.useMockViewData ? 773000000 : 0));
+  }
+
+  getDisplayFundCards() {
+    if (this.requestComposition().length > 0) {
+      return this.requestComposition().slice(0, 4).map((item: any, index: number) => ({
+        title: item.mutualFundSymbol,
+        type: item.fundTypeTitle ?? this.mockFundCards[index]?.type ?? 'صندوق سرمایه‌گذاری',
+        value: item.netValue,
+        returnText: this.mockFundCards[index]?.returnText ?? '-',
+        trend: this.mockFundCards[index]?.trend ?? 'ارزش روز',
+        tone: this.mockFundCards[index]?.tone ?? 'green'
+      }));
+    }
+
+    return this.useMockViewData ? this.mockFundCards : [];
   }
 }  
