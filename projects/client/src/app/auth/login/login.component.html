@@ -50,7 +50,7 @@
         }
         <div class="d-flex flex-column mb-1">
           <app-loading-button class="w-100 my-3" [isLoading]="submitting()"
-            [disabled]="(submitting() || formGroup.invalid || !formGroup.controls.password.valid)" [type]="'submit'"
+            [disabled]="!canSubmitLogin()" [type]="'submit'"
             cssClass="btn btn-primary">
             ورود
           </app-loading-button>

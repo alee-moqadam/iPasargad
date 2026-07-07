@@ -8,6 +8,7 @@ import { ToastService } from '@client/core/services/toast.service';
 import { PasswordComponent, CaptchaModel, IdentityService, SharedModule, Convert } from '@client/shared';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { environment } from 'projects/client/src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -107,6 +108,11 @@ export class LoginComponent implements AfterViewInit {
       throw new Error("nationalId is required!");
     }
 
+    if (this.isDevelopmentMockLogin()) {
+      this.completeDevelopmentMockLogin();
+      return;
+    }
+
     if (this.formGroup.invalid) {
       this.loginMsg.set('لطفاً مقادیر ورودی را مجدد بررسی فرمایید.');
       throw new Error('form invalid!');
@@ -144,6 +150,30 @@ export class LoginComponent implements AfterViewInit {
           }
         }
       );
+  }
+
+  canSubmitLogin(): boolean {
+    return !this.submitting() && (this.formGroup?.valid || this.isDevelopmentMockLogin());
+  }
+
+  private isDevelopmentMockLogin(): boolean {
+    if (environment.production) return false;
+
+    const loginName = Convert.toEnglishNumber(this.formGroup?.get('loginName')?.value ?? '').trim();
+    const password = this.formGroup?.get('password')?.value ?? '';
+
+    return loginName === '1' && password === '1';
+  }
+
+  private completeDevelopmentMockLogin(): void {
+    // Local development bypass only. Production builds keep the real login/captcha flow.
+    localStorage.setItem('sejam-status', '100');
+    localStorage.setItem('step', '100');
+    localStorage.setItem('dev-mock-auth', 'true');
+    this.loginMsg.set(null);
+    this.submitting.set(false);
+    this.toastService.toasts = [];
+    this.router.navigate(['/dashboard']);
   }
 
   generateNewCaptcha() {
