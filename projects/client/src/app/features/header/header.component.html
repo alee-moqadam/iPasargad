@@ -1,15 +1,15 @@
-<div class="bg-green text-white fixed-top shadow">
-  <div class="container">
-    <div class=" d-flex justify-content-between align-items-center">
-      <img class="me-3" [style.Height.px]="headerHeight" [style.Width.px]="150" src="/svg/logo-fa-white.svg"
+<header class="app-header fixed-top">
+  <div class="container app-header__container">
+    <div class="app-header__surface d-flex justify-content-between align-items-center">
+      <img class="app-header__logo me-3" [style.Height.px]="headerHeight" [style.Width.px]="150" src="/svg/logo-fa-white.svg"
         alt="IPasargad" routerLink="/" />
 
       <div class="d-none d-lg-block">
-        <div class="d-flex align-items-center">
-          <fa-icon icon="gear" size="lg" class="p-2 rounded rounded-pill border border-1 cursor-pointer"
+        <div class="d-flex align-items-center app-header__actions">
+          <fa-icon icon="gear" size="lg" class="app-header__icon-btn p-2 rounded rounded-pill border border-1 cursor-pointer"
             routerLink="settings" placement="right" ngbTooltip="تنظیمات"></fa-icon>
           <div [ngbTooltip]="customerInfo()?.personalInfo?.fullName" container="body"
-            class="menu-item cursor-pointer d-flex mx-2 rounded-pill border border-1 py-2 cursor-pointer"
+            class="app-header__account menu-item cursor-pointer d-flex mx-2 rounded-pill border border-1 py-2 cursor-pointer"
             routerLink="profile">
             <div class="d-flex flex-fill">
               <fa-icon class="me-3" icon="caret-down"></fa-icon>
@@ -21,7 +21,7 @@
               <!-- <fa-icon class="ms-3" size="lg" icon="circle-user"></fa-icon> -->
             </div>
           </div>
-          <svg class="p-1 rounded rounded-pill border border-1 cursor-pointer" viewBox="0 0 24 24" width="36px"
+          <svg class="app-header__icon-btn p-1 rounded rounded-pill border border-1 cursor-pointer" viewBox="0 0 24 24" width="36px"
             height="36px" placement="left" ngbTooltip="خروج" (click)="logout()">
             <use xlink:href="#ico_circle_turn_on"></use>
           </svg>
@@ -30,11 +30,11 @@
             (click)="logout()"></fa-icon> -->
         </div>
       </div>
-      <div class="d-lg-none d-flex p-2 justify-content-center align-items-center">
-        <svg viewBox="0 0 24 24" width="36px" height="36px" class="rounded rounded-pill border border-1 p-2" routerLink="/notifications">
+      <div class="d-lg-none d-flex p-2 justify-content-center align-items-center app-header__mobile-actions">
+        <svg viewBox="0 0 24 24" width="36px" height="36px" class="app-header__icon-btn rounded rounded-pill border border-1 p-2" routerLink="/notifications">
           <use xlink:href="#ico_bell"></use>
         </svg>
-        <svg viewBox="0 0 24 24" width="36px" height="36px" class="rounded rounded-pill border border-1 p-1 me-3" routerLink="/customer-support">
+        <svg viewBox="0 0 24 24" width="36px" height="36px" class="app-header__icon-btn rounded rounded-pill border border-1 p-1 me-3" routerLink="/customer-support">
           <use xlink:href="#ico_support"></use>
         </svg>
         <!-- <a href="tel:+982158241000" class="text-white me-3">
@@ -45,8 +45,8 @@
       </div>
     </div>
   </div>
-</div>
-<div class="d-none d-lg-block bg-gray-850 text-white fixed-top" [style.top.px]="headerHeight" style="height: 58px;">
+</header>
+<div class="app-header-subnav d-none d-lg-block fixed-top" [style.top.px]="headerHeight">
   <div class="container">
     <div class="d-flex">
       <div style="width:209px;">
