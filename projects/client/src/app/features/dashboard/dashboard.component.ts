@@ -53,14 +53,14 @@ Variablepie(Highcharts);
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  readonly useMockViewData = true;
+  readonly useMockViewData = true; // UI preview only. Turn off before production handoff.
 
   // UI preview mock data only. Do not use for production logic.
   readonly mockFundCards = [
-    { title: 'گنجینه پاسارگاد', type: 'درآمد ثابت', value: 485000000, returnText: '۲۸.۵٪', trend: 'بازده موثر سالانه', tone: 'green' },
-    { title: 'زرین پاسارگاد', type: 'طلا', value: 132000000, returnText: '۱۲.۴٪', trend: 'بازده یک ماهه', tone: 'gold' },
-    { title: 'پیشتازان پاسارگاد', type: 'سهامی', value: 92000000, returnText: '۱۸.۹٪', trend: 'بازده سه ماهه', tone: 'purple' },
-    { title: 'سپهر اندیشه', type: 'مختلط', value: 64000000, returnText: '۹.۷٪', trend: 'بازده سه ماهه', tone: 'blue' }
+    { title: 'هزاره سوم', type: 'درآمد ثابت صدور و ابطالی', value: 485000000, returnText: '۲۸.۵٪', trend: 'بازده موثر سالانه', tone: 'green' },
+    { title: 'پاسارگاد', type: 'درآمد ثابت قابل معامله', value: 132000000, returnText: '۲۷.۹٪', trend: 'بازده موثر سالانه', tone: 'green' },
+    { title: 'ریتون', type: 'طلای قابل معامله', value: 92000000, returnText: '۳۴.۲٪', trend: 'بازده یک‌ساله', tone: 'gold' },
+    { title: 'تکپاد', type: 'سهامی قابل معامله', value: 64000000, returnText: '۴۱.۷٪', trend: 'بازده سالانه', tone: 'purple' }
   ];
 
   // UI preview mock data only. Do not use for production logic.
