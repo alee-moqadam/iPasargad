@@ -2618,9 +2618,9 @@ var DividendFilterComponent = _DividendFilterComponent;
 
 // projects/client/src/app/features/reports/report-menus/report-menus.component.ts
 var _forTrack0 = ($index, $item) => $item.title;
-function ReportMenusComponent_For_21_Template(rf, ctx) {
+function ReportMenusComponent_For_10_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "article", 13)(1, "div")(2, "strong");
+    \u0275\u0275elementStart(0, "article", 12)(1, "div")(2, "strong");
     \u0275\u0275text(3);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(4, "span");
@@ -2673,85 +2673,70 @@ var _ReportMenusComponent = class _ReportMenusComponent {
 _ReportMenusComponent.\u0275fac = function ReportMenusComponent_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _ReportMenusComponent)(\u0275\u0275directiveInject(Router));
 };
-_ReportMenusComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ReportMenusComponent, selectors: [["app-report-menus"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 47, vars: 0, consts: [["dir", "rtl", 1, "reports-menu-shell"], [1, "reports-menu-header"], ["aria-label", "\u062F\u0631\u062E\u0648\u0627\u0633\u062A\u200C\u0647\u0627\u06CC \u062F\u0631 \u062C\u0631\u06CC\u0627\u0646", 1, "pending-report-events"], [1, "pending-report-events__header"], ["type", "button", 1, "btn", "btn-outline-primary", "btn-sm", 3, "click"], [1, "pending-report-events__list"], [1, "pending-report-card", 3, "class"], ["aria-label", "\u0641\u0647\u0631\u0633\u062A \u06AF\u0632\u0627\u0631\u0634\u200C\u0647\u0627", 1, "report-card-grid"], [1, "report-menu-card", 3, "click"], ["icon", "credit-card", "size", "lg", 1, "report-menu-card__icon"], ["icon", "money-bill-1", "size", "lg", 1, "report-menu-card__icon"], ["icon", "receipt", "size", "lg", 1, "report-menu-card__icon"], ["icon", "circle-info", "size", "lg", 1, "report-menu-card__icon"], [1, "pending-report-card"]], template: function ReportMenusComponent_Template(rf, ctx) {
+_ReportMenusComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ReportMenusComponent, selectors: [["app-report-menus"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 36, vars: 0, consts: [["dir", "rtl", 1, "reports-menu-shell"], ["aria-label", "\u062F\u0631\u062E\u0648\u0627\u0633\u062A\u200C\u0647\u0627\u06CC \u062F\u0631 \u062C\u0631\u06CC\u0627\u0646", 1, "pending-report-events"], [1, "pending-report-events__header"], ["type", "button", 1, "btn", "btn-outline-primary", "btn-sm", 3, "click"], [1, "pending-report-events__list"], [1, "pending-report-card", 3, "class"], ["aria-label", "\u0641\u0647\u0631\u0633\u062A \u06AF\u0632\u0627\u0631\u0634\u200C\u0647\u0627", 1, "report-card-grid"], [1, "report-menu-card", 3, "click"], ["icon", "credit-card", "size", "lg", 1, "report-menu-card__icon"], ["icon", "money-bill-1", "size", "lg", 1, "report-menu-card__icon"], ["icon", "receipt", "size", "lg", 1, "report-menu-card__icon"], ["icon", "circle-info", "size", "lg", 1, "report-menu-card__icon"], [1, "pending-report-card"]], template: function ReportMenusComponent_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "main", 0)(1, "header", 1)(2, "span");
-    \u0275\u0275text(3, "\u06AF\u0632\u0627\u0631\u0634\u200C\u0647\u0627");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "h1");
-    \u0275\u0275text(5, "\u06AF\u0632\u0627\u0631\u0634\u200C\u0647\u0627");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "p");
-    \u0275\u0275text(7, "\u0648\u0636\u0639\u06CC\u062A \u062F\u0631\u062E\u0648\u0627\u0633\u062A\u200C\u0647\u0627\u060C \u067E\u0631\u062F\u0627\u062E\u062A\u200C\u0647\u0627\u060C \u062D\u0633\u0627\u0628\u062F\u0627\u0631\u06CC \u0648 \u0633\u0648\u062F\u0647\u0627\u06CC \u0648\u0627\u0631\u06CC\u0632\u06CC \u0631\u0627 \u067E\u06CC\u06AF\u06CC\u0631\u06CC \u06A9\u0646\u06CC\u062F.");
+    \u0275\u0275elementStart(0, "main", 0)(1, "section", 1)(2, "div", 2)(3, "div")(4, "span");
+    \u0275\u0275text(5, "\u062F\u0631\u062E\u0648\u0627\u0633\u062A\u200C\u0647\u0627\u06CC \u062F\u0631 \u062C\u0631\u06CC\u0627\u0646");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(8, "section", 2)(9, "div", 3)(10, "div")(11, "span");
-    \u0275\u0275text(12, "\u067E\u06CC\u06AF\u06CC\u0631\u06CC \u0639\u0645\u0644\u06CC\u0627\u062A");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(13, "h2");
-    \u0275\u0275text(14, "\u062F\u0631\u062E\u0648\u0627\u0633\u062A\u200C\u0647\u0627\u06CC \u062F\u0631 \u062C\u0631\u06CC\u0627\u0646");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(15, "p");
-    \u0275\u0275text(16, "\u0639\u0645\u0644\u06CC\u0627\u062A \u062C\u062F\u06CC\u062F \u0648 \u0645\u0648\u0627\u0631\u062F\u06CC \u06A9\u0647 \u0647\u0646\u0648\u0632 \u0646\u06CC\u0627\u0632 \u0628\u0647 \u067E\u06CC\u06AF\u06CC\u0631\u06CC \u062F\u0627\u0631\u0646\u062F.");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(17, "button", 4);
-    \u0275\u0275listener("click", function ReportMenusComponent_Template_button_click_17_listener() {
+    \u0275\u0275elementStart(6, "button", 3);
+    \u0275\u0275listener("click", function ReportMenusComponent_Template_button_click_6_listener() {
       return ctx.navigateToPage("requests");
     });
-    \u0275\u0275text(18, " \u0645\u0634\u0627\u0647\u062F\u0647 \u0647\u0645\u0647 \u062F\u0631\u062E\u0648\u0627\u0633\u062A\u200C\u0647\u0627 ");
+    \u0275\u0275text(7, " \u0645\u0634\u0627\u0647\u062F\u0647 \u0647\u0645\u0647 \u062F\u0631\u062E\u0648\u0627\u0633\u062A\u200C\u0647\u0627 ");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(19, "div", 5);
-    \u0275\u0275repeaterCreate(20, ReportMenusComponent_For_21_Template, 8, 5, "article", 6, _forTrack0);
+    \u0275\u0275elementStart(8, "div", 4);
+    \u0275\u0275repeaterCreate(9, ReportMenusComponent_For_10_Template, 8, 5, "article", 5, _forTrack0);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(22, "section", 7)(23, "article", 8);
-    \u0275\u0275listener("click", function ReportMenusComponent_Template_article_click_23_listener() {
+    \u0275\u0275elementStart(11, "section", 6)(12, "article", 7);
+    \u0275\u0275listener("click", function ReportMenusComponent_Template_article_click_12_listener() {
       return ctx.navigateToPage("requests");
     });
-    \u0275\u0275element(24, "fa-icon", 9);
-    \u0275\u0275elementStart(25, "h2");
-    \u0275\u0275text(26, "\u062F\u0631\u062E\u0648\u0627\u0633\u062A\u200C\u0647\u0627");
+    \u0275\u0275element(13, "fa-icon", 8);
+    \u0275\u0275elementStart(14, "h2");
+    \u0275\u0275text(15, "\u062F\u0631\u062E\u0648\u0627\u0633\u062A\u200C\u0647\u0627");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(27, "p");
-    \u0275\u0275text(28, "\u062C\u0632\u0626\u06CC\u0627\u062A \u062A\u0631\u0627\u06A9\u0646\u0634\u200C\u0647\u0627\u06CC \u0645\u0627\u0644\u06CC \u0634\u0645\u0627 \u0628\u0647 \u0635\u0648\u0631\u062A \u062F\u0642\u06CC\u0642");
+    \u0275\u0275elementStart(16, "p");
+    \u0275\u0275text(17, "\u062C\u0632\u0626\u06CC\u0627\u062A \u062A\u0631\u0627\u06A9\u0646\u0634\u200C\u0647\u0627\u06CC \u0645\u0627\u0644\u06CC \u0634\u0645\u0627 \u0628\u0647 \u0635\u0648\u0631\u062A \u062F\u0642\u06CC\u0642");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(29, "article", 8);
-    \u0275\u0275listener("click", function ReportMenusComponent_Template_article_click_29_listener() {
+    \u0275\u0275elementStart(18, "article", 7);
+    \u0275\u0275listener("click", function ReportMenusComponent_Template_article_click_18_listener() {
       return ctx.navigateToPage("payments");
     });
-    \u0275\u0275element(30, "fa-icon", 10);
-    \u0275\u0275elementStart(31, "h2");
-    \u0275\u0275text(32, "\u0648\u0627\u0631\u06CC\u0632 \u0648\u062C\u0647");
+    \u0275\u0275element(19, "fa-icon", 9);
+    \u0275\u0275elementStart(20, "h2");
+    \u0275\u0275text(21, "\u0648\u0627\u0631\u06CC\u0632 \u0648\u062C\u0647");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(33, "p");
-    \u0275\u0275text(34, "\u0648\u0636\u0639\u06CC\u062A \u0648 \u062C\u0632\u0626\u06CC\u0627\u062A \u0648\u0627\u0631\u06CC\u0632 \u0648\u062C\u0647");
+    \u0275\u0275elementStart(22, "p");
+    \u0275\u0275text(23, "\u0648\u0636\u0639\u06CC\u062A \u0648 \u062C\u0632\u0626\u06CC\u0627\u062A \u0648\u0627\u0631\u06CC\u0632 \u0648\u062C\u0647");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(35, "article", 8);
-    \u0275\u0275listener("click", function ReportMenusComponent_Template_article_click_35_listener() {
+    \u0275\u0275elementStart(24, "article", 7);
+    \u0275\u0275listener("click", function ReportMenusComponent_Template_article_click_24_listener() {
       return ctx.navigateToPage("accounting");
     });
-    \u0275\u0275element(36, "fa-icon", 11);
-    \u0275\u0275elementStart(37, "h2");
-    \u0275\u0275text(38, "\u062D\u0633\u0627\u0628\u062F\u0627\u0631\u06CC");
+    \u0275\u0275element(25, "fa-icon", 10);
+    \u0275\u0275elementStart(26, "h2");
+    \u0275\u0275text(27, "\u062D\u0633\u0627\u0628\u062F\u0627\u0631\u06CC");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(39, "p");
-    \u0275\u0275text(40, "\u0627\u0637\u0644\u0627\u0639\u0627\u062A \u062C\u0627\u0645\u0639 \u0645\u0627\u0644\u06CC \u0648 \u062E\u0644\u0627\u0635\u0647 \u062A\u0631\u0627\u06A9\u0646\u0634\u200C\u0647\u0627\u06CC \u0634\u0645\u0627");
+    \u0275\u0275elementStart(28, "p");
+    \u0275\u0275text(29, "\u0627\u0637\u0644\u0627\u0639\u0627\u062A \u062C\u0627\u0645\u0639 \u0645\u0627\u0644\u06CC \u0648 \u062E\u0644\u0627\u0635\u0647 \u062A\u0631\u0627\u06A9\u0646\u0634\u200C\u0647\u0627\u06CC \u0634\u0645\u0627");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(41, "article", 8);
-    \u0275\u0275listener("click", function ReportMenusComponent_Template_article_click_41_listener() {
+    \u0275\u0275elementStart(30, "article", 7);
+    \u0275\u0275listener("click", function ReportMenusComponent_Template_article_click_30_listener() {
       return ctx.navigateToPage("dividend");
     });
-    \u0275\u0275element(42, "fa-icon", 12);
-    \u0275\u0275elementStart(43, "h2");
-    \u0275\u0275text(44, "\u062A\u0642\u0633\u06CC\u0645 \u0633\u0648\u062F");
+    \u0275\u0275element(31, "fa-icon", 11);
+    \u0275\u0275elementStart(32, "h2");
+    \u0275\u0275text(33, "\u062A\u0642\u0633\u06CC\u0645 \u0633\u0648\u062F");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(45, "p");
-    \u0275\u0275text(46, "\u062C\u0632\u0626\u06CC\u0627\u062A \u0648\u0627\u0631\u06CC\u0632 \u0633\u0648\u062F\u0647\u0627\u06CC \u062F\u0648\u0631\u0647\u200C\u0627\u06CC \u0635\u0646\u062F\u0648\u0642\u200C\u0647\u0627\u06CC \u0634\u0645\u0627");
+    \u0275\u0275elementStart(34, "p");
+    \u0275\u0275text(35, "\u062C\u0632\u0626\u06CC\u0627\u062A \u0648\u0627\u0631\u06CC\u0632 \u0633\u0648\u062F\u0647\u0627\u06CC \u062F\u0648\u0631\u0647\u200C\u0627\u06CC \u0635\u0646\u062F\u0648\u0642\u200C\u0647\u0627\u06CC \u0634\u0645\u0627");
     \u0275\u0275elementEnd()()()();
   }
   if (rf & 2) {
-    \u0275\u0275advance(20);
+    \u0275\u0275advance(9);
     \u0275\u0275repeater(ctx.pendingReportEvents);
   }
-}, dependencies: [FontAwesomeModule, FaIconComponent], styles: ["\n\n.reports-menu-shell[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n  max-width: 1100px;\n  margin: 0 auto;\n  padding: 0.75rem 0.75rem 2rem;\n  color: #26323d;\n}\n.reports-menu-header[_ngcontent-%COMP%], \n.pending-report-events[_ngcontent-%COMP%], \n.report-menu-card[_ngcontent-%COMP%] {\n  border: 1px solid rgba(255, 255, 255, 0.58);\n  border-radius: 16px;\n  background:\n    radial-gradient(\n      circle at 14% 8%,\n      rgba(255, 255, 255, 0.88),\n      rgba(255, 255, 255, 0.2) 36%,\n      transparent 66%),\n    rgba(255, 255, 255, 0.76);\n  box-shadow: 0 8px 22px rgba(31, 41, 51, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.84);\n  backdrop-filter: blur(18px) saturate(160%);\n  -webkit-backdrop-filter: blur(18px) saturate(160%);\n}\n.reports-menu-header[_ngcontent-%COMP%] {\n  padding: 1rem;\n}\n.reports-menu-header[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  color: #148c50;\n  font-size: 0.8rem;\n  font-weight: 850;\n}\n.reports-menu-header[_ngcontent-%COMP%]   h1[_ngcontent-%COMP%], \n.reports-menu-header[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0;\n}\n.reports-menu-header[_ngcontent-%COMP%]   h1[_ngcontent-%COMP%] {\n  margin-top: 0.25rem;\n  font-size: 1.35rem;\n  font-weight: 900;\n}\n.reports-menu-header[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin-top: 0.45rem;\n  color: #66727d;\n  line-height: 1.8;\n}\n.pending-report-events[_ngcontent-%COMP%] {\n  padding: 1rem;\n}\n.pending-report-events__header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 1rem;\n  margin-bottom: 0.85rem;\n}\n.pending-report-events__header[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  color: #148c50;\n  font-size: 0.78rem;\n  font-weight: 850;\n}\n.pending-report-events__header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%], \n.pending-report-events__header[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0;\n}\n.pending-report-events__header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  margin-top: 0.2rem;\n  font-size: 1.05rem;\n  font-weight: 900;\n}\n.pending-report-events__header[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin-top: 0.35rem;\n  color: #66727d;\n  font-size: 0.86rem;\n  line-height: 1.8;\n}\n.pending-report-events__list[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 0.65rem;\n}\n.pending-report-card[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.75rem;\n  padding: 0.78rem;\n  border: 1px solid #e5eaee;\n  border-radius: 13px;\n  background: rgba(255, 255, 255, 0.72);\n}\n.pending-report-card[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.pending-report-card[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: block;\n}\n.pending-report-card[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  margin-top: 0.28rem;\n  color: #66727d;\n  font-size: 0.84rem;\n  line-height: 1.7;\n}\n.pending-report-card[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  flex: 0 0 auto;\n  border-radius: 999px;\n  padding: 0.32rem 0.58rem;\n  background: rgba(49, 81, 95, 0.08);\n  color: #31515f;\n  font-size: 0.74rem;\n  font-weight: 850;\n  white-space: nowrap;\n}\n.pending-report-card--deposit[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  background: rgba(255, 122, 26, 0.12);\n  color: #b85b00;\n}\n.pending-report-card--redemption[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  background: rgba(220, 72, 72, 0.1);\n  color: #c43d3d;\n}\n.pending-report-card--subscription[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  background: rgba(20, 140, 80, 0.1);\n  color: #148c50;\n}\n.report-card-grid[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 0.85rem;\n}\n.report-menu-card[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 0.85rem;\n  min-height: 96px;\n  padding: 1rem;\n  cursor: pointer;\n  transition: transform 160ms ease, box-shadow 160ms ease;\n}\n.report-menu-card[_ngcontent-%COMP%]:active {\n  transform: scale(0.99);\n}\n.report-menu-card[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%], \n.report-menu-card[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0;\n}\n.report-menu-card[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  font-size: 1rem;\n  font-weight: 900;\n}\n.report-menu-card[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin-top: 0.35rem;\n  color: #66727d;\n  font-size: 0.84rem;\n  line-height: 1.7;\n}\n.report-menu-card__icon[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 42px;\n  height: 42px;\n  flex: 0 0 42px;\n  border-radius: 14px;\n  color: #148c50;\n  background: rgba(20, 140, 80, 0.09);\n}\n@media (min-width: 768px) {\n  .reports-menu-shell[_ngcontent-%COMP%] {\n    padding: 1rem 1rem 2.5rem;\n  }\n  .pending-report-events__list[_ngcontent-%COMP%], \n   .report-card-grid[_ngcontent-%COMP%] {\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n  }\n}\n@media (max-width: 520px) {\n  .pending-report-events__header[_ngcontent-%COMP%] {\n    flex-direction: column;\n  }\n  .pending-report-card[_ngcontent-%COMP%] {\n    align-items: flex-start;\n    flex-direction: column;\n  }\n}\n/*# sourceMappingURL=report-menus.component.css.map */"], changeDetection: 0 });
+}, dependencies: [FontAwesomeModule, FaIconComponent], styles: ["\n\n.reports-menu-shell[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n  max-width: 1100px;\n  margin: 0 auto;\n  padding: 0.75rem 0.75rem 2rem;\n  color: #26323d;\n}\n.reports-menu-header[_ngcontent-%COMP%], \n.pending-report-events[_ngcontent-%COMP%], \n.report-menu-card[_ngcontent-%COMP%] {\n  border: 1px solid rgba(255, 255, 255, 0.58);\n  border-radius: 16px;\n  background:\n    radial-gradient(\n      circle at 14% 8%,\n      rgba(255, 255, 255, 0.88),\n      rgba(255, 255, 255, 0.2) 36%,\n      transparent 66%),\n    rgba(255, 255, 255, 0.76);\n  box-shadow: 0 8px 22px rgba(31, 41, 51, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.84);\n  backdrop-filter: blur(18px) saturate(160%);\n  -webkit-backdrop-filter: blur(18px) saturate(160%);\n}\n.reports-menu-header[_ngcontent-%COMP%] {\n  padding: 1rem;\n}\n.reports-menu-header[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  color: #6666ff;\n  font-size: 0.8rem;\n  font-weight: 850;\n}\n.reports-menu-header[_ngcontent-%COMP%]   h1[_ngcontent-%COMP%], \n.reports-menu-header[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0;\n}\n.reports-menu-header[_ngcontent-%COMP%]   h1[_ngcontent-%COMP%] {\n  margin-top: 0.25rem;\n  font-size: 1.35rem;\n  font-weight: 900;\n}\n.reports-menu-header[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin-top: 0.45rem;\n  color: #66727d;\n  line-height: 1.8;\n}\n.pending-report-events[_ngcontent-%COMP%] {\n  padding: 1rem;\n}\n.pending-report-events__header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 1rem;\n  margin-bottom: 0.85rem;\n}\n.pending-report-events__header[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  color: #6666ff;\n  font-size: 0.78rem;\n  font-weight: 850;\n}\n.pending-report-events__header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%], \n.pending-report-events__header[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0;\n}\n.pending-report-events__header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  margin-top: 0.2rem;\n  font-size: 1.05rem;\n  font-weight: 900;\n}\n.pending-report-events__header[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin-top: 0.35rem;\n  color: #66727d;\n  font-size: 0.86rem;\n  line-height: 1.8;\n}\n.pending-report-events__list[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 0.65rem;\n}\n.pending-report-card[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.75rem;\n  padding: 0.78rem;\n  border: 1px solid #e5eaee;\n  border-radius: 13px;\n  background: rgba(255, 255, 255, 0.72);\n}\n.pending-report-card[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.pending-report-card[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: block;\n}\n.pending-report-card[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  margin-top: 0.28rem;\n  color: #66727d;\n  font-size: 0.84rem;\n  line-height: 1.7;\n}\n.pending-report-card[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  flex: 0 0 auto;\n  border-radius: 999px;\n  padding: 0.32rem 0.58rem;\n  background: rgba(49, 81, 95, 0.08);\n  color: #31515f;\n  font-size: 0.74rem;\n  font-weight: 850;\n  white-space: nowrap;\n}\n.pending-report-card--deposit[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  background: rgba(255, 122, 26, 0.12);\n  color: #b85b00;\n}\n.pending-report-card--redemption[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  background: rgba(220, 72, 72, 0.1);\n  color: #c43d3d;\n}\n.pending-report-card--subscription[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  background: rgba(20, 140, 80, 0.1);\n  color: #148c50;\n}\n.report-card-grid[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 0.85rem;\n}\n.report-menu-card[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 0.85rem;\n  min-height: 96px;\n  padding: 1rem;\n  cursor: pointer;\n  transition: transform 160ms ease, box-shadow 160ms ease;\n}\n.report-menu-card[_ngcontent-%COMP%]:active {\n  transform: scale(0.99);\n}\n.report-menu-card[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%], \n.report-menu-card[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0;\n}\n.report-menu-card[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  font-size: 1rem;\n  font-weight: 900;\n}\n.report-menu-card[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin-top: 0.35rem;\n  color: #66727d;\n  font-size: 0.84rem;\n  line-height: 1.7;\n}\n.report-menu-card__icon[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 42px;\n  height: 42px;\n  flex: 0 0 42px;\n  border-radius: 14px;\n  color: #148c50;\n  background: rgba(20, 140, 80, 0.09);\n}\n@media (min-width: 768px) {\n  .reports-menu-shell[_ngcontent-%COMP%] {\n    padding: 1rem 1rem 2.5rem;\n  }\n  .pending-report-events__list[_ngcontent-%COMP%], \n   .report-card-grid[_ngcontent-%COMP%] {\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n  }\n}\n@media (max-width: 520px) {\n  .pending-report-events__header[_ngcontent-%COMP%] {\n    flex-direction: column;\n  }\n  .pending-report-card[_ngcontent-%COMP%] {\n    align-items: flex-start;\n    flex-direction: column;\n  }\n}\n/*# sourceMappingURL=report-menus.component.css.map */"], changeDetection: 0 });
 var ReportMenusComponent = _ReportMenusComponent;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ReportMenusComponent, { className: "ReportMenusComponent" });
@@ -2780,4 +2765,4 @@ var reports_routes = [
 export {
   reports_routes
 };
-//# sourceMappingURL=chunk-CTT52VEP.js.map
+//# sourceMappingURL=chunk-F2V5NE4C.js.map

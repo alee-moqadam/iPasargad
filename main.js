@@ -692,7 +692,7 @@ var routes = [
   },
   {
     path: "",
-    loadChildren: () => import("./chunk-MUXT62LP.js").then((m) => m.features_routes)
+    loadChildren: () => import("./chunk-6C2EQ4QO.js").then((m) => m.features_routes)
   },
   {
     path: "**",
