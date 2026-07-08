@@ -3,7 +3,7 @@
     <div class="dashboard-summary-track" #summaryTrack (scroll)="onSummaryCarouselScroll(summaryTrack)">
       <article class="summary-carousel-card asset-summary-card" [class.summary-carousel-card--active]="isActiveSummaryCard('assets')"
         (click)="setActiveSummaryCard('assets')">
-        <div class="section-kicker">دارایی کل</div>
+        <div class="section-kicker-white">دارایی کل</div>
         <div class="asset-summary-card__value">
           <span [maskNumber]="getDisplayTotalNetValue()"></span>
           <small>ریال</small>
@@ -75,7 +75,7 @@
           <use xlink:href="#ico_box_plus_fill"></use>
         </svg>
       </span>
-      <span class="quick-action__label">سرمایه‌گذاری</span>
+      <span class="section-kicker-green">سرمایه‌گذاری</span>
       <small>خرید صندوق</small>
     </button>
     <button type="button" class="quick-action quick-action--exchange" (click)="openExchangeModal()">
@@ -94,7 +94,7 @@
         </svg>
       </span>
       <span class="quick-action__label">برداشت</span>
-      <small>دریافت وجه</small>
+      <small>فروش صندوق</small>
     </button>
     } @else if(activeSummaryCard() === 'bank-card') {
     <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
@@ -179,46 +179,81 @@
     <div class="fund-overview-scroll">
       <div class="fund-overview-track">
         @for(fund of getDisplayFundCards(); track fund.title){
-        <article
-          [class]="'fund-overview-card fund-overview-card--' + fund.tone"
-          [class.fund-overview-card--linked]="getFundDetailLink(fund)"
-          [class.fund-overview-card--featured]="fund.isFeatured"
-          [routerLink]="getFundDetailLink(fund)"
-          [attr.role]="getFundDetailLink(fund) ? 'link' : null"
-          [attr.tabindex]="getFundDetailLink(fund) ? '0' : null">
-          <div class="fund-overview-card__media">
-            <img [src]="fund.imageSrc" [alt]="fund.symbol || fund.title" />
-          </div>
-          <div class="fund-overview-card__identity">
-            <div class="fund-overview-card__symbol-row">
-              <strong class="fund-overview-card__title">{{fund.symbol || fund.title}}</strong>
-              <span class="fund-overview-card__status" aria-hidden="true">
-                <span class="fund-overview-card__status-inner"></span>
-              </span>
-            </div>
-            <div class="fund-overview-card__topline">
-              <small class="fund-overview-card__type">{{fund.typeLabel || fund.type}}</small>
-              @if(fund.isEtf) {
-              <span class="fund-overview-card__etf-tag">ETF</span>
-              }
-            </div>
-            <p class="fund-overview-card__description">{{fund.description}}</p>
-          </div>
-          <div class="fund-overview-card__return">
-            <small>بازده روز</small>
-            <b class="fund-overview-card__return-value" [class.is-negative]="fund.returnTone === 'negative'">
-              {{fund.dailyReturnLabel || fund.returnText}}
-            </b>
-          </div>
-        </article>
+<article
+
+  [class]="'fund-overview-card fund-overview-card--' + fund.tone"
+
+  [class.fund-overview-card--linked]="getFundDetailLink(fund)"
+
+  [class.fund-overview-card--featured]="fund.isFeatured"
+
+  [routerLink]="getFundDetailLink(fund)"
+
+  [attr.role]="getFundDetailLink(fund) ? 'link' : null"
+
+  [attr.tabindex]="getFundDetailLink(fund) ? '0' : null">
+
+  <div class="fund-overview-card__top-row">
+
+    <div class="fund-overview-card__media">
+
+      <img [src]="fund.imageSrc" [alt]="fund.symbol || fund.title" />
+
+    </div>
+
+    <span class="fund-overview-card__status" aria-hidden="true">
+
+      <span class="fund-overview-card__status-inner"></span>
+
+    </span>
+
+  </div>
+
+  <div class="fund-overview-card__identity">
+
+    <div class="fund-overview-card__symbol-row">
+
+      <strong class="fund-overview-card__title">{{fund.symbol || fund.title}}</strong>
+
+    </div>
+
+    <div class="fund-overview-card__topline">
+
+      <small class="fund-overview-card__type">{{fund.typeLabel || fund.type}}</small>
+
+      @if(fund.isEtf) {
+
+        <span class="fund-overview-card__etf-tag">ETF</span>
+
+      }
+
+    </div>
+
+    <p class="fund-overview-card__description">{{fund.description}}</p>
+
+  </div>
+
+  <div class="fund-overview-card__return">
+
+    <small>بازده روز</small>
+
+    <b class="fund-overview-card__return-value" [class.is-negative]="fund.returnTone === 'negative'">
+
+      {{fund.dailyReturnLabel || fund.returnText}}
+
+    </b>
+
+  </div>
+
+</article>
         }
       </div>
     </div>
   </section>
 
   <section class="dashboard-grid dashboard-grid--content">
-    <article class="dashboard-panel">
-      <div class="dashboard-section__header">
+    <!-- <article class="dashboard-panel"> -->
+      <!-- <div class="dashboard-section__header">
         <div>
           <span class="section-kicker">روند دارایی</span>
         </div>
@@ -230,8 +265,8 @@
         }@else {
         <img src="/images/empty-scenario/Group 19810.svg" class="img-fluid" alt="" />
         }
-      </div>
-    </article>
+      </div> -->
+    <!-- </article> -->
 
     <article class="dashboard-panel">
       <div class="dashboard-section__header">
@@ -281,3 +316,8 @@
 
   <app-consulting-guide class="mb-4 d-block"></app-consulting-guide>
 </main>
+
+
+
+
+

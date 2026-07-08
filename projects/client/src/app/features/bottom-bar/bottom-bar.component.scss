@@ -281,13 +281,13 @@
 
 .activate-route.bottom-bar__item,
 .bottom-bar__item--active {
-  color: #0f7b45;
+  color: #6666ff;
   transform: translateY(0) scale(1.015);
   background: transparent;
   box-shadow: none;
 
   .bottom-bar__label {
-    font-weight: 900;
+    font-weight: 700;
   }
 
   svg {
@@ -297,13 +297,13 @@
 
 .activate-route.bottom-bar__side-item,
 .bottom-bar__side-item--active {
-  color: #0f7b45;
+  color: #6666ff;
   transform: translateY(0) scale(1.015);
   background: transparent;
   box-shadow: none;
 
   .bottom-bar__side-label {
-    font-weight: 900;
+    font-weight: 700;
   }
 
   svg {
