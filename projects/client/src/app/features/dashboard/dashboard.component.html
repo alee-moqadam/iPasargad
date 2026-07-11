@@ -1,4 +1,5 @@
 <main class="dashboard-shell" dir="rtl">
+  <div class="dashboard-main-column">
   <section class="dashboard-summary-carousel" aria-label="خلاصه وضعیت">
     <div class="dashboard-summary-track" #summaryTrack (scroll)="onSummaryCarouselScroll(summaryTrack)">
       <article class="summary-carousel-card asset-summary-card" [class.summary-carousel-card--active]="isActiveSummaryCard('assets')"
@@ -316,6 +317,43 @@
   </section>
 
   <app-consulting-guide class="mb-4 d-block"></app-consulting-guide>
+  </div>
+
+  <aside class="dashboard-desktop-sidebar" aria-label="پیشنهادها و محتوای تکمیلی">
+    <section class="dashboard-sidebar-card dashboard-sidebar-card--promo">
+      <ngb-carousel
+        class="dashboard-promo-carousel"
+        [showNavigationArrows]="false"
+        [showNavigationIndicators]="true"
+        [interval]="4500"
+        [pauseOnHover]="true"
+        [wrap]="true"
+      >
+        @for (item of getSidebarPromoItems(); track item.seoRegisterNumber || $index) {
+        <ng-template ngbSlide>
+          <article
+            class="dashboard-promo-slide"
+            [routerLink]="getFundDetailLink(item)"
+            [attr.role]="getFundDetailLink(item) ? 'link' : null"
+            [attr.tabindex]="getFundDetailLink(item) ? '0' : null"
+          >
+            @if(getAttachment(item, attachmentTypes.HorizontalBanner); as banner) {
+            <img [src]="apiUrl + '/' + banner.downloadLink" [alt]="item.title || item.symbol || 'پیشنهاد سرمایه‌گذاری'" />
+            } @else {
+            <div class="dashboard-promo-slide__placeholder">
+              <span>پیشنهاد سرمایه‌گذاری</span>
+            </div>
+            }
+          </article>
+        </ng-template>
+        }
+      </ngb-carousel>
+    </section>
+
+    <section class="dashboard-sidebar-card dashboard-sidebar-placeholder" aria-label="Market News placeholder"></section>
+    <section class="dashboard-sidebar-card dashboard-sidebar-placeholder" aria-label="Educational Content placeholder"></section>
+    <section class="dashboard-sidebar-card dashboard-sidebar-placeholder" aria-label="Investment Tips placeholder"></section>
+  </aside>
 </main>
 
 

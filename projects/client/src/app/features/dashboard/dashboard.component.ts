@@ -640,6 +640,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return this.useMockViewData ? this.mockFundCards : [];
   }
 
+  getSidebarPromoItems() {
+    const loadedItems = this.allMutualFundDetail();
+
+    if (loadedItems?.length) {
+      return loadedItems;
+    }
+
+    return this.useMockViewData ? this.mockFundCards : [];
+  }
+
   getFundDetailLink(fund: { seoRegisterNumber?: number | string | null }) {
     const seoRegisterNumber = fund?.seoRegisterNumber;
 
