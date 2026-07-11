@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/features/dashboard/upload-receipt-modal/upload-receipt-modal.component.scss"],
-  "sourcesContent": [":host {\n  input[type=\"radio\"] {\n    visibility: hidden;\n  }\n\n  .nav-link.active {\n    background-color: white;\n    box-shadow: var(--dtx-box-shadow-sm) !important;\n  }\n\n  .img-thumbnail {\n    height: 60px;\n    &::after {\n      content: '';\n      position: absolute;\n      inset: 0;\n      background-color: #00000099;\n    }\n    img {\n      width: 100%;\n    }\n    fa-icon {\n      position: absolute;\n      top: calc(50% - 10px);\n      left: calc(50% - 10px);\n      z-index: 2;\n      color: #FF8D98\n    }\n  }\n\n  .dropdown-icon {\n    height: 26px;\n  }  \n}\n\n::ng-deep {\n  .tooltip-inner {\n    text-align: justify !important;\n  }\n}\n"],
-  "mappings": ";AACE,MAAA,KAAA,CAAA;AACE,cAAA;;AAGF,MAAA,CAAA,QAAA,CAAA;AACE,oBAAA;AACA,cAAA,IAAA;;AAGF,MAAA,CAAA;AACE,UAAA;;AACA,MAAA,CAFF,aAEE;AACE,WAAA;AACA,YAAA;AACA,SAAA;AACA,oBAAA,KAAA,CAAA,EAAA,CAAA,EAAA,CAAA,EAAA;;AAEF,MAAA,CARF,cAQE;AACE,SAAA;;AAEF,MAAA,CAXF,cAWE;AACE,YAAA;AACA,OAAA,KAAA,IAAA,EAAA;AACA,QAAA,KAAA,IAAA,EAAA;AACA,WAAA;AACA,SAAA;;AAIJ,MAAA,CAAA;AACE,UAAA;;AAKF,UAAA,CAAA;AACE,cAAA;;",
-  "names": []
-}

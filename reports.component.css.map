@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/features/reports/reports.component.scss"],
-  "sourcesContent": [":host::ng-deep {\n    .ng-select-container , .ng-dropdown-panel{\n        border-radius: calc(var(--dtx-card-border-radius)/2) !important;\n        background-color: var(--dtx-gray-150);\n        font-weight: bold;\n        overflow: hidden;\n    }\n\n    .ng-placeholder {\n      font-size: .8rem;\n    }\n\n    // .input-group>.form-control {\n    //     border-radius: var(--dtx-border-radius) !important;\n    //     border-top-left-radius: 0 !important;\n    //     border-bottom-left-radius: 0 !important;\n    // }\n    \n    // .input-group> :not(:first-child):not(ngb-datepicker) {\n    //     border-radius: var(--dtx-border-radius) !important;\n    //     border-top-right-radius: 0 !important;\n    //     border-bottom-right-radius: 0 !important;\n    // }\n\n    .more-button {\n        width: 42px;\n        height: 42px;\n        cursor: pointer;\n        display: inline-block;\n        align-content: center;\n        text-align: center;\n\n    }\n}"],
-  "mappings": ";AACI,KAAA,UAAA,CAAA;AAAA,KAAA,UAAA,CAAA;AACI,iBAAA,KAAA,IAAA,0BAAA,EAAA;AACA,oBAAA,IAAA;AACA,eAAA;AACA,YAAA;;AAGJ,KAAA,UAAA,CAAA;AACE,aAAA;;AAeF,KAAA,UAAA,CAAA;AACI,SAAA;AACA,UAAA;AACA,UAAA;AACA,WAAA;AACA,iBAAA;AACA,cAAA;;",
-  "names": []
-}

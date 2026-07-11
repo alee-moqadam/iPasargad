@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/features/portfolio/asset-portfolio-chart/asset-portfolio-chart.component.scss"],
-  "sourcesContent": [".bg-asset {\n    background: transparent linear-gradient(91deg, #37414b 0%, #0080ff 100%) 0% 0% no-repeat padding-box;\n}\n.asset-svg {\n    // background: url(\"../../../../public/svg/card-dashboard-bg.svg\");\n    background-size: cover;\n}\n.percentage-box {\n  width: 45px;\n  height: 45px;\n  border-radius: .5rem;\n}\n\n.fund-profile-info {\n  background: #EBF5FF;\n  border-radius: 10px;\n}\n\n.custom-dashed-border {\n  border: 1px dashed #cdd7e1;\n  border-radius: 10px;\n}\n\n.dot{\n  height: 48px;\n  width: 48px;\n  border-radius: 15px;\n}\n\n.clicked{\n  color: #ffffff;\nbackground-color: #3333cc;\nborder-color: #3333cc;\n}"],
-  "mappings": ";AAAA,CAAA;AACI;IAAA,YAAA;MAAA,KAAA;MAAA,QAAA,EAAA;MAAA,QAAA,MAAA,GAAA,GAAA,UAAA;;AAEJ,CAAA;AAEI,mBAAA;;AAEJ,CAAA;AACE,SAAA;AACA,UAAA;AACA,iBAAA;;AAGF,CAAA;AACE,cAAA;AACA,iBAAA;;AAGF,CAAA;AACE,UAAA,IAAA,OAAA;AACA,iBAAA;;AAGF,CAAA;AACE,UAAA;AACA,SAAA;AACA,iBAAA;;AAGF,CAAA;AACE,SAAA;AACF,oBAAA;AACA,gBAAA;;",
-  "names": []
-}

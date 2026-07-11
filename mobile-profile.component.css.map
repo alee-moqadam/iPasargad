@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/features/mobile/mobile-profile/mobile-profile.component.scss"],
-  "sourcesContent": [":host {\n  .img-profile {\n    width: 56px;\n    height: 56px;\n    border-radius: 50%;\n    border: 1px solid #afb9c3;\n    background-color: #cdd7e1;\n  }\n}\n"],
-  "mappings": ";AACE,MAAA,CAAA;AACE,SAAA;AACA,UAAA;AACA,iBAAA;AACA,UAAA,IAAA,MAAA;AACA,oBAAA;;",
-  "names": []
-}

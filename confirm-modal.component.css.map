@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/shared/components/confirm-modal/confirm-modal.component.scss"],
-  "sourcesContent": ["::ng-deep{\n    .confirm-modal-dialog {\n        position:fixed;\n        top:auto;\n        right:auto;\n        left:auto;\n        bottom:0;\n    }    \n  \n    .modal-content {\n        // background-color: var(--dtx-modal-bg) !important;\n        background-color: #ffffff !important;\n        background-clip: padding-box !important;\n    }\n\n}\n"],
-  "mappings": ";AACI,UAAA,CAAA;AACI,YAAA;AACA,OAAA;AACA,SAAA;AACA,QAAA;AACA,UAAA;;AAGJ,UAAA,CAAA;AAEI,oBAAA;AACA,mBAAA;;",
-  "names": []
-}

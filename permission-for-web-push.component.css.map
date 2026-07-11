@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/shared/components/permission-for-web-push/permission-for-web-push.component.scss"],
-  "sourcesContent": [":host {\n    position: fixed;\n    top: 0;\n    left: 0;\n    z-index: 1031;\n    @media (min-width: 600px) {\n        transform: translate(-50%, -50%);\n        top: 15%;\n        left: 50%;\n      }\n}\n"],
-  "mappings": ";AAAA;AACI,YAAA;AACA,OAAA;AACA,QAAA;AACA,WAAA;;AACA,OAAA,CAAA,SAAA,EAAA;AALJ;AAMQ,eAAA,UAAA,IAAA,EAAA;AACA,SAAA;AACA,UAAA;;;",
-  "names": []
-}

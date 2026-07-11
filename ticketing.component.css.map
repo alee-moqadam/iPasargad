@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/features/ticketing/ticketing.component.scss"],
-  "sourcesContent": [":host{\n    .card{\n        border-radius: 15px;\n    }\n    .card-header{\n        border-radius:15px 15px 0 0 !important;\n        background-color: #fff;\n    }\n}"],
-  "mappings": ";AACI,MAAA,CAAA;AACI,iBAAA;;AAEJ,MAAA,CAAA;AACI,iBAAA,KAAA,KAAA,EAAA;AACA,oBAAA;;",
-  "names": []
-}

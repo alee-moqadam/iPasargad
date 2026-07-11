@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/auth/animated-background/animated-background.component.scss"],
-  "sourcesContent": [".animated-background {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));\n  grid-auto-rows: 42px;\n  gap: 0;\n\n  background: linear-gradient(to bottom, #f9fcff, #ebf5ff);\n\n  .square {\n    width: 100%;\n    height: 100%;\n    transition: background-color 2s ease-in-out, opacity 2s ease-in-out; \n  }\n}\n"],
-  "mappings": ";AAAA,CAAA;AACE,YAAA;AACA,OAAA;AACA,QAAA;AACA,SAAA;AACA,UAAA;AACA,WAAA;AACA,yBAAA,OAAA,SAAA,EAAA,OAAA,IAAA,EAAA;AACA,kBAAA;AACA,OAAA;AAEA;IAAA;MAAA,GAAA,MAAA;MAAA,OAAA;MAAA;;AAEA,CAbF,oBAaE,CAAA;AACE,SAAA;AACA,UAAA;AACA,cAAA,iBAAA,GAAA,WAAA,EAAA,QAAA,GAAA;;",
-  "names": []
-}

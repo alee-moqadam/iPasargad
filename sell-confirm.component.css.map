@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/features/fund/buy-sell-fund/sell-confirm/sell-confirm.component.scss"],
-  "sourcesContent": ["  .logo-loading-placeholder {\n    width: 30px;\n    min-width: 30px;\n    height: 30px;\n    border-radius: 40%;\n    background: linear-gradient(90deg, #f3f3f3 25%, #e0e0e0 50%, #f3f3f3 75%);\n    background-size: 200% 100%;\n    animation: shimmer 1.2s infinite linear;\n  }\n\n  @keyframes shimmer {\n    0% { background-position: 200% 0; }\n    100% { background-position: -200% 0; }\n  }\n"],
-  "mappings": ";AAAE,CAAA;AACE,SAAA;AACA,aAAA;AACA,UAAA;AACA,iBAAA;AACA;IAAA;MAAA,KAAA;MAAA,QAAA,GAAA;MAAA,QAAA,GAAA;MAAA,QAAA;AACA,mBAAA,KAAA;AACA,aAAA,QAAA,KAAA,SAAA;;AAGF,WAHE;AAIA;AAAK,yBAAA,KAAA;;AACL;AAAO,yBAAA,MAAA;;;",
-  "names": []
-}

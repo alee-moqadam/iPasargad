@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/app.component.scss"],
-  "sourcesContent": ["::ng-deep .modal-content {\n    border-radius: var(--dtx-border-radius-sm);\n    // background-color: var(--dtx-modal-bg) !important;\n}\n.custome-header{\n    background-color: var(--dtx-modal-bg) !important;\n    border-radius: 20px 20px 0px 0px;\n    border-bottom: 1px solid #b6b6b6;\n}\n.custome-body{\n    background-color: var(--dtx-modal-bg) !important;\n    border-radius: 0px 0px 20px 20px;\n}\n"],
-  "mappings": ";AAAA,UAAA,CAAA;AACI,iBAAA,IAAA;;AAGJ,CAAA;AACI,oBAAA,IAAA;AACA,iBAAA,KAAA,KAAA,IAAA;AACA,iBAAA,IAAA,MAAA;;AAEJ,CAAA;AACI,oBAAA,IAAA;AACA,iBAAA,IAAA,IAAA,KAAA;;",
-  "names": []
-}

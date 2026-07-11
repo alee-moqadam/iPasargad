@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/client/src/app/features/gift-card/gift-confirmation-modal/gift-confirmation-modal.component.scss"],
-  "sourcesContent": [".custom-dashed-border {\n    border: 1px dashed #cdd7e1;\n    border-radius: 10px;\n  }"],
-  "mappings": ";AAAA,CAAA;AACI,UAAA,IAAA,OAAA;AACA,iBAAA;;",
-  "names": []
-}
