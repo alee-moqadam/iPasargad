@@ -42082,60 +42082,133 @@ var ExchangeFundModalComponent = _ExchangeFundModalComponent;
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ExchangeFundModalComponent, { className: "ExchangeFundModalComponent" });
 })();
 
+// projects/client/src/app/features/dashboard/asset-trend-background/asset-trend-background.component.ts
+function AssetTrendBackgroundComponent_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275element(0, "path", 1);
+  }
+  if (rf & 2) {
+    const ctx_r0 = \u0275\u0275nextContext();
+    \u0275\u0275attribute("d", ctx_r0.trendPath);
+  }
+}
+var _AssetTrendBackgroundComponent = class _AssetTrendBackgroundComponent {
+  constructor(elementRef) {
+    this.elementRef = elementRef;
+    this.totalAssets = 0;
+    this.renderPath = signal(true);
+  }
+  ngAfterViewInit() {
+    if (!("IntersectionObserver" in window)) {
+      return;
+    }
+    this.intersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          this.replay();
+        }
+      });
+    }, { threshold: 0.65 });
+    this.intersectionObserver.observe(this.elementRef.nativeElement);
+  }
+  ngOnDestroy() {
+    this.intersectionObserver?.disconnect();
+  }
+  onMouseEnter() {
+    if (window.matchMedia?.("(hover: hover)").matches) {
+      this.replay();
+    }
+  }
+  get trendPath() {
+    return Number(this.totalAssets) > 0 ? "M 4 118 C 34 114, 48 100, 76 104 S 118 112, 146 88 S 192 74, 216 79 S 252 90, 280 58 S 326 39, 356 30" : "M 4 108 C 32 107, 54 110, 82 109 S 128 106, 154 109 S 196 113, 224 110 S 270 107, 302 109 S 338 112, 356 110";
+  }
+  replay() {
+    this.renderPath.set(false);
+    requestAnimationFrame(() => this.renderPath.set(true));
+  }
+};
+_AssetTrendBackgroundComponent.\u0275fac = function AssetTrendBackgroundComponent_Factory(__ngFactoryType__) {
+  return new (__ngFactoryType__ || _AssetTrendBackgroundComponent)(\u0275\u0275directiveInject(ElementRef));
+};
+_AssetTrendBackgroundComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AssetTrendBackgroundComponent, selectors: [["app-asset-trend-background"]], hostBindings: function AssetTrendBackgroundComponent_HostBindings(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275listener("mouseenter", function AssetTrendBackgroundComponent_mouseenter_HostBindingHandler() {
+      return ctx.onMouseEnter();
+    });
+  }
+}, inputs: { totalAssets: "totalAssets" }, standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 2, vars: 1, consts: [["viewBox", "0 0 360 160", "preserveAspectRatio", "none", "aria-hidden", "true", "focusable", "false", 1, "asset-trend-background"], ["pathLength", "1", 1, "asset-trend-background__line"]], template: function AssetTrendBackgroundComponent_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(0, "svg", 0);
+    \u0275\u0275template(1, AssetTrendBackgroundComponent_Conditional_1_Template, 1, 1, ":svg:path", 1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    \u0275\u0275advance();
+    \u0275\u0275conditional(ctx.renderPath() ? 1 : -1);
+  }
+}, styles: ["\n\n[_nghost-%COMP%] {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  display: block;\n  overflow: hidden;\n  pointer-events: none;\n  border-radius: inherit;\n}\n.asset-trend-background[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.asset-trend-background__line[_ngcontent-%COMP%] {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 4.5;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  opacity: 0.065;\n  stroke-dasharray: 1;\n  stroke-dashoffset: 1;\n  animation: _ngcontent-%COMP%_assetTrendDraw 1400ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;\n}\n@keyframes _ngcontent-%COMP%_assetTrendDraw {\n  to {\n    stroke-dashoffset: 0;\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .asset-trend-background__line[_ngcontent-%COMP%] {\n    animation: none;\n    stroke-dashoffset: 0;\n  }\n}\n/*# sourceMappingURL=asset-trend-background.component.css.map */"] });
+var AssetTrendBackgroundComponent = _AssetTrendBackgroundComponent;
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AssetTrendBackgroundComponent, { className: "AssetTrendBackgroundComponent" });
+})();
+
 // projects/client/src/app/features/dashboard/dashboard.component.ts
 var _forTrack03 = ($index, $item) => $item.title;
-function DashboardComponent_Conditional_57_Template(rf, ctx) {
+var _forTrack1 = ($index, $item) => $item.seoRegisterNumber || $index;
+function DashboardComponent_Conditional_59_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 52);
-    \u0275\u0275listener("click", function DashboardComponent_Conditional_57_Template_button_click_0_listener() {
+    \u0275\u0275elementStart(0, "button", 61);
+    \u0275\u0275listener("click", function DashboardComponent_Conditional_59_Template_button_click_0_listener() {
       \u0275\u0275restoreView(_r3);
       const ctx_r3 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r3.openSubscriptionModal());
     });
-    \u0275\u0275elementStart(1, "span", 53);
+    \u0275\u0275elementStart(1, "span", 62);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(2, "svg", 14);
-    \u0275\u0275element(3, "use", 21);
+    \u0275\u0275elementStart(2, "svg", 16);
+    \u0275\u0275element(3, "use", 23);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(4, "span", 54);
+    \u0275\u0275elementStart(4, "span", 63);
     \u0275\u0275text(5, "\u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(6, "small");
     \u0275\u0275text(7, "\u062E\u0631\u06CC\u062F \u0635\u0646\u062F\u0648\u0642");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(8, "button", 55);
-    \u0275\u0275listener("click", function DashboardComponent_Conditional_57_Template_button_click_8_listener() {
+    \u0275\u0275elementStart(8, "button", 64);
+    \u0275\u0275listener("click", function DashboardComponent_Conditional_59_Template_button_click_8_listener() {
       \u0275\u0275restoreView(_r3);
       const ctx_r3 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r3.openExchangeModal());
     });
-    \u0275\u0275elementStart(9, "span", 53);
+    \u0275\u0275elementStart(9, "span", 62);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(10, "svg", 14);
-    \u0275\u0275element(11, "use", 56);
+    \u0275\u0275elementStart(10, "svg", 16);
+    \u0275\u0275element(11, "use", 65);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(12, "span", 57);
+    \u0275\u0275elementStart(12, "span", 66);
     \u0275\u0275text(13, "\u062A\u0628\u062F\u06CC\u0644");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(14, "small");
     \u0275\u0275text(15, "\u0628\u06CC\u0646 \u0635\u0646\u062F\u0648\u0642\u200C\u0647\u0627");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(16, "button", 58);
-    \u0275\u0275listener("click", function DashboardComponent_Conditional_57_Template_button_click_16_listener() {
+    \u0275\u0275elementStart(16, "button", 67);
+    \u0275\u0275listener("click", function DashboardComponent_Conditional_59_Template_button_click_16_listener() {
       \u0275\u0275restoreView(_r3);
       const ctx_r3 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r3.openRedemptionModal());
     });
-    \u0275\u0275elementStart(17, "span", 53);
+    \u0275\u0275elementStart(17, "span", 62);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(18, "svg", 14);
-    \u0275\u0275element(19, "use", 59);
+    \u0275\u0275elementStart(18, "svg", 16);
+    \u0275\u0275element(19, "use", 68);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(20, "span", 57);
+    \u0275\u0275elementStart(20, "span", 66);
     \u0275\u0275text(21, "\u0628\u0631\u062F\u0627\u0634\u062A");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(22, "small");
@@ -42143,39 +42216,39 @@ function DashboardComponent_Conditional_57_Template(rf, ctx) {
     \u0275\u0275elementEnd()();
   }
 }
-function DashboardComponent_Conditional_58_Template(rf, ctx) {
+function DashboardComponent_Conditional_60_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "button", 60)(1, "span", 53);
+    \u0275\u0275elementStart(0, "button", 69)(1, "span", 62);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(2, "svg", 14);
-    \u0275\u0275element(3, "use", 15);
+    \u0275\u0275elementStart(2, "svg", 16);
+    \u0275\u0275element(3, "use", 17);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(4, "span", 57);
+    \u0275\u0275elementStart(4, "span", 66);
     \u0275\u0275text(5, "\u0645\u062F\u06CC\u0631\u06CC\u062A \u06A9\u0627\u0631\u062A");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(6, "small");
     \u0275\u0275text(7, "\u0628\u0647\u200C\u0632\u0648\u062F\u06CC");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(8, "button", 60)(9, "span", 53);
+    \u0275\u0275elementStart(8, "button", 69)(9, "span", 62);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(10, "svg", 14);
-    \u0275\u0275element(11, "use", 21);
+    \u0275\u0275elementStart(10, "svg", 16);
+    \u0275\u0275element(11, "use", 23);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(12, "span", 57);
+    \u0275\u0275elementStart(12, "span", 66);
     \u0275\u0275text(13, "\u0627\u0641\u0632\u0648\u062F\u0646 \u06A9\u0627\u0631\u062A");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(14, "small");
     \u0275\u0275text(15, "\u0646\u0645\u0627\u06CC\u0634\u06CC");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(16, "button", 60)(17, "span", 53);
+    \u0275\u0275elementStart(16, "button", 69)(17, "span", 62);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(18, "svg", 14);
-    \u0275\u0275element(19, "use", 61);
+    \u0275\u0275elementStart(18, "svg", 16);
+    \u0275\u0275element(19, "use", 70);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(20, "span", 57);
+    \u0275\u0275elementStart(20, "span", 66);
     \u0275\u0275text(21, "\u067E\u0631\u062F\u0627\u062E\u062A\u200C\u0647\u0627");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(22, "small");
@@ -42183,39 +42256,39 @@ function DashboardComponent_Conditional_58_Template(rf, ctx) {
     \u0275\u0275elementEnd()();
   }
 }
-function DashboardComponent_Conditional_59_Template(rf, ctx) {
+function DashboardComponent_Conditional_61_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "button", 60)(1, "span", 53);
+    \u0275\u0275elementStart(0, "button", 69)(1, "span", 62);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(2, "svg", 14);
-    \u0275\u0275element(3, "use", 21);
+    \u0275\u0275elementStart(2, "svg", 16);
+    \u0275\u0275element(3, "use", 23);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(4, "span", 57);
+    \u0275\u0275elementStart(4, "span", 66);
     \u0275\u0275text(5, "\u0641\u0639\u0627\u0644\u200C\u0633\u0627\u0632\u06CC");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(6, "small");
     \u0275\u0275text(7, "\u0628\u0647\u200C\u0632\u0648\u062F\u06CC");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(8, "button", 60)(9, "span", 53);
+    \u0275\u0275elementStart(8, "button", 69)(9, "span", 62);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(10, "svg", 14);
-    \u0275\u0275element(11, "use", 62);
+    \u0275\u0275elementStart(10, "svg", 16);
+    \u0275\u0275element(11, "use", 71);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(12, "span", 57);
+    \u0275\u0275elementStart(12, "span", 66);
     \u0275\u0275text(13, "\u0645\u062F\u06CC\u0631\u06CC\u062A \u0627\u062A\u0635\u0627\u0644");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(14, "small");
     \u0275\u0275text(15, "\u0646\u0645\u0627\u06CC\u0634\u06CC");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(16, "button", 60)(17, "span", 53);
+    \u0275\u0275elementStart(16, "button", 69)(17, "span", 62);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(18, "svg", 14);
-    \u0275\u0275element(19, "use", 61);
+    \u0275\u0275elementStart(18, "svg", 16);
+    \u0275\u0275element(19, "use", 70);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(20, "span", 57);
+    \u0275\u0275elementStart(20, "span", 66);
     \u0275\u0275text(21, "\u0645\u0634\u0627\u0647\u062F\u0647 \u0648\u0636\u0639\u06CC\u062A");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(22, "small");
@@ -42223,36 +42296,36 @@ function DashboardComponent_Conditional_59_Template(rf, ctx) {
     \u0275\u0275elementEnd()();
   }
 }
-function DashboardComponent_For_79_Conditional_13_Template(rf, ctx) {
+function DashboardComponent_For_81_Conditional_13_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 74);
+    \u0275\u0275elementStart(0, "span", 83);
     \u0275\u0275text(1, "ETF");
     \u0275\u0275elementEnd();
   }
 }
-function DashboardComponent_For_79_Template(rf, ctx) {
+function DashboardComponent_For_81_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "article", 63)(1, "div", 64)(2, "div", 65);
-    \u0275\u0275element(3, "img", 66);
+    \u0275\u0275elementStart(0, "article", 72)(1, "div", 73)(2, "div", 74);
+    \u0275\u0275element(3, "img", 75);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "span", 67);
-    \u0275\u0275element(5, "span", 68);
+    \u0275\u0275elementStart(4, "span", 76);
+    \u0275\u0275element(5, "span", 77);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(6, "div", 69)(7, "div", 70)(8, "strong", 71);
+    \u0275\u0275elementStart(6, "div", 78)(7, "div", 79)(8, "strong", 80);
     \u0275\u0275text(9);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(10, "div", 72)(11, "small", 73);
+    \u0275\u0275elementStart(10, "div", 81)(11, "small", 82);
     \u0275\u0275text(12);
     \u0275\u0275elementEnd();
-    \u0275\u0275template(13, DashboardComponent_For_79_Conditional_13_Template, 2, 0, "span", 74);
+    \u0275\u0275template(13, DashboardComponent_For_81_Conditional_13_Template, 2, 0, "span", 83);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(14, "p", 75);
+    \u0275\u0275elementStart(14, "p", 84);
     \u0275\u0275text(15);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(16, "div", 76)(17, "small");
+    \u0275\u0275elementStart(16, "div", 85)(17, "small");
     \u0275\u0275text(18, "\u0628\u0627\u0632\u062F\u0647 \u0631\u0648\u0632");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(19, "b", 77);
+    \u0275\u0275elementStart(19, "b", 86);
     \u0275\u0275text(20);
     \u0275\u0275elementEnd()()();
   }
@@ -42279,9 +42352,9 @@ function DashboardComponent_For_79_Template(rf, ctx) {
     \u0275\u0275textInterpolate1(" ", fund_r5.dailyReturnLabel || fund_r5.returnText, " ");
   }
 }
-function DashboardComponent_For_90_Template(rf, ctx) {
+function DashboardComponent_For_92_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 44)(1, "div")(2, "strong");
+    \u0275\u0275elementStart(0, "div", 46)(1, "div")(2, "strong");
     \u0275\u0275text(3);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(4, "span");
@@ -42301,11 +42374,11 @@ function DashboardComponent_For_90_Template(rf, ctx) {
     \u0275\u0275textInterpolate(activity_r6.amount);
   }
 }
-function DashboardComponent_For_100_Template(rf, ctx) {
+function DashboardComponent_For_102_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "article", 49);
+    \u0275\u0275elementStart(0, "article", 51);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(1, "svg", 78);
+    \u0275\u0275elementStart(1, "svg", 87);
     \u0275\u0275element(2, "use");
     \u0275\u0275elementEnd();
     \u0275\u0275namespaceHTML();
@@ -42324,6 +42397,44 @@ function DashboardComponent_For_100_Template(rf, ctx) {
     \u0275\u0275textInterpolate(service_r7.title);
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate(service_r7.description);
+  }
+}
+function DashboardComponent_For_109_ng_template_0_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275element(0, "img", 75);
+  }
+  if (rf & 2) {
+    const item_r8 = \u0275\u0275nextContext(2).$implicit;
+    const ctx_r3 = \u0275\u0275nextContext();
+    \u0275\u0275property("src", ctx_r3.apiUrl + "/" + ctx.downloadLink, \u0275\u0275sanitizeUrl)("alt", item_r8.title || item_r8.symbol || "\u067E\u06CC\u0634\u0646\u0647\u0627\u062F \u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC");
+  }
+}
+function DashboardComponent_For_109_ng_template_0_Conditional_2_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 89)(1, "span");
+    \u0275\u0275text(2, "\u067E\u06CC\u0634\u0646\u0647\u0627\u062F \u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC");
+    \u0275\u0275elementEnd()();
+  }
+}
+function DashboardComponent_For_109_ng_template_0_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "article", 88);
+    \u0275\u0275template(1, DashboardComponent_For_109_ng_template_0_Conditional_1_Template, 1, 2, "img", 75)(2, DashboardComponent_For_109_ng_template_0_Conditional_2_Template, 3, 0, "div", 89);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    let tmp_15_0;
+    const item_r8 = \u0275\u0275nextContext().$implicit;
+    const ctx_r3 = \u0275\u0275nextContext();
+    \u0275\u0275property("routerLink", ctx_r3.getFundDetailLink(item_r8));
+    \u0275\u0275attribute("role", ctx_r3.getFundDetailLink(item_r8) ? "link" : null)("tabindex", ctx_r3.getFundDetailLink(item_r8) ? "0" : null);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((tmp_15_0 = ctx_r3.getAttachment(item_r8, ctx_r3.attachmentTypes.HorizontalBanner)) ? 1 : 2, tmp_15_0);
+  }
+}
+function DashboardComponent_For_109_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275template(0, DashboardComponent_For_109_ng_template_0_Template, 3, 4, "ng-template", 57);
   }
 }
 use([install3, install2, install, install6, install8, install10, install5, install7]);
@@ -42802,6 +42913,13 @@ var _DashboardComponent = class _DashboardComponent {
     }
     return this.useMockViewData ? this.mockFundCards : [];
   }
+  getSidebarPromoItems() {
+    const loadedItems = this.allMutualFundDetail();
+    if (loadedItems?.length) {
+      return loadedItems;
+    }
+    return this.useMockViewData ? this.mockFundCards : [];
+  }
   getFundDetailLink(fund) {
     const seoRegisterNumber = fund?.seoRegisterNumber;
     if (!seoRegisterNumber) {
@@ -42816,167 +42934,175 @@ _DashboardComponent.\u0275fac = function DashboardComponent_Factory(__ngFactoryT
 _DashboardComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DashboardComponent, selectors: [["app-dashboard"]], standalone: true, features: [\u0275\u0275ProvidersFeature(
   [DecimalPipe, MaskNumberPipe, provideEchartsCore({ echarts: core_exports })]
   // changeDetection: ChangeDetectionStrategy.OnPush
-), \u0275\u0275StandaloneFeature], decls: 103, vars: 14, consts: [["summaryTrack", ""], ["dir", "rtl", 1, "dashboard-shell"], ["aria-label", "\u062E\u0644\u0627\u0635\u0647 \u0648\u0636\u0639\u06CC\u062A", 1, "dashboard-summary-carousel"], [1, "dashboard-summary-track", 3, "scroll"], [1, "summary-carousel-card", "asset-summary-card", 3, "click"], [1, "section-kicker-white"], [1, "asset-summary-card__value"], [3, "maskNumber"], [1, "asset-summary-card__meta"], ["routerLink", "/portfolio", 1, "btn", "btn-light", "btn-sm", "asset-summary-card__button"], ["viewBox", "0 0 24 24", "width", "14", "height", "14"], [0, "xlink", "href", "#ico_drop_left"], [1, "summary-carousel-card", "bank-status-card", 3, "click"], [1, "summary-card-icon"], ["viewBox", "0 0 24 24", "width", "24", "height", "24"], [0, "xlink", "href", "#ico_card"], [1, "section-kicker"], [1, "summary-card-footer"], [1, "status-chip", "status-chip--active"], [1, "action-hint"], [1, "summary-carousel-card", "bank-status-card", "bank-status-card--direct", 3, "click"], [0, "xlink", "href", "#ico_box_plus_fill"], [1, "status-chip"], ["aria-label", "\u0627\u0646\u062A\u062E\u0627\u0628 \u06A9\u0627\u0631\u062A \u062E\u0644\u0627\u0635\u0647", 1, "summary-carousel-indicators"], ["type", "button", "aria-label", "\u0646\u0645\u0627\u06CC\u0634 \u062F\u0627\u0631\u0627\u06CC\u06CC \u06A9\u0644", 3, "click"], ["type", "button", "aria-label", "\u0646\u0645\u0627\u06CC\u0634 \u06A9\u0627\u0631\u062A \u0628\u0627\u0646\u06A9\u06CC", 3, "click"], ["type", "button", "aria-label", "\u0646\u0645\u0627\u06CC\u0634 \u067E\u0631\u062F\u0627\u062E\u062A \u0645\u0633\u062A\u0642\u06CC\u0645", 3, "click"], ["aria-label", "\u0639\u0645\u0644\u06CC\u0627\u062A \u0633\u0631\u06CC\u0639", 1, "dashboard-quick-actions"], [1, "dashboard-help-link"], ["icon", "info-circle", "container", "body", "viewBox", "0 0 24 24", 1, "mx-1", 2, "width", "16px", "min-width", "16px"], ["fill", "CurrentColor", "d", "M12,1.7c-5.7,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3,10.3-4.6,10.3-10.3c0-2.7-1.1-5.3-3-7.3-1.9-1.9-4.5-3-7.2-3ZM11,6.7c0-.6.4-1,1-1s1,.4,1,1v6.3c0,.6-.4,1-1,1s-1-.4-1-1v-6.3ZM11,16.5c0-.6.4-1,1-1s1,.4,1,1h0c0,.6-.4,1-1,1s-1-.4-1-1h0Z"], ["target", "_blank", "href", "https://academy.ipasargad.ir/how-to-invest-in-ipasargad-app/", 1, "text-primary", "fw-medium", "text-decoration-none"], ["target", "_blank", "href", "https://academy.ipasargad.ir/exchange-funds/", 1, "text-primary", "fw-medium", "text-decoration-none"], [1, "dashboard-section", "dashboard-section--funds"], [1, "fund-section-header"], ["routerLink", "/fund-list", 1, "fund-section-link"], [1, "fund-overview-scroll"], [1, "fund-overview-track"], [3, "class", "fund-overview-card--linked", "fund-overview-card--featured", "routerLink"], [1, "dashboard-grid", "dashboard-grid--content"], [1, "dashboard-panel"], [1, "dashboard-section__header"], ["routerLink", "/reporting/requests", 1, "btn", "btn-link", "text-decoration-none"], [1, "mock-activity-list"], [1, "mock-activity-item"], [1, "recent-activity-frame"], [1, "d-block", "h-100"], [1, "dashboard-section", "dashboard-section--secondary"], [1, "secondary-service-grid"], [1, "secondary-service-card"], [1, "d-block"], [1, "mb-4", "d-block"], ["type", "button", 1, "quick-action", "quick-action--invest", 3, "click"], [1, "quick-action__icon"], [1, "section-kicker-green"], ["type", "button", 1, "quick-action", "quick-action--exchange", 3, "click"], [0, "xlink", "href", "#ico_box_exhange_fill"], [1, "quick-action__label"], ["type", "button", 1, "quick-action", "quick-action--withdraw", 3, "click"], [0, "xlink", "href", "#ico_box_minuse_fill"], ["type", "button", "disabled", "", "aria-disabled", "true", 1, "quick-action", "quick-action--preview"], [0, "xlink", "href", "#ico_chart_bar_box"], [0, "xlink", "href", "#ico_app"], [3, "routerLink"], [1, "fund-overview-card__top-row"], [1, "fund-overview-card__media"], [3, "src", "alt"], ["aria-hidden", "true", 1, "fund-overview-card__status"], [1, "fund-overview-card__status-inner"], [1, "fund-overview-card__identity"], [1, "fund-overview-card__symbol-row"], [1, "fund-overview-card__title"], [1, "fund-overview-card__topline"], [1, "fund-overview-card__type"], [1, "fund-overview-card__etf-tag"], [1, "fund-overview-card__description"], [1, "fund-overview-card__return"], [1, "fund-overview-card__return-value"], ["viewBox", "0 0 24 24", "width", "28", "height", "28"]], template: function DashboardComponent_Template(rf, ctx) {
+), \u0275\u0275StandaloneFeature], decls: 113, vars: 20, consts: [["summaryTrack", ""], ["dir", "rtl", 1, "dashboard-shell"], [1, "dashboard-main-column"], ["aria-label", "\u062E\u0644\u0627\u0635\u0647 \u0648\u0636\u0639\u06CC\u062A", 1, "dashboard-summary-carousel"], [1, "dashboard-summary-track", 3, "scroll"], [1, "summary-carousel-card", "asset-summary-card", 3, "click"], [3, "totalAssets"], [1, "section-kicker-white"], [1, "asset-summary-card__value"], [3, "maskNumber"], [1, "asset-summary-card__meta"], ["routerLink", "/portfolio", 1, "btn", "btn-light", "btn-sm", "asset-summary-card__button"], ["viewBox", "0 0 24 24", "width", "14", "height", "14"], [0, "xlink", "href", "#ico_drop_left"], [1, "summary-carousel-card", "bank-status-card", 3, "click"], [1, "summary-card-icon"], ["viewBox", "0 0 24 24", "width", "24", "height", "24"], [0, "xlink", "href", "#ico_card"], [1, "section-kicker"], [1, "summary-card-footer"], [1, "status-chip", "status-chip--active"], [1, "action-hint"], [1, "summary-carousel-card", "bank-status-card", "bank-status-card--direct", 3, "click"], [0, "xlink", "href", "#ico_box_plus_fill"], [1, "status-chip"], ["aria-label", "\u0627\u0646\u062A\u062E\u0627\u0628 \u06A9\u0627\u0631\u062A \u062E\u0644\u0627\u0635\u0647", 1, "summary-carousel-indicators"], ["type", "button", "aria-label", "\u0646\u0645\u0627\u06CC\u0634 \u062F\u0627\u0631\u0627\u06CC\u06CC \u06A9\u0644", 3, "click"], ["type", "button", "aria-label", "\u0646\u0645\u0627\u06CC\u0634 \u06A9\u0627\u0631\u062A \u0628\u0627\u0646\u06A9\u06CC", 3, "click"], ["type", "button", "aria-label", "\u0646\u0645\u0627\u06CC\u0634 \u067E\u0631\u062F\u0627\u062E\u062A \u0645\u0633\u062A\u0642\u06CC\u0645", 3, "click"], ["aria-label", "\u0639\u0645\u0644\u06CC\u0627\u062A \u0633\u0631\u06CC\u0639", 1, "dashboard-quick-actions"], [1, "dashboard-help-link"], ["icon", "info-circle", "container", "body", "viewBox", "0 0 24 24", 1, "mx-1", 2, "width", "16px", "min-width", "16px"], ["fill", "CurrentColor", "d", "M12,1.7c-5.7,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3,10.3-4.6,10.3-10.3c0-2.7-1.1-5.3-3-7.3-1.9-1.9-4.5-3-7.2-3ZM11,6.7c0-.6.4-1,1-1s1,.4,1,1v6.3c0,.6-.4,1-1,1s-1-.4-1-1v-6.3ZM11,16.5c0-.6.4-1,1-1s1,.4,1,1h0c0,.6-.4,1-1,1s-1-.4-1-1h0Z"], ["target", "_blank", "href", "https://academy.ipasargad.ir/how-to-invest-in-ipasargad-app/", 1, "text-primary", "fw-medium", "text-decoration-none"], ["target", "_blank", "href", "https://academy.ipasargad.ir/exchange-funds/", 1, "text-primary", "fw-medium", "text-decoration-none"], [1, "dashboard-section", "dashboard-section--funds"], [1, "fund-section-header"], ["routerLink", "/fund-list", 1, "fund-section-link"], [1, "fund-overview-scroll"], [1, "fund-overview-track"], [3, "class", "fund-overview-card--linked", "fund-overview-card--featured", "routerLink"], [1, "dashboard-grid", "dashboard-grid--content"], [1, "dashboard-panel"], [1, "dashboard-section__header"], ["routerLink", "/reporting/requests", 1, "btn", "btn-link", "text-decoration-none"], [1, "mock-activity-list"], [1, "mock-activity-item"], [1, "recent-activity-frame"], [1, "d-block", "h-100"], [1, "dashboard-section", "dashboard-section--secondary"], [1, "secondary-service-grid"], [1, "secondary-service-card"], [1, "d-block"], [1, "mb-4", "d-block"], ["aria-label", "\u067E\u06CC\u0634\u0646\u0647\u0627\u062F\u0647\u0627 \u0648 \u0645\u062D\u062A\u0648\u0627\u06CC \u062A\u06A9\u0645\u06CC\u0644\u06CC", 1, "dashboard-desktop-sidebar"], [1, "dashboard-sidebar-card", "dashboard-sidebar-card--promo"], [1, "dashboard-promo-carousel", 3, "showNavigationArrows", "showNavigationIndicators", "interval", "pauseOnHover", "wrap"], ["ngbSlide", ""], ["aria-label", "Market News placeholder", 1, "dashboard-sidebar-card", "dashboard-sidebar-placeholder"], ["aria-label", "Educational Content placeholder", 1, "dashboard-sidebar-card", "dashboard-sidebar-placeholder"], ["aria-label", "Investment Tips placeholder", 1, "dashboard-sidebar-card", "dashboard-sidebar-placeholder"], ["type", "button", 1, "quick-action", "quick-action--invest", 3, "click"], [1, "quick-action__icon"], [1, "section-kicker-green"], ["type", "button", 1, "quick-action", "quick-action--exchange", 3, "click"], [0, "xlink", "href", "#ico_box_exhange_fill"], [1, "quick-action__label"], ["type", "button", 1, "quick-action", "quick-action--withdraw", 3, "click"], [0, "xlink", "href", "#ico_box_minuse_fill"], ["type", "button", "disabled", "", "aria-disabled", "true", 1, "quick-action", "quick-action--preview"], [0, "xlink", "href", "#ico_chart_bar_box"], [0, "xlink", "href", "#ico_app"], [3, "routerLink"], [1, "fund-overview-card__top-row"], [1, "fund-overview-card__media"], [3, "src", "alt"], ["aria-hidden", "true", 1, "fund-overview-card__status"], [1, "fund-overview-card__status-inner"], [1, "fund-overview-card__identity"], [1, "fund-overview-card__symbol-row"], [1, "fund-overview-card__title"], [1, "fund-overview-card__topline"], [1, "fund-overview-card__type"], [1, "fund-overview-card__etf-tag"], [1, "fund-overview-card__description"], [1, "fund-overview-card__return"], [1, "fund-overview-card__return-value"], ["viewBox", "0 0 24 24", "width", "28", "height", "28"], [1, "dashboard-promo-slide", 3, "routerLink"], [1, "dashboard-promo-slide__placeholder"]], template: function DashboardComponent_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "main", 1)(1, "section", 2)(2, "div", 3, 0);
-    \u0275\u0275listener("scroll", function DashboardComponent_Template_div_scroll_2_listener() {
+    \u0275\u0275elementStart(0, "main", 1)(1, "div", 2)(2, "section", 3)(3, "div", 4, 0);
+    \u0275\u0275listener("scroll", function DashboardComponent_Template_div_scroll_3_listener() {
       \u0275\u0275restoreView(_r1);
-      const summaryTrack_r2 = \u0275\u0275reference(3);
+      const summaryTrack_r2 = \u0275\u0275reference(4);
       return \u0275\u0275resetView(ctx.onSummaryCarouselScroll(summaryTrack_r2));
     });
-    \u0275\u0275elementStart(4, "article", 4);
-    \u0275\u0275listener("click", function DashboardComponent_Template_article_click_4_listener() {
+    \u0275\u0275elementStart(5, "article", 5);
+    \u0275\u0275listener("click", function DashboardComponent_Template_article_click_5_listener() {
       \u0275\u0275restoreView(_r1);
       return \u0275\u0275resetView(ctx.setActiveSummaryCard("assets"));
     });
-    \u0275\u0275elementStart(5, "div", 5);
-    \u0275\u0275text(6, "\u062F\u0627\u0631\u0627\u06CC\u06CC \u06A9\u0644");
+    \u0275\u0275element(6, "app-asset-trend-background", 6);
+    \u0275\u0275elementStart(7, "div", 7);
+    \u0275\u0275text(8, "\u062F\u0627\u0631\u0627\u06CC\u06CC \u06A9\u0644");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "div", 6);
-    \u0275\u0275element(8, "span", 7);
-    \u0275\u0275elementStart(9, "small");
-    \u0275\u0275text(10, "\u0631\u06CC\u0627\u0644");
+    \u0275\u0275elementStart(9, "div", 8);
+    \u0275\u0275element(10, "span", 9);
+    \u0275\u0275elementStart(11, "small");
+    \u0275\u0275text(12, "\u0631\u06CC\u0627\u0644");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(11, "div", 8)(12, "span");
-    \u0275\u0275text(13, "\u0645\u062C\u0645\u0648\u0639 \u0627\u0631\u0632\u0634 \u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC\u200C\u0647\u0627\u06CC \u0634\u0645\u0627");
+    \u0275\u0275elementStart(13, "div", 10)(14, "span");
+    \u0275\u0275text(15, "\u0645\u062C\u0645\u0648\u0639 \u0627\u0631\u0632\u0634 \u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC\u200C\u0647\u0627\u06CC \u0634\u0645\u0627");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(14, "span");
-    \u0275\u0275text(15, "\u0628\u0647\u200C\u0631\u0648\u0632\u0631\u0633\u0627\u0646\u06CC \u0627\u0645\u0631\u0648\u0632");
+    \u0275\u0275elementStart(16, "span");
+    \u0275\u0275text(17, "\u0628\u0647\u200C\u0631\u0648\u0632\u0631\u0633\u0627\u0646\u06CC \u0627\u0645\u0631\u0648\u0632");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(16, "button", 9);
-    \u0275\u0275text(17, " \u0633\u0628\u062F \u062F\u0627\u0631\u0627\u06CC\u06CC ");
+    \u0275\u0275elementStart(18, "button", 11);
+    \u0275\u0275text(19, " \u0633\u0628\u062F \u062F\u0627\u0631\u0627\u06CC\u06CC ");
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(18, "svg", 10);
-    \u0275\u0275element(19, "use", 11);
+    \u0275\u0275elementStart(20, "svg", 12);
+    \u0275\u0275element(21, "use", 13);
     \u0275\u0275elementEnd()()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(20, "article", 12);
-    \u0275\u0275listener("click", function DashboardComponent_Template_article_click_20_listener() {
+    \u0275\u0275elementStart(22, "article", 14);
+    \u0275\u0275listener("click", function DashboardComponent_Template_article_click_22_listener() {
       \u0275\u0275restoreView(_r1);
       return \u0275\u0275resetView(ctx.setActiveSummaryCard("bank-card"));
     });
-    \u0275\u0275elementStart(21, "div", 13);
+    \u0275\u0275elementStart(23, "div", 15);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(22, "svg", 14);
-    \u0275\u0275element(23, "use", 15);
+    \u0275\u0275elementStart(24, "svg", 16);
+    \u0275\u0275element(25, "use", 17);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(24, "div")(25, "span", 16);
-    \u0275\u0275text(26, "\u06A9\u0627\u0631\u062A \u0628\u0627\u0646\u06A9\u06CC");
+    \u0275\u0275elementStart(26, "div")(27, "span", 18);
+    \u0275\u0275text(28, "\u06A9\u0627\u0631\u062A \u0628\u0627\u0646\u06A9\u06CC");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(27, "strong");
-    \u0275\u0275text(28, "\u06A9\u0627\u0631\u062A \u0645\u062A\u0635\u0644 \u0628\u0647 \u062D\u0633\u0627\u0628");
+    \u0275\u0275elementStart(29, "strong");
+    \u0275\u0275text(30, "\u06A9\u0627\u0631\u062A \u0645\u062A\u0635\u0644 \u0628\u0647 \u062D\u0633\u0627\u0628");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(29, "small");
-    \u0275\u0275text(30, "\u0645\u062F\u06CC\u0631\u06CC\u062A \u06A9\u0627\u0631\u062A\u200C\u0647\u0627\u06CC \u0628\u0627\u0646\u06A9\u06CC \u0648 \u067E\u0631\u062F\u0627\u062E\u062A\u200C\u0647\u0627");
+    \u0275\u0275elementStart(31, "small");
+    \u0275\u0275text(32, "\u0645\u062F\u06CC\u0631\u06CC\u062A \u06A9\u0627\u0631\u062A\u200C\u0647\u0627\u06CC \u0628\u0627\u0646\u06A9\u06CC \u0648 \u067E\u0631\u062F\u0627\u062E\u062A\u200C\u0647\u0627");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(31, "div", 17)(32, "span", 18);
-    \u0275\u0275text(33, "\u0641\u0639\u0627\u0644");
+    \u0275\u0275elementStart(33, "div", 19)(34, "span", 20);
+    \u0275\u0275text(35, "\u0641\u0639\u0627\u0644");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(34, "span", 19);
-    \u0275\u0275text(35, "\u0645\u062F\u06CC\u0631\u06CC\u062A \u06A9\u0627\u0631\u062A");
+    \u0275\u0275elementStart(36, "span", 21);
+    \u0275\u0275text(37, "\u0645\u062F\u06CC\u0631\u06CC\u062A \u06A9\u0627\u0631\u062A");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(36, "article", 20);
-    \u0275\u0275listener("click", function DashboardComponent_Template_article_click_36_listener() {
+    \u0275\u0275elementStart(38, "article", 22);
+    \u0275\u0275listener("click", function DashboardComponent_Template_article_click_38_listener() {
       \u0275\u0275restoreView(_r1);
       return \u0275\u0275resetView(ctx.setActiveSummaryCard("direct-debit"));
     });
-    \u0275\u0275elementStart(37, "div", 13);
+    \u0275\u0275elementStart(39, "div", 15);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(38, "svg", 14);
-    \u0275\u0275element(39, "use", 21);
+    \u0275\u0275elementStart(40, "svg", 16);
+    \u0275\u0275element(41, "use", 23);
     \u0275\u0275elementEnd()();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(40, "div")(41, "span", 16);
-    \u0275\u0275text(42, "\u067E\u0631\u062F\u0627\u062E\u062A \u0645\u0633\u062A\u0642\u06CC\u0645");
+    \u0275\u0275elementStart(42, "div")(43, "span", 18);
+    \u0275\u0275text(44, "\u067E\u0631\u062F\u0627\u062E\u062A \u0645\u0633\u062A\u0642\u06CC\u0645");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(43, "strong");
-    \u0275\u0275text(44, "\u0627\u062A\u0635\u0627\u0644 \u0628\u0647 \u062D\u0633\u0627\u0628");
+    \u0275\u0275elementStart(45, "strong");
+    \u0275\u0275text(46, "\u0627\u062A\u0635\u0627\u0644 \u0628\u0647 \u062D\u0633\u0627\u0628");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(45, "small");
-    \u0275\u0275text(46, "\u067E\u0631\u062F\u0627\u062E\u062A \u0633\u0631\u06CC\u0639\u200C\u062A\u0631 \u0628\u0627 \u0627\u062A\u0635\u0627\u0644 \u0645\u0633\u062A\u0642\u06CC\u0645 \u062D\u0633\u0627\u0628 \u0628\u0627\u0646\u06A9\u06CC");
+    \u0275\u0275elementStart(47, "small");
+    \u0275\u0275text(48, "\u067E\u0631\u062F\u0627\u062E\u062A \u0633\u0631\u06CC\u0639\u200C\u062A\u0631 \u0628\u0627 \u0627\u062A\u0635\u0627\u0644 \u0645\u0633\u062A\u0642\u06CC\u0645 \u062D\u0633\u0627\u0628 \u0628\u0627\u0646\u06A9\u06CC");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(47, "div", 17)(48, "span", 22);
-    \u0275\u0275text(49, "\u0622\u0645\u0627\u062F\u0647 \u0641\u0639\u0627\u0644\u200C\u0633\u0627\u0632\u06CC");
+    \u0275\u0275elementStart(49, "div", 19)(50, "span", 24);
+    \u0275\u0275text(51, "\u0622\u0645\u0627\u062F\u0647 \u0641\u0639\u0627\u0644\u200C\u0633\u0627\u0632\u06CC");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(50, "span", 19);
-    \u0275\u0275text(51, "\u0645\u0634\u0627\u0647\u062F\u0647 \u062A\u0646\u0638\u06CC\u0645\u0627\u062A");
+    \u0275\u0275elementStart(52, "span", 21);
+    \u0275\u0275text(53, "\u0645\u0634\u0627\u0647\u062F\u0647 \u062A\u0646\u0638\u06CC\u0645\u0627\u062A");
     \u0275\u0275elementEnd()()()();
-    \u0275\u0275elementStart(52, "div", 23)(53, "button", 24);
-    \u0275\u0275listener("click", function DashboardComponent_Template_button_click_53_listener() {
+    \u0275\u0275elementStart(54, "div", 25)(55, "button", 26);
+    \u0275\u0275listener("click", function DashboardComponent_Template_button_click_55_listener() {
       \u0275\u0275restoreView(_r1);
-      const summaryTrack_r2 = \u0275\u0275reference(3);
+      const summaryTrack_r2 = \u0275\u0275reference(4);
       return \u0275\u0275resetView(ctx.selectSummaryCard("assets", summaryTrack_r2));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(54, "button", 25);
-    \u0275\u0275listener("click", function DashboardComponent_Template_button_click_54_listener() {
+    \u0275\u0275elementStart(56, "button", 27);
+    \u0275\u0275listener("click", function DashboardComponent_Template_button_click_56_listener() {
       \u0275\u0275restoreView(_r1);
-      const summaryTrack_r2 = \u0275\u0275reference(3);
+      const summaryTrack_r2 = \u0275\u0275reference(4);
       return \u0275\u0275resetView(ctx.selectSummaryCard("bank-card", summaryTrack_r2));
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(55, "button", 26);
-    \u0275\u0275listener("click", function DashboardComponent_Template_button_click_55_listener() {
+    \u0275\u0275elementStart(57, "button", 28);
+    \u0275\u0275listener("click", function DashboardComponent_Template_button_click_57_listener() {
       \u0275\u0275restoreView(_r1);
-      const summaryTrack_r2 = \u0275\u0275reference(3);
+      const summaryTrack_r2 = \u0275\u0275reference(4);
       return \u0275\u0275resetView(ctx.selectSummaryCard("direct-debit", summaryTrack_r2));
     });
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(56, "section", 27);
-    \u0275\u0275template(57, DashboardComponent_Conditional_57_Template, 24, 0)(58, DashboardComponent_Conditional_58_Template, 24, 0)(59, DashboardComponent_Conditional_59_Template, 24, 0);
+    \u0275\u0275elementStart(58, "section", 29);
+    \u0275\u0275template(59, DashboardComponent_Conditional_59_Template, 24, 0)(60, DashboardComponent_Conditional_60_Template, 24, 0)(61, DashboardComponent_Conditional_61_Template, 24, 0);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(60, "section", 28);
+    \u0275\u0275elementStart(62, "section", 30);
     \u0275\u0275namespaceSVG();
-    \u0275\u0275elementStart(61, "svg", 29);
-    \u0275\u0275element(62, "path", 30);
+    \u0275\u0275elementStart(63, "svg", 31);
+    \u0275\u0275element(64, "path", 32);
     \u0275\u0275elementEnd();
     \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(63, "span");
-    \u0275\u0275text(64, " \u0631\u0627\u0647\u0646\u0645\u0627\u06CC ");
-    \u0275\u0275elementStart(65, "a", 31);
-    \u0275\u0275text(66, "\xAB\u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC \u0648 \u0628\u0631\u062F\u0627\u0634\u062A\xBB");
+    \u0275\u0275elementStart(65, "span");
+    \u0275\u0275text(66, " \u0631\u0627\u0647\u0646\u0645\u0627\u06CC ");
+    \u0275\u0275elementStart(67, "a", 33);
+    \u0275\u0275text(68, "\xAB\u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC \u0648 \u0628\u0631\u062F\u0627\u0634\u062A\xBB");
     \u0275\u0275elementEnd();
-    \u0275\u0275text(67, " \u0648 ");
-    \u0275\u0275elementStart(68, "a", 32);
-    \u0275\u0275text(69, "\xAB\u062A\u0628\u062F\u06CC\u0644\xBB");
+    \u0275\u0275text(69, " \u0648 ");
+    \u0275\u0275elementStart(70, "a", 34);
+    \u0275\u0275text(71, "\xAB\u062A\u0628\u062F\u06CC\u0644\xBB");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(70, "section", 33)(71, "div", 34)(72, "span", 16);
-    \u0275\u0275text(73, "\u0635\u0646\u062F\u0648\u0642\u200C\u0647\u0627\u06CC \u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC");
+    \u0275\u0275elementStart(72, "section", 35)(73, "div", 36)(74, "span", 18);
+    \u0275\u0275text(75, "\u0635\u0646\u062F\u0648\u0642\u200C\u0647\u0627\u06CC \u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(74, "a", 35);
-    \u0275\u0275text(75, "\u062C\u0632\u0626\u06CC\u0627\u062A \u0635\u0646\u062F\u0648\u0642\u200C\u0647\u0627");
+    \u0275\u0275elementStart(76, "a", 37);
+    \u0275\u0275text(77, "\u062C\u0632\u0626\u06CC\u0627\u062A \u0635\u0646\u062F\u0648\u0642\u200C\u0647\u0627");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(76, "div", 36)(77, "div", 37);
-    \u0275\u0275repeaterCreate(78, DashboardComponent_For_79_Template, 21, 18, "article", 38, _forTrack03);
+    \u0275\u0275elementStart(78, "div", 38)(79, "div", 39);
+    \u0275\u0275repeaterCreate(80, DashboardComponent_For_81_Template, 21, 18, "article", 40, _forTrack03);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(80, "section", 39)(81, "article", 40)(82, "div", 41)(83, "div")(84, "span", 16);
-    \u0275\u0275text(85, "\u0641\u0639\u0627\u0644\u06CC\u062A\u200C\u0647\u0627\u06CC \u0627\u062E\u06CC\u0631");
+    \u0275\u0275elementStart(82, "section", 41)(83, "article", 42)(84, "div", 43)(85, "div")(86, "span", 18);
+    \u0275\u0275text(87, "\u0641\u0639\u0627\u0644\u06CC\u062A\u200C\u0647\u0627\u06CC \u0627\u062E\u06CC\u0631");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(86, "button", 42);
-    \u0275\u0275text(87, "\u06AF\u0632\u0627\u0631\u0634\u200C\u0647\u0627");
+    \u0275\u0275elementStart(88, "button", 44);
+    \u0275\u0275text(89, "\u06AF\u0632\u0627\u0631\u0634\u200C\u0647\u0627");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(88, "div", 43);
-    \u0275\u0275repeaterCreate(89, DashboardComponent_For_90_Template, 8, 4, "div", 44, _forTrack03);
+    \u0275\u0275elementStart(90, "div", 45);
+    \u0275\u0275repeaterCreate(91, DashboardComponent_For_92_Template, 8, 4, "div", 46, _forTrack03);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(91, "div", 45);
-    \u0275\u0275element(92, "app-recent-activity", 46);
+    \u0275\u0275elementStart(93, "div", 47);
+    \u0275\u0275element(94, "app-recent-activity", 48);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(93, "section", 47)(94, "div", 41)(95, "div")(96, "span", 16);
-    \u0275\u0275text(97, "\u062E\u062F\u0645\u0627\u062A \u062A\u06A9\u0645\u06CC\u0644\u06CC");
+    \u0275\u0275elementStart(95, "section", 49)(96, "div", 43)(97, "div")(98, "span", 18);
+    \u0275\u0275text(99, "\u062E\u062F\u0645\u0627\u062A \u062A\u06A9\u0645\u06CC\u0644\u06CC");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(98, "div", 48);
-    \u0275\u0275repeaterCreate(99, DashboardComponent_For_100_Template, 8, 3, "article", 49, _forTrack03);
+    \u0275\u0275elementStart(100, "div", 50);
+    \u0275\u0275repeaterCreate(101, DashboardComponent_For_102_Template, 8, 3, "article", 51, _forTrack03);
     \u0275\u0275elementEnd();
-    \u0275\u0275element(101, "app-other-services", 50);
+    \u0275\u0275element(103, "app-other-services", 52);
     \u0275\u0275elementEnd();
-    \u0275\u0275element(102, "app-consulting-guide", 51);
+    \u0275\u0275element(104, "app-consulting-guide", 53);
     \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(105, "aside", 54)(106, "section", 55)(107, "ngb-carousel", 56);
+    \u0275\u0275repeaterCreate(108, DashboardComponent_For_109_Template, 1, 0, null, 57, _forTrack1);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275element(110, "section", 58)(111, "section", 59)(112, "section", 60);
+    \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    \u0275\u0275advance(4);
+    \u0275\u0275advance(5);
     \u0275\u0275classProp("summary-carousel-card--active", ctx.isActiveSummaryCard("assets"));
+    \u0275\u0275advance();
+    \u0275\u0275property("totalAssets", ctx.getDisplayTotalNetValue());
     \u0275\u0275advance(4);
     \u0275\u0275property("maskNumber", ctx.getDisplayTotalNetValue());
     \u0275\u0275advance(12);
@@ -42990,13 +43116,17 @@ _DashboardComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ ty
     \u0275\u0275advance();
     \u0275\u0275classProp("active", ctx.isActiveSummaryCard("direct-debit"));
     \u0275\u0275advance(2);
-    \u0275\u0275conditional(ctx.activeSummaryCard() === "assets" ? 57 : ctx.activeSummaryCard() === "bank-card" ? 58 : 59);
+    \u0275\u0275conditional(ctx.activeSummaryCard() === "assets" ? 59 : ctx.activeSummaryCard() === "bank-card" ? 60 : 61);
     \u0275\u0275advance(21);
     \u0275\u0275repeater(ctx.getDisplayFundCards());
     \u0275\u0275advance(11);
     \u0275\u0275repeater(ctx.mockActivities);
     \u0275\u0275advance(10);
     \u0275\u0275repeater(ctx.secondaryServices);
+    \u0275\u0275advance(6);
+    \u0275\u0275property("showNavigationArrows", false)("showNavigationIndicators", true)("interval", 4500)("pauseOnHover", true)("wrap", true);
+    \u0275\u0275advance();
+    \u0275\u0275repeater(ctx.getSidebarPromoItems());
   }
 }, dependencies: [
   FontAwesomeModule,
@@ -43008,8 +43138,11 @@ _DashboardComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ ty
   RouterLink,
   OtherServicesComponent,
   CommonModule,
-  NgbCarouselModule
-], styles: ["\n\n.dashboard-shell[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: 0.78rem;\n  max-width: 1320px;\n  margin: 0 auto;\n  padding: 0.65rem 1rem 2.25rem;\n  color: #ffffff;\n}\n.section-kicker[_ngcontent-%COMP%] {\n  color: #7b8792;\n  font-size: 0.8rem;\n  font-weight: 700;\n}\n.section-kicker-white[_ngcontent-%COMP%] {\n  color: #fff;\n  font-size: 0.8rem;\n  font-weight: 700;\n}\n.section-kicker-green[_ngcontent-%COMP%] {\n  color: #00C896;\n  font-size: 0.8rem;\n  font-weight: 700;\n}\n.dashboard-grid[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 1rem;\n}\n.dashboard-grid--top[_ngcontent-%COMP%] {\n  grid-template-columns: 1fr;\n}\n.dashboard-grid--content[_ngcontent-%COMP%] {\n  grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);\n  align-items: start;\n}\n.summary-carousel-card[_ngcontent-%COMP%], \n.urgent-card[_ngcontent-%COMP%], \n.dashboard-panel[_ngcontent-%COMP%], \n.fund-overview-card[_ngcontent-%COMP%], \n.secondary-service-card[_ngcontent-%COMP%] {\n  border-radius: 16px;\n  background: #ffffff;\n  border: 1px solid rgba(86, 89, 91, 0.0549019608);\n  box-shadow: 0 7px 20px rgba(31, 41, 51, 0.045);\n}\n.dashboard-summary-carousel[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: 0.42rem;\n}\n.dashboard-summary-track[_ngcontent-%COMP%] {\n  display: grid;\n  grid-auto-columns: minmax(78%, 1fr);\n  grid-auto-flow: column;\n  gap: 0.72rem;\n  overflow-x: auto;\n  overflow-y: hidden;\n  padding: 0.05rem 0.05rem 0.25rem;\n  scroll-padding-inline: 0.05rem;\n  scroll-snap-type: x mandatory;\n  -webkit-overflow-scrolling: touch;\n}\n.dashboard-summary-track[_ngcontent-%COMP%]::-webkit-scrollbar {\n  display: none;\n}\n.summary-carousel-card[_ngcontent-%COMP%] {\n  cursor: pointer;\n  min-height: 136px;\n  scroll-snap-align: center;\n  transition:\n    border-color 160ms ease,\n    box-shadow 160ms ease,\n    transform 160ms ease;\n}\n.summary-carousel-card[_ngcontent-%COMP%]:active {\n  transform: scale(0.99);\n}\n.summary-carousel-card--active[_ngcontent-%COMP%] {\n  border-color: rgba(20, 140, 80, 0.2);\n  box-shadow:\n    0 10px 24px rgba(31, 41, 51, 0.075),\n    0 0 0 2px rgba(20, 140, 80, 0.055),\n    inset 0 1px 1px rgba(26, 19, 19, 0.88);\n}\n.summary-carousel-indicators[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  gap: 0.32rem;\n  min-height: 12px;\n}\n.summary-carousel-indicators[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  width: 5px;\n  height: 5px;\n  border: 0;\n  border-radius: 999px;\n  padding: 0;\n  background: #c5cdd4;\n  transition: width 160ms ease, background-color 160ms ease;\n}\n.summary-carousel-indicators[_ngcontent-%COMP%]   button.active[_ngcontent-%COMP%] {\n  width: 18px;\n  background: rgba(102, 102, 255, 0.72);\n}\n.asset-summary-card[_ngcontent-%COMP%] {\n  position: relative;\n  overflow: hidden;\n  min-height: 136px;\n  padding: 0.95rem;\n  color: #ffffff;\n  background:\n    radial-gradient(\n      circle at 12% 8%,\n      rgba(120, 130, 255, 0.86),\n      rgba(120, 130, 255, 0.22) 34%,\n      transparent 62%),\n    linear-gradient(\n      135deg,\n      rgba(100, 100, 255, 0.9),\n      rgba(102, 102, 255, 0.76)),\n    rgba(120, 130, 255, 0.78);\n  border-color: rgba(120, 130, 255, 0.62);\n  box-shadow: 0 8px 22px rgba(102, 102, 255, 0.06), inset 0 1px 1px rgba(120, 130, 255, 0.86);\n  backdrop-filter: blur(18px) saturate(160%);\n  -webkit-backdrop-filter: blur(18px) saturate(160%);\n}\n.asset-summary-card[_ngcontent-%COMP%]   .section-kicker[_ngcontent-%COMP%] {\n  color: #6666ff;\n}\n.asset-summary-card__value[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: baseline;\n  gap: 0.5rem;\n  margin: 0.45rem 0 0.62rem;\n  font-size: clamp(1.62rem, 3vw, 2.35rem);\n  font-weight: 900;\n  line-height: 1.1;\n}\n.asset-summary-card__value[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  font-size: 0.9rem;\n  font-weight: 600;\n  color: rgba(255, 255, 255, 0.7137254902);\n}\n.asset-summary-card__meta[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.38rem;\n}\n.asset-summary-card__meta[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  padding: 0.28rem 0.52rem;\n  border-radius: 999px;\n  background: rgba(102, 102, 255, 0.08);\n  color: rgba(255, 255, 255, 0.7490196078);\n  font-size: 0.76rem;\n}\n.asset-summary-card__button[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35rem;\n  margin-top: 0.72rem;\n  border: 1px solid rgba(120, 140, 150, 0.12);\n  border-radius: 999px;\n  color: rgba(0, 0, 0, 0.3176470588);\n}\n.bank-status-card[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  gap: 0.68rem;\n  min-height: 136px;\n  padding: 0.92rem;\n  background:\n    radial-gradient(\n      circle at 12% 8%,\n      rgb(49, 49, 54),\n      rgb(41, 41, 44) 36%,\n      transparent 66%),\n    rgb(0, 0, 0);\n  border-color: rgba(40, 42, 47, 0.58);\n  backdrop-filter: blur(16px) saturate(155%);\n  -webkit-backdrop-filter: blur(16px) saturate(155%);\n}\n.bank-status-card[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.bank-status-card[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  display: block;\n}\n.bank-status-card[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%] {\n  margin-top: 0.18rem;\n  color: #26323d;\n  font-size: 1rem;\n  font-weight: 850;\n}\n.bank-status-card[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  margin-top: 0.25rem;\n  color: #66727d;\n  font-size: 0.82rem;\n  line-height: 1.55;\n}\n.bank-status-card--direct[_ngcontent-%COMP%] {\n  background:\n    radial-gradient(\n      circle at 12% 8%,\n      rgba(255, 255, 255, 0.82),\n      rgba(255, 255, 255, 0.16) 36%,\n      transparent 66%),\n    linear-gradient(\n      135deg,\n      rgba(255, 255, 255, 0.82),\n      rgba(246, 252, 255, 0.74));\n}\n.summary-card-icon[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 42px;\n  height: 42px;\n  border-radius: 13px;\n  color: #ffffff;\n  background: rgba(255, 255, 255, 0.177);\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.74);\n}\n.summary-card-footer[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.38rem;\n}\n.status-chip[_ngcontent-%COMP%], \n.action-hint[_ngcontent-%COMP%] {\n  overflow: hidden;\n  max-width: 100%;\n  border-radius: 999px;\n  padding: 0.28rem 0.5rem;\n  font-size: 0.72rem;\n  font-weight: 800;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.status-chip[_ngcontent-%COMP%] {\n  color: #31515f;\n  background: rgba(49, 81, 95, 0.08);\n}\n.status-chip--active[_ngcontent-%COMP%] {\n  color: #6666ff;\n  background: rgba(20, 140, 80, 0.1);\n}\n.action-hint[_ngcontent-%COMP%] {\n  color: #66727d;\n  background: rgba(102, 114, 125, 0.07);\n}\n.urgent-card[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 1.25rem;\n  border-color: #ffd9a1;\n  background: #fffaf2;\n}\n.urgent-card__header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  color: #8a5a00;\n}\n.urgent-card__header[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%] {\n  color: #d99218;\n}\n.urgent-card__header[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.urgent-card__header[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  display: block;\n}\n.urgent-card__header[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  margin-top: 0.35rem;\n  color: #7b6a53;\n}\n.urgent-card__rows[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 0.55rem;\n}\n.urgent-card__rows[_ngcontent-%COMP%]   div[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  gap: 0.75rem;\n  padding: 0.7rem;\n  border-radius: 10px;\n  background: #ffffff;\n}\n.urgent-card__rows[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  color: #737d87;\n}\n.dashboard-quick-actions[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 0.65rem;\n  padding: 0.35rem 0.15rem 0.25rem;\n  border: 0;\n  background: transparent;\n  box-shadow: none;\n  backdrop-filter: none;\n  -webkit-backdrop-filter: none;\n}\n.quick-action[_ngcontent-%COMP%] {\n  display: inline-flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-direction: column;\n  gap: 0.16rem;\n  min-width: 0;\n  min-height: 78px;\n  padding: 0.3rem 0.2rem;\n  border: 0;\n  border-radius: 18px;\n  background: transparent;\n  color: #26323d;\n  text-align: center;\n  box-shadow: none;\n  transition:\n    transform 160ms ease,\n    background-color 160ms ease,\n    box-shadow 160ms ease;\n}\n.quick-action[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:not(.quick-action__icon), \n.quick-action[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  display: block;\n}\n.quick-action[_ngcontent-%COMP%]:hover, \n.quick-action[_ngcontent-%COMP%]:focus-visible {\n  transform: translateY(-1px);\n}\n.quick-action[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid rgba(20, 140, 80, 0.18);\n  outline-offset: 2px;\n}\n.quick-action[_ngcontent-%COMP%]:active {\n  transform: scale(0.98);\n  background: transparent;\n}\n.quick-action[_ngcontent-%COMP%]:disabled {\n  cursor: default;\n  opacity: 0.72;\n}\n.quick-action[_ngcontent-%COMP%]:disabled:active {\n  transform: none;\n}\n.quick-action[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  overflow: hidden;\n  max-width: 100%;\n  color: #7b8792;\n  font-size: 0.62rem;\n  font-weight: 500;\n  line-height: 1.35;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.quick-action[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%] {\n  position: relative;\n  display: grid;\n  place-items: center;\n  inline-size: 48px;\n  block-size: 48px;\n  min-inline-size: 48px;\n  min-block-size: 48px;\n  flex: 0 0 auto;\n  padding: 0;\n  margin-bottom: 0.5rem;\n  border-radius: 16px;\n  background: rgba(31, 41, 51, 0.06);\n  color: #26323d;\n  line-height: 1;\n  text-align: center;\n  box-shadow: 0 10px 22px rgba(31, 41, 51, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.85);\n}\n.quick-action[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%]    > svg[_ngcontent-%COMP%] {\n  display: block;\n  inline-size: 22px;\n  block-size: 22px;\n  flex: 0 0 auto;\n  margin: 0;\n  padding: 0;\n  line-height: 1;\n  position: static;\n  transform: none;\n  vertical-align: middle;\n}\n.quick-action__label[_ngcontent-%COMP%] {\n  overflow: hidden;\n  max-width: 100%;\n  color: #26323d;\n  font-size: 0.82rem;\n  font-weight: 850;\n  line-height: 1.3;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.quick-action--invest[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%] {\n  background: rgba(255, 255, 255, 0.7);\n  color: #00C896;\n}\n.quick-action--exchange[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%], \n.quick-action--withdraw[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%] {\n  background: rgba(255, 255, 255, 0.7);\n  color: #26323d;\n}\n.quick-action--preview[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%] {\n  background: rgba(49, 81, 95, 0.06);\n  color: #66727d;\n}\n.quick-action--preview[_ngcontent-%COMP%] {\n  background: transparent;\n  color: #56616c;\n}\n.dashboard-help-link[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: flex-start;\n  gap: 0.3rem;\n  padding: 0.2rem 0.15rem;\n  color: #66727d;\n  font-size: 0.82rem;\n  line-height: 1.75;\n  opacity: 0.86;\n}\n.dashboard-section[_ngcontent-%COMP%], \n.dashboard-panel[_ngcontent-%COMP%] {\n  padding: 1rem;\n}\n.dashboard-section__header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 1rem;\n  margin-bottom: 0.85rem;\n}\n.dashboard-section__header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  margin: 0.2rem 0 0;\n  font-size: 1.1rem;\n  font-weight: 850;\n}\n.dashboard-section--funds[_ngcontent-%COMP%] {\n  overflow: visible;\n}\n.fund-section-header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.75rem;\n  margin-bottom: 0.65rem;\n}\n.fund-section-header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  min-width: 0;\n  margin: 0;\n  color: #26323d;\n  font-size: 0.95rem;\n  font-weight: 900;\n  line-height: 1.4;\n}\n.fund-section-link[_ngcontent-%COMP%] {\n  flex: 0 0 auto;\n  min-height: 32px;\n  padding: 0.34rem 0.58rem;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.4);\n  color: #6666ff;\n  font-size: 0.78rem;\n  font-weight: 700;\n  text-decoration: none;\n  white-space: nowrap;\n  transition:\n    transform 160ms ease,\n    background-color 160ms ease,\n    box-shadow 160ms ease;\n}\n.fund-section-link[_ngcontent-%COMP%]:hover, \n.fund-section-link[_ngcontent-%COMP%]:focus-visible {\n  background: rgba(255, 255, 255, 0.34);\n  box-shadow: 0 8px 18px rgba(31, 41, 51, 0.055);\n  transform: translateY(-1px);\n}\n.fund-section-link[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid rgba(20, 140, 80, 0.22);\n  outline-offset: 2px;\n}\n.fund-section-link[_ngcontent-%COMP%]:active {\n  transform: scale(0.98);\n}\n.dashboard-section__header[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%], \n.dashboard-section__header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  min-height: 32px;\n  padding: 0.34rem 0.58rem;\n  border: 1px solid rgba(255, 255, 255, 0.34);\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.25);\n  color: #26323d;\n  font-size: 0.78rem;\n  font-weight: 850;\n  line-height: 1.35;\n  white-space: nowrap;\n  box-shadow: none;\n  transition:\n    transform 160ms ease,\n    background-color 160ms ease,\n    box-shadow 160ms ease;\n}\n.dashboard-section__header[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%]:hover, \n.dashboard-section__header[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%]:focus-visible, \n.dashboard-section__header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:hover, \n.dashboard-section__header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:focus-visible {\n  background: rgba(255, 255, 255, 0.34);\n  color: #26323d;\n  box-shadow: 0 8px 18px rgba(31, 41, 51, 0.055);\n  transform: translateY(-1px);\n}\n.dashboard-section__header[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%]:focus-visible, \n.dashboard-section__header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid rgba(20, 140, 80, 0.18);\n  outline-offset: 2px;\n}\n.dashboard-section__header[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%]:active, \n.dashboard-section__header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:active {\n  transform: scale(0.98);\n}\n.fund-overview-scroll[_ngcontent-%COMP%] {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: visible;\n  padding: 0;\n  margin: 0;\n  -webkit-overflow-scrolling: touch;\n  scroll-snap-type: x mandatory;\n  scrollbar-width: none;\n}\n.fund-overview-scroll[_ngcontent-%COMP%]::-webkit-scrollbar {\n  display: none;\n}\n.fund-overview-track[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: row;\n  gap: 0.72rem;\n  width: max-content;\n  min-width: 100%;\n  padding: 0;\n  margin: 0;\n}\n.fund-overview-card[_ngcontent-%COMP%] {\n  position: relative;\n  isolation: isolate;\n  overflow: hidden;\n  flex: 0 0 168px;\n  width: 168px;\n  min-width: 168px;\n  max-width: 168px;\n  min-height: 172px;\n  box-sizing: border-box;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  gap: 0;\n  padding: 1rem 1rem;\n  border: 1px solid rgba(229, 234, 238, 0.9);\n  border-radius: 16px;\n  background: rgba(255, 255, 255, 0.86);\n  box-shadow: 0 12px 28px rgba(31, 41, 51, 0.06);\n  color: #26323d;\n  text-decoration: none;\n  scroll-snap-align: start;\n  transition:\n    transform 160ms ease,\n    box-shadow 160ms ease,\n    border-color 160ms ease,\n    background-color 160ms ease;\n}\n.fund-overview-card[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.fund-overview-card[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: block;\n}\n.fund-overview-card__media[_ngcontent-%COMP%] {\n  display: grid;\n  place-items: normal;\n  width: 100%;\n  height: 50px;\n  min-height: 32px;\n  margin-top: 0.25rem;\n}\n.fund-overview-card__media[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  display: block;\n  width: 32px;\n  height: 32px;\n  object-fit: contain;\n  object-position: center;\n  transform: scale(1.25);\n  transform-origin: center;\n}\n.fund-overview-card--linked[_ngcontent-%COMP%] {\n  cursor: pointer;\n}\n.fund-overview-card--linked[_ngcontent-%COMP%]:hover, \n.fund-overview-card--linked[_ngcontent-%COMP%]:focus-visible {\n  box-shadow: 0 16px 34px rgba(31, 41, 51, 0.1);\n}\n.fund-overview-card--linked[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid rgba(20, 140, 80, 0.28);\n  outline-offset: 3px;\n}\n.fund-overview-card--featured[_ngcontent-%COMP%] {\n  background: rgb(255, 255, 255);\n  border-color: rgba(255, 255, 255, 0.24);\n}\n.fund-overview-card[_ngcontent-%COMP%]   .fund-overview-card__status[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 13px;\n  height: 13px;\n  margin-inline-start: 0.32rem;\n  border-radius: 999px;\n  background: rgba(20, 140, 80, 0.14);\n  vertical-align: middle;\n}\n.fund-overview-card[_ngcontent-%COMP%]   .fund-overview-card__status-inner[_ngcontent-%COMP%] {\n  display: block;\n  width: 7px;\n  height: 7px;\n  border-radius: inherit;\n  background: #148c50;\n}\n.fund-overview-card__identity[_ngcontent-%COMP%] {\n  align-items: center;\n  position: relative;\n  z-index: 1;\n}\n.fund-overview-card__symbol-row[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: start;\n  gap: 0.12rem;\n  min-width: 0;\n}\n.fund-overview-card__top-row[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  width: 100%;\n  margin-bottom: 12px;\n}\n.fund-overview-card__status-inner[_ngcontent-%COMP%] {\n  display: block;\n  width: 7px;\n  height: 7px;\n  border-radius: 999px;\n  background: #16a34a;\n}\n.fund-overview-card__media[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: normal;\n  justify-content: space-between;\n}\n.fund-overview-card__status[_ngcontent-%COMP%] {\n  position: static;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 16px;\n  height: 16px;\n  border-radius: 999px;\n  background: rgba(22, 163, 74, 0.12);\n  flex: 0 0 auto;\n}\n.fund-overview-card__topline[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: right;\n  gap: 0.35rem;\n  min-width: 0;\n  margin-top: 0.18rem;\n}\n.fund-overview-card__type[_ngcontent-%COMP%] {\n  overflow: hidden;\n  color: #66727d;\n  font-size: 0.68rem;\n  font-weight: 500;\n  line-height: 1.45;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.fund-overview-card__etf-tag[_ngcontent-%COMP%] {\n  display: inline-flex !important;\n  align-items: center;\n  justify-content: center;\n  flex: 0 0 auto;\n  border-radius: 999px;\n  padding: 0.1rem 0.36rem;\n  background: #6666ff;\n  color: #ffffff;\n  font-size: 0.58rem;\n  font-weight: 700;\n  margin: 0;\n}\n.fund-overview-card__title[_ngcontent-%COMP%] {\n  display: block !important;\n  min-width: 0;\n  color: #26323d;\n  font-size: 1rem;\n  font-weight: 700;\n  line-height: 1.35;\n  text-align: center;\n}\n.fund-overview-card__description[_ngcontent-%COMP%] {\n  display: -webkit-box !important;\n  overflow: hidden;\n  margin: 0.58rem 0 1rem;\n  color: #7b8792;\n  font-size: 0.66rem;\n  font-weight: 500;\n  line-height: 1.65;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n}\n.fund-overview-card__return[_ngcontent-%COMP%] {\n  margin-top: auto;\n  display: flex !important;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.45rem;\n  min-width: 0;\n  position: relative;\n  z-index: 1;\n}\n.fund-overview-card__return[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  overflow: hidden;\n  color: #7b8792;\n  font-size: 0.62rem;\n  font-weight: 500;\n  line-height: 1.35;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.fund-overview-card__return[_ngcontent-%COMP%]   b[_ngcontent-%COMP%] {\n  overflow: hidden;\n  color: #26323d;\n  font-size: 0.7rem;\n  font-weight: 900;\n  line-height: 1.4;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.fund-overview-card__return-value[_ngcontent-%COMP%] {\n  color: #148c50 !important;\n  font-size: 0.82rem !important;\n  font-weight: 950 !important;\n}\n.fund-overview-card__return-value.is-negative[_ngcontent-%COMP%] {\n  color: #c43d3d !important;\n}\n.asset-trend[_ngcontent-%COMP%] {\n  overflow: hidden;\n  min-height: 220px;\n  border-radius: 12px;\n  background: #f7faf9;\n}\n.asset-trend[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 220px;\n  object-fit: cover;\n}\n.mock-activity-list[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 0.6rem;\n  margin-bottom: 0.75rem;\n}\n.mock-activity-item[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 0.75rem;\n  border-radius: 10px;\n  background: #f5f8f7;\n}\n.mock-activity-item[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.mock-activity-item[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: block;\n}\n.mock-activity-item[_ngcontent-%COMP%]   span[_ngcontent-%COMP%], \n.mock-activity-item[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  color: #737d87;\n  font-size: 0.82rem;\n}\n.recent-activity-frame[_ngcontent-%COMP%] {\n  overflow: hidden;\n  max-height: 420px;\n  border: 1px solid #e8edf0;\n  border-radius: 12px;\n}\n.dashboard-section--secondary[_ngcontent-%COMP%] {\n  margin-top: 0.5rem;\n  border-radius: 15px;\n  background: #f8faf9;\n}\n.secondary-service-grid[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 0.75rem;\n}\n.secondary-service-card[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: flex-start;\n  gap: 0.75rem;\n  padding: 1rem;\n}\n.secondary-service-card[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%] {\n  color: #148c50;\n  flex: 0 0 auto;\n}\n.secondary-service-card[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.secondary-service-card[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: block;\n}\n.secondary-service-card[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  margin-top: 0.35rem;\n  color: #737d87;\n  font-size: 0.85rem;\n  line-height: 1.8;\n}\n  .carousel-indicators [data-bs-target] {\n  border: none !important;\n}\n  .carousel-indicators {\n  margin-bottom: 0;\n}\n  .carousel-indicators button[type=button][role=tab] {\n  width: 7px;\n  height: 7px;\n  border-radius: 50% !important;\n  background-color: #a0aab4;\n}\n  .carousel-indicators button[type=button][role=tab].active {\n  width: 18px;\n  height: 7px;\n  border-radius: 10px !important;\n  background-color: #33cc66;\n}\n@media (max-width: 1100px) {\n  .dashboard-summary-track[_ngcontent-%COMP%] {\n    grid-auto-columns: minmax(72%, 1fr);\n  }\n  .dashboard-grid--top[_ngcontent-%COMP%], \n   .dashboard-grid--content[_ngcontent-%COMP%] {\n    grid-template-columns: 1fr;\n  }\n}\n@media (max-width: 760px) {\n  .dashboard-shell[_ngcontent-%COMP%] {\n    padding: 0.5rem 0.75rem 5.5rem;\n  }\n  .mock-activity-item[_ngcontent-%COMP%] {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n  .dashboard-summary-track[_ngcontent-%COMP%] {\n    grid-auto-columns: minmax(86%, 1fr);\n  }\n  .secondary-service-grid[_ngcontent-%COMP%] {\n    grid-template-columns: 1fr;\n  }\n  .fund-overview-scroll[_ngcontent-%COMP%] {\n    width: calc(100% + 1.5rem);\n    margin-inline: -0.75rem;\n    padding-inline: 0;\n  }\n  .fund-overview-track[_ngcontent-%COMP%] {\n    padding-inline: 0;\n  }\n  .fund-overview-card[_ngcontent-%COMP%] {\n    flex-basis: 168px;\n    width: 168px;\n    min-width: 168px;\n    max-width: 168px;\n  }\n  .asset-summary-card__value[_ngcontent-%COMP%] {\n    font-size: 1.82rem;\n  }\n  .urgent-card__rows[_ngcontent-%COMP%]   div[_ngcontent-%COMP%], \n   .dashboard-section__header[_ngcontent-%COMP%] {\n    align-items: flex-start;\n    flex-direction: column;\n  }\n}\n@media (max-width: 420px) {\n  .dashboard-summary-track[_ngcontent-%COMP%] {\n    grid-auto-columns: minmax(92%, 1fr);\n  }\n  .quick-action[_ngcontent-%COMP%] {\n    min-height: 70px;\n    padding-inline: 0.25rem;\n  }\n  .quick-action__icon[_ngcontent-%COMP%] {\n    inline-size: 36px;\n    block-size: 36px;\n    min-inline-size: 36px;\n    min-block-size: 36px;\n  }\n  .quick-action__label[_ngcontent-%COMP%] {\n    font-size: 0.78rem;\n  }\n  .quick-action[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n    font-size: 0.62rem;\n  }\n}\n/*# sourceMappingURL=dashboard.component.css.map */"] });
+  NgbCarouselModule,
+  NgbCarousel,
+  NgbSlide,
+  AssetTrendBackgroundComponent
+], styles: ["\n\n.dashboard-shell[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: 0.78rem;\n  max-width: 1100px;\n  margin: 0 auto;\n  padding: 0.65rem 1rem 2.25rem;\n  color: #ffffff;\n}\n.dashboard-main-column[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: 0.78rem;\n  min-width: 0;\n}\n.dashboard-desktop-sidebar[_ngcontent-%COMP%] {\n  display: none;\n}\n.section-kicker[_ngcontent-%COMP%] {\n  color: #7b8792;\n  font-size: 0.8rem;\n  font-weight: 700;\n}\n.section-kicker-white[_ngcontent-%COMP%] {\n  color: #fff;\n  font-size: 0.8rem;\n  font-weight: 700;\n}\n.section-kicker-green[_ngcontent-%COMP%] {\n  color: #00C896;\n  font-size: 0.8rem;\n  font-weight: 700;\n}\n.dashboard-grid[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 1rem;\n}\n.dashboard-grid--top[_ngcontent-%COMP%] {\n  grid-template-columns: 1fr;\n}\n.dashboard-grid--content[_ngcontent-%COMP%] {\n  grid-template-columns: 1fr;\n  align-items: start;\n}\n.summary-carousel-card[_ngcontent-%COMP%], \n.urgent-card[_ngcontent-%COMP%], \n.dashboard-panel[_ngcontent-%COMP%], \n.fund-overview-card[_ngcontent-%COMP%], \n.secondary-service-card[_ngcontent-%COMP%] {\n  border-radius: 16px;\n  background: #ffffff;\n  border: 1px solid rgba(86, 89, 91, 0.0549019608);\n  box-shadow: 0 7px 20px rgba(31, 41, 51, 0.045);\n}\n.dashboard-summary-carousel[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: 0.42rem;\n}\n.dashboard-summary-track[_ngcontent-%COMP%] {\n  display: grid;\n  grid-auto-columns: minmax(78%, 1fr);\n  grid-auto-flow: column;\n  gap: 0.72rem;\n  overflow-x: auto;\n  overflow-y: hidden;\n  padding: 0.05rem 0.05rem 0.25rem;\n  scroll-padding-inline: 0.05rem;\n  scroll-snap-type: x mandatory;\n  -webkit-overflow-scrolling: touch;\n}\n.dashboard-summary-track[_ngcontent-%COMP%]::-webkit-scrollbar {\n  display: none;\n}\n.dashboard-sidebar-card[_ngcontent-%COMP%] {\n  border: 1px solid rgba(255, 255, 255, 0.58);\n  border-radius: 16px;\n  background:\n    radial-gradient(\n      circle at 14% 8%,\n      rgba(255, 255, 255, 0.88),\n      rgba(255, 255, 255, 0.2) 36%,\n      transparent 66%),\n    rgba(255, 255, 255, 0.76);\n  box-shadow: 0 8px 22px rgba(31, 41, 51, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.84);\n  backdrop-filter: blur(18px) saturate(160%);\n  -webkit-backdrop-filter: blur(18px) saturate(160%);\n}\n.dashboard-sidebar-card--promo[_ngcontent-%COMP%] {\n  overflow: hidden;\n  padding: 0.55rem;\n}\n.dashboard-promo-carousel[_ngcontent-%COMP%] {\n  display: block;\n  overflow: hidden;\n  border-radius: 13px;\n}\n.dashboard-promo-slide[_ngcontent-%COMP%] {\n  display: block;\n  overflow: hidden;\n  min-height: 176px;\n  border-radius: 13px;\n  cursor: pointer;\n  background: rgba(255, 255, 255, 0.55);\n}\n.dashboard-promo-slide[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  height: 176px;\n  object-fit: cover;\n}\n.dashboard-promo-slide__placeholder[_ngcontent-%COMP%] {\n  display: grid;\n  min-height: 176px;\n  place-items: center;\n  color: #66727d;\n  font-size: 0.85rem;\n  font-weight: 800;\n  background:\n    radial-gradient(\n      circle at 22% 12%,\n      rgba(255, 255, 255, 0.9),\n      transparent 42%),\n    rgba(20, 140, 80, 0.06);\n}\n.dashboard-sidebar-placeholder[_ngcontent-%COMP%] {\n  min-height: 86px;\n}\n.summary-carousel-card[_ngcontent-%COMP%] {\n  cursor: pointer;\n  min-height: 136px;\n  scroll-snap-align: center;\n  transition:\n    border-color 160ms ease,\n    box-shadow 160ms ease,\n    transform 160ms ease;\n}\n.summary-carousel-card[_ngcontent-%COMP%]:active {\n  transform: scale(0.99);\n}\n.summary-carousel-card--active[_ngcontent-%COMP%] {\n  border-color: rgba(20, 140, 80, 0.2);\n  box-shadow:\n    0 10px 24px rgba(31, 41, 51, 0.075),\n    0 0 0 2px rgba(20, 140, 80, 0.055),\n    inset 0 1px 1px rgba(26, 19, 19, 0.88);\n}\n.summary-carousel-indicators[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  gap: 0.32rem;\n  min-height: 12px;\n}\n.summary-carousel-indicators[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  width: 5px;\n  height: 5px;\n  border: 0;\n  border-radius: 999px;\n  padding: 0;\n  background: #c5cdd4;\n  transition: width 160ms ease, background-color 160ms ease;\n}\n.summary-carousel-indicators[_ngcontent-%COMP%]   button.active[_ngcontent-%COMP%] {\n  width: 18px;\n  background: rgba(102, 102, 255, 0.72);\n}\n.asset-summary-card[_ngcontent-%COMP%] {\n  position: relative;\n  overflow: hidden;\n  min-height: 136px;\n  padding: 0.95rem;\n  color: #ffffff;\n  background:\n    radial-gradient(\n      circle at 12% 8%,\n      rgba(120, 130, 255, 0.86),\n      rgba(120, 130, 255, 0.22) 34%,\n      transparent 62%),\n    linear-gradient(\n      135deg,\n      rgba(100, 100, 255, 0.9),\n      rgba(102, 102, 255, 0.76)),\n    rgba(120, 130, 255, 0.78);\n  border-color: rgba(120, 130, 255, 0.62);\n  box-shadow: 0 8px 22px rgba(102, 102, 255, 0.06), inset 0 1px 1px rgba(120, 130, 255, 0.86);\n  backdrop-filter: blur(18px) saturate(160%);\n  -webkit-backdrop-filter: blur(18px) saturate(160%);\n}\n.asset-summary-card[_ngcontent-%COMP%]   .section-kicker[_ngcontent-%COMP%] {\n  color: #6666ff;\n}\n.asset-summary-card[_ngcontent-%COMP%]    > [_ngcontent-%COMP%]:not(app-asset-trend-background) {\n  position: relative;\n  z-index: 1;\n}\n.asset-summary-card[_ngcontent-%COMP%]   app-asset-trend-background[_ngcontent-%COMP%] {\n  color: #00C896;\n}\n.asset-summary-card__value[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: baseline;\n  gap: 0.5rem;\n  margin: 0.45rem 0 0.62rem;\n  font-size: clamp(1.62rem, 3vw, 2.35rem);\n  font-weight: 700;\n  line-height: 1.1;\n}\n.asset-summary-card__value[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  font-size: 0.9rem;\n  font-weight: 500;\n  color: rgba(255, 255, 255, 0.7137254902);\n}\n.asset-summary-card__meta[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.38rem;\n}\n.asset-summary-card__meta[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  padding: 0.28rem 0.52rem;\n  border-radius: 999px;\n  background: rgba(102, 102, 255, 0.08);\n  color: rgba(255, 255, 255, 0.7490196078);\n  font-size: 0.76rem;\n}\n.asset-summary-card__button[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35rem;\n  margin-top: 0.72rem;\n  border: 1px solid rgba(120, 140, 150, 0.12);\n  border-radius: 999px;\n  color: rgba(0, 0, 0, 0.3176470588);\n}\n.bank-status-card[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  gap: 0.68rem;\n  min-height: 136px;\n  padding: 0.92rem;\n  background:\n    radial-gradient(\n      circle at 12% 8%,\n      rgb(49, 49, 54),\n      rgb(41, 41, 44) 36%,\n      transparent 66%),\n    rgb(0, 0, 0);\n  border-color: rgba(40, 42, 47, 0.58);\n  backdrop-filter: blur(16px) saturate(155%);\n  -webkit-backdrop-filter: blur(16px) saturate(155%);\n}\n.bank-status-card[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.bank-status-card[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  display: block;\n}\n.bank-status-card[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%] {\n  margin-top: 0.18rem;\n  color: #26323d;\n  font-size: 1rem;\n  font-weight: 650;\n}\n.bank-status-card[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  margin-top: 0.25rem;\n  color: #66727d;\n  font-size: 0.82rem;\n  line-height: 1.55;\n}\n.bank-status-card--direct[_ngcontent-%COMP%] {\n  background:\n    radial-gradient(\n      circle at 12% 8%,\n      rgba(255, 255, 255, 0.82),\n      rgba(255, 255, 255, 0.16) 36%,\n      transparent 66%),\n    linear-gradient(\n      135deg,\n      rgba(255, 255, 255, 0.82),\n      rgba(246, 252, 255, 0.74));\n}\n.summary-card-icon[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 42px;\n  height: 42px;\n  border-radius: 13px;\n  color: #ffffff;\n  background: rgba(255, 255, 255, 0.177);\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.74);\n}\n.summary-card-footer[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.38rem;\n}\n.status-chip[_ngcontent-%COMP%], \n.action-hint[_ngcontent-%COMP%] {\n  overflow: hidden;\n  max-width: 100%;\n  border-radius: 999px;\n  padding: 0.28rem 0.5rem;\n  font-size: 0.72rem;\n  font-weight: 800;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.status-chip[_ngcontent-%COMP%] {\n  color: #31515f;\n  background: rgba(49, 81, 95, 0.08);\n}\n.status-chip--active[_ngcontent-%COMP%] {\n  color: #6666ff;\n  background: rgba(20, 140, 80, 0.1);\n}\n.action-hint[_ngcontent-%COMP%] {\n  color: #66727d;\n  background: rgba(102, 114, 125, 0.07);\n}\n.urgent-card[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 1.25rem;\n  border-color: #ffd9a1;\n  background: #fffaf2;\n}\n.urgent-card__header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 0.75rem;\n  color: #8a5a00;\n}\n.urgent-card__header[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%] {\n  color: #d99218;\n}\n.urgent-card__header[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.urgent-card__header[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  display: block;\n}\n.urgent-card__header[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  margin-top: 0.35rem;\n  color: #7b6a53;\n}\n.urgent-card__rows[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 0.55rem;\n}\n.urgent-card__rows[_ngcontent-%COMP%]   div[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  gap: 0.75rem;\n  padding: 0.7rem;\n  border-radius: 10px;\n  background: #ffffff;\n}\n.urgent-card__rows[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  color: #737d87;\n}\n.dashboard-quick-actions[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 0.65rem;\n  padding: 0.35rem 0.15rem 0.25rem;\n  border: 0;\n  background: transparent;\n  box-shadow: none;\n  backdrop-filter: none;\n  -webkit-backdrop-filter: none;\n}\n.quick-action[_ngcontent-%COMP%] {\n  display: inline-flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-direction: column;\n  gap: 0.16rem;\n  min-width: 0;\n  min-height: 78px;\n  padding: 0.3rem 0.2rem;\n  border: 0;\n  border-radius: 18px;\n  background: transparent;\n  color: #26323d;\n  text-align: center;\n  box-shadow: none;\n  transition:\n    transform 160ms ease,\n    background-color 160ms ease,\n    box-shadow 160ms ease;\n}\n.quick-action[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:not(.quick-action__icon), \n.quick-action[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  display: block;\n}\n.quick-action[_ngcontent-%COMP%]:hover, \n.quick-action[_ngcontent-%COMP%]:focus-visible {\n  transform: translateY(-1px);\n}\n.quick-action[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid rgba(20, 140, 80, 0.18);\n  outline-offset: 2px;\n}\n.quick-action[_ngcontent-%COMP%]:active {\n  transform: scale(0.98);\n  background: transparent;\n}\n.quick-action[_ngcontent-%COMP%]:disabled {\n  cursor: default;\n  opacity: 0.72;\n}\n.quick-action[_ngcontent-%COMP%]:disabled:active {\n  transform: none;\n}\n.quick-action[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  overflow: hidden;\n  max-width: 100%;\n  color: #7b8792;\n  font-size: 0.62rem;\n  font-weight: 500;\n  line-height: 1.35;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.quick-action[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%] {\n  position: relative;\n  display: grid;\n  place-items: center;\n  inline-size: 48px;\n  block-size: 48px;\n  min-inline-size: 48px;\n  min-block-size: 48px;\n  flex: 0 0 auto;\n  padding: 0;\n  margin-bottom: 0.5rem;\n  border-radius: 16px;\n  background: rgba(31, 41, 51, 0.06);\n  color: #26323d;\n  line-height: 1;\n  text-align: center;\n  box-shadow: 0 10px 22px rgba(31, 41, 51, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.85);\n}\n.quick-action[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%]    > svg[_ngcontent-%COMP%] {\n  display: block;\n  inline-size: 22px;\n  block-size: 22px;\n  flex: 0 0 auto;\n  margin: 0;\n  padding: 0;\n  line-height: 1;\n  position: static;\n  transform: none;\n  vertical-align: middle;\n}\n.quick-action__label[_ngcontent-%COMP%] {\n  overflow: hidden;\n  max-width: 100%;\n  color: #26323d;\n  font-size: 0.82rem;\n  font-weight: 850;\n  line-height: 1.3;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.quick-action--invest[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%] {\n  background: rgba(255, 255, 255, 0.7);\n  color: #00C896;\n}\n.quick-action--exchange[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%], \n.quick-action--withdraw[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%] {\n  background: rgba(255, 255, 255, 0.7);\n  color: #26323d;\n}\n.quick-action--preview[_ngcontent-%COMP%]   .quick-action__icon[_ngcontent-%COMP%] {\n  background: rgba(49, 81, 95, 0.06);\n  color: #66727d;\n}\n.quick-action--preview[_ngcontent-%COMP%] {\n  background: transparent;\n  color: #56616c;\n}\n.dashboard-help-link[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: flex-start;\n  gap: 0.3rem;\n  padding: 0.2rem 0.15rem;\n  color: #66727d;\n  font-size: 0.82rem;\n  line-height: 1.75;\n  opacity: 0.86;\n}\n.dashboard-section[_ngcontent-%COMP%], \n.dashboard-panel[_ngcontent-%COMP%] {\n  padding: 1rem;\n}\n.dashboard-section__header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 1rem;\n  margin-bottom: 0.85rem;\n}\n.dashboard-section__header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  margin: 0.2rem 0 0;\n  font-size: 1.1rem;\n  font-weight: 850;\n}\n.dashboard-section--funds[_ngcontent-%COMP%] {\n  overflow: visible;\n}\n.fund-section-header[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.75rem;\n  margin-bottom: 0.65rem;\n}\n.fund-section-header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  min-width: 0;\n  margin: 0;\n  color: #26323d;\n  font-size: 0.95rem;\n  font-weight: 900;\n  line-height: 1.4;\n}\n.fund-section-link[_ngcontent-%COMP%] {\n  flex: 0 0 auto;\n  min-height: 32px;\n  padding: 0.34rem 0.58rem;\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.4);\n  color: #6666ff;\n  font-size: 0.78rem;\n  font-weight: 700;\n  text-decoration: none;\n  white-space: nowrap;\n  transition:\n    transform 160ms ease,\n    background-color 160ms ease,\n    box-shadow 160ms ease;\n}\n.fund-section-link[_ngcontent-%COMP%]:hover, \n.fund-section-link[_ngcontent-%COMP%]:focus-visible {\n  background: rgba(255, 255, 255, 0.34);\n  box-shadow: 0 8px 18px rgba(31, 41, 51, 0.055);\n  transform: translateY(-1px);\n}\n.fund-section-link[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid rgba(20, 140, 80, 0.22);\n  outline-offset: 2px;\n}\n.fund-section-link[_ngcontent-%COMP%]:active {\n  transform: scale(0.98);\n}\n.dashboard-section__header[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%], \n.dashboard-section__header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  min-height: 32px;\n  padding: 0.34rem 0.58rem;\n  border: 1px solid rgba(255, 255, 255, 0.34);\n  border-radius: 999px;\n  background: rgba(255, 255, 255, 0.25);\n  color: #26323d;\n  font-size: 0.78rem;\n  font-weight: 850;\n  line-height: 1.35;\n  white-space: nowrap;\n  box-shadow: none;\n  transition:\n    transform 160ms ease,\n    background-color 160ms ease,\n    box-shadow 160ms ease;\n}\n.dashboard-section__header[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%]:hover, \n.dashboard-section__header[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%]:focus-visible, \n.dashboard-section__header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:hover, \n.dashboard-section__header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:focus-visible {\n  background: rgba(255, 255, 255, 0.34);\n  color: #26323d;\n  box-shadow: 0 8px 18px rgba(31, 41, 51, 0.055);\n  transform: translateY(-1px);\n}\n.dashboard-section__header[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%]:focus-visible, \n.dashboard-section__header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid rgba(20, 140, 80, 0.18);\n  outline-offset: 2px;\n}\n.dashboard-section__header[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%]:active, \n.dashboard-section__header[_ngcontent-%COMP%]   a[_ngcontent-%COMP%]:active {\n  transform: scale(0.98);\n}\n.fund-overview-scroll[_ngcontent-%COMP%] {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: visible;\n  padding: 0;\n  margin: 0;\n  -webkit-overflow-scrolling: touch;\n  scroll-snap-type: x mandatory;\n  scrollbar-width: none;\n}\n.fund-overview-scroll[_ngcontent-%COMP%]::-webkit-scrollbar {\n  display: none;\n}\n.fund-overview-track[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: row;\n  gap: 0.72rem;\n  width: max-content;\n  min-width: 100%;\n  padding: 0;\n  margin: 0;\n}\n.fund-overview-card[_ngcontent-%COMP%] {\n  position: relative;\n  isolation: isolate;\n  overflow: hidden;\n  flex: 0 0 168px;\n  width: 168px;\n  min-width: 168px;\n  max-width: 168px;\n  min-height: 172px;\n  box-sizing: border-box;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  gap: 0;\n  padding: 1rem 1rem;\n  border: 1px solid rgba(229, 234, 238, 0.9);\n  border-radius: 16px;\n  background: rgba(255, 255, 255, 0.86);\n  box-shadow: 0 12px 28px rgba(31, 41, 51, 0.06);\n  color: #26323d;\n  text-decoration: none;\n  scroll-snap-align: start;\n  transition:\n    transform 160ms ease,\n    box-shadow 160ms ease,\n    border-color 160ms ease,\n    background-color 160ms ease;\n}\n.fund-overview-card[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.fund-overview-card[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: block;\n}\n.fund-overview-card__media[_ngcontent-%COMP%] {\n  display: grid;\n  place-items: normal;\n  width: 100%;\n  height: 50px;\n  min-height: 32px;\n  margin-top: 0.25rem;\n}\n.fund-overview-card__media[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  display: block;\n  width: 32px;\n  height: 32px;\n  object-fit: contain;\n  object-position: center;\n  transform: scale(1.25);\n  transform-origin: center;\n}\n.fund-overview-card--linked[_ngcontent-%COMP%] {\n  cursor: pointer;\n}\n.fund-overview-card--linked[_ngcontent-%COMP%]:hover, \n.fund-overview-card--linked[_ngcontent-%COMP%]:focus-visible {\n  box-shadow: 0 16px 34px rgba(31, 41, 51, 0.1);\n}\n.fund-overview-card--linked[_ngcontent-%COMP%]:focus-visible {\n  outline: 2px solid rgba(20, 140, 80, 0.28);\n  outline-offset: 3px;\n}\n.fund-overview-card--featured[_ngcontent-%COMP%] {\n  background: rgb(255, 255, 255);\n  border-color: rgba(255, 255, 255, 0.24);\n}\n.fund-overview-card[_ngcontent-%COMP%]   .fund-overview-card__status[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 13px;\n  height: 13px;\n  margin-inline-start: 0.32rem;\n  border-radius: 999px;\n  background: rgba(20, 140, 80, 0.14);\n  vertical-align: middle;\n}\n.fund-overview-card[_ngcontent-%COMP%]   .fund-overview-card__status-inner[_ngcontent-%COMP%] {\n  display: block;\n  width: 7px;\n  height: 7px;\n  border-radius: inherit;\n  background: #148c50;\n}\n.fund-overview-card__identity[_ngcontent-%COMP%] {\n  align-items: center;\n  position: relative;\n  z-index: 1;\n}\n.fund-overview-card__symbol-row[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: start;\n  gap: 0.12rem;\n  min-width: 0;\n}\n.fund-overview-card__top-row[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  width: 100%;\n  margin-bottom: 12px;\n}\n.fund-overview-card__status-inner[_ngcontent-%COMP%] {\n  display: block;\n  width: 7px;\n  height: 7px;\n  border-radius: 999px;\n  background: #16a34a;\n}\n.fund-overview-card__media[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: normal;\n  justify-content: space-between;\n}\n.fund-overview-card__status[_ngcontent-%COMP%] {\n  position: static;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 16px;\n  height: 16px;\n  border-radius: 999px;\n  background: rgba(22, 163, 74, 0.12);\n  flex: 0 0 auto;\n}\n.fund-overview-card__topline[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: right;\n  gap: 0.35rem;\n  min-width: 0;\n  margin-top: 0.18rem;\n}\n.fund-overview-card__type[_ngcontent-%COMP%] {\n  overflow: hidden;\n  color: #66727d;\n  font-size: 0.68rem;\n  font-weight: 500;\n  line-height: 1.45;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.fund-overview-card__etf-tag[_ngcontent-%COMP%] {\n  display: inline-flex !important;\n  align-items: center;\n  justify-content: center;\n  flex: 0 0 auto;\n  border-radius: 999px;\n  padding: 0.1rem 0.36rem;\n  background: #6666ff;\n  color: #ffffff;\n  font-size: 0.58rem;\n  font-weight: 700;\n  margin: 0;\n}\n.fund-overview-card__title[_ngcontent-%COMP%] {\n  display: block !important;\n  min-width: 0;\n  color: #26323d;\n  font-size: 1rem;\n  font-weight: 700;\n  line-height: 1.35;\n  text-align: center;\n}\n.fund-overview-card__description[_ngcontent-%COMP%] {\n  display: -webkit-box !important;\n  overflow: hidden;\n  margin: 0.58rem 0 1rem;\n  color: #7b8792;\n  font-size: 0.66rem;\n  font-weight: 500;\n  line-height: 1.65;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n}\n.fund-overview-card__return[_ngcontent-%COMP%] {\n  margin-top: auto;\n  display: flex !important;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.45rem;\n  min-width: 0;\n  position: relative;\n  z-index: 1;\n}\n.fund-overview-card__return[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  overflow: hidden;\n  color: #7b8792;\n  font-size: 0.62rem;\n  font-weight: 500;\n  line-height: 1.35;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.fund-overview-card__return[_ngcontent-%COMP%]   b[_ngcontent-%COMP%] {\n  overflow: hidden;\n  color: #26323d;\n  font-size: 0.7rem;\n  font-weight: 900;\n  line-height: 1.4;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.fund-overview-card__return-value[_ngcontent-%COMP%] {\n  color: #148c50 !important;\n  font-size: 0.82rem !important;\n  font-weight: 950 !important;\n}\n.fund-overview-card__return-value.is-negative[_ngcontent-%COMP%] {\n  color: #c43d3d !important;\n}\n.asset-trend[_ngcontent-%COMP%] {\n  overflow: hidden;\n  min-height: 220px;\n  border-radius: 12px;\n  background: #f7faf9;\n}\n.asset-trend[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 220px;\n  object-fit: cover;\n}\n.mock-activity-list[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 0.6rem;\n  margin-bottom: 0.75rem;\n}\n.mock-activity-item[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 0.75rem;\n  border-radius: 10px;\n  background: #f5f8f7;\n}\n.mock-activity-item[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.mock-activity-item[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: block;\n}\n.mock-activity-item[_ngcontent-%COMP%]   span[_ngcontent-%COMP%], \n.mock-activity-item[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n  color: #737d87;\n  font-size: 0.82rem;\n}\n.recent-activity-frame[_ngcontent-%COMP%] {\n  overflow: hidden;\n  max-height: 420px;\n  border: 1px solid #e8edf0;\n  border-radius: 12px;\n}\n.dashboard-section--secondary[_ngcontent-%COMP%] {\n  margin-top: 0.5rem;\n  border-radius: 15px;\n  background: #f8faf9;\n}\n.secondary-service-grid[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 0.75rem;\n}\n.secondary-service-card[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: flex-start;\n  gap: 0.75rem;\n  padding: 1rem;\n}\n.secondary-service-card[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%] {\n  color: #148c50;\n  flex: 0 0 auto;\n}\n.secondary-service-card[_ngcontent-%COMP%]   strong[_ngcontent-%COMP%], \n.secondary-service-card[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: block;\n}\n.secondary-service-card[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  margin-top: 0.35rem;\n  color: #737d87;\n  font-size: 0.85rem;\n  line-height: 1.8;\n}\n  .carousel-indicators [data-bs-target] {\n  border: none !important;\n}\n  .carousel-indicators {\n  margin-bottom: 0;\n}\n  .carousel-indicators button[type=button][role=tab] {\n  width: 7px;\n  height: 7px;\n  border-radius: 50% !important;\n  background-color: #a0aab4;\n}\n  .carousel-indicators button[type=button][role=tab].active {\n  width: 18px;\n  height: 7px;\n  border-radius: 10px !important;\n  background-color: #33cc66;\n}\n@media (max-width: 1100px) {\n  .dashboard-summary-track[_ngcontent-%COMP%] {\n    grid-auto-columns: minmax(72%, 1fr);\n  }\n  .dashboard-grid--top[_ngcontent-%COMP%], \n   .dashboard-grid--content[_ngcontent-%COMP%] {\n    grid-template-columns: 1fr;\n  }\n}\n@media (min-width: 1200px) {\n  .dashboard-shell[_ngcontent-%COMP%] {\n    display: grid;\n    grid-template-columns: minmax(0, 1fr) minmax(0, 1100px) 320px;\n    align-items: start;\n    gap: 1rem;\n    max-width: none;\n    padding: 1rem 1rem 2.5rem;\n  }\n  .dashboard-main-column[_ngcontent-%COMP%] {\n    grid-column: 2;\n    width: 100%;\n  }\n  .dashboard-desktop-sidebar[_ngcontent-%COMP%] {\n    position: sticky;\n    top: 24px;\n    grid-column: 3;\n    display: flex;\n    flex-direction: column;\n    gap: 0.85rem;\n    width: 100%;\n    min-width: 0;\n  }\n  .dashboard-summary-track[_ngcontent-%COMP%] {\n    grid-auto-columns: minmax(72%, 1fr);\n  }\n  .dashboard-summary-track[_ngcontent-%COMP%]   .summary-carousel-card[_ngcontent-%COMP%] {\n    scroll-snap-align: center;\n  }\n}\n@media (max-width: 760px) {\n  .dashboard-shell[_ngcontent-%COMP%] {\n    padding: 0.5rem 0.75rem 5.5rem;\n  }\n  .mock-activity-item[_ngcontent-%COMP%] {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n  .dashboard-summary-track[_ngcontent-%COMP%] {\n    grid-auto-columns: minmax(86%, 1fr);\n  }\n  .secondary-service-grid[_ngcontent-%COMP%] {\n    grid-template-columns: 1fr;\n  }\n  .fund-overview-scroll[_ngcontent-%COMP%] {\n    width: calc(100% + 1.5rem);\n    margin-inline: -0.75rem;\n    padding-inline: 0;\n  }\n  .fund-overview-track[_ngcontent-%COMP%] {\n    padding-inline: 0;\n  }\n  .fund-overview-card[_ngcontent-%COMP%] {\n    flex-basis: 168px;\n    width: 168px;\n    min-width: 168px;\n    max-width: 168px;\n  }\n  .asset-summary-card__value[_ngcontent-%COMP%] {\n    font-size: 1.82rem;\n  }\n  .urgent-card__rows[_ngcontent-%COMP%]   div[_ngcontent-%COMP%], \n   .dashboard-section__header[_ngcontent-%COMP%] {\n    align-items: flex-start;\n    flex-direction: column;\n  }\n}\n@media (max-width: 420px) {\n  .dashboard-summary-track[_ngcontent-%COMP%] {\n    grid-auto-columns: minmax(92%, 1fr);\n  }\n  .quick-action[_ngcontent-%COMP%] {\n    min-height: 70px;\n    padding-inline: 0.25rem;\n  }\n  .quick-action__icon[_ngcontent-%COMP%] {\n    inline-size: 36px;\n    block-size: 36px;\n    min-inline-size: 36px;\n    min-block-size: 36px;\n  }\n  .quick-action__label[_ngcontent-%COMP%] {\n    font-size: 0.78rem;\n  }\n  .quick-action[_ngcontent-%COMP%]   small[_ngcontent-%COMP%] {\n    font-size: 0.62rem;\n  }\n}\n/*# sourceMappingURL=dashboard.component.css.map */"] });
 var DashboardComponent = _DashboardComponent;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DashboardComponent, { className: "DashboardComponent" });
@@ -43319,28 +43452,46 @@ var SidebarComponent = _SidebarComponent;
 
 // projects/client/src/app/features/header/header.component.ts
 var _forTrack04 = ($index, $item) => $item.name;
-function HeaderComponent_Conditional_29_For_1_Template(rf, ctx) {
+function HeaderComponent_Conditional_21_Conditional_8_For_1_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "button", 28);
+    \u0275\u0275elementStart(0, "button", 29);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    let tmp_11_0;
+    let tmp_12_0;
     const item_r1 = ctx.$implicit;
-    const ctx_r1 = \u0275\u0275nextContext(2);
-    \u0275\u0275propertyInterpolate("routerLink", item_r1.link.replaceAll(":fundCode", (tmp_11_0 = ctx_r1.childRouteItem()) == null ? null : tmp_11_0.fundCode));
+    const ctx_r1 = \u0275\u0275nextContext(3);
+    \u0275\u0275propertyInterpolate("routerLink", item_r1.link.replaceAll(":fundCode", (tmp_12_0 = ctx_r1.childRouteItem()) == null ? null : tmp_12_0.fundCode));
     \u0275\u0275advance();
     \u0275\u0275textInterpolate(item_r1.name);
   }
 }
-function HeaderComponent_Conditional_29_Template(rf, ctx) {
+function HeaderComponent_Conditional_21_Conditional_8_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, HeaderComponent_Conditional_29_For_1_Template, 2, 2, "button", 28, _forTrack04);
+    \u0275\u0275repeaterCreate(0, HeaderComponent_Conditional_21_Conditional_8_For_1_Template, 2, 2, "button", 29, _forTrack04);
   }
   if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
+    const ctx_r1 = \u0275\u0275nextContext(2);
     \u0275\u0275repeater(ctx_r1.reportingListMenu());
+  }
+}
+function HeaderComponent_Conditional_21_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 21)(1, "div", 22)(2, "div", 23);
+    \u0275\u0275element(3, "div", 24);
+    \u0275\u0275elementStart(4, "div", 25)(5, "div", 26)(6, "div", 27)(7, "div", 23);
+    \u0275\u0275template(8, HeaderComponent_Conditional_21_Conditional_8_Template, 2, 0);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275element(9, "div", 28);
+    \u0275\u0275elementEnd()()()()();
+  }
+  if (rf & 2) {
+    let tmp_2_0;
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275styleProp("top", ctx_r1.headerHeight, "px");
+    \u0275\u0275advance(8);
+    \u0275\u0275conditional(((tmp_2_0 = ctx_r1.childRouteItem()) == null ? null : tmp_2_0.reportMenu) ? 8 : -1);
   }
 }
 var _HeaderComponent = class _HeaderComponent {
@@ -43362,6 +43513,8 @@ var _HeaderComponent = class _HeaderComponent {
       this.childRouteItem.set(childRoute);
       if (childRoute?.reportMenu) {
         this.reportingListMenu.set(childRoute?.reportMenu);
+      } else {
+        this.reportingListMenu.set([]);
       }
       this.pinnedMenu.set(childRoute?.pinnedMenu);
     });
@@ -43392,7 +43545,7 @@ var _HeaderComponent = class _HeaderComponent {
 _HeaderComponent.\u0275fac = function HeaderComponent_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _HeaderComponent)(\u0275\u0275directiveInject(Router), \u0275\u0275directiveInject(ActivatedRoute), \u0275\u0275directiveInject(NgbModal), \u0275\u0275directiveInject(AuthService), \u0275\u0275directiveInject(ProfileManagementService));
 };
-_HeaderComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeaderComponent, selectors: [["app-header"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 31, vars: 7, consts: [[1, "app-header", "fixed-top"], [1, "container", "app-header__container"], [1, "app-header__surface", "d-flex", "justify-content-between", "align-items-center"], ["src", "/svg/logo-fa.svg", "alt", "IPasargad", "routerLink", "/", 1, "app-header__logo", "me-3"], [1, "d-none", "d-lg-block"], [1, "d-flex", "align-items-center", "app-header__actions"], ["icon", "gear", "size", "lg", "routerLink", "settings", "placement", "right", "ngbTooltip", "\u062A\u0646\u0638\u06CC\u0645\u0627\u062A", 1, "app-header__icon-btn", "p-2", "rounded", "rounded-pill", "border", "border-1", "cursor-pointer"], ["container", "body", "routerLink", "profile", 1, "app-header__account", "menu-item", "cursor-pointer", "d-flex", "mx-2", "rounded-pill", "border", "border-1", "py-2", "cursor-pointer", 3, "ngbTooltip"], [1, "d-flex", "flex-fill"], ["icon", "caret-down", 1, "me-3"], [1, "white-space-nowrap", "d", "text-center", "flex-fill", "mx-4", "truncate"], ["viewBox", "0 0 24 24", "width", "24px", "height", "24px", 1, "ms-3"], [0, "xlink", "href", "#ico_person_circle"], ["viewBox", "0 0 24 24", "width", "36px", "height", "36px", "placement", "left", "ngbTooltip", "\u062E\u0631\u0648\u062C", 1, "app-header__icon-btn", "p-1", "rounded", "rounded-pill", "border", "border-1", "cursor-pointer", 3, "click"], [0, "xlink", "href", "#ico_circle_turn_on"], [1, "d-lg-none", "d-flex", "p-2", "justify-content-center", "align-items-center", "app-header__mobile-actions"], ["viewBox", "0 0 24 24", "width", "36px", "height", "36px", "routerLink", "/notifications", 1, "app-header__icon-btn", "rounded", "rounded-pill", "border", "border-1", "p-2"], [0, "xlink", "href", "#ico_bell"], ["viewBox", "0 0 24 24", "width", "36px", "height", "36px", "routerLink", "/customer-support", 1, "app-header__icon-btn", "rounded", "rounded-pill", "border", "border-1", "p-1", "me-3"], [0, "xlink", "href", "#ico_support"], [1, "app-header-subnav", "d-none", "d-lg-block", "fixed-top"], [1, "container"], [1, "d-flex"], [2, "width", "209px"], [1, "flex-fill", "px-4", "py-2"], [1, "row"], [1, "col-lg-16", "order-2", "px-3"], [1, "col-lg-8", "order-lg-2", "mb-4", "px-0"], ["routerLinkActive", "active-menu-btn", 1, "btn", "btn-gray-600", "mx-1", 2, "flex", "1", 3, "routerLink"]], template: function HeaderComponent_Template(rf, ctx) {
+_HeaderComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeaderComponent, selectors: [["app-header"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 22, vars: 5, consts: [[1, "app-header", "fixed-top"], [1, "container", "app-header__container"], [1, "app-header__surface", "d-flex", "justify-content-between", "align-items-center"], ["src", "/svg/logo-fa.svg", "alt", "IPasargad", "routerLink", "/", 1, "app-header__logo", "me-3"], [1, "d-none", "d-lg-block"], [1, "d-flex", "align-items-center", "app-header__actions"], ["icon", "gear", "size", "lg", "routerLink", "settings", "placement", "right", "ngbTooltip", "\u062A\u0646\u0638\u06CC\u0645\u0627\u062A", 1, "app-header__icon-btn", "p-2", "rounded", "rounded-pill", "border", "border-1", "cursor-pointer"], ["container", "body", "routerLink", "profile", 1, "app-header__account", "menu-item", "cursor-pointer", "d-flex", "mx-2", "rounded-pill", "border", "border-1", "py-2", "cursor-pointer", 3, "ngbTooltip"], [1, "d-flex", "flex-fill"], ["icon", "caret-down", 1, "me-3"], [1, "white-space-nowrap", "d", "text-center", "flex-fill", "mx-4", "truncate"], ["viewBox", "0 0 24 24", "width", "24px", "height", "24px", 1, "ms-3"], [0, "xlink", "href", "#ico_person_circle"], ["viewBox", "0 0 24 24", "width", "36px", "height", "36px", "placement", "left", "ngbTooltip", "\u062E\u0631\u0648\u062C", 1, "app-header__icon-btn", "p-1", "rounded", "rounded-pill", "border", "border-1", "cursor-pointer", 3, "click"], [0, "xlink", "href", "#ico_circle_turn_on"], [1, "d-lg-none", "d-flex", "p-2", "justify-content-center", "align-items-center", "app-header__mobile-actions"], ["viewBox", "0 0 24 24", "width", "36px", "height", "36px", "routerLink", "/notifications", 1, "app-header__icon-btn", "rounded", "rounded-pill", "border", "border-1", "p-2"], [0, "xlink", "href", "#ico_bell"], ["viewBox", "0 0 24 24", "width", "36px", "height", "36px", "routerLink", "/customer-support", 1, "app-header__icon-btn", "rounded", "rounded-pill", "border", "border-1", "p-1", "me-3"], [0, "xlink", "href", "#ico_support"], [1, "app-header-subnav", "d-none", "d-lg-block", "fixed-top", 3, "top"], [1, "app-header-subnav", "d-none", "d-lg-block", "fixed-top"], [1, "container"], [1, "d-flex"], [2, "width", "209px"], [1, "flex-fill", "px-4", "py-2"], [1, "row"], [1, "col-lg-16", "order-2", "px-3"], [1, "col-lg-8", "order-lg-2", "mb-4", "px-0"], ["routerLinkActive", "active-menu-btn", 1, "btn", "btn-gray-600", "mx-1", 2, "flex", "1", 3, "routerLink"]], template: function HeaderComponent_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "header", 0)(1, "div", 1)(2, "div", 2);
     \u0275\u0275element(3, "img", 3);
@@ -43422,19 +43575,12 @@ _HeaderComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type:
     \u0275\u0275elementStart(19, "svg", 18);
     \u0275\u0275element(20, "use", 19);
     \u0275\u0275elementEnd()()()()();
-    \u0275\u0275namespaceHTML();
-    \u0275\u0275elementStart(21, "div", 20)(22, "div", 21)(23, "div", 22);
-    \u0275\u0275element(24, "div", 23);
-    \u0275\u0275elementStart(25, "div", 24)(26, "div", 25)(27, "div", 26)(28, "div", 22);
-    \u0275\u0275template(29, HeaderComponent_Conditional_29_Template, 2, 0);
-    \u0275\u0275elementEnd()();
-    \u0275\u0275element(30, "div", 27);
-    \u0275\u0275elementEnd()()()()();
+    \u0275\u0275template(21, HeaderComponent_Conditional_21_Template, 10, 3, "div", 20);
   }
   if (rf & 2) {
     let tmp_0_0;
     let tmp_2_0;
-    let tmp_4_0;
+    let tmp_3_0;
     \u0275\u0275advance(7);
     \u0275\u0275property("ngbTooltip", (tmp_0_0 = ctx.customerInfo()) == null ? null : tmp_0_0.personalInfo == null ? null : tmp_0_0.personalInfo.fullName);
     \u0275\u0275advance(3);
@@ -43442,9 +43588,7 @@ _HeaderComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type:
     \u0275\u0275advance();
     \u0275\u0275textInterpolate1(" ", (tmp_2_0 = ctx.customerInfo()) == null ? null : tmp_2_0.personalInfo == null ? null : tmp_2_0.personalInfo.fullName, "");
     \u0275\u0275advance(10);
-    \u0275\u0275styleProp("top", ctx.headerHeight, "px");
-    \u0275\u0275advance(8);
-    \u0275\u0275conditional(((tmp_4_0 = ctx.childRouteItem()) == null ? null : tmp_4_0.reportMenu) ? 29 : -1);
+    \u0275\u0275conditional(((tmp_3_0 = ctx.reportingListMenu()) == null ? null : tmp_3_0.length) ? 21 : -1);
   }
 }, dependencies: [FontAwesomeModule, FaIconComponent, RouterLinkActive, RouterLink, NgbTooltip], styles: ['\n\n[_nghost-%COMP%] {\n  display: block;\n}\n.app-header[_ngcontent-%COMP%] {\n  padding: calc(6px + env(safe-area-inset-top)) 12px 0;\n  color: #26323d;\n  background: transparent;\n  z-index: 1038;\n  pointer-events: none;\n}\n.app-header__container[_ngcontent-%COMP%] {\n  pointer-events: none;\n}\n.app-header__surface[_ngcontent-%COMP%] {\n  position: relative;\n  overflow: hidden;\n  min-height: 54px;\n  border: 1px solid rgba(255, 255, 255, 0.58);\n  border-radius: 19px;\n  padding: 0 12px;\n  background:\n    radial-gradient(\n      circle at 14% 8%,\n      rgba(255, 255, 255, 0.9),\n      rgba(255, 255, 255, 0.32) 34%,\n      transparent 62%),\n    linear-gradient(\n      120deg,\n      rgba(255, 255, 255, 0.82),\n      rgba(255, 255, 255, 0.68) 58%,\n      rgba(242, 252, 247, 0.72)),\n    rgba(255, 255, 255, 0.74);\n  box-shadow:\n    0 10px 24px rgba(24, 35, 48, 0.1),\n    0 1px 6px rgba(24, 35, 48, 0.06),\n    inset 0 1px 1px rgba(255, 255, 255, 0.88),\n    inset 0 -12px 24px rgba(49, 81, 95, 0.04);\n  backdrop-filter: blur(22px) saturate(170%);\n  -webkit-backdrop-filter: blur(22px) saturate(170%);\n  pointer-events: auto;\n}\n.app-header__surface[_ngcontent-%COMP%]::before {\n  content: "";\n  position: absolute;\n  inset: 1px 16px auto;\n  height: 42%;\n  border-radius: 999px;\n  background:\n    linear-gradient(\n      180deg,\n      rgba(255, 255, 255, 0.68),\n      rgba(255, 255, 255, 0));\n  pointer-events: none;\n}\n.app-header__surface[_ngcontent-%COMP%]::after {\n  content: "";\n  position: absolute;\n  inset: auto 18px 2px;\n  height: 12px;\n  border-radius: 999px;\n  background:\n    radial-gradient(\n      ellipse at center,\n      rgba(20, 140, 80, 0.05),\n      transparent 72%);\n  pointer-events: none;\n}\n.app-header__logo[_ngcontent-%COMP%], \n.app-header__actions[_ngcontent-%COMP%], \n.app-header__mobile-actions[_ngcontent-%COMP%] {\n  position: relative;\n  z-index: 1;\n}\n.app-header__logo[_ngcontent-%COMP%] {\n  cursor: pointer;\n  object-fit: contain;\n  width: 132px;\n  height: 38px;\n  filter: none;\n}\n.app-header__icon-btn[_ngcontent-%COMP%] {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 36px;\n  height: 36px;\n  border-color: rgba(120, 140, 150, 0.18) !important;\n  background:\n    radial-gradient(\n      circle at 35% 18%,\n      rgba(255, 255, 255, 0.82),\n      rgba(255, 255, 255, 0.16) 46%,\n      transparent 70%),\n    rgba(255, 255, 255, 0.42);\n  color: #31515f;\n  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.68), 0 2px 8px rgba(24, 35, 48, 0.06);\n  backdrop-filter: blur(16px) saturate(150%);\n  -webkit-backdrop-filter: blur(16px) saturate(150%);\n  transition:\n    transform 160ms ease,\n    background-color 160ms ease,\n    box-shadow 160ms ease;\n}\n.app-header__icon-btn[_ngcontent-%COMP%]:active {\n  transform: scale(0.96);\n  background: rgba(255, 255, 255, 0.58);\n}\n.app-header__account[_ngcontent-%COMP%] {\n  min-height: 36px;\n  border-color: rgba(120, 140, 150, 0.18) !important;\n  background:\n    radial-gradient(\n      circle at 32% 18%,\n      rgba(255, 255, 255, 0.78),\n      rgba(255, 255, 255, 0.14) 44%,\n      transparent 68%),\n    rgba(255, 255, 255, 0.42);\n  color: #26323d;\n  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.68), 0 2px 8px rgba(24, 35, 48, 0.06);\n  backdrop-filter: blur(16px) saturate(150%);\n  -webkit-backdrop-filter: blur(16px) saturate(150%);\n}\n.app-header-subnav[_ngcontent-%COMP%] {\n  height: 52px;\n  color: #26323d;\n  background:\n    radial-gradient(\n      circle at 20% 0%,\n      rgba(255, 255, 255, 0.82),\n      rgba(255, 255, 255, 0.18) 42%,\n      transparent 70%),\n    rgba(255, 255, 255, 0.72);\n  border-bottom: 1px solid rgba(120, 140, 150, 0.14);\n  box-shadow: 0 6px 16px rgba(24, 35, 48, 0.08);\n  backdrop-filter: blur(18px) saturate(155%);\n  -webkit-backdrop-filter: blur(18px) saturate(155%);\n  z-index: 1037;\n}\n.active-menu-btn[_ngcontent-%COMP%] {\n  background:\n    radial-gradient(\n      circle at 40% 12%,\n      rgba(255, 255, 255, 0.74),\n      rgba(255, 255, 255, 0.08) 46%,\n      transparent 72%),\n    rgba(20, 140, 80, 0.14) !important;\n  color: #6666ff !important;\n  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.68), 0 4px 12px rgba(20, 140, 80, 0.1);\n}\n@media (min-width: 992px) {\n  .app-header[_ngcontent-%COMP%] {\n    padding: 0;\n  }\n  .app-header__surface[_ngcontent-%COMP%] {\n    min-height: 60px;\n    border-radius: 0 0 16px 16px;\n  }\n  .app-header__logo[_ngcontent-%COMP%] {\n    width: 138px;\n    height: 40px;\n  }\n}\n/*# sourceMappingURL=header.component.css.map */'], changeDetection: 0 });
 var HeaderComponent = _HeaderComponent;
@@ -44088,7 +44232,7 @@ var FundItemComponent = _FundItemComponent;
 
 // projects/client/src/app/features/fund/fund-list/fund-list.component.ts
 var _forTrack05 = ($index, $item) => $item.label;
-var _forTrack1 = ($index, $item) => $item.seoRegisterNumber;
+var _forTrack12 = ($index, $item) => $item.seoRegisterNumber;
 var _c016 = (a0, a1) => ["/fund", a0, "fund-detail", a1];
 var _c113 = (a0, a1) => ["/fund", a0, "user-fund", a1];
 function FundListComponent_For_15_Template(rf, ctx) {
@@ -44445,7 +44589,7 @@ _FundListComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ typ
     \u0275\u0275repeaterCreate(14, FundListComponent_For_15_Template, 2, 4, "a", 7, _forTrack05);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(16, "section", 8);
-    \u0275\u0275repeaterCreate(17, FundListComponent_For_18_Template, 36, 18, "article", 9, _forTrack1, false, FundListComponent_ForEmpty_19_Template, 5, 0, "div", 10);
+    \u0275\u0275repeaterCreate(17, FundListComponent_For_18_Template, 36, 18, "article", 9, _forTrack12, false, FundListComponent_ForEmpty_19_Template, 5, 0, "div", 10);
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(20, "aside", 11);
     \u0275\u0275element(21, "mutual-fund-carousel");
@@ -45927,7 +46071,7 @@ var ReinvestPercentModalComponent = _ReinvestPercentModalComponent;
 
 // projects/client/src/app/features/portfolio/portfolio.component.ts
 var _forTrack06 = ($index, $item) => $item.label;
-var _forTrack12 = ($index, $item) => ($item == null ? null : $item.seoRegisterNumber) || $index;
+var _forTrack13 = ($index, $item) => ($item == null ? null : $item.seoRegisterNumber) || $index;
 var _c020 = (a0) => ({ "background-color": a0 });
 var _c115 = (a0, a1) => ({ "profit-line--up": a0, "profit-line--down": a1 });
 function PortfolioComponent_Conditional_39_Template(rf, ctx) {
@@ -46246,7 +46390,7 @@ function PortfolioComponent_Conditional_44_Template(rf, ctx) {
     \u0275\u0275pipe(6, "number");
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(7, "div", 34);
-    \u0275\u0275repeaterCreate(8, PortfolioComponent_Conditional_44_For_9_Template, 44, 17, "article", 35, _forTrack12);
+    \u0275\u0275repeaterCreate(8, PortfolioComponent_Conditional_44_For_9_Template, 44, 17, "article", 35, _forTrack13);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
@@ -56566,10 +56710,6 @@ var features_routes = [
         path: "dashboard",
         component: DashboardComponent,
         data: {
-          reportMenu: [
-            { name: "\u062F\u0627\u0631\u0627\u06CC\u06CC", link: "portfolio" },
-            { name: "\u0635\u0646\u062F\u0648\u0642\u200C\u0647\u0627", link: "fund-list" }
-          ],
           pinnedMenu: true
         }
       },
@@ -56702,4 +56842,4 @@ lodash/lodash.js:
    * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
    *)
 */
-//# sourceMappingURL=chunk-6C2EQ4QO.js.map
+//# sourceMappingURL=chunk-KLFR77KH.js.map

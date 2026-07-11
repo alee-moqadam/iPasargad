@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/client/src/app/features/dashboard/asset-trend-background/asset-trend-background.component.scss"],
+  "sourcesContent": [":host {\n  position: absolute;\n  inset: 0;\n  z-index: 0;\n  display: block;\n  overflow: hidden;\n  pointer-events: none;\n  border-radius: inherit;\n}\n\n.asset-trend-background {\n  display: block;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n\n.asset-trend-background__line {\n  fill: none;\n  stroke: currentColor;\n  stroke-width: 4.5;\n  stroke-linecap: round;\n  stroke-linejoin: round;\n  opacity: 0.065;\n  stroke-dasharray: 1;\n  stroke-dashoffset: 1;\n  animation: assetTrendDraw 1400ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;\n}\n\n@keyframes assetTrendDraw {\n  to {\n    stroke-dashoffset: 0;\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .asset-trend-background__line {\n    animation: none;\n    stroke-dashoffset: 0;\n  }\n}\n"],
+  "mappings": ";AAAA;AACE,YAAA;AACA,SAAA;AACA,WAAA;AACA,WAAA;AACA,YAAA;AACA,kBAAA;AACA,iBAAA;;AAGF,CAAA;AACE,WAAA;AACA,SAAA;AACA,UAAA;AACA,YAAA;;AAGF,CAAA;AACE,QAAA;AACA,UAAA;AACA,gBAAA;AACA,kBAAA;AACA,mBAAA;AACA,WAAA;AACA,oBAAA;AACA,qBAAA;AACA,aAAA,eAAA,OAAA,aAAA,GAAA,EAAA,GAAA,EAAA,GAAA,EAAA,GAAA;;AAGF,WAHE;AAIA;AACE,uBAAA;;;AAIJ,OAAA,CAAA,sBAAA,EAAA;AACE,GAnBF;AAoBI,eAAA;AACA,uBAAA;;;",
+  "names": []
+}

@@ -68,6 +68,8 @@ import {
   ɵɵProvidersFeature,
   ɵɵStandaloneFeature,
   ɵɵadvance,
+  ɵɵattribute,
+  ɵɵclassProp,
   ɵɵconditional,
   ɵɵdefineComponent,
   ɵɵdirectiveInject,
@@ -166,6 +168,7 @@ var _LoginComponent = class _LoginComponent {
     this.identityService = identityService;
     this.toastService = toastService;
     this.indexedDBService = indexedDBService;
+    this.developmentMockCredential = "1";
     this.generatedCaptchaValue = signal({});
     this.loginMsg = signal(null);
     this.submitting = signal(false);
@@ -222,6 +225,7 @@ var _LoginComponent = class _LoginComponent {
       password: new UntypedFormControl("", [Validators.required]),
       captcha: new UntypedFormControl("", [Validators.required])
     });
+    this.autoSubmitDevelopmentMockLogin();
   }
   submit() {
     this.formGroup.controls.loginName.markAsTouched();
@@ -275,6 +279,15 @@ var _LoginComponent = class _LoginComponent {
     const loginName = Convert.toEnglishNumber(this.formGroup?.get("loginName")?.value ?? "").trim();
     const password = this.formGroup?.get("password")?.value ?? "";
     return loginName === "1" && password === "1";
+  }
+  autoSubmitDevelopmentMockLogin() {
+    if (environment.production)
+      return;
+    this.formGroup.patchValue({
+      loginName: this.developmentMockCredential,
+      password: this.developmentMockCredential
+    });
+    queueMicrotask(() => this.submit());
   }
   completeDevelopmentMockLogin() {
     localStorage.setItem("sejam-status", "100");
@@ -2951,8 +2964,193 @@ var QuickSejamStep2LegalComponent = _QuickSejamStep2LegalComponent;
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(QuickSejamStep2LegalComponent, { className: "QuickSejamStep2LegalComponent" });
 })();
 
+// projects/client/src/app/auth/auth-landing/auth-landing.component.ts
+var _forTrack02 = ($index, $item) => $item.title;
+function AuthLandingComponent_For_4_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "article", 10)(1, "div", 11);
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(2, "svg", 12);
+    \u0275\u0275element(3, "use");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275namespaceHTML();
+    \u0275\u0275elementStart(4, "h1", 13);
+    \u0275\u0275text(5);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(6, "p", 14);
+    \u0275\u0275text(7);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const slide_r1 = ctx.$implicit;
+    const \u0275$index_7_r2 = ctx.$index;
+    const ctx_r2 = \u0275\u0275nextContext();
+    \u0275\u0275classProp("auth-landing__slide--active", ctx_r2.activeSlide() === \u0275$index_7_r2);
+    \u0275\u0275attribute("aria-hidden", ctx_r2.activeSlide() === \u0275$index_7_r2 ? "false" : "true")("aria-label", slide_r1.title);
+    \u0275\u0275advance(3);
+    \u0275\u0275attribute("href", slide_r1.icon, null, "xlink");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(slide_r1.title);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(slide_r1.description);
+  }
+}
+function AuthLandingComponent_For_7_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r4 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 15);
+    \u0275\u0275listener("click", function AuthLandingComponent_For_7_Template_button_click_0_listener() {
+      const \u0275$index_24_r5 = \u0275\u0275restoreView(_r4).$index;
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.selectSlide(\u0275$index_24_r5));
+    });
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const \u0275$index_24_r5 = ctx.$index;
+    const ctx_r2 = \u0275\u0275nextContext();
+    \u0275\u0275classProp("auth-landing__indicator--active", ctx_r2.activeSlide() === \u0275$index_24_r5);
+    \u0275\u0275attribute("aria-label", "\u0646\u0645\u0627\u06CC\u0634 \u0627\u0633\u0644\u0627\u06CC\u062F " + (\u0275$index_24_r5 + 1))("aria-current", ctx_r2.activeSlide() === \u0275$index_24_r5 ? "true" : null);
+  }
+}
+var _AuthLandingComponent = class _AuthLandingComponent {
+  constructor() {
+    this.slides = [
+      {
+        icon: "#ico_box_plus_fill",
+        title: "\u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC \u0647\u0648\u0634\u0645\u0646\u062F",
+        description: "\u062A\u0645\u0627\u0645 \u0635\u0646\u062F\u0648\u0642\u200C\u0647\u0627\u06CC \u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC \u0631\u0627 \u062F\u0631 \u06CC\u06A9 \u0645\u062D\u06CC\u0637 \u0633\u0627\u062F\u0647\u060C \u0633\u0631\u06CC\u0639 \u0648 \u062D\u0631\u0641\u0647\u200C\u0627\u06CC \u0645\u062F\u06CC\u0631\u06CC\u062A \u06A9\u0646\u06CC\u062F."
+      },
+      {
+        icon: "#ico_box_exhange_fill",
+        title: "\u0645\u0639\u0627\u0645\u0644\u0627\u062A \u0622\u0646\u0644\u0627\u06CC\u0646",
+        description: "\u062E\u0631\u06CC\u062F\u060C \u0641\u0631\u0648\u0634\u060C \u0635\u062F\u0648\u0631 \u0648 \u0627\u0628\u0637\u0627\u0644 \u0635\u0646\u062F\u0648\u0642\u200C\u0647\u0627 \u062A\u0646\u0647\u0627 \u0628\u0627 \u0686\u0646\u062F \u0644\u0645\u0633."
+      },
+      {
+        icon: "#ico_chart_bar_box",
+        title: "\u06AF\u0632\u0627\u0631\u0634\u200C\u0647\u0627\u06CC \u06A9\u0627\u0645\u0644",
+        description: "\u0648\u0636\u0639\u06CC\u062A \u062F\u0627\u0631\u0627\u06CC\u06CC\u060C \u0628\u0627\u0632\u062F\u0647\u06CC \u0648 \u0639\u0645\u0644\u06A9\u0631\u062F \u0633\u0631\u0645\u0627\u06CC\u0647\u200C\u06AF\u0630\u0627\u0631\u06CC \u062E\u0648\u062F \u0631\u0627 \u0628\u0647 \u0635\u0648\u0631\u062A \u0644\u062D\u0638\u0647\u200C\u0627\u06CC \u0645\u0634\u0627\u0647\u062F\u0647 \u06A9\u0646\u06CC\u062F."
+      },
+      {
+        icon: "#ico_person_circle",
+        title: "\u0627\u0645\u0646 \u0648 \u0645\u0637\u0645\u0626\u0646",
+        description: "\u0648\u0631\u0648\u062F \u0627\u06CC\u0645\u0646\u060C \u0627\u0637\u0644\u0627\u0639\u0627\u062A \u0645\u062D\u0627\u0641\u0638\u062A\u200C\u0634\u062F\u0647 \u0648 \u062A\u062C\u0631\u0628\u0647\u200C\u0627\u06CC \u0642\u0627\u0628\u0644 \u0627\u0639\u062A\u0645\u0627\u062F \u0628\u0631\u0627\u06CC \u0645\u062F\u06CC\u0631\u06CC\u062A \u0633\u0631\u0645\u0627\u06CC\u0647."
+      }
+    ];
+    this.activeSlide = signal(0);
+    this.autoplayTimer = null;
+    this.pointerStartX = null;
+  }
+  ngOnInit() {
+    this.startAutoplay();
+  }
+  ngOnDestroy() {
+    this.stopAutoplay();
+  }
+  selectSlide(index) {
+    this.activeSlide.set(index);
+    this.restartAutoplay();
+  }
+  onPointerDown(event) {
+    this.pointerStartX = event.clientX;
+    this.stopAutoplay();
+  }
+  onPointerUp(event) {
+    this.handleSwipe(event.clientX);
+    this.startAutoplay();
+  }
+  onPointerCancel() {
+    this.pointerStartX = null;
+    this.startAutoplay();
+  }
+  handleSwipe(pointerEndX) {
+    if (this.pointerStartX === null) {
+      return;
+    }
+    const swipeDistance = pointerEndX - this.pointerStartX;
+    this.pointerStartX = null;
+    if (Math.abs(swipeDistance) < 42) {
+      return;
+    }
+    if (swipeDistance < 0) {
+      this.showNextSlide();
+      return;
+    }
+    this.showPreviousSlide();
+  }
+  showNextSlide() {
+    this.activeSlide.set((this.activeSlide() + 1) % this.slides.length);
+  }
+  showPreviousSlide() {
+    this.activeSlide.set((this.activeSlide() - 1 + this.slides.length) % this.slides.length);
+  }
+  restartAutoplay() {
+    this.stopAutoplay();
+    this.startAutoplay();
+  }
+  startAutoplay() {
+    if (this.autoplayTimer !== null) {
+      return;
+    }
+    this.autoplayTimer = setInterval(() => this.showNextSlide(), 4e3);
+  }
+  stopAutoplay() {
+    if (this.autoplayTimer === null) {
+      return;
+    }
+    clearInterval(this.autoplayTimer);
+    this.autoplayTimer = null;
+  }
+};
+_AuthLandingComponent.\u0275fac = function AuthLandingComponent_Factory(__ngFactoryType__) {
+  return new (__ngFactoryType__ || _AuthLandingComponent)();
+};
+_AuthLandingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AuthLandingComponent, selectors: [["app-auth-landing"]], standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 15, vars: 0, consts: [["dir", "rtl", 1, "auth-landing", "auth-bg"], ["role", "region", "aria-roledescription", "carousel", "aria-label", "\u0645\u0639\u0631\u0641\u06CC \u0627\u0645\u06A9\u0627\u0646\u0627\u062A \u0622\u06CC\u200C\u067E\u0627\u0633\u0627\u0631\u06AF\u0627\u062F", 1, "auth-landing__carousel", 3, "pointerdown", "pointerup", "pointercancel", "pointerleave"], [1, "auth-landing__slides"], [1, "auth-landing__slide", 3, "auth-landing__slide--active"], ["role", "tablist", "aria-label", "\u0627\u0633\u0644\u0627\u06CC\u062F\u0647\u0627\u06CC \u0645\u0639\u0631\u0641\u06CC", 1, "auth-landing__indicators"], ["type", "button", 1, "auth-landing__indicator", 3, "auth-landing__indicator--active"], ["aria-label", "\u0648\u0631\u0648\u062F \u06CC\u0627 \u062B\u0628\u062A \u0646\u0627\u0645", 1, "auth-landing__actions"], ["routerLink", "/auth/login", 1, "btn", "btn-primary", "auth-landing__button"], ["routerLink", "/auth/reg/step1", 1, "btn", "btn-outline-primary", "auth-landing__button", "auth-landing__button--secondary"], [1, "auth-landing__prompt"], [1, "auth-landing__slide"], ["aria-hidden", "true", 1, "auth-landing__illustration"], ["viewBox", "0 0 32 32", "focusable", "false"], [1, "auth-landing__title"], [1, "auth-landing__description"], ["type", "button", 1, "auth-landing__indicator", 3, "click"]], template: function AuthLandingComponent_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "main", 0)(1, "section", 1);
+    \u0275\u0275listener("pointerdown", function AuthLandingComponent_Template_section_pointerdown_1_listener($event) {
+      return ctx.onPointerDown($event);
+    })("pointerup", function AuthLandingComponent_Template_section_pointerup_1_listener($event) {
+      return ctx.onPointerUp($event);
+    })("pointercancel", function AuthLandingComponent_Template_section_pointercancel_1_listener() {
+      return ctx.onPointerCancel();
+    })("pointerleave", function AuthLandingComponent_Template_section_pointerleave_1_listener() {
+      return ctx.onPointerCancel();
+    });
+    \u0275\u0275elementStart(2, "div", 2);
+    \u0275\u0275repeaterCreate(3, AuthLandingComponent_For_4_Template, 8, 7, "article", 3, _forTrack02);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "div", 4);
+    \u0275\u0275repeaterCreate(6, AuthLandingComponent_For_7_Template, 1, 4, "button", 5, _forTrack02);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(8, "section", 6)(9, "a", 7);
+    \u0275\u0275text(10, "\u0648\u0631\u0648\u062F");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(11, "a", 8)(12, "p", 9);
+    \u0275\u0275text(13, "\u062D\u0633\u0627\u0628 \u06A9\u0627\u0631\u0628\u0631\u06CC \u0646\u062F\u0627\u0631\u06CC\u062F\u061F");
+    \u0275\u0275elementEnd();
+    \u0275\u0275text(14, " \u062B\u0628\u062A \u0646\u0627\u0645 ");
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    \u0275\u0275advance(3);
+    \u0275\u0275repeater(ctx.slides);
+    \u0275\u0275advance(3);
+    \u0275\u0275repeater(ctx.slides);
+  }
+}, dependencies: [RouterLink], styles: ["\n\n[_nghost-%COMP%] {\n  display: block;\n  min-height: 100dvh;\n  color: var(--bs-body-color);\n  direction: rtl;\n}\n.auth-landing[_ngcontent-%COMP%] {\n  min-height: 100dvh;\n  display: grid;\n  grid-template-rows: minmax(0, 65fr) minmax(208px, 35fr);\n  padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom) + 1rem);\n  overflow: hidden;\n  background: url(/images/auth-bg.svg) no-repeat center center fixed;\n  background-size: min(1100px, 190vw);\n}\n.auth-landing__carousel[_ngcontent-%COMP%] {\n  position: relative;\n  min-height: 0;\n  display: grid;\n  grid-template-rows: minmax(0, 1fr) auto;\n  touch-action: pan-y;\n  -webkit-user-select: none;\n  user-select: none;\n}\n.auth-landing__slides[_ngcontent-%COMP%] {\n  position: relative;\n  min-height: 0;\n  overflow: hidden;\n}\n.auth-landing__slide[_ngcontent-%COMP%] {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 0.8rem;\n  max-width: 430px;\n  margin-inline: auto;\n  padding: 0.75rem 0.35rem;\n  text-align: center;\n  opacity: 0;\n  transform: translateX(-18px);\n  pointer-events: none;\n  transition: opacity 360ms ease, transform 360ms ease;\n}\n.auth-landing__slide--active[_ngcontent-%COMP%] {\n  opacity: 1;\n  transform: translateX(0);\n  pointer-events: auto;\n}\n.auth-landing__illustration[_ngcontent-%COMP%] {\n  width: clamp(5rem, 24vw, 6.25rem);\n  height: clamp(5rem, 24vw, 6.25rem);\n  display: grid;\n  place-items: center;\n  border-radius: 2rem;\n  color: var(--bs-primary);\n  background: rgba(255, 255, 255, 0.72);\n  border: 1px solid rgba(255, 255, 255, 0.62);\n  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.88);\n  -webkit-backdrop-filter: blur(18px) saturate(170%);\n  backdrop-filter: blur(18px) saturate(170%);\n}\n.auth-landing__illustration[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%] {\n  display: block;\n  width: 2.75rem;\n  height: 2.75rem;\n}\n.auth-landing__title[_ngcontent-%COMP%] {\n  margin: 0;\n  color: var(--bs-body-color);\n  font-size: clamp(1.22rem, 5vw, 1.55rem);\n  font-weight: 900;\n  line-height: 1.55;\n}\n.auth-landing__description[_ngcontent-%COMP%] {\n  max-width: 21rem;\n  margin: 0;\n  color: var(--bs-secondary-color);\n  font-size: clamp(0.88rem, 3.8vw, 0.98rem);\n  font-weight: 500;\n  line-height: 1.9;\n}\n.auth-landing__indicators[_ngcontent-%COMP%] {\n  display: inline-flex;\n  justify-content: center;\n  align-items: center;\n  gap: 0.42rem;\n  padding-block: 0.5rem 0.25rem;\n}\n.auth-landing__indicator[_ngcontent-%COMP%] {\n  width: 0.42rem;\n  height: 0.42rem;\n  padding: 0;\n  border: 0;\n  border-radius: 999px;\n  background: rgba(var(--bs-primary-rgb), 0.24);\n  transition:\n    width 220ms ease,\n    background-color 220ms ease,\n    opacity 220ms ease;\n}\n.auth-landing__indicator--active[_ngcontent-%COMP%] {\n  width: 1.35rem;\n  background: rgba(var(--bs-primary-rgb), 0.78);\n}\n.auth-landing__actions[_ngcontent-%COMP%] {\n  width: 100%;\n  max-width: 430px;\n  margin-inline: auto;\n  display: flex;\n  flex-direction: column;\n  justify-content: end;\n  align-items: stretch;\n  gap: 0.75rem;\n  padding-block-start: 1rem;\n}\n.auth-landing__button[_ngcontent-%COMP%] {\n  min-height: 3.05rem;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  font-weight: 800;\n}\n.auth-landing__button--secondary[_ngcontent-%COMP%] {\n  background-color: rgba(255, 255, 255, 0.5);\n}\n.auth-landing__prompt[_ngcontent-%COMP%] {\n  margin: 0;\n  color: var(--bs-secondary-color);\n  font-size: 0.9rem;\n  font-weight: 600;\n  line-height: 1.6;\n  text-align: center;\n}\n@media (max-width: 360px) {\n  .auth-landing[_ngcontent-%COMP%] {\n    grid-template-rows: minmax(0, 62fr) minmax(198px, 38fr);\n    padding-inline: 0.85rem;\n  }\n  .auth-landing__slide[_ngcontent-%COMP%] {\n    gap: 0.62rem;\n  }\n  .auth-landing__illustration[_ngcontent-%COMP%] {\n    border-radius: 1.7rem;\n  }\n  .auth-landing__actions[_ngcontent-%COMP%] {\n    gap: 0.62rem;\n  }\n  .auth-landing__button[_ngcontent-%COMP%] {\n    min-height: 2.85rem;\n  }\n}\n@media (min-width: 768px) {\n  .auth-landing[_ngcontent-%COMP%] {\n    padding-inline: 1.5rem;\n  }\n  .auth-landing__actions[_ngcontent-%COMP%] {\n    padding-block-end: 1.25rem;\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .auth-landing__slide[_ngcontent-%COMP%], \n   .auth-landing__indicator[_ngcontent-%COMP%] {\n    transition: none;\n  }\n}\n/*# sourceMappingURL=auth-landing.component.css.map */"], changeDetection: 0 });
+var AuthLandingComponent = _AuthLandingComponent;
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AuthLandingComponent, { className: "AuthLandingComponent" });
+})();
+
 // projects/client/src/app/auth/auth.routes.ts
 var auth_routes = [
+  {
+    path: "",
+    pathMatch: "full",
+    component: AuthLandingComponent
+  },
   {
     path: "reg",
     pathMatch: "full",
@@ -2998,4 +3196,4 @@ var auth_routes = [
 export {
   auth_routes
 };
-//# sourceMappingURL=chunk-DWUEH7DQ.js.map
+//# sourceMappingURL=chunk-2RWMDCOI.js.map

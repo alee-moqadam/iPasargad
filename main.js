@@ -676,7 +676,7 @@ var ApayReturnComponent = _ApayReturnComponent;
 var routes = [
   {
     path: "auth",
-    loadChildren: () => import("./chunk-DWUEH7DQ.js").then((m) => m.auth_routes)
+    loadChildren: () => import("./chunk-2RWMDCOI.js").then((m) => m.auth_routes)
   },
   {
     path: "payment-return",
@@ -692,7 +692,7 @@ var routes = [
   },
   {
     path: "",
-    loadChildren: () => import("./chunk-6C2EQ4QO.js").then((m) => m.features_routes)
+    loadChildren: () => import("./chunk-KLFR77KH.js").then((m) => m.features_routes)
   },
   {
     path: "**",
@@ -794,7 +794,7 @@ var httpErrorInterceptor = (req, next) => {
 // projects/client/src/app/app.initializer.ts
 var INITIALIZE_URL = environment.identityUrl + "/Account/IsAuthorized";
 var EXCLUSION_STRINGS = ["/reg/", "/forget-password", "/payment-return", "/apay-return", "/traditional-account-return"];
-var AUTH_PATHS = ["/auth/login", "/auth/forget-password", "/auth/reg", "/auth/reg/step1", "/auth/reg/step2", "/auth/reg/step3", "/auth/reg/step4", "/auth/reg/step4-legal", "/auth/reg/legal-step"];
+var AUTH_PATHS = ["/auth", "/auth/login", "/auth/forget-password", "/auth/reg", "/auth/reg/step1", "/auth/reg/step2", "/auth/reg/step3", "/auth/reg/step4", "/auth/reg/step4-legal", "/auth/reg/legal-step"];
 function appInitializer(http, router) {
   return () => {
     return http.handle(new HttpRequest("GET", INITIALIZE_URL, { withCredentials: true })).pipe(map((response) => {
@@ -806,14 +806,14 @@ function appInitializer(http, router) {
       }
       if (response?.status === 401) {
         console.log("redirect to login");
-        router.navigate(["/auth/login"]);
+        router.navigate(["/auth"]);
       }
     }), catchError((error) => {
       const currentPath = window.location.href;
       console.error("Error loading initialUrl:", error);
       if (!EXCLUSION_STRINGS.some((str) => currentPath.includes(str))) {
         console.log("Redirecting to login due to error");
-        router.navigate(["/auth/login"]);
+        router.navigate(["/auth"]);
       }
       return of(true);
     })).toPromise();
