@@ -46,6 +46,7 @@
     </div>
   </div>
 </header>
+@if(reportingListMenu()?.length) {
 <div class="app-header-subnav d-none d-lg-block fixed-top" [style.top.px]="headerHeight">
   <div class="container">
     <div class="d-flex">
@@ -71,3 +72,4 @@
     </div>
   </div>
 </div>
+}

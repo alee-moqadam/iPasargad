@@ -36,10 +36,6 @@ export const features_routes: Route[] = [
         children: [
             {
                 path: 'dashboard', component: DashboardComponent, data: {
-                    reportMenu: [
-                        { name: 'دارایی', link: 'portfolio' },
-                        { name: 'صندوق‌ها', link: 'fund-list' },
-                    ],
                     pinnedMenu: true
                 }
             },

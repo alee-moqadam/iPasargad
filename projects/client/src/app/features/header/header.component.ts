@@ -46,6 +46,8 @@ export class HeaderComponent implements OnInit, OnDestroy , AfterViewInit {
         this.childRouteItem.set(childRoute);
         if (childRoute?.reportMenu) {
           this.reportingListMenu.set(childRoute?.reportMenu);
+        } else {
+          this.reportingListMenu.set([]);
         }
         this.pinnedMenu.set(childRoute?.pinnedMenu);
       })
