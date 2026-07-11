@@ -8,9 +8,15 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { QuickSejamStep2Component } from './register/quick-sejam-step2/quick-sejam-step2.component';
 import { RegisterLegalFormComponent } from "./register/register-legal-form/register-legal-form.component";
 import { QuickSejamStep2LegalComponent } from "./register/quick-sejam-step2-legal/quick-sejam-step2-legal.component";
+import { AuthLandingComponent } from "./auth-landing/auth-landing.component";
 
 
 export const auth_routes: Route[] = [
+    {
+        path: '',
+        pathMatch: 'full',
+        component: AuthLandingComponent
+    },
     {
         path: 'reg',
         pathMatch: 'full',

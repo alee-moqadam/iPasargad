@@ -1,0 +1,53 @@
+<main class="auth-landing auth-bg" dir="rtl">
+  <section
+    class="auth-landing__carousel"
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="معرفی امکانات آی‌پاسارگاد"
+    (pointerdown)="onPointerDown($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointercancel)="onPointerCancel()"
+    (pointerleave)="onPointerCancel()"
+  >
+    <div class="auth-landing__slides">
+      @for (slide of slides; track slide.title; let index = $index) {
+        <article
+          class="auth-landing__slide"
+          [class.auth-landing__slide--active]="activeSlide() === index"
+          [attr.aria-hidden]="activeSlide() === index ? 'false' : 'true'"
+          [attr.aria-label]="slide.title"
+        >
+          <div class="auth-landing__illustration" aria-hidden="true">
+            <svg viewBox="0 0 32 32" focusable="false">
+              <use [attr.xlink:href]="slide.icon"></use>
+            </svg>
+          </div>
+
+          <h1 class="auth-landing__title">{{ slide.title }}</h1>
+          <p class="auth-landing__description">{{ slide.description }}</p>
+        </article>
+      }
+    </div>
+
+    <div class="auth-landing__indicators" role="tablist" aria-label="اسلایدهای معرفی">
+      @for (slide of slides; track slide.title; let index = $index) {
+        <button
+          type="button"
+          class="auth-landing__indicator"
+          [class.auth-landing__indicator--active]="activeSlide() === index"
+          [attr.aria-label]="'نمایش اسلاید ' + (index + 1)"
+          [attr.aria-current]="activeSlide() === index ? 'true' : null"
+          (click)="selectSlide(index)"
+        ></button>
+      }
+    </div>
+  </section>
+
+  <section class="auth-landing__actions" aria-label="ورود یا ثبت نام">
+    <a class="btn btn-primary auth-landing__button" routerLink="/auth/login">ورود</a>
+    <a class="btn btn-outline-primary auth-landing__button auth-landing__button--secondary" routerLink="/auth/reg/step1">
+       <p class="auth-landing__prompt">حساب کاربری ندارید؟</p>
+      ثبت نام
+    </a>
+  </section>
+</main>

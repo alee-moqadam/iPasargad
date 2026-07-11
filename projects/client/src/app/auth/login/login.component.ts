@@ -30,6 +30,8 @@ import { environment } from 'projects/client/src/environments/environment';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements AfterViewInit {
+  private readonly developmentMockCredential = '1';
+
   formGroup!: UntypedFormGroup;
   generatedCaptchaValue = signal<CaptchaModel>({});
   loginMsg = signal(null);
@@ -99,6 +101,8 @@ export class LoginComponent implements AfterViewInit {
       password: new UntypedFormControl('', [Validators.required]),
       captcha: new UntypedFormControl('', [Validators.required]),
     });
+
+    this.autoSubmitDevelopmentMockLogin();
   }
 
   submit() {
@@ -163,6 +167,17 @@ export class LoginComponent implements AfterViewInit {
     const password = this.formGroup?.get('password')?.value ?? '';
 
     return loginName === '1' && password === '1';
+  }
+
+  private autoSubmitDevelopmentMockLogin(): void {
+    if (environment.production) return;
+
+    this.formGroup.patchValue({
+      loginName: this.developmentMockCredential,
+      password: this.developmentMockCredential,
+    });
+
+    queueMicrotask(() => this.submit());
   }
 
   private completeDevelopmentMockLogin(): void {

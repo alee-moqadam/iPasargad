@@ -33,6 +33,7 @@ import { MutualFundCarouselComponent } from '@client/shared/components/mutual-fu
 import { GlobalEventService } from '@client/core/services/global-event.service';
 import { ExchangeFundModalComponent } from './exchange-fund-modal/exchange-fund-modal.component';
 import { environment } from 'projects/client/src/environments/environment';
+import { AssetTrendBackgroundComponent } from './asset-trend-background/asset-trend-background.component';
 
 type SummaryCardType = 'assets' | 'bank-card' | 'direct-debit';
 
@@ -46,7 +47,7 @@ Variablepie(Highcharts);
     UsrCompositionChartComponent, FormsModule, ConsultingGuideComponent,
     RecentActivityComponent, AssetChartComponent, DecimalPipe, RouterLink, FundAdvComponent,
     InvestmentOpportunitiesComponent, OtherServicesComponent, ConsultingGuideComponent, NgxEchartsDirective, CommonModule, AssetPortfolioChartComponent ,
-    NgbCarouselModule , MutualFundCarouselComponent
+    NgbCarouselModule , MutualFundCarouselComponent, AssetTrendBackgroundComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

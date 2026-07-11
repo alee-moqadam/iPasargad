@@ -1,0 +1,15 @@
+<svg
+  class="asset-trend-background"
+  viewBox="0 0 360 160"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  @if (renderPath()) {
+    <path
+      class="asset-trend-background__line"
+      [attr.d]="trendPath"
+      pathLength="1"
+    />
+  }
+</svg>

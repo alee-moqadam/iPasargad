@@ -10,7 +10,7 @@ interface XiinitialUrl {
 const INITIALIZE_URL = environment.identityUrl + '/Account/IsAuthorized';
 // const INITIALIZE_URL = environment.apiUrl + '/profilemanagement/getcustomerinfo';
 const EXCLUSION_STRINGS = ['/reg/', '/forget-password','/payment-return','/apay-return','/traditional-account-return']; // Define paths to exclude from redirection
-const AUTH_PATHS = ['/auth/login', '/auth/forget-password', '/auth/reg', '/auth/reg/step1', '/auth/reg/step2', '/auth/reg/step3', '/auth/reg/step4', '/auth/reg/step4-legal', '/auth/reg/legal-step']; // Define auth paths
+const AUTH_PATHS = ['/auth', '/auth/login', '/auth/forget-password', '/auth/reg', '/auth/reg/step1', '/auth/reg/step2', '/auth/reg/step3', '/auth/reg/step4', '/auth/reg/step4-legal', '/auth/reg/legal-step']; // Define auth paths
 
 export function appInitializer(http: HttpBackend, router: Router) {
     return () => {
@@ -28,7 +28,7 @@ export function appInitializer(http: HttpBackend, router: Router) {
                     if (response?.status === 401) {
                         // Redirect to login if the user is not authenticated
                         console.log('redirect to login');
-                        router.navigate(['/auth/login']);
+                        router.navigate(['/auth']);
                     }
                 }),
                 catchError((error: any) => {
@@ -38,7 +38,7 @@ export function appInitializer(http: HttpBackend, router: Router) {
                     if (!EXCLUSION_STRINGS.some((str) => currentPath.includes(str))) {
                         console.log('Redirecting to login due to error');
                         // Redirect to login in case of error
-                        router.navigate(['/auth/login']);
+                        router.navigate(['/auth']);
                     }
 
                     return of(true); // Return an empty observable to handle the error gracefully

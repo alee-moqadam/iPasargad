@@ -3,6 +3,7 @@
     <div class="dashboard-summary-track" #summaryTrack (scroll)="onSummaryCarouselScroll(summaryTrack)">
       <article class="summary-carousel-card asset-summary-card" [class.summary-carousel-card--active]="isActiveSummaryCard('assets')"
         (click)="setActiveSummaryCard('assets')">
+        <app-asset-trend-background [totalAssets]="getDisplayTotalNetValue()"></app-asset-trend-background>
         <div class="section-kicker-white">دارایی کل</div>
         <div class="asset-summary-card__value">
           <span [maskNumber]="getDisplayTotalNetValue()"></span>
@@ -316,7 +317,6 @@
 
   <app-consulting-guide class="mb-4 d-block"></app-consulting-guide>
 </main>
-
 
 
 
