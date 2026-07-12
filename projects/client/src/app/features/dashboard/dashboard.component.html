@@ -1,260 +1,258 @@
 <main class="dashboard-shell" dir="rtl">
   <div class="dashboard-main-column">
-  <section class="dashboard-summary-carousel" aria-label="خلاصه وضعیت">
-    <div class="dashboard-summary-track" #summaryTrack (scroll)="onSummaryCarouselScroll(summaryTrack)">
-      <article class="summary-carousel-card asset-summary-card" [class.summary-carousel-card--active]="isActiveSummaryCard('assets')"
-        (click)="setActiveSummaryCard('assets')">
-        <app-asset-trend-background [totalAssets]="getDisplayTotalNetValue()"></app-asset-trend-background>
-        <div class="section-kicker-white">دارایی کل</div>
-        <div class="asset-summary-card__value">
-          <span [maskNumber]="getDisplayTotalNetValue()"></span>
-          <small>ریال</small>
-        </div>
-        <div class="asset-summary-card__meta">
-          <span>مجموع ارزش سرمایه‌گذاری‌های شما</span>
-          <span>به‌روزرسانی امروز</span>
-        </div>
-        <button class="btn btn-light btn-sm asset-summary-card__button" routerLink="/portfolio">
-          سبد دارایی
-          <svg viewBox="0 0 24 24" width="14" height="14">
-            <use xlink:href="#ico_drop_left"></use>
-          </svg>
-        </button>
-      </article>
+    <section class="dashboard-summary-carousel" aria-label="خلاصه وضعیت">
+      <div class="dashboard-summary-track" #summaryTrack (scroll)="onSummaryCarouselScroll(summaryTrack)">
+        <article class="summary-carousel-card asset-summary-card"
+          [class.summary-carousel-card--active]="isActiveSummaryCard('assets')"
+          (click)="setActiveSummaryCard('assets')">
+          <app-asset-trend-background [totalAssets]="getDisplayTotalNetValue()"></app-asset-trend-background>
+          <div class="panel-with-linkbtn">
+          <div class="section-kicker-white">دارایی کل</div>
+           <button class="btn btn-light btn-sm asset-summary-card__button" routerLink="/portfolio">
+            سبد دارایی
+            <svg viewBox="0 0 24 24" width="14" height="14">
+              <use xlink:href="#ico_drop_left"></use>
+            </svg>
+          </button>
+          </div>
+          <div class="asset-summary-card__value">
+            <span [maskNumber]="getDisplayTotalNetValue()"></span>
+            <small>ریال</small>
+          </div>
+          <div class="asset-summary-card__meta">
+            <span>مجموع ارزش سرمایه‌گذاری‌های شما</span>
+            <span>به‌روزرسانی امروز</span>
+          </div>
+         
+        </article>
 
-      <article class="summary-carousel-card bank-status-card" [class.summary-carousel-card--active]="isActiveSummaryCard('bank-card')"
-        (click)="setActiveSummaryCard('bank-card')">
-        <div class="summary-card-icon">
-          <svg viewBox="0 0 24 24" width="24" height="24">
-            <use xlink:href="#ico_card"></use>
-          </svg>
-        </div>
-        <div>
-        <span class="section-kicker">کارت بانکی</span>
-        <strong>کارت متصل به حساب</strong>
-        <small>مدیریت کارت‌های بانکی و پرداخت‌ها</small>
-        </div>
-        <div class="summary-card-footer">
-          <span class="status-chip status-chip--active">فعال</span>
-          <span class="action-hint">مدیریت کارت</span>
-        </div>
-      </article>
+        <article class="summary-carousel-card bank-status-card"
+          [class.summary-carousel-card--active]="isActiveSummaryCard('bank-card')"
+          (click)="setActiveSummaryCard('bank-card')">
+          <div class="summary-card-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <use xlink:href="#ico_card"></use>
+            </svg>
+          </div>
+          <div>
+            <span class="section-kicker-white">کارت بانکی</span>
+            <strong>کارت متصل به حساب</strong>
+            <small>مدیریت کارت‌های بانکی و پرداخت‌ها</small>
+          </div>
+          <div class="summary-card-footer">
+            <span class="status-chip status-chip--active">فعال</span>
+            <span class="action-hint">مدیریت کارت</span>
+          </div>
+        </article>
 
-      <article class="summary-carousel-card bank-status-card bank-status-card--direct" [class.summary-carousel-card--active]="isActiveSummaryCard('direct-debit')"
-        (click)="setActiveSummaryCard('direct-debit')">
-        <div class="summary-card-icon">
+        <article class="summary-carousel-card bank-status-card bank-status-card--direct"
+          [class.summary-carousel-card--active]="isActiveSummaryCard('direct-debit')"
+          (click)="setActiveSummaryCard('direct-debit')">
+          <div class="summary-card-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <use xlink:href="#ico_card"></use>
+            </svg>
+          </div>
+          <div>
+            <span class="section-kicker">پرداخت مستقیم</span>
+            <strong>اتصال به حساب</strong>
+            <small>پرداخت سریع‌تر با اتصال مستقیم حساب بانکی</small>
+          </div>
+          <div class="summary-card-footer">
+            <span class="status-chip">آماده فعال‌سازی</span>
+            <span class="action-hint">مشاهده تنظیمات</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="summary-carousel-indicators" aria-label="انتخاب کارت خلاصه">
+        <button type="button" [class.active]="isActiveSummaryCard('assets')" aria-label="نمایش دارایی کل"
+          (click)="selectSummaryCard('assets', summaryTrack)"></button>
+        <button type="button" [class.active]="isActiveSummaryCard('bank-card')" aria-label="نمایش کارت بانکی"
+          (click)="selectSummaryCard('bank-card', summaryTrack)"></button>
+        <button type="button" [class.active]="isActiveSummaryCard('direct-debit')" aria-label="نمایش پرداخت مستقیم"
+          (click)="selectSummaryCard('direct-debit', summaryTrack)"></button>
+      </div>
+    </section>
+
+    <section class="dashboard-quick-actions" aria-label="عملیات سریع">
+      @if(activeSummaryCard() === 'assets') {
+      <button type="button" class="quick-action quick-action--invest" (click)="openSubscriptionModal()">
+        <span class="quick-action__icon">
           <svg viewBox="0 0 24 24" width="24" height="24">
             <use xlink:href="#ico_box_plus_fill"></use>
           </svg>
-        </div>
-        <div>
-          <span class="section-kicker">پرداخت مستقیم</span>
-          <strong>اتصال به حساب</strong>
-          <small>پرداخت سریع‌تر با اتصال مستقیم حساب بانکی</small>
-        </div>
-        <div class="summary-card-footer">
-          <span class="status-chip">آماده فعال‌سازی</span>
-          <span class="action-hint">مشاهده تنظیمات</span>
-        </div>
-      </article>
-    </div>
-
-    <div class="summary-carousel-indicators" aria-label="انتخاب کارت خلاصه">
-      <button type="button" [class.active]="isActiveSummaryCard('assets')" aria-label="نمایش دارایی کل"
-        (click)="selectSummaryCard('assets', summaryTrack)"></button>
-      <button type="button" [class.active]="isActiveSummaryCard('bank-card')" aria-label="نمایش کارت بانکی"
-        (click)="selectSummaryCard('bank-card', summaryTrack)"></button>
-      <button type="button" [class.active]="isActiveSummaryCard('direct-debit')" aria-label="نمایش پرداخت مستقیم"
-        (click)="selectSummaryCard('direct-debit', summaryTrack)"></button>
-    </div>
-  </section>
-
-  <section class="dashboard-quick-actions" aria-label="عملیات سریع">
-    @if(activeSummaryCard() === 'assets') {
-    <button type="button" class="quick-action quick-action--invest" (click)="openSubscriptionModal()">
-      <span class="quick-action__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#ico_box_plus_fill"></use>
-        </svg>
-      </span>
-      <span class="section-kicker-green">سرمایه‌گذاری</span>
-      <small>خرید صندوق</small>
-    </button>
-    <button type="button" class="quick-action quick-action--exchange" (click)="openExchangeModal()">
-      <span class="quick-action__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#ico_box_exhange_fill"></use>
-        </svg>
-      </span>
-      <span class="quick-action__label">تبدیل</span>
-      <small>بین صندوق‌ها</small>
-    </button>
-    <button type="button" class="quick-action quick-action--withdraw" (click)="openRedemptionModal()">
-      <span class="quick-action__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#ico_box_minuse_fill"></use>
-        </svg>
-      </span>
-      <span class="quick-action__label">برداشت</span>
-      <small>فروش صندوق</small>
-    </button>
-    } @else if(activeSummaryCard() === 'bank-card') {
-    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
-      <span class="quick-action__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#ico_card"></use>
-        </svg>
-      </span>
-      <span class="quick-action__label">مدیریت کارت</span>
-      <small>به‌زودی</small>
-    </button>
-    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
-      <span class="quick-action__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#ico_box_plus_fill"></use>
-        </svg>
-      </span>
-      <span class="quick-action__label">افزودن کارت</span>
-      <small>نمایشی</small>
-    </button>
-    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
-      <span class="quick-action__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#ico_chart_bar_box"></use>
-        </svg>
-      </span>
-      <span class="quick-action__label">پرداخت‌ها</span>
-      <small>گزارش</small>
-    </button>
-    } @else {
-    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
-      <span class="quick-action__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#ico_box_plus_fill"></use>
-        </svg>
-      </span>
-      <span class="quick-action__label">فعال‌سازی</span>
-      <small>به‌زودی</small>
-    </button>
-    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
-      <span class="quick-action__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#ico_app"></use>
-        </svg>
-      </span>
-      <span class="quick-action__label">مدیریت اتصال</span>
-      <small>نمایشی</small>
-    </button>
-    <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
-      <span class="quick-action__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#ico_chart_bar_box"></use>
-        </svg>
-      </span>
-      <span class="quick-action__label">مشاهده وضعیت</span>
-      <small>پیگیری</small>
-    </button>
-    }
-  </section>
-
-  <section class="dashboard-help-link">
-    <svg class="mx-1" icon="info-circle" container="body" style="width: 16px; min-width: 16px;" viewBox="0 0 24 24">
-      <path fill="CurrentColor"
-        d="M12,1.7c-5.7,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3,10.3-4.6,10.3-10.3c0-2.7-1.1-5.3-3-7.3-1.9-1.9-4.5-3-7.2-3ZM11,6.7c0-.6.4-1,1-1s1,.4,1,1v6.3c0,.6-.4,1-1,1s-1-.4-1-1v-6.3ZM11,16.5c0-.6.4-1,1-1s1,.4,1,1h0c0,.6-.4,1-1,1s-1-.4-1-1h0Z" />
-    </svg>
-    <span>
-      راهنمای
-      <a target="_blank" href="https://academy.ipasargad.ir/how-to-invest-in-ipasargad-app/"
-        class="text-primary fw-medium text-decoration-none">«سرمایه‌گذاری و برداشت»</a>
-      و
-      <a target="_blank" href="https://academy.ipasargad.ir/exchange-funds/"
-        class="text-primary fw-medium text-decoration-none">«تبدیل»</a>
-    </span>
-  </section>
-
-  <section class="dashboard-section dashboard-section--funds">
-    <div class="fund-section-header">
-      <span class="section-kicker">صندوق‌های سرمایه‌گذاری</span>
-      <a class="fund-section-link" routerLink="/fund-list">جزئیات صندوق‌ها</a>
-    </div>
-
-    <div class="fund-overview-scroll">
-      <div class="fund-overview-track">
-        @for(fund of getDisplayFundCards(); track fund.title){
-<article
-
-  [class]="'fund-overview-card fund-overview-card--' + fund.tone"
-
-  [class.fund-overview-card--linked]="getFundDetailLink(fund)"
-
-  [class.fund-overview-card--featured]="fund.isFeatured"
-
-  [routerLink]="getFundDetailLink(fund)"
-
-  [attr.role]="getFundDetailLink(fund) ? 'link' : null"
-
-  [attr.tabindex]="getFundDetailLink(fund) ? '0' : null">
-
-  <div class="fund-overview-card__top-row">
-
-    <div class="fund-overview-card__media">
-
-      <img [src]="fund.imageSrc" [alt]="fund.symbol || fund.title" />
-
-    </div>
-
-    <span class="fund-overview-card__status" aria-hidden="true">
-
-      <span class="fund-overview-card__status-inner"></span>
-
-    </span>
-
-  </div>
-
-  <div class="fund-overview-card__identity">
-
-    <div class="fund-overview-card__symbol-row">
-
-      <strong class="fund-overview-card__title">{{fund.symbol || fund.title}}</strong>
-
-    </div>
-
-    <div class="fund-overview-card__topline">
-
-      <small class="fund-overview-card__type">{{fund.typeLabel || fund.type}}</small>
-
-      @if(fund.isEtf) {
-
-        <span class="fund-overview-card__etf-tag">ETF</span>
-
+        </span>
+        <span class="section-kicker-green">سرمایه‌گذاری</span>
+        <small>خرید صندوق</small>
+      </button>
+      <button type="button" class="quick-action quick-action--exchange" (click)="openExchangeModal()">
+        <span class="quick-action__icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <use xlink:href="#ico_box_exhange_fill"></use>
+          </svg>
+        </span>
+        <span class="quick-action__label">تبدیل</span>
+        <small>بین صندوق‌ها</small>
+      </button>
+      <button type="button" class="quick-action quick-action--withdraw" (click)="openRedemptionModal()">
+        <span class="quick-action__icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <use xlink:href="#ico_box_minuse_fill"></use>
+          </svg>
+        </span>
+        <span class="quick-action__label">برداشت</span>
+        <small>فروش صندوق</small>
+      </button>
+      } @else if(activeSummaryCard() === 'bank-card') {
+      <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+        <span class="quick-action__icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <use xlink:href="#ico_card"></use>
+          </svg>
+        </span>
+        <span class="quick-action__label">مدیریت کارت</span>
+        <small>به‌زودی</small>
+      </button>
+      <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+        <span class="quick-action__icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <use xlink:href="#ico_box_plus_fill"></use>
+          </svg>
+        </span>
+        <span class="quick-action__label">افزودن کارت</span>
+        <small>نمایشی</small>
+      </button>
+      <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+        <span class="quick-action__icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <use xlink:href="#ico_chart_bar_box"></use>
+          </svg>
+        </span>
+        <span class="quick-action__label">پرداخت‌ها</span>
+        <small>گزارش</small>
+      </button>
+      } @else {
+      <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+        <span class="quick-action__icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <use xlink:href="#ico_box_plus_fill"></use>
+          </svg>
+        </span>
+        <span class="quick-action__label">فعال‌سازی</span>
+        <small>به‌زودی</small>
+      </button>
+      <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+        <span class="quick-action__icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <use xlink:href="#ico_app"></use>
+          </svg>
+        </span>
+        <span class="quick-action__label">مدیریت اتصال</span>
+        <small>نمایشی</small>
+      </button>
+      <button type="button" class="quick-action quick-action--preview" disabled aria-disabled="true">
+        <span class="quick-action__icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <use xlink:href="#ico_chart_bar_box"></use>
+          </svg>
+        </span>
+        <span class="quick-action__label">مشاهده وضعیت</span>
+        <small>پیگیری</small>
+      </button>
       }
+    </section>
 
-    </div>
+    <section class="dashboard-help-link">
+      <svg class="mx-1" icon="info-circle" container="body" style="width: 16px; min-width: 16px;" viewBox="0 0 24 24">
+        <path fill="CurrentColor"
+          d="M12,1.7c-5.7,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3,10.3-4.6,10.3-10.3c0-2.7-1.1-5.3-3-7.3-1.9-1.9-4.5-3-7.2-3ZM11,6.7c0-.6.4-1,1-1s1,.4,1,1v6.3c0,.6-.4,1-1,1s-1-.4-1-1v-6.3ZM11,16.5c0-.6.4-1,1-1s1,.4,1,1h0c0,.6-.4,1-1,1s-1-.4-1-1h0Z" />
+      </svg>
+      <span>
+        راهنمای
+        <a target="_blank" href="https://academy.ipasargad.ir/how-to-invest-in-ipasargad-app/"
+          class="text-primary fw-medium text-decoration-none">«سرمایه‌گذاری و برداشت»</a>
+        و
+        <a target="_blank" href="https://academy.ipasargad.ir/exchange-funds/"
+          class="text-primary fw-medium text-decoration-none">«تبدیل»</a>
+      </span>
+    </section>
 
-    <p class="fund-overview-card__description">{{fund.description}}</p>
-
-  </div>
-
-  <div class="fund-overview-card__return">
-
-    <small>بازده روز</small>
-
-    <b class="fund-overview-card__return-value" [class.is-negative]="fund.returnTone === 'negative'">
-
-      {{fund.dailyReturnLabel || fund.returnText}}
-
-    </b>
-
-  </div>
-
-</article>
-        }
+    <section class="dashboard-section dashboard-section--funds">
+      <div class="fund-section-header">
+        <span class="section-kicker">صندوق‌های سرمایه‌گذاری</span>
+        <a class="fund-section-link" routerLink="/fund-list">جزئیات صندوق‌ها</a>
       </div>
-    </div>
-  </section>
 
-  <section class="dashboard-grid dashboard-grid--content">
-    <!-- <article class="dashboard-panel"> -->
+      <div class="fund-overview-scroll">
+        <div class="fund-overview-track">
+          @for(fund of getDisplayFundCards(); track fund.title){
+          <article [class]="'fund-overview-card fund-overview-card--' + fund.tone"
+            [class.fund-overview-card--linked]="getFundDetailLink(fund)"
+            [class.fund-overview-card--featured]="fund.isFeatured" [routerLink]="getFundDetailLink(fund)"
+            [attr.role]="getFundDetailLink(fund) ? 'link' : null"
+            [attr.tabindex]="getFundDetailLink(fund) ? '0' : null">
+
+            <div class="fund-overview-card__top-row">
+
+              <div class="fund-overview-card__media">
+
+                <img [src]="fund.imageSrc" [alt]="fund.symbol || fund.title" />
+
+              </div>
+
+              <span class="fund-overview-card__status" aria-hidden="true">
+
+                <span class="fund-overview-card__status-inner"></span>
+
+              </span>
+
+            </div>
+
+            <div class="fund-overview-card__identity">
+
+              <div class="fund-overview-card__symbol-row">
+
+                <strong class="fund-overview-card__title">{{fund.symbol || fund.title}}</strong>
+
+              </div>
+
+              <div class="fund-overview-card__topline">
+
+                <small class="fund-overview-card__type">{{fund.typeLabel || fund.type}}</small>
+
+                @if(fund.isEtf) {
+
+                <span class="fund-overview-card__etf-tag">ETF</span>
+
+                }
+
+              </div>
+
+              <p class="fund-overview-card__description">{{fund.description}}</p>
+
+            </div>
+
+            <div class="fund-overview-card__return">
+
+              <small>بازده روز</small>
+
+              <b class="fund-overview-card__return-value" [class.is-negative]="fund.returnTone === 'negative'">
+
+                {{fund.dailyReturnLabel || fund.returnText}}
+
+              </b>
+
+            </div>
+
+          </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-grid dashboard-grid--content">
+      <!-- <article class="dashboard-panel"> -->
       <!-- <div class="dashboard-section__header">
         <div>
           <span class="section-kicker">روند دارایی</span>
@@ -268,77 +266,70 @@
         <img src="/images/empty-scenario/Group 19810.svg" class="img-fluid" alt="" />
         }
       </div> -->
-    <!-- </article> -->
+      <!-- </article> -->
 
-    <article class="dashboard-panel">
+      <article class="dashboard-panel">
+        <div class="dashboard-section__header">
+          <div class="panel-with-linkbtn">
+            <span class="section-kicker">فعالیت‌های اخیر</span>
+            <button class="btn btn-link text-decoration-none" routerLink="/reporting/requests">گزارش‌ها</button>
+          </div>
+
+        </div>
+        <div class="mock-activity-list">
+          @for(activity of mockActivities; track activity.title){
+          <div class="mock-activity-item">
+            <div>
+              <strong>{{activity.title}}</strong>
+              <span>{{activity.date}} · {{activity.status}}</span>
+            </div>
+            <small>{{activity.amount}}</small>
+          </div>
+          }
+        </div>
+        <!-- <div class="recent-activity-frame">
+          <app-recent-activity class="d-block h-100"></app-recent-activity>
+        </div> -->
+      </article>
+    </section>
+
+    <section class="dashboard-section dashboard-section--secondary">
       <div class="dashboard-section__header">
         <div>
-          <span class="section-kicker">فعالیت‌های اخیر</span>
+          <span class="section-kicker">خدمات تکمیلی</span>
         </div>
-        <button class="btn btn-link text-decoration-none" routerLink="/reporting/requests">گزارش‌ها</button>
       </div>
-      <div class="mock-activity-list">
-        @for(activity of mockActivities; track activity.title){
-        <div class="mock-activity-item">
+      <div class="secondary-service-grid">
+        @for(service of secondaryServices; track service.title){
+        <article class="secondary-service-card">
+          <svg viewBox="0 0 24 24" width="28" height="28">
+            <use [attr.xlink:href]="service.icon"></use>
+          </svg>
           <div>
-            <strong>{{activity.title}}</strong>
-            <span>{{activity.date}} · {{activity.status}}</span>
+            <strong>{{service.title}}</strong>
+            <span>{{service.description}}</span>
           </div>
-          <small>{{activity.amount}}</small>
-        </div>
+        </article>
         }
       </div>
-      <div class="recent-activity-frame">
-        <app-recent-activity class="d-block h-100"></app-recent-activity>
-      </div>
-    </article>
-  </section>
+      <app-other-services class="d-block"></app-other-services>
+    </section>
 
-  <section class="dashboard-section dashboard-section--secondary">
-    <div class="dashboard-section__header">
-      <div>
-        <span class="section-kicker">خدمات تکمیلی</span>
-      </div>
-    </div>
-    <div class="secondary-service-grid">
-      @for(service of secondaryServices; track service.title){
-      <article class="secondary-service-card">
-        <svg viewBox="0 0 24 24" width="28" height="28">
-          <use [attr.xlink:href]="service.icon"></use>
-        </svg>
-        <div>
-          <strong>{{service.title}}</strong>
-          <span>{{service.description}}</span>
-        </div>
-      </article>
-      }
-    </div>
-    <app-other-services class="d-block"></app-other-services>
-  </section>
-
-  <app-consulting-guide class="mb-4 d-block"></app-consulting-guide>
+    <app-consulting-guide class="mb-4 d-block"></app-consulting-guide>
   </div>
 
   <aside class="dashboard-desktop-sidebar" aria-label="پیشنهادها و محتوای تکمیلی">
     <section class="dashboard-sidebar-card dashboard-sidebar-card--promo">
-      <ngb-carousel
-        class="dashboard-promo-carousel"
-        [showNavigationArrows]="false"
-        [showNavigationIndicators]="true"
-        [interval]="4500"
-        [pauseOnHover]="true"
-        [wrap]="true"
-      >
+      <ngb-carousel class="dashboard-promo-carousel" [showNavigationArrows]="false" [showNavigationIndicators]="true"
+        [interval]="4500" [pauseOnHover]="true" [wrap]="true">
         @for (item of getSidebarPromoItems(); track item.seoRegisterNumber || $index) {
         <ng-template ngbSlide>
-          <article
-            class="dashboard-promo-slide"
-            [routerLink]="getFundDetailLink(item)"
+          <article class="dashboard-promo-slide" [routerLink]="getFundDetailLink(item)"
             [attr.role]="getFundDetailLink(item) ? 'link' : null"
-            [attr.tabindex]="getFundDetailLink(item) ? '0' : null"
-          >
+            [attr.tabindex]="getFundDetailLink(item) ? '0' : null">
             @if(getAttachment(item, attachmentTypes.HorizontalBanner); as banner) {
-            <img [src]="apiUrl + '/' + banner.downloadLink" [alt]="item.title || item.symbol || 'پیشنهاد سرمایه‌گذاری'" />
+            <img [src]="apiUrl + '/' + banner.downloadLink"
+              [alt]="item.title || item.symbol || 'پیشنهاد سرمایه‌گذاری'" />
             } @else {
             <div class="dashboard-promo-slide__placeholder">
               <span>پیشنهاد سرمایه‌گذاری</span>
@@ -350,10 +341,11 @@
       </ngb-carousel>
     </section>
 
-    <section class="dashboard-sidebar-card dashboard-sidebar-placeholder" aria-label="Market News placeholder"></section>
-    <section class="dashboard-sidebar-card dashboard-sidebar-placeholder" aria-label="Educational Content placeholder"></section>
-    <section class="dashboard-sidebar-card dashboard-sidebar-placeholder" aria-label="Investment Tips placeholder"></section>
+    <section class="dashboard-sidebar-card dashboard-sidebar-placeholder" aria-label="Market News placeholder">
+    </section>
+    <section class="dashboard-sidebar-card dashboard-sidebar-placeholder" aria-label="Educational Content placeholder">
+    </section>
+    <section class="dashboard-sidebar-card dashboard-sidebar-placeholder" aria-label="Investment Tips placeholder">
+    </section>
   </aside>
 </main>
-
-

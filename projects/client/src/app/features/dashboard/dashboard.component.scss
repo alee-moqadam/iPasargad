@@ -5,7 +5,7 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 0.65rem 1rem 2.25rem;
-  color: #ffffff;
+  color: #000000;
 }
 
 .dashboard-main-column {
@@ -61,6 +61,14 @@
   border: 1px solid #56595b0e;
   box-shadow: 0 7px 20px rgba(31, 41, 51, 0.045);
 }
+
+.panel-with-linkbtn {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+}
+
 
 .dashboard-summary-carousel {
   display: flex;
@@ -157,7 +165,7 @@
   box-shadow:
     0 10px 24px rgba(31, 41, 51, 0.075),
     0 0 0 2px rgba(20, 140, 80, 0.055),
-    inset 0 1px 1px rgba(26, 19, 19, 0.88);
+    inset 0 1px 1px rgba(255, 255, 255, 0.88);
 }
 
 .summary-carousel-indicators {
@@ -263,7 +271,7 @@
   background:
     radial-gradient(circle at 12% 8%, rgb(49, 49, 54), rgb(41, 41, 44) 36%, transparent 66%),
     rgb(0, 0, 0);
-  border-color: rgba(40, 42, 47, 0.58);
+  border-color: rgba(40, 42, 47, 0.16);
   backdrop-filter: blur(16px) saturate(155%);
   -webkit-backdrop-filter: blur(16px) saturate(155%);
 
@@ -274,7 +282,7 @@
 
   strong {
     margin-top: 0.18rem;
-    color: #26323d;
+    color: #ffffff;
     font-size: 1rem;
     font-weight: 650;
   }
@@ -289,8 +297,8 @@
 
 .bank-status-card--direct {
   background:
-    radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.16) 36%, transparent 66%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(246, 252, 255, 0.74));
+    radial-gradient(circle at 12% 8%, rgba(0, 111, 85, 0.82), rgba(15, 121, 102, 0.16) 36%, transparent 66%),
+    linear-gradient(135deg, rgba(1, 160, 144, 0.82), rgba(0, 170, 77, 0.74));
 }
 
 .summary-card-icon {
@@ -751,7 +759,7 @@
   width: 7px;
   height: 7px;
   border-radius: inherit;
-  background: #148c50;
+  background: #00C896;
 }
 
 .fund-overview-card__identity {
@@ -894,7 +902,7 @@
 }
 
 .fund-overview-card__return-value {
-  color: #148c50 !important;
+  color: #00C896 !important;
   font-size: 0.82rem !important;
   font-weight: 950 !important;
 }
@@ -969,7 +977,7 @@
   padding: 1rem;
 
   svg {
-    color: #148c50;
+    color: #00C896;
     flex: 0 0 auto;
   }
 
